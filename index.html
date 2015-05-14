@@ -550,14 +550,13 @@ span.example { padding: .1em .5em .15em; }
           as a shorter synonym for a grapheme cluster. Text referring to
           graphemes means the user-perceived character boundary as described
           above.</p>
-        <p><dfn id="Shakespeare">Shakespeare</dfn> is a temporary placeholder
-          term referring only to the natural language content in a document and
-          <b>not</b> to any of the surrounding markup or identifiers that form
-          part of the document structure. You can think of the Shakespeare as
-          the actual "content" of the document or the "message" in a given
-          protocol. Note that the Shakespeare includes items like the document
-          title ("Much Ado About Nothing") as well as prose content within the
-          document.</p>
+        <p><dfn id="natural_language_content">Natural language content</dfn>
+          refers to the language-bearing content in a document and <b>not</b>
+          to any of the surrounding markup or identifiers that form part of the
+          document structure. You can think of it as the actual "content" of the
+          document or the "message" in a given protocol. Note that the natural
+          language content can include items such as the document title ("Much
+          Ado About Nothing") as well as prose content within the document.</p>
         <p><dfn id="markup">Markup</dfn> is any text in a document format or
           protocol that belongs to the structure of the format or protocol. This
           definition can include values that are not typically thought of as
@@ -579,27 +578,23 @@ span.example { padding: .1em .5em .15em; }
             a DTD that defines an element called <code>&lt;muffin&gt;</code>,
             "muffin" is a part of the markup.</p>
         </div>
-        <p><dfn title="wildebeest">Wildebeest</dfn> is a temporary placeholder
-          term signifying a document or protocol including both the contained
-          text (the "Shakespeare") and the markup such as identifiers
+        <p>A <dfn title="resource">resource</dfn> is a given document, file, or
+          protocol "message" which include both the <a href="#natural_language_content">natural
+            language content</a>) as well as the markup such as identifiers
           surrounding or containing it. For example, in an HTML document that
           also has some CSS and a few <code>script</code> tags with embedded
           JavaScript, the entire HTML document, considered as a file, is the
-          Wildebeest.</p>
-        <p class="ednote">The WG is considering changing the term "namespace",
-          which is heavily overloaded, to "vocabulary"</p>
-        <p>A <dfn title="namespace">namespace</dfn> provides the list of
+          resource.</p>
+        <p>A <dfn title="vocabulary">vocabulary</dfn> provides the list of
           reserved names as well as the set of rules and specifications
           controlling how user values (such as identifiers) can be assigned in a
           format or protocol. This can include restrictions on range, order, or
           type of characters that can appear in different places. For example,
           HTML defines the names of its elements and attributes, which defines
-          the "namespace" of HTML markup. ECMAScript restricts the range of
+          the "vocabulary" of HTML markup. ECMAScript restricts the range of
           characters that can appear at the start or in the body of an
           identifier or variable name (while different rules apply to the values
-          of, say, string literals). The term "namespace" ought not be confused
-          with similar terminology in, for example, the definition of URLs
-          [[RFC3986]].</p>
+          of, say, string literals).</p>
         <p class="ednote">Following example has accessibility issues and is hard
           to use in hard copy.</p>
         <div class="exampleBox" id="Figure1">
@@ -607,38 +602,35 @@ span.example { padding: .1em .5em .15em; }
           <div style="border-style: solid; border-width:3px; padding-left: 50px; padding-right: 50px; padding-top: 10px; width: 80%">
             <p> <span class="markup">&lt;html&gt;<br>
                 &lt;head&gt;<br>
-                &nbsp;&nbsp;&lt;title&gt;</span><span class="shakespeare">Shakespeare</span><span
-
+                &nbsp;&nbsp;&lt;title&gt;</span><span class="shakespeare">Shakespeare</span><span
                 class="markup">&lt;/title&gt;<br>
                 &lt;/head&gt;<br>
                 &lt;body&gt;<br>
                 &nbsp;&nbsp;&lt;img src="<span class="userValue">shakespeare.jpg</span>"
-                alt="<span class="userValue">William Shakespeare</span>" id="<span
-
+                alt="<span class="userValue">William Shakespeare</span>" id="<span
                   class="userValue">shakespeare image</span>"&gt;<br>
                 <br>
-                &nbsp;&nbsp;&lt;p&gt;</span><span class="shakespeare">What<span
-
+                &nbsp;&nbsp;&lt;p&gt;</span><span class="shakespeare">What<span
                   class="markup">&amp;#x2019;</span>s in a name? That which we
-                call a rose by any other name would smell as sweet.</span><span
-
+                call a rose by any other name would smell as sweet.</span><span
                 class="markup">&lt;/p&gt;<br>
                 &lt;/body&gt;<br>
                 &lt;/html&gt;</span> </p>
           </div>
           <p>Examples: Text with a <span class="markup">gray background</span>
-            is markup. Text in <span class="shakespeare">blue</span> is
-            Shakespeare. Text in <span class="userValue">magenta</span> are
-            user values.</p>
-          <p>All of the text above (all text in a text file) makes up the
-            Wildebeest. It's possible that a given Wildebeest will contain no
-            Shakespeare at all (consider an HTML document consisting of four
-            empty <code>div</code> elements styled to be orange rectangles).
-            It's also possible that a Wildebeest will contain <em>no</em>
-            markup and consist solely of Shakespeare: for example, a plain text
-            file with a soliloquy from <cite>Hamlet</cite> in it. Notice too
-            that the HTML entity <code>&amp;#x2019;</code> appears in the
-            Shakespeare and belongs to both Shakespeare and markup.</p>
+            is markup. Text in <span class="shakespeare">blue</span> natural
+            language content is . Text in <span class="userValue">magenta</span>
+            are user values.</p>
+          <p>All of the text above (all text in a text file) makes up a
+            resource. It's possible that a given resource will contain no
+            natural language content at all (consider an HTML document
+            consisting of four empty <code>div</code> elements styled to be
+            orange rectangles). It's also possible that a resource will contain
+            <em>no</em> markup and consist solely of natural language content:
+            for example, a plain text file with a soliloquy from <cite>Hamlet</cite>
+            in it. Notice too that the HTML entity <code>&amp;#x2019;</code>
+            appears in the natural language content and belongs to both the
+            natural language content and the markup in this resource.</p>
         </div>
       </section>
       <section id="conformance">
@@ -689,176 +681,30 @@ span.example { padding: .1em .5em .15em; }
     </section>
     <section id="problemStatement">
       <h2>The String Matching Problem</h2>
-      <p>The basis for most Web document formats and protocols is text that
-        includes some form of structural markup. When processing document
-        formats based on text, operations such as string matching, indexing,
-        searching, sorting, regular expression matching, and so forth become
-        sensitive to the different ways in which text might be represented in
-        the document. The proper functioning of the Web (and of much other
-        software) depends to a large extent on string matching. A specification
-        or implementation that does not consider these different ways of
-        representing text could confuse users or behave in an unexpected or
-        frustrating manner.</p>
-      <!--
-<p>One of the primary problems that any computer system must address is how to determine if two values should be considered identical or different. This is particularly important when defining a "formal language", such as those which define document formats for the Web. These include familiar formats such as HTML, XML, CSS, JSON, and so forth.</p> -->
-      <section id="unicodeControls">
-        <h3>Unicode Controls and Invisible Markers</h3>
-        <p>Unicode provides a number of special purpose control characters or
-          invisible markers that help document authors control the appearance or
-          performance of text. These characters interfere with string matching
-          because they are not semantically part of the text but do form part of
-          the encoded character sequence. </p>
-        <p>Examples of these include:</p>
-        <table style="width: 100%" border="1">
-          <tbody>
-            <tr>
-              <td>Characters</td>
-              <td>Description</td>
-              <td>Examples</td>
-            </tr>
-            <tr>
-              <td>ZWJ, ZWNJ, ZWSP, CGJ, etc.</td>
-              <td>zero width characters used to join or separate words or
-                graphemes and which are common in languages that do not use
-                spaces between words or for which the renderer needs assistance
-                in composing characters</td>
-              <td><br>
-              </td>
-            </tr>
-            <tr>
-              <td>variation selectors</td>
-              <td>characters used to select an alternate appearance or glyph
-                (see [[CHARMOD]]). These are used in predefined ideographic
-                variation sequences (IVS) as well as generally for certain
-                scripts (such as Mongolian). They are also used to select
-                between black-and-white and color emoji.</td>
-              <td><br>
-              </td>
-            </tr>
-            <tr>
-              <td><br>
-              </td>
-              <td><br>
-              </td>
-              <td><br>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="requirement">
-          <p>Applications that do string matching SHOULD ignore Unicode
-            formatting controls such as variation selectors; grapheme or word
-            joiners; or other non-semantic controls.</p>
-        </div>
-        <p class="ednote">This section was added and needs further fleshing out.
-          The requirement probably wants to live in the requirements section. <span
-
-            style="color:blue;font-size:small">2015-02-07AP</span> </p>
-      </section>
-      <section id="legacyCharacterEncoding">
-        <h3>Legacy Character Encodings</h3>
-        <p>Different character encoding schemes, including <a href="#def-legacyEnc">legacy
-            character encodings</a>, can be used to serialize document formats
-          on the Web. Each character encoding scheme uses different byte values
-          and sequences to represent a given subset of the Universal Character
-          Set.</p>
-        <p>As a further complication, document formats or protocols usually also
-          have escape mechanisms. These allow for the encoding of characters not
-          represented in the character encoding scheme used by the document or
-          for convenience of the editor). Escape mechanisms introduce additional
-          equivalent representations.</p>
-        <p>For example, € (<code>U+20AC EURO SIGN</code>) is encoded as <code>0x80</code>
-          in the <code>windows-1252</code> encoding, but as the byte sequence <code>0xE2.82.AC</code>
-          in <code>UTF-8</code>.</p>
-        <p>Specifications mainly address these resulting variations by
-          considering each document to be a sequence of Unicode characters after
-          converting from the document's character encoding (be it a legacy
-          character encoding or a Unicode encoding such as UTF-8) and then
-          unescaping any character escapes before proceeding to process the
-          document. But even a single character encoding that has been unescaped
-          can provide multiple representations for the '<span class="qterm">same</span>'
-          string.</p>
-        <p class="ednote">The following paragraphs about normalization
-          transcoders are "at risk". The WG feels that this requirement is
-          difficult for content authors or implementers to verify. Needed
-          action: verify if all of [[Encoding]] spec's transcoders are
-          normalizing.</p>
-        <p class="note">Even within a single legacy character encoding there can
-          be variations in implementation. One famous example is the legacy
-          Japanese encoding <code>Shift_JIS</code>. Different transcoder
-          implementations faced choices about how to map specific byte sequences
-          to Unicode. So the byte sequence <code>0x80.60</code> (<code>0x2141</code>
-          in the JIS X 0208 character set) was mapped by some implementations to
-          <code>U+301C WAVE DASH</code> while others chose <code>U+FF5E FULL
-            WIDTH TILDE</code>. This means that two reasonable, self-consistent,
-          transcoders could produce different Unicode character sequences from
-          the same input. The [[Encoding]] specification exists, in part, to
-          ensure that Web implementations use interoperable and identical
-          mappings. However, extant transcoders might be applied to documents
-          found on the Web.</p>
-        <p>For content authors and implementations, it is RECOMMENDED that
-          conversions from legacy character encodings use a "normalizing
-          transcoder".</p>
-        <p id="def-normalizing-transcoder">A <span class="new-term">normalizing
-            transcoder</span> is a transcoder that converts from a <a title=""
-
-            href="#def-legacyEnc">legacy character encoding</a> to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode
-            encoding form</a> <em>and</em> ensures that the result is in
-          Unicode Normalization Form C. For most legacy character encodings, it
-          is possible to construct a normalizing transcoder (by using any
-          transcoder followed by a normalizer); it is not possible to do so if
-          the encoding's <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a>
-          contains characters not represented in Unicode.</p>
-      </section>
-      <section id="characterEscapes">
-        <h3>Character Escapes</h3>
-        <p>Document formats or protocols also add escape mechanisms, providing
-          additional means of representing characters inside a given Wildebeest.
-          These allow for the encoding of characters not represented in the
-          character encoding scheme used by the document or for convenience of
-          the editor. Escape mechanisms introduce additional equivalent
-          representations.</p>
-        <p>For example, € (<code>U+20AC EURO SIGN</code>) can also be encoded in
-          HTML as the hexadecimal entity <code>&amp;#x20ac;</code> or as the
-          decimal entity <code>&amp;#8364;</code>. In a JavaScript or JSON
-          file, it can appear as <code>\u20ac</code> while in a CSS stylesheet
-          it can appear as <code>\20ac</code>. All of these representations
-          encode the same literal character value: "€".</p>
-        <p>Character escapes are normally interpreted before a document is
-          processed and strings within the format or protocol are matched.
-          Consider this HTML fragment: </p>
-        <pre>&lt;style type="text/css"&gt;
-
-  span.h\e9llo {
-     color: red;
-  }
-&lt;/style&gt;
-
-&lt;span class="h&amp;#xe9;llo"&gt;Hello World!&lt;/span&gt;
-</pre>
-        <p>You would expect that text to display like the following: <span class="héllo">Hello
-            world!</span></p>
-        <p>In order for this to work, the user-agent (browser) had to match two
-          strings representing the class name <code>héllo</code>, even though
-          the CSS and HTML didn't encode them in exactly the same way. The above
-          fragment demonstrates one way that text can vary and still be
-          considered "the same" according to a specification: the class name <code>h\e9llo</code>
-          matched the class name in the HTML mark-up <code>h&amp;#xe9;llo</code>
-          (and would also match the literal value <code>héllo</code> using the
-          code point <code>U+00E9</code>).</p>
-      </section>
+      <p>The Web uses document formats and protocols that mainly consist of text
+        files ("resources") that include some form of structural markup. When
+        processing a document format based on text, operations such as string
+        matching, indexing, searching, sorting, regular expression matching, and
+        so forth become sensitive to the different ways in which text might be
+        represented in the document and, as we shall see, there are many ways in
+        which text can vary in its representation or encoding. As a result, the
+        proper functioning of the Web (and of much other software) depends to a
+        large extent on string matching. Failing to consider the different ways
+        in which text can be represented or encoded can confuse users or cause
+        unexpected or frustrating results.</p>
       <section id="definitionCaseFolding">
         <h3>Casefolding</h3>
         <p>Some scripts and writing systems have a distinction between UPPER,
-          lower, and Title case characters. The Latin script, used in the
-          majority of this document, is one of these, as well as scripts such as
-          Greek or Cyrillic. Most scripts, such as Brahmic scripts of India, the
-          Arabic script, and the non-Latin scripts used to write Chinese,
-          Japanese, or Korean do not have a case distinction.</p>
+          lower, and Title case characters. Examples of such a script include
+          the Latin script used in the majority of this document, as well as
+          scripts such as Greek or Cyrillic. Most scripts, such as the Brahmic
+          scripts of India, the Arabic script, and the non-Latin scripts used to
+          write Chinese, Japanese, or Korean do not have a case distinction.</p>
         <p>Some document formats or protocols seek to aid interoperability by
-          ignoring case variations between namespace or user-defined values,
-          such as when matching class names between an HTML document and its
-          associated style sheet. Returning to our example above: </p>
+          ignoring case variations in the vocabulary they define or in
+          user-defined values permitted by the format or protocol. For example,
+          this occurs when matching class names between an HTML document and its
+          associated style sheet. Consider this HTML fragment: </p>
         <pre>&lt;style type="text/css"&gt;
 
   SPAN.h\e9llo {
@@ -872,22 +718,23 @@ span.example { padding: .1em .5em .15em; }
           element in the document, even though one is uppercase and the other is
           not.</p>
         <p>The process of making two texts which differ in case but are
-          otherwise "the same" identical is called "casefolding". Casefolding
-          might, at first, appear simple, but, as with Unicode Normalization,
-          there are variations and considerations that need to be considered
-          when treating the full range of Unicode in diverse languages. Unicode
-          [[!UNICODE]] Section 5.18 discusses casefolding in detail.</p>
-        <p>Casefolding in Unicode has a number of side-effects or potential
+          otherwise "the same" identical is called "case folding". Case folding
+          might, at first, appear simple. However there are variations that need
+          to be considered when treating the full range of Unicode in diverse
+          languages. For more information, Unicode [[!UNICODE]] Section 5.18
+          discusses case folding in detail.</p>
+        <p>Case folding in Unicode has a number of side-effects or potential
           side-effects on the source content. One is that case folding may not
           preserve the length of the original text: some mappings increase or
           decrease the total number of characters needed. In addition, case
-          folding, like Unicode Normalization, removes information from a string
-          which cannot be recovered later.</p>
+          folding removes information from a string which cannot be recovered
+          later.</p>
         <p>Another aspect of case folding is that it can be language sensitive.
           Unicode defines default case mappings for each encoded character, but
-          these are only defaults. Some languages need case-folding to be
-          tailored to meet specific linguistic needs. One common example of this
-          are Turkic languages written in the Latin script.</p>
+          these are only defaults and are not appropriate in all cases. Some
+          languages need case-folding to be tailored to meet specific linguistic
+          needs. One common example of this are Turkic languages written in the
+          Latin script.</p>
         <div class="example">
           <p>The Turkish word "Diyarbakır" contains both the dotted and dotless
             letters "i". When rendered into upper case, this word appears like
@@ -912,13 +759,12 @@ span.example { padding: .1em .5em .15em; }
       </section>
       <section id="unicodeNormalization">
         <h3>Unicode Normalization</h3>
-        <p>Variations in character encoding, escaping syntax, or case are not
-          the only variations that can occur in Unicode text. Some "characters"
-          or <a href="#def-grapheme">graphemes</a> can be represented by
-          several different Unicode code point sequences. Consider the character
-          <q>Ǻ</q> <code>LATIN LETTER CAPITAL A WITH RING ABOVE AND ACUTE</code>.
-          Here are some of the different ways that an HTML document could
-          represent this character:</p>
+        <p>Other kinds of variations can occur in Unicode text: some
+          "characters" or <a href="#def-grapheme">graphemes</a> can be
+          represented by several different Unicode code point sequences.
+          Consider the character <q>Ǻ</q> <code>LATIN LETTER CAPITAL A WITH
+            RING ABOVE AND ACUTE</code>. Here are some of the different ways
+          that an HTML document could represent this character:</p>
         <div class="TableGen" style="width: 90%; margin-left:5%; margin-right:5%;">
           <table>
             <tbody>
@@ -961,8 +807,8 @@ span.example { padding: .1em .5em .15em; }
         <p>As in the first example, each of the above strings contains the same
           apparent semantic meaning (<q>Ǻ</q>), but each one is encoded slightly
           differently. More variations are possible, but are omitted for
-          brevity: for example, any of the characters could be replaced with an
-          HTML entity. </p>
+          brevity: for example, any of the characters could be replaced with a
+          character escape sequence. </p>
         <p>Because applications need to find the semantic equivalence in texts
           that use different code point sequences, Unicode defines a means of
           making two semantically equivalent texts identical: the Unicode
@@ -971,11 +817,11 @@ span.example { padding: .1em .5em .15em; }
           because their specifications and implementations on the Web generally
           do not supply Unicode Normalization of the content being exchanged or
           in the string matching algorithms used when processing the markup and
-          content later. Users and Wildebeest need to ensure that they have
+          content later. Users and resources need to ensure that they have
           provided a consistent representation in order to avoid problems later.
-          It can be difficult for users to assure that a given Wildebeest or set
-          of Wildebeests uses a consistent textual representation because the
-          differences are usually not visible when viewing Wildebeest as text.
+          It can be difficult for users to assure that a given resource or set
+          of resources uses a consistent textual representation because the
+          differences are usually not visible when viewing a resource as text.
           Tools and implementations thus need to consider the difficulties
           experienced by users when visually or logically equivalent strings
           that "ought to" match (in the user's mind) are considered to be
@@ -1147,7 +993,7 @@ span.example { padding: .1em .5em .15em; }
             normalized text. </p>
           <p>The Unicode Normalization Forms are named using letter codes, with
             'C' standing for Composition, 'D' for Decomposition, and 'K' for
-            Compatibility decomposition. Having converted a Wildebeest to a
+            Compatibility decomposition. Having converted a resource to a
             sequence of Unicode characters and unescaped any escape sequences,
             we can finally "normalize" the Unicode texts given in the example
             above. Here are the resulting sequences in each Unicode
@@ -1282,14 +1128,153 @@ span.example { padding: .1em .5em .15em; }
           </div>
         </section>
       </section>
+      <section id="characterEscapes">
+        <h3>Character Escapes</h3>
+        <p>Document formats or protocols also generally provide escaping
+          mechanisms to permit the inclusion of characters that are otherwise
+          difficult to input, process, or encode. These escape mechanisms
+          provide an additional equivalent means of representing characters
+          inside a given resource. These allow for the encoding of characters
+          not represented in the character encoding scheme used by the document
+          or for convenience of the editor. </p>
+        <p>For example, € (<code>U+20AC EURO SIGN</code>) can also be encoded in
+          HTML as the hexadecimal entity <code>&amp;#x20ac;</code> or as the
+          decimal entity <code>&amp;#8364;</code>. In a JavaScript or JSON
+          file, it can appear as <code>\u20ac</code> while in a CSS stylesheet
+          it can appear as <code>\20ac</code>. All of these representations
+          encode the same literal character value: "€".</p>
+        <p>Character escapes are normally interpreted before a document is
+          processed and strings within the format or protocol are matched.
+          Returning to an example we used above: </p>
+        <pre>&lt;style type="text/css"&gt;
+
+  span.h\e9llo {
+     color: red;
+  }
+&lt;/style&gt;
+
+&lt;span class="h&amp;#xe9;llo"&gt;Hello World!&lt;/span&gt;
+</pre>
+        <p>You would expect that text to display like the following: <span class="héllo">Hello
+            world!</span></p>
+        <p>In order for this to work, the user-agent (browser) had to match two
+          strings representing the class name <code>héllo</code>, even though
+          the CSS and HTML each used a different escaping mechanism. The above
+          fragment demonstrates one way that text can vary and still be
+          considered "the same" according to a specification: the class name <code>h\e9llo</code>
+          matched the class name in the HTML mark-up <code>h&amp;#xe9;llo</code>
+          (and would also match the literal value <code>héllo</code> using the
+          code point <code>U+00E9</code>).</p>
+      </section>
+      <section id="unicodeControls">
+        <h3>Unicode Controls and Invisible Markers</h3>
+        <p>Unicode provides a number of special purpose control characters or
+          invisible markers that help document authors control the appearance or
+          performance of text. These characters interfere with string matching
+          when they are not semantically part of the text but do form part of
+          the encoded character sequence. </p>
+        <p>A special case is for ZWJ and ZWNJ. These invisible controls
+          sometimes affect meaning.</p>
+        <p>Examples of these include:</p>
+        <table style="width: 100%" border="1">
+          <tbody>
+            <tr>
+              <td>Characters</td>
+              <td>Description</td>
+              <td>Examples</td>
+            </tr>
+            <tr>
+              <td>ZWJ, ZWNJ, ZWSP, CGJ, etc.</td>
+              <td>zero width characters used to join or separate words or
+                graphemes and which are common in languages that do not use
+                spaces between words or for which the renderer needs assistance
+                in composing characters</td>
+              <td><br>
+              </td>
+            </tr>
+            <tr>
+              <td>variation selectors</td>
+              <td>characters used to select an alternate appearance or glyph
+                (see [[CHARMOD]]). These are used in predefined ideographic
+                variation sequences (IVS) as well as generally for certain
+                scripts (such as Mongolian). They are also used to select
+                between black-and-white and color emoji.</td>
+              <td><br>
+              </td>
+            </tr>
+            <tr>
+              <td><br>
+              </td>
+              <td><br>
+              </td>
+              <td><br>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="requirement">
+          <p>Applications that do string matching SHOULD ignore Unicode
+            formatting controls such as variation selectors; grapheme or word
+            joiners; or other non-semantic controls.</p>
+        </div>
+        <p class="ednote">This section was added and needs further fleshing out.
+          The requirement probably wants to live in the requirements section. <span
+            style="color:blue;font-size:small">2015-02-07AP</span> </p>
+      </section>
+      <section id="legacyCharacterEncoding">
+        <h3>Legacy Character Encodings</h3>
+        <p>Finally, resources can use different character encoding schemes,
+          including <a href="#def-legacyEnc">legacy character encodings</a>, to
+          serialize document formats on the Web. Each character encoding scheme
+          uses different syntax, byte values, and sequences to represent a given
+          subset of the Universal Character Set.</p>
+        <p>For example, € (<code>U+20AC EURO SIGN</code>) is encoded as <code>0x80</code>
+          in the <code>windows-1252</code> encoding, but as the byte sequence <code>0xE2.82.AC</code>
+          in <code>UTF-8</code>.</p>
+        <p>Specifications mainly address these resulting variations by
+          considering each document to be a sequence of Unicode characters after
+          converting from the document's character encoding (be it a legacy
+          character encoding or a Unicode encoding such as UTF-8) and then
+          unescaping any character escapes before proceeding to process the
+          document. </p>
+        <p class="ednote">The following paragraphs about normalization
+          transcoders are "at risk". The WG feels that this requirement is
+          difficult for content authors or implementers to verify. Needed
+          action: verify if all of [[Encoding]] spec's transcoders are
+          normalizing.</p>
+        <p class="note">Even within a single legacy character encoding there can
+          be variations in implementation. One famous example is the legacy
+          Japanese encoding <code>Shift_JIS</code>. Different transcoder
+          implementations faced choices about how to map specific byte sequences
+          to Unicode. So the byte sequence <code>0x80.60</code> (<code>0x2141</code>
+          in the JIS X 0208 character set) was mapped by some implementations to
+          <code>U+301C WAVE DASH</code> while others chose <code>U+FF5E FULL
+            WIDTH TILDE</code>. This means that two reasonable, self-consistent,
+          transcoders could produce different Unicode character sequences from
+          the same input. The [[Encoding]] specification exists, in part, to
+          ensure that Web implementations use interoperable and identical
+          mappings. However, extant transcoders might be applied to documents
+          found on the Web.</p>
+        <p>For content authors and implementations, it is RECOMMENDED that
+          conversions from legacy character encodings use a "normalizing
+          transcoder".</p>
+        <p id="def-normalizing-transcoder">A <span class="new-term">normalizing
+            transcoder</span> is a transcoder that converts from a <a title=""
+            href="#def-legacyEnc">legacy character encoding</a> to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode
+            encoding form</a> <em>and</em> ensures that the result is in
+          Unicode Normalization Form C. For most legacy character encodings, it
+          is possible to construct a normalizing transcoder (by using any
+          transcoder followed by a normalizer); it is not possible to do so if
+          the encoding's <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a>
+          contains characters not represented in Unicode.</p>
+      </section>
     </section>
     <section id="identityMatching">
       <h2>String Matching of Markup in Document Formats and Protocols</h2>
       <p>This chapter defines the implementation and requirements for string
         matching in markup.</p>
       <!-- 
-           ##  Although lovely, the following text repeats everything that        ##  came before. Reluctantly, I'm        ##  commenting it out.      <p>One important operation that depends on the use of consistent character sequences is <span class="new-term">string identity matching</span> [[CHARREQ]], which is a    subset of the more general problem of string matching. There are various    degrees of specificity for string matching, from approximate matching such as    regular expressions or phonetic matching, to more specific matches such as    case-insensitive or accent-insensitive matching and finally to identity    matching. </p>  <p>Examples of string identity matching abound: parsing element and    attribute names in Web documents, matching CSS selectors to the nodes in a    document, matching font names in a style sheet to the names known to the    operating system, matching URI pieces to the resources in a server, matching    strings embedded in an ECMAScript program to strings typed in by a Web form    user, matching the parts of an XPath expression (element names, attribute names    and values, content, etc.) to what is found in an XML instance, etc.</p>  <p>String identity matching can take several forms. The most trivial of these is performed by    comparing two strings code unit-by-code unit (in multibyte encodings, this is byte-by-byte). The existence on the Web of multiple    means of representing characters means that this process is actually less trivial than it appears. Binary    comparison does not work if the strings are not in the same    character encoding (e.g. an EBCDIC style sheet being directly applied to an ASCII    document, or a font specification in a Shift_JIS style sheet directly used on a    system that maintains font names in UTF-16) or if they are in the same character encoding    but if the 'same' string contains variations allowed for by the use of    combining characters or by the constructs of Web languages. Even when a consistent character encoding based on Unicode is used, defining string equality is hampered by the availability of multiple Unicode representations of the same canonical character or grapheme.</p>  <p>Incorrect string identity matching can have far reaching consequences,    including the creation of security holes. Consider a contract, encoded in XML,
-    for buying goods: each item sold is described in a <code>Stück</code> element;    unfortunately, &quot;<span class="quote">Stück</span>&quot; is subject to different representations    in the character encoding of the contract. Suppose that the contract is viewed    and signed by means of a user agent that looks for <code>Stück</code> elements,    extracts them (matching on the element name), presents them to the user and    adds up their prices. If different instances of the <code>Stück</code> element    happen to be represented differently in a particular contract, then the buyer    and seller may see (and sign) different contracts if their respective user    agents perform string identity matching differently, which is fairly likely in    the absence of a well-defined specification for string matching. The absence of    a well-defined specification would also mean that there would be no way to    resolve the ensuing contractual dispute.</p>  <p>Ideally <span class="new-term">identity</span> would only occur    if the compared strings contained no user-identifiable distinctions.    That is, strings do not match when they differ in case or    accentuation, but do match when they differ only in non-semantically    significant ways such as character encoding, use of <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#sec-Escaping">character escapes</a> (of potentially different kinds), or use of precomposed vs.    decomposed character sequences.</p>            ## end of the removed block ##        -->
+           ##  Although lovely, the following text repeats everything that        ##  came before. Reluctantly, I'm        ##  commenting it out.      <p>One important operation that depends on the use of consistent character sequences is <span class="new-term">string identity matching</span> [[CHARREQ]], which is a    subset of the more general problem of string matching. There are various    degrees of specificity for string matching, from approximate matching such as    regular expressions or phonetic matching, to more specific matches such as    case-insensitive or accent-insensitive matching and finally to identity    matching. </p>  <p>Examples of string identity matching abound: parsing element and    attribute names in Web documents, matching CSS selectors to the nodes in a    document, matching font names in a style sheet to the names known to the    operating system, matching URI pieces to the resources in a server, matching    strings embedded in an ECMAScript program to strings typed in by a Web form    user, matching the parts of an XPath expression (element names, attribute names    and values, content, etc.) to what is found in an XML instance, etc.</p>  <p>String identity matching can take several forms. The most trivial of these is performed by    comparing two strings code unit-by-code unit (in multibyte encodings, this is byte-by-byte). The existence on the Web of multiple    means of representing characters means that this process is actually less trivial than it appears. Binary    comparison does not work if the strings are not in the same    character encoding (e.g. an EBCDIC style sheet being directly applied to an ASCII    document, or a font specification in a Shift_JIS style sheet directly used on a    system that maintains font names in UTF-16) or if they are in the same character encoding    but if the 'same' string contains variations allowed for by the use of    combining characters or by the constructs of Web languages. Even when a consistent character encoding based on Unicode is used, defining string equality is hampered by the availability of multiple Unicode representations of the same canonical character or grapheme.</p>  <p>Incorrect string identity matching can have far reaching consequences,    including the creation of security holes. Consider a contract, encoded in XML,    for buying goods: each item sold is described in a <code>Stück</code> element;    unfortunately, &quot;<span class="quote">Stück</span>&quot; is subject to different representations    in the character encoding of the contract. Suppose that the contract is viewed    and signed by means of a user agent that looks for <code>Stück</code> elements,    extracts them (matching on the element name), presents them to the user and    adds up their prices. If different instances of the <code>Stück</code> element    happen to be represented differently in a particular contract, then the buyer    and seller may see (and sign) different contracts if their respective user    agents perform string identity matching differently, which is fairly likely in    the absence of a well-defined specification for string matching. The absence of    a well-defined specification would also mean that there would be no way to    resolve the ensuing contractual dispute.</p>  <p>Ideally <span class="new-term">identity</span> would only occur    if the compared strings contained no user-identifiable distinctions.    That is, strings do not match when they differ in case or    accentuation, but do match when they differ only in non-semantically    significant ways such as character encoding, use of <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#sec-Escaping">character escapes</a> (of potentially different kinds), or use of precomposed vs.    decomposed character sequences.</p>            ## end of the removed block ##        -->
       <section id="matchingAlgorithm">
         <h2>The Matching Algorithm</h2>
         <p>This section defines the algorithm for matching strings. String
@@ -1387,13 +1372,13 @@ span.example { padding: .1em .5em .15em; }
         <p>However, cases exist in which case-insensitivity is desirable.</p>
         <p>Where case-insensitive matching is desired, there are several
           implementation choices that a formal language needs to consider. If
-          the namespace of strings to be compared is limited to the Basic Latin
+          the vocabulary of strings to be compared is limited to the Basic Latin
           (ASCII) subset of Unicode, <a href="#aci">ASCII-case-insensitive</a>
           matching MAY be used.</p>
-        <p>If the namespace of strings to be compared is not limited, then <a href="#aci">ASCII
-            case-insensitive</a> matching MUST NOT be used. <a href="#uci">Unicode
-            case-insensitive</a> matching MUST be applied, even if the namespace
-          does not allow the full range of Unicode.</p>
+        <p>If the vocabulary of strings to be compared is not limited, then <a
+            href="#aci">ASCII case-insensitive</a> matching MUST NOT be used. <a
+            href="#uci">Unicode case-insensitive</a> matching MUST be applied,
+          even if the vocabulary does not allow the full range of Unicode.</p>
         <p><a href="#uci">Unicode case-insensitive</a> matching can take several
           forms. Unicode defines the "common" (C) casefoldings for characters
           that always have 1:1 mappings of the character to its case folded form
@@ -1408,7 +1393,7 @@ span.example { padding: .1em .5em .15em; }
             (or CF) case fold mapping is RECOMMENDED for Unicode
             case-insensitive matching.</p>
         </div>
-        <p>A namespace is considered to be "ASCII-only" if and only if all
+        <p>A vocabulary is considered to be "ASCII-only" if and only if all
           tokens and identifiers are defined by the specification directly and
           these identifiers or tokens use only the Basic Latin subset of
           Unicode. If user-defined identifiers are permitted, the full range of
@@ -1416,24 +1401,24 @@ span.example { padding: .1em .5em .15em; }
           interchange concerns, see [[UTR36]]) SHOULD be allowed and Unicode
           case insensitivity used for identity matching.</p>
         <div class="requirement">
-          <p>ASCII case-insensitive matching MUST only be applied to namespaces
-            that are restricted to ASCII. Unicode case-insensitivity MUST be
-            used for all other namespaces.</p>
+          <p>ASCII case-insensitive matching MUST only be applied to
+            vocabularies that are restricted to ASCII. Unicode
+            case-insensitivity MUST be used for all other vocabularies.</p>
         </div>
-        <p>Note that an ASCII-only namespace can exist inside a document format
+        <p>Note that an ASCII-only vocabulary can exist inside a document format
           or protocol that allows a larger range of Unicode in identifiers or
           values.</p>
         <p class="ednote">Insert example from CSS here.</p>
         <section id="content-reqs">
-          <h4>Requirements for Wildebeest</h4>
+          <h4>Requirements for Resources</h4>
           <p>These requirements pertain to the authoring and creation of
-            documents and are intended as guidelines for wildebeest authors.</p>
+            documents and are intended as guidelines for resource authors.</p>
           <div class="requirement">
-            <p>[C] Wildebeest SHOULD be produced, stored, and exchanged in
+            <p>[C] Resources SHOULD be produced, stored, and exchanged in
               Unicode Normalization Form C (NFC). </p>
           </div>
           <div class="note">
-            <p>In order to be processed correctly wildebeest must use a
+            <p>In order to be processed correctly a resource must use a
               consistent sequence of code points to represent text. While
               content can be in any normalization form or may use a
               de-normalized (but valid) Unicode character sequence,
@@ -1443,7 +1428,7 @@ span.example { padding: .1em .5em .15em; }
               display is to always use NFC. </p>
           </div>
           <div class="requirement">
-            <p>[I] Implementations MUST NOT normalize any wildebeest during
+            <p>[I] Implementations MUST NOT normalize any resource during
               processing, storage, or exchange except with explicit permission
               from the user.</p>
           </div>
@@ -1454,16 +1439,16 @@ span.example { padding: .1em .5em .15em; }
           </div>
           <div class="requirement">
             <p>[C] Authors SHOULD NOT include combining marks without a
-              preceding base character in Wildebeest.</p>
+              preceding base character in a resource.</p>
           </div>
           <p class="ednote">Following examples need improvement.</p>
           <p>There can be exceptions to this, for example, when making a list of
             characters (such as a Unicode demo). This avoids problems with
             unintentional display or with naive implementations that combine the
-            combining mark with adjacent markup or other Shakespeare. For
-            example, if you were to use <code>U+301</code> as the start of a
-            "class" attribute value in HTML, the class name might not display
-            properly in your editor.</p>
+            combining mark with adjacent markup or other natural language
+            content. For example, if you were to use <code>U+301</code> as the
+            start of a "class" attribute value in HTML, the class name might not
+            display properly in your editor.</p>
           <div class="requirement">
             <p>[C] Identifiers SHOULD use consistent case (upper, lower, mixed
               case) to facilitate matching, even if case-insensitive matching is
@@ -1511,7 +1496,7 @@ span.example { padding: .1em .5em .15em; }
           </div>
           <div class="requirement">
             <p>[S] Specifications that specify case-insensitive comparison for
-              non-ASCII namespaces SHOULD specify Unicode case-folding C+F.</p>
+              non-ASCII vocabularies SHOULD specify Unicode case-folding C+F.</p>
           </div>
           <p>In some limited cases, locale- or language-specific tailoring might
             also be appropriate. However, such cases are generally linked to
@@ -1522,7 +1507,7 @@ span.example { padding: .1em .5em .15em; }
           <div class="requirement">
             <p>[S] Specifications MAY specify ASCII case-insensitive comparison
               for portions of a format or protocol that are restricted to an
-              ASCII-only namespace.</p>
+              ASCII-only vocabulary.</p>
           </div>
           <p>This requirement applies to formal languages whose keywords are all
             ASCII and which do not allow user-defined names or identifiers. An
@@ -1552,9 +1537,9 @@ span.example { padding: .1em .5em .15em; }
           <p>The normalization form or lack of normalization for any given
             content has to be considered intentional in these cases.</p>
           <div class="requirement">
-            <p>[S][I] For namespaces and values that are not restricted to Basic
-              Latin (ASCII), case-insensitive matching MUST specify either UniCF
-              or locale-sensitive string comparison. </p>
+            <p>[S][I] For vocabularies and values that are not restricted to
+              Basic Latin (ASCII), case-insensitive matching MUST specify either
+              UniCF or locale-sensitive string comparison. </p>
           </div>
           <div class="requirement">
             <p>[I] Implementations MUST NOT alter the normalization form of
@@ -1643,7 +1628,7 @@ span.example { padding: .1em .5em .15em; }
       </section>
     </section>
     <section id="searching">
-      <h2>String Searching in Shakespeare</h2>
+      <h2>String Searching in Natural Language Content</h2>
       <p>Many Web implementations and applications have a different sort of
         string matching requirement from the one described above: the need for
         users to search documents for particular words or phrases of text. This
@@ -1652,8 +1637,7 @@ span.example { padding: .1em .5em .15em; }
         the Web <em>other than</em> that mandated by a formal language or
         document format.</p>
       <p>There are several different kinds of string searching.</p>
-      <p>When you are using a search engine, you are generally using a form of <dfn
-
+      <p>When you are using a search engine, you are generally using a form of <dfn
           id="fts">full text search</dfn>. Full text search generally breaks
         natural language text into word segments and may apply complex
         processing to get at the semantic "root" values of words. For example,
@@ -1781,8 +1765,8 @@ span.example { padding: .1em .5em .15em; }
           HTML fragment in the section <a href="#definitionCaseFolding">Casefolding</a></li>
         <li>Added the definitions for "grapheme cluster" and "grapheme" in <a href="#terminology">Terminology
             and Notation</a></li>
-        <li>Addition of section discussing <a href="#unicodeControls">Unicode controls</a>, including
-        a new requirement.</li>
+        <li>Addition of section discussing <a href="#unicodeControls">Unicode
+            controls</a>, including a new requirement.</li>
       </ul>
     </section>
     <section>
