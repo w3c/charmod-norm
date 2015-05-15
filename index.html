@@ -601,17 +601,21 @@ span.example { padding: .1em .5em .15em; }
           <div style="border-style: solid; border-width:3px; padding-left: 50px; padding-right: 50px; padding-top: 10px; width: 80%">
             <p> <span class="markup">&lt;html&gt;<br>
                 &lt;head&gt;<br>
-                &nbsp;&nbsp;&lt;title&gt;</span><span class="shakespeare">Shakespeare</span><span
+                &nbsp;&nbsp;&lt;title&gt;</span><span class="shakespeare">Shakespeare</span><span
+
                 class="markup">&lt;/title&gt;<br>
                 &lt;/head&gt;<br>
                 &lt;body&gt;<br>
                 &nbsp;&nbsp;&lt;img src="<span class="userValue">shakespeare.jpg</span>"
-                alt="<span class="userValue">William Shakespeare</span>" id="<span
+                alt="<span class="userValue">William Shakespeare</span>" id="<span
+
                   class="userValue">shakespeare image</span>"&gt;<br>
                 <br>
-                &nbsp;&nbsp;&lt;p&gt;</span><span class="shakespeare">What<span
+                &nbsp;&nbsp;&lt;p&gt;</span><span class="shakespeare">What<span
+
                   class="markup">&amp;#x2019;</span>s in a name? That which we
-                call a rose by any other name would smell as sweet.</span><span
+                call a rose by any other name would smell as sweet.</span><span
+
                 class="markup">&lt;/p&gt;<br>
                 &lt;/body&gt;<br>
                 &lt;/html&gt;</span> </p>
@@ -789,10 +793,9 @@ span.example { padding: .1em .5em .15em; }
             defines a "common" plus "simple" case-fold. This form is not
             appropriate for string identity matching on the Web.</li>
         </ol>
-        <div class="note">
           <p><dfn>Language-sensitive case-sensitive matching</dfn> is useful in
-            the rare case where a document format or protocol contains
-            information about the language of the markup and where
+            the rare case where a document format or protocol
+            contains information about the language of the markup and where
             language-sensitive case folding might sensibly be applied. In these
             cases, tailoring of the Unicode case-fold mappings above to match
             the expectations of that language SHOULD be specified and applied.
@@ -803,7 +806,6 @@ span.example { padding: .1em .5em .15em; }
             formats and protocols is NOT RECOMMENDED because language
             information can be hard to obtain, verify, or manage and the
             resulting operations can produce results that frustrate users.</p>
-        </div>
       </section>
       <section id="unicodeNormalization">
         <h3>Unicode Normalization</h3>
@@ -1266,7 +1268,8 @@ span.example { padding: .1em .5em .15em; }
             joiners; or other non-semantic controls.</p>
         </div>
         <p class="ednote">This section was added and needs further fleshing out.
-          The requirement probably wants to live in the requirements section. <span
+          The requirement probably wants to live in the requirements section. <span
+
             style="color:blue;font-size:small">2015-02-07AP</span> </p>
       </section>
       <section id="legacyCharacterEncoding">
@@ -1307,7 +1310,8 @@ span.example { padding: .1em .5em .15em; }
           conversions from legacy character encodings use a "normalizing
           transcoder".</p>
         <p id="def-normalizing-transcoder">A <span class="new-term">normalizing
-            transcoder</span> is a transcoder that converts from a <a title=""
+            transcoder</span> is a transcoder that converts from a <a title=""
+
             href="#def-legacyEnc">legacy character encoding</a> to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode
             encoding form</a> <em>and</em> ensures that the result is in
           Unicode Normalization Form C. For most legacy character encodings, it
@@ -1388,8 +1392,10 @@ span.example { padding: .1em .5em .15em; }
           the vocabulary of strings to be compared is limited to the Basic Latin
           (ASCII) subset of Unicode, <a href="#aci">ASCII-case-insensitive</a>
           matching MAY be used.</p>
-        <p>If the vocabulary of strings to be compared is not limited, then <a
-            href="#aci">ASCII case-insensitive</a> matching MUST NOT be used. <a
+        <p>If the vocabulary of strings to be compared is not limited, then <a
+
+            href="#aci">ASCII case-insensitive</a> matching MUST NOT be used. <a
+
             href="#uci">Unicode case-insensitive</a> matching MUST be applied,
           even if the vocabulary does not allow the full range of Unicode.</p>
         <p><a href="#uci">Unicode case-insensitive</a> matching can take several
@@ -1659,7 +1665,8 @@ span.example { padding: .1em .5em .15em; }
         the Web <em>other than</em> that mandated by a formal language or
         document format.</p>
       <p>There are several different kinds of string searching.</p>
-      <p>When you are using a search engine, you are generally using a form of <dfn
+      <p>When you are using a search engine, you are generally using a form of <dfn
+
           id="fts">full text search</dfn>. Full text search generally breaks
         natural language text into word segments and may apply complex
         processing to get at the semantic "root" values of words. For example,
