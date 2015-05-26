@@ -203,15 +203,17 @@ div.exampleBox {
 }
 
 .markup {
-	background-color: #DDD;
+	font-family: Lucida Console,monospaced;
 }
 
 .shakespeare {
 	color: #03F;
+  font-weight: bold;
+  background-color: #EfEfEf;
 }
 
 .userValue {
-	color: #933;
+	font-style: italic;
 }
 
 p.example:before{
@@ -300,6 +302,14 @@ span.example { padding: .1em .5em .15em; }
      background: transparent;
      color: white;
    }
+    
+    
+    code {
+        font-family: Lucida Console, monospaced;
+        font-size: 105%;
+    }
+    
+    
 </style><!--
    The following script activates the "official" W3C "work in progress" box.   ReSpec hates it if you insert it in-line.-->
     <script>
@@ -563,15 +573,14 @@ span.example { padding: .1em .5em .15em; }
           constrast to the Unicode code points (characters) used to encode the
           text in a string. (A discussion of grapheme clusters is also given at
           the end of Section 2.10 of the Unicode Standard, [[!UNICODE]].)</p>
-        <p>What Unicode actually defines is
-          <span style="text-decoration: underline;">default</span>
-        grapheme clustering: some languages require tailoring to this default.
-        For example, a Slovak user might wish to treat the default pair of
-        grapheme clusters "ch" as a single grapheme cluster. Note that the
-        interaction between the language of string content and the end-user's
-        preferences might be complex. References to <em>grapheme</em> in this
-        document refer to default grapheme clusters unless tailoring of the
-          grapheme clusters is called out.
+        <p>What Unicode actually defines is <span style="text-decoration: underline;">default</span>
+          grapheme clustering: some languages require tailoring to this default.
+          For example, a Slovak user might wish to treat the default pair of
+          grapheme clusters "ch" as a single grapheme cluster. Note that the
+          interaction between the language of string content and the end-user's
+          preferences might be complex. References to <em>grapheme</em> in this
+          document refer to default grapheme clusters unless tailoring of the
+          grapheme clusters is called out. </p>
         <p><dfn id="natural-language-content">Natural language content</dfn>
           refers to the language-bearing content in a document and <b>not</b>
           to any of the surrounding markup or identifiers that form part of the
@@ -617,22 +626,20 @@ span.example { padding: .1em .5em .15em; }
           characters that can appear at the start or in the body of an
           identifier or variable name (while different rules apply to the values
           of, say, string literals).</p>
-        <p class="ednote">Following example has accessibility issues and is hard
-          to use in hard copy.</p>
         <div class="exampleBox" id="Figure1">
           <h2>Figure 1: Terminology examples</h2>
           <div style="border-style: solid; border-width:3px; padding-left: 50px; padding-right: 50px; padding-top: 10px; width: 80%">
-            <p> <span class="markup">&lt;html&gt;<br>
-                &lt;head&gt;<br>
+            <p> <span class="markup">&lt;html lang="en" dir="ltr"&gt;<br>
+                &lt;head&gt;</span></p>
+            <p><span class="markup">&nbsp; &lt;meta charset="UTF-8"&gt;<br>
                 &nbsp;&nbsp;&lt;title&gt;</span><span class="shakespeare">Shakespeare</span><span
 
                 class="markup">&lt;/title&gt;<br>
                 &lt;/head&gt;<br>
                 &lt;body&gt;<br>
                 &nbsp;&nbsp;&lt;img src="<span class="userValue">shakespeare.jpg</span>"
-                alt="<span class="userValue">William Shakespeare</span>" id="<span
-
-                  class="userValue">shakespeare_image</span>"&gt;<br>
+                alt="<span class="userValue"><span class="shakespeare">William
+                    Shakespeare</span></span>" id="<span class="userValue">shakespeare_image</span>"&gt;<br>
                 <br>
                 &nbsp;&nbsp;&lt;p&gt;</span><span class="shakespeare">What<span
 
@@ -643,10 +650,15 @@ span.example { padding: .1em .5em .15em; }
                 &lt;/body&gt;<br>
                 &lt;/html&gt;</span> </p>
           </div>
-          <p>Examples: Text with a <span class="markup">gray background</span>
-            is markup. Text in <span class="shakespeare">blue</span> is natural
-            language content. Text in <span class="userValue">magenta</span>
-            are user values.</p>
+          <p>Everything inside the black rectangle (that is, in this HTML file)
+            is part of the resource.</p>
+          <p><a href="#markup">Markup</a> is shown in a <span class="markup">monospaced
+              font</span>.</p>
+          <p><a href="#natural-language-content">Natural language content</a> is
+            shown in a <span class="shakespeare">bold blue font with a gray
+              background</span>.</p>
+          <p><a href="#user-value">User values</a> are shown in <span class="userValue">italics</span>.</p>
+          <p class="ednote">still need to mark up vocabulary</p>
           <p>All of the text above (all text in a text file) makes up a
             resource. It's possible that a given resource will contain no
             natural language content at all (consider an HTML document
@@ -850,53 +862,22 @@ span.example { padding: .1em .5em .15em; }
         <h3>Unicode Normalization</h3>
         <p>Other kinds of variations can occur in Unicode text: some <a href="#def-grapheme">graphemes</a>
           can be represented by several different Unicode code point sequences.
-          Consider the character <q>Ǻ</q> <code>LATIN LETTER CAPITAL A WITH
-            RING ABOVE AND ACUTE</code>. Here are some of the different ways
-          that an HTML document could represent this character:</p>
-        <div class="TableGen" style="width: 90%; margin-left:5%; margin-right:5%;">
-          <table>
-            <tbody>
-              <tr>
-                <td><br>
-                </td>
-                <td>Code Points</td>
-                <td>Description</td>
-              </tr>
-              <tr>
-                <td>Ǻ</td>
-                <td>U+01FA</td>
-                <td>A "precomposed" character.</td>
-              </tr>
-              <tr>
-                <td>Ǻ</td>
-                <td>A +&nbsp;̊ (U+030A) + &nbsp;́ (U+0301)</td>
-                <td>A "base" letter "A" with two combining marks</td>
-              </tr>
-              <tr>
-                <td>Ǻ</td>
-                <td>Å (U+00C5) + &nbsp;́ (U+0301)</td>
-                <td>An accented letter (U+00C5) with combining mark</td>
-              </tr>
-              <tr>
-                <td>Ǻ</td>
-                <td>Å (U+212B) + &nbsp;́ (U+0301)</td>
-                <td>Compatibility character (<code>U+212B ANGSTROM SIGN</code>)
-                  with combining mark</td>
-              </tr>
-              <tr>
-                <td>Ａ̊́</td>
-                <td>Ａ (U+FF21) + &nbsp;̊ (U+030A) + &nbsp;́ (U+0301)</td>
-                <td>Compatibility character <code>U+FF21 FULLWIDTH LATIN LETTER
-                    CAPITAL A</code>) with combining marks</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p>Each of the above strings contains the same apparent semantic meaning
-          (<q>Ǻ</q> <code>U+01FA LATIN CAPITAL LETTER A WITH RING ABOVE AND
-            ACUTE</code>), but each one is encoded slightly differently. More
-          variations are possible, but are omitted for brevity: for example, any
-          of the characters could be replaced with a character escape sequence.
+          Consider the character <code>&#x1fa; U+01FA LATIN
+            LETTER CAPITAL A WITH RING ABOVE AND ACUTE</code>. Here are some of
+          the different ways that an HTML document could represent this
+          character:</p>
+        <ul class="dropExampleList">
+          <li class="dropExampleItem"><span class="dropExample">Ǻ </span><code>U+01FA</code>&mdash; A "precomposed" character.</li>
+          <li class="dropExampleItem"><span class="dropExample">A&#x30a;&#x301;</span><code>A&nbsp;+&nbsp;U+030A&nbsp;+&nbsp;U+0301</code>&mdash; A "base" letter "A" with two combining marks</li>
+          <li class="dropExampleItem"><span class="dropExample">Å&#x301;</span><code>U+00C5 + U+0301</code>&mdash;An accented letter (<code>U+00C5 LATIN CAPITAL LETTER A WITH RING ABOVE</code>) with one combining mark</li>
+          <li class="dropExampleItem"><span class="dropExample">&#x212b;&#x301;</span><code>U+212B + U+0301</code>&mdash;A compatibility character (<code>U+212B ANGSTROM SIGN</code>) with one combining mark</li>
+          <li class="dropExampleItem"><span class="dropExample">Ａ̊́ </span><code>U+FF21 + U+030A + U+0301</code>&mdash; A compatibility character <code>U+FF21 FULLWIDTH LATIN LETTER
+                    CAPITAL A</code>) with two combining marks</li>
+        </ul>
+        <p>Each of the above strings contains the same apparent semantic meaning as 
+          <code>Ǻ U+01FA LATIN CAPITAL LETTER A WITH RING ABOVE AND
+            ACUTE</code>, but each one is encoded slightly differently. More
+          variations are possible, but are omitted for brevity.
         </p>
         <p>Because applications need to find the semantic equivalence in texts
           that use different code point sequences, Unicode defines a means of
@@ -942,30 +923,29 @@ span.example { padding: .1em .5em .15em; }
             <li class="dropExampleItem"><span class="dropExample">Ç<span style="font-size:75%">vs.</span>Ç</span>
               <em>Pre-composed versus combining sequences.</em> Some characters
               can be composed from a base character followed by one or more
-              combining characters. The same characters are sometimes also encoded
-              as a distinct "pre-composed" character.
-              
-              In this example, the
-              character <code>Ç U+00C7</code> is canonically equivalent to the
-              base character <code>C U+0043</code> followed by the combining
-              cedilla character <code>&nbsp;̧&#x327; U+0327</code>. Such equivalence
-              can extend to characters with multiple combining marks.</li>
+              combining characters. The same characters are sometimes also
+              encoded as a distinct "pre-composed" character. In this example,
+              the character <code>Ç U+00C7</code> is canonically equivalent to
+              the base character <code>C U+0043</code> followed by the
+              combining cedilla character <code>&nbsp;̧̧ U+0327</code>. Such
+              equivalence can extend to characters with multiple combining
+              marks.</li>
             <li class="dropExampleItem"><span class="dropExample">q̣̇<span style="font-size:75%">vs.</span>q̣̇</span>
-              <em>Order of combining marks.</em> When a base character is modified by
-              multiple combining marks, the order of the combining marks might not 
-              represent a distinct character. Here the sequence 
-              <code>q U+0071&nbsp;U+0323&nbsp;U+0307</code> and <code>q U+0071&nbsp;̇
-              U+0307&nbsp;̣U+0323</code> are equivalent, even though the
-              combining marks are in a different order. Note that this example
-              is chosen carefully: the dot-above character and dot-below
-              character are on opposite "sides" of the base character. The order
-              of combining diacritics on the same side have a positional
-              meaning.</li>
+              <em>Order of combining marks.</em> When a base character is
+              modified by multiple combining marks, the order of the combining
+              marks might not represent a distinct character. Here the sequence
+              <code>q U+0071&nbsp;U+0323&nbsp;U+0307</code> and <code>q
+                U+0071&nbsp;̇ U+0307&nbsp;̣U+0323</code> are equivalent, even
+              though the combining marks are in a different order. Note that
+              this example is chosen carefully: the dot-above character and
+              dot-below character are on opposite "sides" of the base character.
+              The order of combining diacritics on the same side have a
+              positional meaning.</li>
             <li class="dropExampleItem"><span class="dropExample">Ω<span style="font-size:75%">vs.</span>Ω</span>
               <em>Singleton mappings.</em> These result from separate encoding
               of canonically equivalent characters to support legacy character
-              encodings. In this example, the Ohm symbol <code>Ω U+2126</code> 
-              is canonically equivalent (and identical in appearance) to the 
+              encodings. In this example, the Ohm symbol <code>Ω U+2126</code>
+              is canonically equivalent (and identical in appearance) to the
               Greek letter Omega <code>Ω U+03A9</code>.</li>
             <li class="dropExampleItem"><span class="dropExample">가<span style="font-size:75%">vs.</span>가</span>
               <em>Hangul.</em> The Hangul script is used to write the Korean
