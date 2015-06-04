@@ -3,8 +3,29 @@
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
     <title>Character Model for the World Wide Web: String Matching and Searching</title>
-    <!-- hover box styling -->
+    <!-- local styles. Includes the styles from http://www.w3.org/International/docs/styleguide -->
     <style type="text/css">
+      
+      
+      .qterm:before, .qchar:before { content: "'"; }
+.qterm:after, .qchar:after { content: "'"; }
+.quote:before { content: '"'; }
+.quote:after { content: '"'; }
+code { 
+        color: #A52A2A; 
+        font-family: "Lucida Console", Consolas, "Andale Mono", "Lucida Sans Typewriter", Monaco, "Courier New", monospace; 
+        font-size: 100%;
+     }
+samp, kbd { 
+        font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace; 
+        font-size: 100%; 
+     }
+.uname {
+	text-transform: uppercase;
+	font-size: 85%;
+	letter-spacing:0.03em;
+	}
+      
    .stability {
      background: maroon; color: yellow;
      padding: 0.5em 1em;
@@ -30,101 +51,8 @@
      color: white;
    }
    
-</style> <style type="text/css">
-.TableGen {
-	margin:0px;padding:0px;
-	width:40%;
-	margin-left: 30%;
-	margin-right: 30%;
-	box-shadow: 10px 10px 5px #888888;
-	border:1px solid #000000;
-	
-	-moz-border-radius-bottomleft:0px;
-	-webkit-border-bottom-left-radius:0px;
-	border-bottom-left-radius:0px;
-	
-	-moz-border-radius-bottomright:0px;
-	-webkit-border-bottom-right-radius:0px;
-	border-bottom-right-radius:0px;
-	
-	-moz-border-radius-topright:0px;
-	-webkit-border-top-right-radius:0px;
-	border-top-right-radius:0px;
-	
-	-moz-border-radius-topleft:0px;
-	-webkit-border-top-left-radius:0px;
-	border-top-left-radius:0px;
-}
-.TableGen table{
-	width:100%;
-	height:100%;
-	margin:0px;padding:0px;
-}
-.TableGen tr:last-child td:last-child {
-	-moz-border-radius-bottomright:0px;
-	-webkit-border-bottom-right-radius:0px;
-	border-bottom-right-radius:0px;
-}
-.TableGen table tr:first-child td:first-child {
-	-moz-border-radius-topleft:0px;
-	-webkit-border-top-left-radius:0px;
-	border-top-left-radius:0px;
-}
-.TableGen table tr:first-child td:last-child {
-	-moz-border-radius-topright:0px;
-	-webkit-border-top-right-radius:0px;
-	border-top-right-radius:0px;
-}
-.TableGen tr:last-child td:first-child{
-	-moz-border-radius-bottomleft:0px;
-	-webkit-border-bottom-left-radius:0px;
-	border-bottom-left-radius:0px;
-}
-.TableGen tr:hover td{
-	
-}
-.TableGen tr:nth-child(odd){ background-color:#ffaa56; }
-.TableGen tr:nth-child(even)    { background-color:#ffffff; }
-.TableGen td{
-	vertical-align:middle;
-	border:1px solid #000000;
-	border-width:0px 1px 1px 0px;
-	text-align:center;
-	padding:7px;
-	font-size:24px;
-	font-family:Arial,Helvetica,sans-serif;
-	font-weight:normal;
-	color:#000000;
-}
-.TableGen tr:last-child td{
-	border-width:0px 1px 0px 0px;
-}
-.TableGen tr td:last-child{
-	border-width:0px 0px 1px 0px;
-}
-.TableGen tr:last-child td:last-child{
-	border-width:0px 0px 0px 0px;
-}
-.TableGen tr:first-child td{
-	background-color:#ff7f00;
-	border:0px solid #000000;
-	text-align:center;
-	border-width:0px 0px 1px 1px;
-	font-size:24px;
-	font-family:Arial,Helvetica,sans-serif;
-	font-weight:bold;
-	color:#ffffff;
-}
-.TableGen tr:first-child:hover td{
-	background-color:#ff7f00;
-}
-.TableGen tr:first-child td:first-child{
-	border-width:0px 0px 1px 0px;
-}
-.TableGen tr:first-child td:last-child{
-	border-width:0px 0px 1px 1px;
-}
-</style> <style type="text/css">
+
+
 div.requirement { 
     counter-increment: requirement;
     background-color:#FFC;
@@ -146,10 +74,7 @@ div.requirement p:before {
     font-style:italic; 
 }
 
-.ednote:before{
-	content: "EDNOTE: ";
-    color: red;
-}
+
 SPAN.h\e9llo { 
       text-decoration: underline; 
 }
@@ -255,7 +180,7 @@ span.example { padding: .1em .5em .15em; }
     background: #e9fbe9;
 }
 
-</style> <style type="text/css">
+
    .stability {
      position: fixed;
      bottom: 0;
@@ -302,15 +227,7 @@ span.example { padding: .1em .5em .15em; }
      background: transparent;
      color: white;
    }
-    
-    
-    code {
-        font-family: Lucida Console, monospaced;
-        font-size: 105%;
-    }
-    
-    
-</style><!--
+</style> <!--
    The following script activates the "official" W3C "work in progress" box.   ReSpec hates it if you insert it in-line.-->
     <script>
    function closeWarning(element) {
@@ -534,14 +451,16 @@ span.example { padding: .1em .5em .15em; }
         <p>This section provides some historical background on the topics
           addressed in this specification.</p>
         <p>At the core of the character model is the Universal Character Set
-          (UCS), defined jointly by the Unicode Standard [[!UNICODE]] and
-          ISO/IEC 10646 [[!ISO10646]]. In this document, <dfn id="unicode" title="unicode">Unicode</dfn>
-          is used as a synonym for the Universal Character Set. A successful
-          character model allows Web documents authored in the world's writing
-          systems, scripts, and languages (and on different platforms) to be
-          exchanged, read, and searched by the Web's users around the world.</p>
-        <p>The first few chapters of the Unicode Standard [[!UNICODE]] provide
-          useful background reading.</p>
+          (UCS), defined jointly by the <cite>Unicode Standard</cite>
+          [[!UNICODE]] and ISO/IEC 10646 [[!ISO10646]]. In this document, <dfn
+
+            id="unicode" title="unicode">Unicode</dfn> is used as a synonym for
+          the Universal Character Set. A successful character model allows Web
+          documents authored in the world's writing systems, scripts, and
+          languages (and on different platforms) to be exchanged, read, and
+          searched by the Web's users around the world.</p>
+        <p>The first few chapters of the <cite>Unicode Standard</cite>
+          [[!UNICODE]] provide useful background reading.</p>
         <p>For information about the requirements that informed the development
           of important parts of this specification, see <cite>Requirements for
             String Identity Matching and String Indexing</cite> [[CHARREQ]].</p>
@@ -555,27 +474,30 @@ span.example { padding: .1em .5em .15em; }
           establish terminology that allows us to talk about the different kinds
           of text within a given format or protocol, as the requirements and
           details vary significantly. </p>
-        <p>Unicode code points are denoted as <code>U+hhhh</code>, where <code>hhhh</code>
-          is a sequence of at least four, and at most six hexadecimal digits.
-          For example, the character € EURO SIGN has the code point <code>U+20AC</code>.</p>
+        <p>Unicode code points are denoted as <code class="kw" translate="no">U+hhhh</code>,
+          where <code class="kw" translate="no">hhhh</code> is a sequence of at
+          least four, and at most six hexadecimal digits. For example, the
+          character <span class="qchar">€</span> <span class="uname">EURO SIGN</span>
+          has the code point <code class="kw" translate="no">U+20AC</code>.</p>
         <p>Some characters that are used in the various examples might not
           appear as intended unless you have the appropriate font. Care has been
           taken to ensure that the examples nevertheless remain understandable.</p>
         <p id="def-legacyEnc">A <dfn id="legacyEncoding">legacy character
             encoding</dfn> is a character encoding not based on the Unicode
           character set.</p>
-        <p id="def-grapheme-cluster">A <dfn id="grapheme">grapheme</dfn> is a
-          sequence of one or more Unicode characters that form a single
-          user-perceived "character". Unicode Standard Annex #29: Text
-          Segmentation [[!UTR29]] defines a unit called the <dfn id="grapheme-cluster">grapheme
+        <p id="def-grapheme-cluster">A <dfn id="def-grapheme">grapheme</dfn> is
+          a sequence of one or more Unicode characters that form a single
+          user-perceived "character". <cite>Unicode Standard Annex #29: Text
+            Segmentation</cite> [[!UTR29]] defines a unit called the <dfn id="grapheme-cluster">grapheme
             cluster</dfn>, which roughly corresponds to the user's perception of
           where the character boundaries occur in a visually rendered text, in
           constrast to the Unicode code points (characters) used to encode the
           text in a string. (A discussion of grapheme clusters is also given at
-          the end of Section 2.10 of the Unicode Standard, [[!UNICODE]].)</p>
-        <p>What Unicode actually defines is <span style="text-decoration: underline;">default</span>
-          grapheme clustering: some languages require tailoring to this default.
-          For example, a Slovak user might wish to treat the default pair of
+          the end of Section 2.10 of the <cite>Unicode Standard</cite>,
+          [[!UNICODE]].)</p>
+        <p>What Unicode actually defines is <strong>default</strong> grapheme
+          clustering: some languages require tailoring to this default. For
+          example, a Slovak user might wish to treat the default pair of
           grapheme clusters "ch" as a single grapheme cluster. Note that the
           interaction between the language of string content and the end-user's
           preferences might be complex. References to <em>grapheme</em> in this
@@ -593,27 +515,28 @@ span.example { padding: .1em .5em .15em; }
           definition can include values that are not typically thought of as
           "markup", such as the name of a field in an HTTP header, as well as
           all of the characters that form the structure of a format or protocol.
-          For example, <code>&lt;</code> or <code>&gt;</code> are part of the
-          markup in an HTML document. </p>
+          For example, <span class="qchar">&lt;</span> or <span class="qchar">&gt;</span>
+          are part of the markup in an HTML document. </p>
         <p>Markup usually is defined by a specification or specifications and
           includes both the defined, reserved keywords for the given protocol or
           format as well as string tokens and identifiers that are defined by
           document authors to form the structure of the document (rather than
           the "content" of the document).</p>
         <div class="example">
-          <p>XML [[XML10]] defines specific elements, attributes, and values
-            that are reserved across all XML documents. Thus, the word <code>encoding</code>
-            has a defined meaning inside the XML document declaration: it is a
-            reserved name. XML also allows a user to define elements and
-            attributes for a given document using a DTD. In a document that uses
-            a DTD that defines an element called <code>&lt;muffin&gt;</code>,
-            "muffin" is a part of the markup.</p>
+          <p><cite>XML</cite> [[XML10]] defines specific elements, attributes,
+            and values that are reserved across all XML documents. Thus, the
+            word <code class="kw" translate="no">encoding</code> has a defined
+            meaning inside the XML document declaration: it is a reserved name.
+            XML also allows a user to define elements and attributes for a given
+            document using a DTD. In a document that uses a DTD that defines an
+            element called <code class="kw">&lt;muffin&gt;</code>, <span class="qterm">muffin</span>
+            is a part of the markup.</p>
         </div>
         <p>A <dfn title="resource">resource</dfn> is a given document, file, or
           protocol "message" which include both the <a href="#natural-language-content">natural
             language content</a>) as well as the <a href="#markup" class="termref">markup</a>
           such as identifiers surrounding or containing it. For example, in an
-          HTML document that also has some CSS and a few <code>script</code>
+          HTML document that also has some CSS and a few <code class="kw" translate="no">script</code>
           tags with embedded JavaScript, the entire HTML document, considered as
           a file, is the resource.</p>
         <p>A <dfn title="vocabulary">vocabulary</dfn> provides the list of
@@ -666,7 +589,7 @@ span.example { padding: .1em .5em .15em; }
             orange rectangles). It's also possible that a resource will contain
             <em>no</em> markup and consist solely of natural language content:
             for example, a plain text file with a soliloquy from <cite>Hamlet</cite>
-            in it. Notice too that the HTML entity <code>&amp;#x2019;</code>
+            in it. Notice too that the HTML entity <code class="kw">&amp;#x2019;</code>
             appears in the natural language content and belongs to both the
             natural language content and the markup in this resource.</p>
         </div>
@@ -675,10 +598,10 @@ span.example { padding: .1em .5em .15em; }
         <h4>Conformance</h4>
         <p>This specification places conformance criteria on specifications, on
           software (implementations) and on Web content. To aid the reader, all
-          conformance criteria are preceded by '<span class="qterm">[X]</span>'
-          where '<span class="qchar">X</span>' is one of '<span class="qchar">S</span>'
-          for specifications, '<span class="qchar">I</span>' for software
-          implementations, and '<span class="qchar">C</span>' for Web content.
+          conformance criteria are preceded by <span class="qterm">[X]</span>
+          where <span class="qchar">X</span> is one of <span class="qchar">S</span>
+          for specifications, <span class="qchar">I</span> for software
+          implementations, and <span class="qchar">C</span> for Web content.
           These markers indicate the relevance of the conformance criteria and
           allow the reader to quickly locate relevant conformance criteria by
           searching through this document.</p>
@@ -754,16 +677,15 @@ span.example { padding: .1em .5em .15em; }
 
 &lt;span class="h&amp;#xe9;llo"&gt;<span class="héllo">Hello World!</span>&lt;/span&gt;
 </pre>
-        <p>The <code translate="no">SPAN</code> in the stylesheet matches the <code
-
-            translate="no">span</code> element in the document, even though one
-          is uppercase and the other is not.</p>
+        <p>The <code class="kw" translate="no">SPAN</code> in the stylesheet
+          matches the <code class="kw" translate="no">span</code> element in
+          the document, even though one is uppercase and the other is not.</p>
         <p id="def-case-folding"><dfn id="case-folding">Case folding</dfn> is
           the process of making two texts identical which differ in case but are
           otherwise "the same".</p>
         <p>Case folding might, at first, appear simple. However there are
           variations that need to be considered when treating the full range of
-          Unicode in diverse languages. For more information, Unicode
+          Unicode in diverse languages. For more information, <cite>Unicode</cite>
           [[!UNICODE]] Section 5.18 discusses case folding in detail.</p>
         <p>Case folding in Unicode has a number of side-effects or potential
           side-effects on the processing of a resource. One is that case folding
@@ -779,11 +701,15 @@ span.example { padding: .1em .5em .15em; }
           Latin script.</p>
         <div class="example">
           <p>The Turkish word "Diyarbakır" contains both the dotted and dotless
-            letters "i". When rendered into upper case, this word appears like
-            this: "DİYARBAKIR". Notice that the ASCII letter "i" maps to U+0130
-            (<code>LATIN CAPITAL LETTER I WITH DOT ABOVE</code>), while the
-            letter "ı" (U+0131 <code>LATIN SMALL LETTER DOTLESS I</code>) maps
-            to the ASCII uppercase "I". </p>
+            letters <span class="qchar">i</span>. When rendered into upper
+            case, this word appears like this: <span class="qterm">DİYARBAKIR</span>.
+            Notice that the ASCII letter <span class="qchar">i</span> maps to <span
+
+              class="uname">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>,
+            while the letter <span class="qchar">ı</span> (<span class="uname">U+0131
+              LATIN SMALL LETTER DOTLESS I</span>) maps to the ASCII uppercase <span
+
+              class="qchar">I</span>. </p>
         </div>
         There are four types of casefold matching defined for the purposes of
         string identity matching in document formats or protocols:
@@ -862,23 +788,43 @@ span.example { padding: .1em .5em .15em; }
         <h3>Unicode Normalization</h3>
         <p>Other kinds of variations can occur in Unicode text: some <a href="#def-grapheme">graphemes</a>
           can be represented by several different Unicode code point sequences.
-          Consider the character <code>&#x1fa; U+01FA LATIN
-            LETTER CAPITAL A WITH RING ABOVE AND ACUTE</code>. Here are some of
-          the different ways that an HTML document could represent this
-          character:</p>
+          Consider the character <span class="uname">Ǻ U+01FA LATIN LETTER
+            CAPITAL A WITH RING ABOVE AND ACUTE</span>. Here are some of the
+          different character sequences that an HTML document could use to
+          represent this character:</p>
         <ul class="dropExampleList">
-          <li class="dropExampleItem"><span class="dropExample">Ǻ </span><code>U+01FA</code>&mdash; A "precomposed" character.</li>
-          <li class="dropExampleItem"><span class="dropExample">A&#x30a;&#x301;</span><code>A&nbsp;+&nbsp;U+030A&nbsp;+&nbsp;U+0301</code>&mdash; A "base" letter "A" with two combining marks</li>
-          <li class="dropExampleItem"><span class="dropExample">Å&#x301;</span><code>U+00C5 + U+0301</code>&mdash;An accented letter (<code>U+00C5 LATIN CAPITAL LETTER A WITH RING ABOVE</code>) with one combining mark</li>
-          <li class="dropExampleItem"><span class="dropExample">&#x212b;&#x301;</span><code>U+212B + U+0301</code>&mdash;A compatibility character (<code>U+212B ANGSTROM SIGN</code>) with one combining mark</li>
-          <li class="dropExampleItem"><span class="dropExample">Ａ̊́ </span><code>U+FF21 + U+030A + U+0301</code>&mdash; A compatibility character <code>U+FF21 FULLWIDTH LATIN LETTER
-                    CAPITAL A</code>) with two combining marks</li>
+          <li class="dropExampleItem"><span class="dropExample">Ǻ </span><code
+
+              class="kw">U+01FA</code>— A "precomposed" character.</li>
+          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><code
+
+              class="kw">A&nbsp;+&nbsp;U+030A&nbsp;+&nbsp;U+0301</code>— A <span
+
+              class="qterm">base</span> letter <span class="qchar">A</span>
+            followed by two combining marks (<span class="uname">U+030A
+              COMBINING RING ABOVE</span> and <span class="uname">U+0301
+              COMBINING ACUTE ACCENT</span>)</li>
+          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><code class="kw">U+00C5
+              + U+0301</code>—An accented letter (<span class="uname">U+00C5
+              LATIN CAPITAL LETTER A WITH RING ABOVE</span>) followed by a
+            combining accent (<span class="uname">U+0301 COMBINING ACUTE ACCENT</span>)</li>
+          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><code class="kw">U+212B
+              + U+0301</code>—A compatibility character (<span class="uname">U+212B
+              ANGSTROM SIGN</span>) followed by a combining accent (<span class="uname">U+0301
+              COMBINING ACUTE ACCENT</span>)</li>
+          <li class="dropExampleItem"><span class="dropExample">Ａ̊́ </span><code
+
+              class="kw">U+FF21 + U+030A + U+0301</code>— A compatibility
+            character <span class="uname">U+FF21 FULLWIDTH LATIN LETTER CAPITAL
+              A</span>) followed by two combining marks (<span class="uname">U+030A
+              COMBINING RING ABOVE</span> and <span class="uname">U+0301
+              COMBINING ACUTE ACCENT</span>)</li>
         </ul>
-        <p>Each of the above strings contains the same apparent semantic meaning as 
-          <code>Ǻ U+01FA LATIN CAPITAL LETTER A WITH RING ABOVE AND
-            ACUTE</code>, but each one is encoded slightly differently. More
-          variations are possible, but are omitted for brevity.
-        </p>
+        <p>Each of the above strings contains the same apparent semantic meaning
+          as <span class="qchar">Ǻ</span> (<span class="uname">U+01FA LATIN
+            CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>), but each one is
+          encoded slightly differently. More variations are possible, but are
+          omitted for brevity. </p>
         <p>Because applications need to find the semantic equivalence in texts
           that use different code point sequences, Unicode defines a means of
           making two semantically equivalent texts identical: the Unicode
@@ -916,8 +862,8 @@ span.example { padding: .1em .5em .15em; }
             correctly displayed, these should always have the same visual
             appearance and behavior. Generally speaking, two canonically
             equivalent Unicode texts should be considered to be identical as
-            text. Canonical decomposition removes primary distinctions between
-            two texts.</p>
+            text. Canonical decomposition removes these primary distinctions
+            between two texts.</p>
           <p>Examples of canonical equivalence defined by Unicode include:</p>
           <ul class="dropExampleList">
             <li class="dropExampleItem"><span class="dropExample">Ç<span style="font-size:75%">vs.</span>Ç</span>
@@ -925,37 +871,42 @@ span.example { padding: .1em .5em .15em; }
               can be composed from a base character followed by one or more
               combining characters. The same characters are sometimes also
               encoded as a distinct "pre-composed" character. In this example,
-              the character <code>Ç U+00C7</code> is canonically equivalent to
-              the base character <code>C U+0043</code> followed by the
-              combining cedilla character <code>&nbsp;̧̧ U+0327</code>. Such
-              equivalence can extend to characters with multiple combining
+              the character <span class="qchar">Ç</span> <span class="uname">U+00C7</span>
+              is canonically equivalent to the base character <span class="qchar">C</span>
+              <span class="uname">U+0043</span>&gt; followed by the combining
+              cedilla character <span class="qchar">̧</span> <span class="uname">U+0327</span>.
+              Such equivalence can extend to characters with multiple combining
               marks.</li>
             <li class="dropExampleItem"><span class="dropExample">q̣̇<span style="font-size:75%">vs.</span>q̣̇</span>
               <em>Order of combining marks.</em> When a base character is
               modified by multiple combining marks, the order of the combining
               marks might not represent a distinct character. Here the sequence
-              <code>q U+0071&nbsp;U+0323&nbsp;U+0307</code> and <code>q
-                U+0071&nbsp;̇ U+0307&nbsp;̣U+0323</code> are equivalent, even
-              though the combining marks are in a different order. Note that
-              this example is chosen carefully: the dot-above character and
-              dot-below character are on opposite "sides" of the base character.
-              The order of combining diacritics on the same side have a
-              positional meaning.</li>
+              <span class="qterm">q̣̇</span>(<span class="uname">U+0071 U+0323
+                U+0307</span>) and <span class="qterm">q̣̇</span>(<span class="uname">U+0071
+                U+0307 U+0323</span>) are equivalent, even though the combining
+              marks are in a different order. Note that this example is chosen
+              carefully: the dot-above character and dot-below character are on
+              opposite "sides" of the base character. The order of combining
+              diacritics on the same side have a positional meaning.</li>
             <li class="dropExampleItem"><span class="dropExample">Ω<span style="font-size:75%">vs.</span>Ω</span>
-              <em>Singleton mappings.</em> These result from separate encoding
-              of canonically equivalent characters to support legacy character
-              encodings. In this example, the Ohm symbol <code>Ω U+2126</code>
-              is canonically equivalent (and identical in appearance) to the
-              Greek letter Omega <code>Ω U+03A9</code>.</li>
+              <em>Singleton mappings.</em> These result from the need to
+              separately encode otherwise equivalent characters to support
+              legacy character encodings. In this example, the Ohm symbol <span
+
+                class="qchar">Ω</span> <span class="uname">U+2126</span> is
+              canonically equivalent (and identical in appearance) to the Greek
+              letter Omega <span class="qchar">Ω</span> <span class="uname">U+03A9</span>.</li>
             <li class="dropExampleItem"><span class="dropExample">가<span style="font-size:75%">vs.</span>가</span>
               <em>Hangul.</em> The Hangul script is used to write the Korean
               language. This script is constructed logically, with each syllable
-              being a roughly-square grapheme formed from specific sub-parts
-              that represent consonants and vowels. These specific sub-parts,
-              called <em>jamo</em>, are encoded in Unicode. So too are the
-              pre-composed syllables. Thus the syllable <code>가 U+AC00</code>
-              is canonically equivalent to its constituent <em>jamo </em>characters
-              <code>ᄀ U+1100</code> and <code>ᅡ U+1161</code>.</li>
+              being a roughly-square <a href="#def-grapheme" class="termref">grapheme</a>
+              formed from specific sub-parts that represent consonants and
+              vowels. These specific sub-parts, called <em>jamo</em>, are
+              encoded in Unicode. So too are the pre-composed syllables. Thus
+              the syllable <span class="qchar">가</span>&nbsp; <span class="uname">U+AC00</span>
+              is canonically equivalent to its constituent <em>jamo</em>
+              characters <span class="qchar">ᄀ</span>&nbsp;<span class="uname">U+1100</span>n&gt;
+              and <span class="qchar">ᅡ</span>&nbsp;<span class="uname">U+1161</span>.</li>
           </ul>
           <p><dfn title="compatibility equivalence">Compatibility equivalence</dfn>
             is a weaker equivalence between characters or sequences of
@@ -972,62 +923,102 @@ span.example { padding: .1em .5em .15em; }
             by a formal language.</p>
           <p>The following table illustrates various kinds of compatibility
             equivalence in Unicode:</p>
-          <div class="TableGen" style="width:50%; margin-left:25%;margin-right:25%; font-size:18px;">
-            <table>
-              <tbody>
-                <tr>
-                  <td colspan="5">Compatibility Equivalence</td>
-                </tr>
-                <tr>
-                  <td>Font variants</td>
-                  <td style="text-align: center" colspan="2"> <span class="charSample">ℌ</span></td>
-                  <td style="text-align: center" colspan="2"> <span class="charSample">ℍ</span></td>
-                </tr>
-                <tr>
-                  <td>Non-breaking</td>
-                  <td style="text-align: center" colspan="4"> <span class="charSample">U+00A0
-                      NON-BREAKING SPACE</span></td>
-                </tr>
-                <tr>
-                  <td>Presentation forms of Arabic (initial, medial, final,
-                    isolated)</td>
-                  <td style="text-align: center"> <span class="charSample">ﻨ</span></td>
-                  <td style="text-align: center"> <span class="charSample">ﻧ</span></td>
-                  <td style="text-align: center"> <span class="charSample">ﻦ</span></td>
-                  <td style="text-align: center"> <span class="charSample">ﻥ</span></td>
-                </tr>
-                <tr>
-                  <td>Circled</td>
-                  <td style="text-align: center" colspan="4"> <span class="charSample">①</span></td>
-                </tr>
-                <tr>
-                  <td>East Asian Width, size, rotated presentation forms</td>
-                  <td style="text-align: center"><span class="charSample">ｶ</span></td>
-                  <td style="text-align: center"><span class="charSample">カ</span></td>
-                  <td style="text-align: center"><span class="charSample">︷</span></td>
-                  <td style="text-align: center"><span class="charSample">{</span></td>
-                </tr>
-                <tr>
-                  <td>Superscripts/subscripts</td>
-                  <td style="text-align: center" colspan="2"> <span class="charSample">⁹</span></td>
-                  <td style="text-align: center" colspan="2"> <span class="charSample">₉</span></td>
-                </tr>
-                <tr>
-                  <td>"Squared" characters</td>
-                  <td style="text-align: center" colspan="4"> <span class="charSample">㌀</span></td>
-                </tr>
-                <tr>
-                  <td>Fractions</td>
-                  <td style="text-align: center" colspan="4"> <span class="charSample">¼</span></td>
-                </tr>
-                <tr>
-                  <td>Others</td>
-                  <td style="text-align: center" colspan="4"> <span class="charSample">ǆ</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="note">
+          <figure> <figcaption>Compatibility Equivalence</figcaption>
+            <div style="width:80%; margin-left:10%;margin-right:10%; font-size:18px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th colspan="5">Compatibility Equivalance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Font variants</strong>—characters that have a
+                      specific visual appearance (generally associated with a
+                      specialized use, such as in mathematics).</td>
+                    <td style="text-align: center" colspan="2"> <span class="charSample">ℌ</span></td>
+                    <td style="text-align: center" colspan="2"> <span class="charSample">ℍ</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Breaking versus non-breaking</strong>—variations
+                      in breaking or joining rules, such as the difference
+                      between a <span class="qterm">normal</span> and a
+                      non-breaking space.</td>
+                    <td style="text-align: center" colspan="4"><span
+                        class="uname">U+00A0 NON-BREAKING SPACE</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Presentation forms of Arabic</strong>&mdash;
+                      characters that encode the specific shapes&nbsp;(initial,
+                      medial, final, isolated) needed by visual legacy encodings
+                      of the Arabic script.</td>
+                    <td style="text-align: center"> <span class="charSample">ﻨ</span></td>
+                    <td style="text-align: center"> <span class="charSample">ﻧ</span></td>
+                    <td style="text-align: center"> <span class="charSample">ﻦ</span></td>
+                    <td style="text-align: center"> <span class="charSample">ﻥ</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Circled</strong>—numbers, letters, and other
+                      characters in a circled, bullet, or other presentational
+                      form; often used for lists, footnotes, and specialized
+                      presentation</td>
+                    <td style="text-align: center" colspan="1"> <span class="charSample">①</span></td>
+                    <td style="text-align: center" colspan="1"> <span class="charSample">❿</span></td>
+                    <td style="text-align: center" colspan="1"> <span class="charSample">&#x3244;</span></td>
+                    <td style="text-align: center" colspan="1"> <span class="charSample">㊞</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>East Asian Width, size, rotated presentation
+                        forms</strong>—narrow vs. wide presentational forms of
+                      East Asian characters (often associated with legacy
+                      multibyte encodings), as well as "rotated" presentation
+                      forms necessary for vertical text.</td>
+                    <td style="text-align: center"><span class="charSample">ｶ</span></td>
+                    <td style="text-align: center"><span class="charSample">カ</span></td>
+                    <td style="text-align: center"><span class="charSample">︷</span></td>
+                    <td style="text-align: center"><span class="charSample">{</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Superscripts/subscripts</strong>—superscript or
+                      subscript letters, numbers, and symbols.</td>
+                    <td style="text-align: center"> <span class="charSample">⁹</span></td>
+                    <td style="text-align: center"> <span class="charSample">&#x2089;</span></td>
+                    <td style="text-align: center"> <span class="charSample">&#xAA;</span></td>
+                    <td style="text-align: center"> <span class="charSample">&#x208A;</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong><span class="quote">Squared</span> characters</strong>—East
+                      Asian (particularly kana) sequences encoded as a presentation form to
+                      fit in a single ideographic "cell" in text.</td>
+                    <td style="text-align: center"> <span class="charSample">㌀</span></td>
+                    <td style="text-align: center"> <span class="charSample">&#x3350;</span></td>
+                    <td style="text-align: center"> <span class="charSample">&#x1F120;</span></td>
+                    <td style="text-align: center"> <span class="charSample">&#x3389;</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fractions</strong>—pre-composed vulgar
+                      fractions, often encoded for compatibility with font glyph
+                      sets.</td>
+                    <td style="text-align: center"> <span class="charSample">¼</span></td>
+                    <td style="text-align: center"> <span class="charSample">&#xBD;</span></td>
+                    <td style="text-align: center"> <span class="charSample">&#x215F;</span></td>
+                    <td style="text-align: center"> <span class="charSample">&#x2189;</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Others</strong>—compatibility
+                      characters encoded for other reasons, generally for compatibility
+                      with legacy character encodings. Many of these characters are simply 
+                      a sequence of characters encoded as a single presentational unit.</td>
+                    <td style="text-align: center"> <span class="charSample">ǆ</span></td>
+                    <td style="text-align: center"> <span class="charSample">&#x2474;</span></td>
+                    <td style="text-align: center"> <span class="charSample">&#x2488;</span></td>
+                    <td style="text-align: center"> <span class="charSample">&#x2ef3;</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </figure>
+
             <p>In the above table, it is important to note that the characters
               illustrated are <em>actual Unicode codepoints</em>. They were
               encoded into Unicode for compatibility with various legacy
@@ -1035,31 +1026,27 @@ span.example { padding: .1em .5em .15em; }
               kinds of presentational processing used on their non-compatibility
               counterparts. </p>
             <p>For example, most Arabic-script text uses the characters in the
-              Arabic script block of Unicode (around U+0600). The actual glyphs
-              used in the text are selected using fonts and text processing
+              <span class="uname">Arabic script</span> block of Unicode (starting at <span class="uname">U+0600</span>). The actual glyphs
+              used to display the text are selected using fonts and text processing
               logic based on the position inside a word (initial, medial, final,
               or isolated), in a process called "shaping". In the table above,
-              the four presentation forms of the Arabic letter NOON are shown.
-              The characters shown are compatibility characters in the U+FE00
+              the four presentation forms of the Arabic letter <span class="uname">NOON</span> are shown.
+              The characters shown are compatibility characters in the <span class="uname">U+FE00</span>
               block, each of which represents a specific "positional" shape and
               each of the four code points shown have a compatibility
-              decomposition to the "regular" Arabic letter NOON (U+0646).</p>
+              decomposition to the <span class="quote">regular</span> Arabic letter <span class="uname">U+0646 NOON</span>.</p>
             <p>Similarly, the variations in East Asian width and the rotated
               bracket (for use in vertical text) are encoded as separate code
               points.</p>
             <p>In the case of characters with compatibility decompositions, such
-              as those shown above, the "K" Unicode Normalization forms convert
+              as those shown above, the <span class="qchar">K</span> Unicode Normalization forms convert
               the text to the "normal" or "expected" Unicode code point. But the
               existence of these compatibility characters cannot be taken to
               imply that similar appearance variations produced in the normal
               course of text layout and presentation are affected by Unicode
               Normalization. They are not.</p>
-          </div>
-          <p class="ednote">Improve above examples, which are taken from UAX15,
-            by adding more of each type and clarifying the "breaking
-            differences" item. The table seems to be confused with "normal"
-            character sequences—which isn't the point. Perhaps a better
-            illustration than Unicode's is needed. 😿</p>
+
+
           <p>These two types of Unicode-defined equivalence are then grouped by
             another pair of variations: "decomposition" and "composition". In
             "decomposition", separable logical parts of a visual character are
@@ -1077,79 +1064,83 @@ span.example { padding: .1em .5em .15em; }
             we can finally "normalize" the Unicode texts given in the example
             above. Here are the resulting sequences in each Unicode
             Normalization form for the U+01FA example given earlier: </p>
-          <div class="TableGen" style="margin-left:15%; margin-right:15%; width:70%; text-align:center;">
-            <table>
-              <tbody>
-                <tr>
-                  <td>Original Codepoints</td>
-                  <td>NFC</td>
-                  <td>NFD</td>
-                  <td>NFKC</td>
-                  <td>NFKD</td>
-                </tr>
-                <tr>
-                  <td class="b-clear">Ǻ <br>
-                    <span class="tableSub">U+01FA</span></td>
-                  <td class="b1">Ǻ <br>
-                    <span class="tableSub">U+01FA</span></td>
-                  <td class="b2">Ǻ <br>
-                    <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                  <td class="b1">Ǻ <br>
-                    <span class="tableSub">U+01FA</span></td>
-                  <td class="b2">Ǻ <br>
-                    <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                </tr>
-                <tr>
-                  <td class="b-clear">Ǻ <br>
-                    <span class="tableSub">U+00C5 U+0301</span></td>
-                  <td class="b1">Ǻ <br>
-                    <span class="tableSub">U+01FA</span></td>
-                  <td class="b2">Ǻ <br>
-                    <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                  <td class="b1">Ǻ <br>
-                    <span class="tableSub">U+01FA</span></td>
-                  <td class="b2">Ǻ <br>
-                    <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                </tr>
-                <tr>
-                  <td class="b-clear">Ǻ <br>
-                    <span class="tableSub">U+212B U+0301</span></td>
-                  <td class="b1">Ǻ <br>
-                    <span class="tableSub">U+01FA</span></td>
-                  <td class="b2">Ǻ <br>
-                    <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                  <td class="b1">Ǻ <br>
-                    <span class="tableSub">U+01FA</span></td>
-                  <td class="b2">Ǻ <br>
-                    <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                </tr>
-                <tr>
-                  <td class="b-clear">Ǻ <br>
-                    <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                  <td class="b1">Ǻ <br>
-                    <span class="tableSub">U+01FA</span></td>
-                  <td class="b2">Ǻ<br>
-                    <span class="tableSub"> U+0041 U+030A U+0301</span></td>
-                  <td class="b1">Ǻ <br>
-                    <span class="tableSub">U+01FA</span></td>
-                  <td class="b2">Ǻ <br>
-                    <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                </tr>
-                <tr>
-                  <td class="b-clear">Ａ̊́ <br>
-                    <span class="tableSub">U+FF21 U+030A U+0301</span></td>
-                  <td class="b3">Ａ̊́<br>
-                    <span class="tableSub">U+FF21 U+030A U+0301</span></td>
-                  <td class="b3">Ａ̊́<br>
-                    <span class="tableSub"> U+FF21 U+030A U+0301</span></td>
-                  <td class="b1">Ǻ <br>
-                    <span class="tableSub">U+01FA</span></td>
-                  <td class="b2">Ǻ <br>
-                    <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <figure> <figcaption>Comparison of Unicode Normalization Forms</figcaption>
+            <div style="margin-left:5%; margin-right:15%; width:80%; text-align:center;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Original Codepoints</th>
+                    <th>NFC</th>
+                    <th>NFD</th>
+                    <th>NFKC</th>
+                    <th>NFKD</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="b-clear">Ǻ <br>
+                      <span class="tableSub">U+01FA</span></td>
+                    <td class="b1">Ǻ <br>
+                      <span class="tableSub">U+01FA</span></td>
+                    <td class="b2">Ǻ <br>
+                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
+                    <td class="b1">Ǻ <br>
+                      <span class="tableSub">U+01FA</span></td>
+                    <td class="b2">Ǻ <br>
+                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
+                  </tr>
+                  <tr>
+                    <td class="b-clear">Ǻ <br>
+                      <span class="tableSub">U+00C5 U+0301</span></td>
+                    <td class="b1">Ǻ <br>
+                      <span class="tableSub">U+01FA</span></td>
+                    <td class="b2">Ǻ <br>
+                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
+                    <td class="b1">Ǻ <br>
+                      <span class="tableSub">U+01FA</span></td>
+                    <td class="b2">Ǻ <br>
+                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
+                  </tr>
+                  <tr>
+                    <td class="b-clear">Ǻ <br>
+                      <span class="tableSub">U+212B U+0301</span></td>
+                    <td class="b1">Ǻ <br>
+                      <span class="tableSub">U+01FA</span></td>
+                    <td class="b2">Ǻ <br>
+                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
+                    <td class="b1">Ǻ <br>
+                      <span class="tableSub">U+01FA</span></td>
+                    <td class="b2">Ǻ <br>
+                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
+                  </tr>
+                  <tr>
+                    <td class="b-clear">Ǻ <br>
+                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
+                    <td class="b1">Ǻ <br>
+                      <span class="tableSub">U+01FA</span></td>
+                    <td class="b2">Ǻ<br>
+                      <span class="tableSub"> U+0041 U+030A U+0301</span></td>
+                    <td class="b1">Ǻ <br>
+                      <span class="tableSub">U+01FA</span></td>
+                    <td class="b2">Ǻ <br>
+                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
+                  </tr>
+                  <tr>
+                    <td class="b-clear">Ａ̊́ <br>
+                      <span class="tableSub">U+FF21 U+030A U+0301</span></td>
+                    <td class="b3">Ａ̊́<br>
+                      <span class="tableSub">U+FF21 U+030A U+0301</span></td>
+                    <td class="b3">Ａ̊́<br>
+                      <span class="tableSub"> U+FF21 U+030A U+0301</span></td>
+                    <td class="b1">Ǻ <br>
+                      <span class="tableSub">U+01FA</span></td>
+                    <td class="b2">Ǻ <br>
+                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </figure>
           <p>Unicode Normalization reduces these (and other potential sequences
             of escapes representing the same character) to just three possible
             variations. However, Unicode Normalization doesn't remove all
@@ -1161,18 +1152,23 @@ span.example { padding: .1em .5em .15em; }
               decomposition.</li>
             <li>Some characters that look alike or have similar semantics are
               actually distinct in Unicode and don't have canonical or
-              compatibility decompositions to link them together. For example, <code>U+3001
-                IDEOGRAPHIC FULL STOP</code> is used as a "period" at the end of
-              sentences in languages such as Chinese or Japanese. However, it is
-              not considered equivalent to the ASCII "period" character <code>U+002E
-                FULL STOP</code>.</li>
-            <li>Some character variations are not handled by normalization. For
-              example, UPPER, Title, and lowercase variations are a separate and
-              distinct textual variation that must be separately normalized.</li>
-            <li>Normalization can remove meaning. For example, <code>8½</code>
-              (including the character <code>U+00BD VULGAR FRACTION ONE HALF</code>),
-              when normalized using one of the "compatibility" normalization
-              forms, becomes a character sequence that looks more like: <code>81/2</code>.</li>
+              compatibility decompositions to link them together. For example, <span
+
+                class="qchar">。</span> <span class="uname">U+3002 IDEOGRAPHIC
+                FULL STOP</span> is used as a <span class="quote">period</span>
+              at the end of sentences in languages such as Chinese or Japanese.
+              However, it is not considered equivalent to the ASCII <span class="quote">period</span>
+              character <span class="uname">U+002E FULL STOP</span>.</li>
+            <li>Some character variations are not handled by the Unicode
+              Normalization Forms. For example, UPPER, Title, and lowercase
+              variations are a separate and distinct textual variation that must
+              be separately handled when comparing text.</li>
+            <li>Normalization can remove meaning. For example, the character
+              sequence <span class="qterm"><samp>8½</samp></span> (including
+              the character <span class="uname">U+00BD VULGAR FRACTION ONE HALF</span>),
+              when normalized using one of the <span class="quote">compatibility</span>
+              normalization forms (that is, NFKD or NFKC), becomes an ASCII
+              character sequence that looks like: <samp>81/2</samp>.</li>
           </ul>
         </section>
         <section>
@@ -1183,11 +1179,12 @@ span.example { padding: .1em .5em .15em; }
             options for the normalization form to be used, what form is most
             appropriate for content on the Web?</p>
           <p>For use on the Web, it is important not to lose compatibility
-            distinctions, which are often important to the content (see
-            [[UNICODE-XML]] <a href="http://www.w3.org/TR/unicode-xml/#Compatibility">Chapter
-              5</a> for a discussion). The NFKD and NFKC normalization forms are
-            therefore excluded. Among the remaining two forms, NFC has the
-            advantage that almost all legacy data (if transcoded trivially,
+            distinctions, which are often important to the content (see Chapter
+            5 <span class="qterm">Characters with Compatibility Mappings</span>
+            in <cite>Unicode in XML and other Markup Languages</cite>
+            [[UNICODE-XML]] for a discussion). The NFKD and NFKC normalization
+            forms are therefore excluded. Among the remaining two forms, NFC has
+            the advantage that almost all legacy data (if transcoded trivially,
             one-to-one, to a Unicode encoding), as well as data created by
             current software, is already in this form; NFC also has a slight
             compactness advantage and is a better match to user expectations
@@ -1200,10 +1197,11 @@ span.example { padding: .1em .5em .15em; }
               is defined such that each combining character sequence (a base
               character followed by one or more combining characters) is
               replaced, as far as possible, by a canonically equivalent
-              precomposed character. Text in a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode
-                encoding form</a> is said to be in NFC if it doesn't contain any
-              combining sequence that could be replaced and if any remaining
-              combining sequence is in canonical order.</p>
+              precomposed character. Text in a Unicode character encoding form
+              (such as UTF-8 or UTF-16) is said to be in NFC if it doesn't
+              contain any combining sequence that could be replaced with a
+              precomposed character and if any remaining combining sequence is
+              in canonical order.</p>
           </div>
         </section>
       </section>
@@ -1215,23 +1213,25 @@ span.example { padding: .1em .5em .15em; }
           additional equivalent means of representing characters inside a given
           resource. They also allow for the encoding of Unicode characters not
           represented in the character encoding scheme used by the document.</p>
-        <p>For example, <code>€ U+20AC EURO SIGN</code> can also be encoded in
-          HTML as the hexadecimal entity <code>&amp;#x20ac;</code> or as the
-          decimal entity <code>&amp;#8364;</code>. In a JavaScript or JSON
-          file, it can appear as <code>\u20ac</code> while in a CSS stylesheet
-          it can appear as <code>\20ac</code>. All of these representations
-          encode the same literal character value: "€".</p>
+        <p>For example, <span class="qchar">€</span> <span class="uname">U+20AC
+            EURO SIGN</span> can also be encoded in HTML as the hexadecimal
+          entity <code>&amp;#x20ac;</code> or as the decimal entity <code>&amp;#8364;</code>.
+          In a JavaScript or JSON file, it can appear as <code>\u20ac</code>
+          while in a CSS stylesheet it can appear as <code>\20ac</code>. All of
+          these representations encode the same literal character value: <span
+
+            class="qchar">€</span>.</p>
         <p>Character escapes are normally interpreted before a document is
           processed and strings within the format or protocol are matched.
           Returning to an example we used above: </p>
         <pre>&lt;style type="text/css"&gt;
 
   span.h\e9llo {
-text-decoration:underline;
+      text-decoration:underline;
   }
 &lt;/style&gt;
 
-&lt;span class="h&amp;#xe9;llo"&gt;Hello World!&lt;/span&gt;
+&lt;span class="h&amp;#xe9;llo"&gt;<span class="héllo">Hello World!</span>&lt;/span&gt;
 </pre>
         <p>You would expect that text to display like the following: <span class="héllo">Hello
             world!</span></p>
@@ -1242,7 +1242,7 @@ text-decoration:underline;
           considered "the same" according to a specification: the class name <code>h\e9llo</code>
           matched the class name in the HTML mark-up <code>h&amp;#xe9;llo</code>
           (and would also match the literal value <code>héllo</code> using the
-          code point <code>U+00E9</code>).</p>
+          code point <span class="uname">U+00E9</span>).</p>
       </section>
       <section id="unicodeControls">
         <h3>Unicode Controls and Invisible Markers</h3>
@@ -1255,42 +1255,48 @@ text-decoration:underline;
         <p>A special case is for ZWJ and ZWNJ. These invisible controls
           sometimes affect meaning.</p>
         <p>Examples of these include:</p>
-        <table style="width: 100%" border="1">
-          <tbody>
-            <tr>
-              <td>Characters</td>
-              <td>Description</td>
-              <td>Examples</td>
-            </tr>
-            <tr>
-              <td>ZWJ, ZWNJ, ZWSP, CGJ, etc.</td>
-              <td>zero width characters used to join or separate words or
-                graphemes and which are common in languages that do not use
-                spaces between words or for which the renderer needs assistance
-                in composing characters</td>
-              <td><br>
-              </td>
-            </tr>
-            <tr>
-              <td>variation selectors</td>
-              <td>characters used to select an alternate appearance or glyph
-                (see [[CHARMOD]]). These are used in predefined ideographic
-                variation sequences (IVS) as well as generally for certain
-                scripts (such as Mongolian). They are also used to select
-                between black-and-white and color emoji.</td>
-              <td><br>
-              </td>
-            </tr>
-            <tr>
-              <td><br>
-              </td>
-              <td><br>
-              </td>
-              <td><br>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <figure> <figcaption>Invisible Controls</figcaption>
+          <table style="width: 100%" border="1">
+            <thead>
+              <tr>
+                <th>Characters</th>
+                <th>Description</th>
+                <th>Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ZWJ, ZWNJ, ZWSP, CGJ, etc.</td>
+                <td>zero width characters used to join or separate words or
+                  graphemes and which are common in languages that do not use
+                  spaces between words or for which the renderer needs
+                  assistance in composing characters</td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td>variation selectors</td>
+                <td>characters used to select an alternate appearance or glyph
+                  (see <cite>Character Model: Fundamentals</cite> [[CHARMOD]]).
+                  These are used in predefined <span class="qterm">ideographic
+                    variation sequences</span> (<abbr title="ideographic variation sequence">IVS</abbr>)
+                  as well as generally for certain scripts (such as Mongolian).
+                  They are also used to select between black-and-white and color
+                  emoji.</td>
+                <td><br>
+                </td>
+              </tr>
+              <tr>
+                <td><br>
+                </td>
+                <td><br>
+                </td>
+                <td><br>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
         <div class="requirement">
           <p>Applications that do string matching SHOULD ignore Unicode
             formatting controls such as variation selectors; grapheme or word
@@ -1315,9 +1321,13 @@ text-decoration:underline;
             encoding and the considerations in the rest of this section would be
             completely avoided.</p>
         </div>
-        <p>For example, € (<code>U+20AC EURO SIGN</code>) is encoded as <code>0x80</code>
-          in the <code>windows-1252</code> encoding, but as the byte sequence <code>0xE2.82.AC</code>
-          in <code>UTF-8</code>.</p>
+        <p>For example, <span class="qchar">€</span> (<span class="uname">U+20AC
+            EURO SIGN</span>) is encoded as the byte sequence <code>0xE2.82.AC</code>
+          in the <code class="kw">UTF-8</code> character encoding. This same
+          character is encoded as the byte sequence <code>0x80</code> in the
+          legacy character encoding <code class="kw">windows-1252</code>.
+          (Other legacy character encodings may not provide any byte sequence to
+          encode the character.)</p>
         <p>Specifications mainly address these resulting variations by
           considering each document to be a sequence of Unicode characters after
           converting from the document's character encoding (be it a legacy
@@ -1331,26 +1341,28 @@ text-decoration:underline;
           normalizing.</p>
         <p class="note">Even within a single legacy character encoding there can
           be variations in implementation. One famous example is the legacy
-          Japanese encoding <code>Shift_JIS</code>. Different transcoder
-          implementations faced choices about how to map specific byte sequences
-          to Unicode. So the byte sequence <code>0x80.60</code> (<code>0x2141</code>
-          in the JIS X 0208 character set) was mapped by some implementations to
-          <code>U+301C WAVE DASH</code> while others chose <code>U+FF5E FULL
-            WIDTH TILDE</code>. This means that two reasonable, self-consistent,
-          transcoders could produce different Unicode character sequences from
-          the same input. The [[Encoding]] specification exists, in part, to
+          Japanese encoding <code class="kw">Shift_JIS</code>. Different
+          transcoder implementations faced choices about how to map specific
+          byte sequences to Unicode. So the byte sequence <code>0x80.60</code>
+          (<code>0x2141</code> in the JIS X 0208 character set) was mapped by
+          some implementations to <span class="uname">U+301C WAVE DASH</span>
+          while others chose <span class="uname">U+FF5E FULL WIDTH TILDE</span>.
+          This means that two reasonable, self-consistent, transcoders could
+          produce different Unicode character sequences from the same input. The
+          <cite>Encoding</cite> [[Encoding]] specification exists, in part, to
           ensure that Web implementations use interoperable and identical
-          mappings. However, extant transcoders might be applied to documents
-          found on the Web.</p>
+          mappings. However, there is no guarantee that transcoders inconsistent
+          with the Encoding specification won't be applied to documents found on
+          the Web or used to process data appearing in a particular document
+          format or protocol.</p>
         <div class="requirement">
           <p>[C][I] For content authors and implementations, it is RECOMMENDED
             that conversions from legacy character encodings use a "normalizing
             transcoder".</p>
         </div>
         <p id="def-normalizing-transcoder">A <span class="new-term">normalizing
-            transcoder</span> is a transcoder that converts from a <a title=""
-
-            href="#def-legacyEnc">legacy character encoding</a> to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode
+            transcoder</span> is a transcoder that converts from a <a href="#def-legacyEnc">legacy
+            character encoding</a> to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode
             encoding form</a> <em>and</em> ensures that the result is in
           Unicode Normalization Form C. For most legacy character encodings, it
           is possible to construct a normalizing transcoder (by using any
@@ -1377,11 +1389,11 @@ text-decoration:underline;
               <p>The expansion of character escapes and includes is dependent on
                 context, that is, on which markup or programming language is
                 considered to apply when the string matching operation is
-                performed. Consider a search for the string '<span class="qterm">suçon</span>'
+                performed. Consider a search for the string <span class="qterm">suçon</span>
                 in an XML document containing <code>su&amp;#xE7;on</code> but
                 not <code>suçon</code>. If the search is performed in a plain
                 text editor, the context is <span class="new-term">plain text</span>
-                (no markup or programming language applies), the &amp;#xE7;
+                (no markup or programming language applies), the <code class="kw">&amp;#xE7;</code>
                 character escape is not recognized, hence not expanded and the
                 search fails. If the search is performed in an XML browser, the
                 context is <code>XML</code>, the character escape (defined by
