@@ -4,279 +4,26 @@
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
     <title>Character Model for the World Wide Web: String Matching and Searching</title>
     <!-- local styles. Includes the styles from http://www.w3.org/International/docs/styleguide -->
-    <style type="text/css">
-      
-      
-      .qterm:before, .qchar:before { content: "'"; }
-.qterm:after, .qchar:after { content: "'"; }
-.quote:before { content: '"'; }
-.quote:after { content: '"'; }
-code { 
-        color: #A52A2A; 
-        font-family: "Lucida Console", Consolas, "Andale Mono", "Lucida Sans Typewriter", Monaco, "Courier New", monospace; 
-        font-size: 100%;
-     }
-samp, kbd { 
-        font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace; 
-        font-size: 100%; 
-     }
-.uname {
-	text-transform: uppercase;
-	font-size: 85%;
-	letter-spacing:0.03em;
-	}
-      
-   .stability {
-     background: maroon; color: yellow;
-     padding: 0.5em 1em;
-     text-align: center;
-   }
-   .stability strong {
-     display: block;
-   }
-   .stability input:active {
-     padding: 0.3em 0.45em 0.2em 0.55em;
-   }
-   
-   .stability input:hover {
-     color: white;
-     text-shadow: 0 0 2px black;
-   }
-   .stability input:active {
-     padding: 0.3em 0.45em 0.2em 0.55em;
-   }
-   .stability :link, .stability :visited,
-   .stability :link:hover, .stability :visited:hover {
-     background: transparent;
-     color: white;
-   }
-   
-
-
-div.requirement { 
-    counter-increment: requirement;
-    background-color:#FFC;
-}
-
-div.requirement p:before {
-	content: "C" counter(requirement) " \00A0";
-	font-family:Tahoma, Geneva, sans-serif;
-	font-weight: bold;
-	font-size: smaller;
-	text-transform: capitalize;
-	color: #63F;
-}
-
-.ednote { 
-    border-left: solid 10px red;
-    padding-left: 30px;
-    background-color:#0FC; 
-    font-style:italic; 
-}
-
-
-SPAN.h\e9llo { 
-      text-decoration: underline; 
-}
-
-span.tableSub {
-	font-size: 12px;
-}
-    
-span.dropExample {
-    float: left;
-    width: 3em;
-    margin-left: -3em;
-    text-align: center;
-    font-size: 200%;
-    font-family: sans-serif;
-    line-height: 80%;
-}
-    
-ul.dropExampleList {
-   list-style-type: none;
-}
-    
-li.dropExampleItem {
-   padding-left: 4em;
-   margin-bottom: 1em;
-}
-    
-
-td.b1 {
-	background-color:#FF9;
-}
-
-td.b2 {
-	background-color:#6FC;
-}
-
-td.b3 {
-	background-color: #F99;
-}
-
-td.b-clear {
-	background-color: white;
-}
-
-div.exampleBox {
-	padding: 25px;
-	border-style: solid;
-	border-width: 1px;
-	margin-left: 12pt;
-	width: 80%;
-}
-
-.markup {
-	font-family: Lucida Console,monospaced;
-}
-
-.shakespeare {
-	color: #03F;
-  font-weight: bold;
-  background-color: #EfEfEf;
-}
-
-.userValue {
-	font-style: italic;
-}
-
-p.example:before{
-	content: "EXAMPLE: ";
-    color: #b9ab2d;
-}
-
-div.example-title {
-    padding-right:  1em;
-    min-width: 7.5em;
-    color: #b9ab2d;
-}
-
-div.example-title { color: #2b2; }
-div.example-title span {
-    text-transform: uppercase;
-}
-div.example {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-.example > p:first-child { margin-top: 0 }
-.example {
-    padding: .5em;
-    border-left-width: .5em;
-    border-left-style: solid;
-}
-div.example {
-    padding: 1em 1.2em 0.5em;
-    margin: 1em 0;
-    position: relative;
-    clear: both;
-}
-span.example { padding: .1em .5em .15em; }
-    
-
-.example {
-    border-color: #52e052;
-    background: #e9fbe9;
-}
-
-
-   .stability {
-     position: fixed;
-     bottom: 0;
-     left: 0; right: 0;
-     margin: 0 auto 0 auto;
-     width: 50%;
-     background: maroon; color: yellow;
-     -webkit-border-radius: 1em 1em 0 0;
-     -moz-border-radius: 1em 1em 0 0;
-     border-radius: 1em 1em 0 0;
-     -moz-box-shadow: 0 0 1em #500;
-     -webkit-box-shadow: 0 0 1em #500;
-     box-shadow: 0 0 1em red;
-     padding: 0.5em 1em;
-     text-align: center;
-   }
-   .stability strong {
-     display: block;
-   }
-   .stability input {
-     -moz-appearance: none; 
-	 -webkit-appearance: none; 
-	 margin: 0;
-     border: 0; 
-	 padding: 0.25em 0.5em; 
-	 background: transparent; 
-	 color: black;
-     position: absolute; 
-	 top: -0.5em; 
-	 right: 0; 
-	 font: 1.25em Tahoma,sans-serif; 
-	 font-weight: bold;
-	 text-align: center;
-   }
-   .stability input:hover {
-     color: white;
-     text-shadow: 0 0 2px black;
-   }
-   .stability input:active {
-     padding: 0.3em 0.45em 0.2em 0.55em;
-   }
-   .stability :link, .stability :visited,
-   .stability :link:hover, .stability :visited:hover {
-     background: transparent;
-     color: white;
-   }
-</style> <!--
-   The following script activates the "official" W3C "work in progress" box.   ReSpec hates it if you insert it in-line.-->
-    <script>
-   function closeWarning(element) {
-     element.parentNode.removeChild(element);
-     var date = new Date();
-     date.setDate(date.getDate()+4);
-     document.cookie = 'hide-obsolescence-warning=1; expires=' + date.toGMTString();
-   }
-   function removeWIP () {
-       document.getElementById('wip').parentNode.removeChild(document.getElementById('wip'));
-   }
-   if (document.documentElement.getAttribute("data-wip") === "false") removeWIP();
-   if (getCookie('hide-obsolescence-warning') == '1') setTimeout(removeWIP, 2000);
-</script><!-- 
-      === NOTA BENE ===      For the three scripts below, if your spec resides on dev.w3 you can check them      out in the same tree and use relative links so that they'll work offline,     -->
+	<link rel="stylesheet" href="local.css" type="text/css" />
+<!--      === NOTA BENE ===      For the three scripts below, if your spec resides on dev.w3 you can check them      out in the same tree and use relative links so that they'll work offline,     -->
     <script src="http://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
     <script class="remove">
       var respecConfig = {
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
-          specStatus:           "ED",
+          specStatus:           "WD",
+          noRecTrack:           true,
           
-          // the specification's short name, as in http://www.w3.org/TR/short-name/
           shortName:            "charmod-norm",
 
-          // if your specification has a subtitle that goes below the main
-          // formal title, define it here
-          // subtitle   :  "an excellent document",
+          copyrightStart: "2004",
+	  
+          publishDate:  "2015-07-21",
+		  previousPublishDate: "2014-07-15",
+		  previousMaturity: "WD",
+		  previousURI: "http://www.w3.org/TR/2012/WD-charmod-norm-20150715/",
+          edDraftURI:   "http://w3c.github.io/charmod-norm/",
 
-          // if you wish the publication date to be other than today, set this
-          // publishDate:  "2009-08-06",
-
-          // if the specification's copyright date is a range of years, specify
-          // the start date here:
-          // copyrightStart: "2005"
-
-          // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
-          // and its maturity status
-          // previousPublishDate:  "1977-03-15",
-          // previousMaturity:  "WD",
-
-          // if there a publicly available Editor's Draft, this is the link
-          edDraftURI:         "http://www.w3.org/International/docs/charmod-norm/",
-
-          // if this is a LCWD, uncomment and set the end of its review period
           // lcEnd: "2009-08-05",
-
-          // if you want to have extra CSS, append them to this list
-          // it is recommended that the respec.css stylesheet be kept
-          // extraCSS:             ["http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"],
 
           // editors, add as many as you like
           // only "name" is required
@@ -286,9 +33,6 @@ span.example { padding: .1em .5em .15em; }
           ],
 
           // authors, add as many as you like. 
-          // This is optional, uncomment if you have authors as well as editors.
-          // only "name" is required. Same format as editors.
-
           //authors:  [
           //    { name: "Your Name", url: "http://example.org/",
           //      company: "Your Company", companyURL: "http://example.com/" },
@@ -303,16 +47,25 @@ span.example { padding: .1em .5em .15em; }
           // name (without the @w3c.org) of the public mailing to which comments are due
           wgPublicList: "www-international",
           
+		  bugTracker: { new: "https://github.com/w3c/charmod-norm/issues", open: "https://github.com/w3c/ilreq/issues" } ,
+		otherLinks: [
+			{
+			key: "Github",
+			data: [
+				{
+			  	value: "repository",
+			  	href: "https://github.com/w3c/charmod-norm/"
+		 		}
+				]
+			}
+			],
+
           // URI of the patent status for this WG, for Rec-track documents
           // !!!! IMPORTANT !!!!
           // This is important for Rec-track documents, do not copy a patent URI from a random
           // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
           // Team Contact.
           wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/32113/status",
-		  
-		  previousPublishDate: "2014-07-15",
-		  previousMaturity: "WD",
-		  previousURI: "http://www.w3.org/TR/2012/WD-charmod-norm-20150715/",
 		  
 
 		  localBiblio: {
@@ -367,16 +120,15 @@ span.example { padding: .1em .5em .15em; }
         increase interoperability. </p>
     </section>
     <section id="sotd">
-      <!--
-## Uncomment for WD  <div id="multipage-common">  <p class="stability" id="wip"><strong>This is a work in  progress!</strong> For the latest updates from the Internationalization WG, possibly including important bug fixes, please review the <a href="http://www.w3.org/International/docs/charmod-norm/">editor's draft</a> instead.  <input onclick="closeWarning(this.parentNode)" type="button" value="X"></p></div>-->
       <div class="note">
-        <p>This version of the document represents a significant change from the
-          <a href="http://www.w3.org/TR/2012/WD-charmod-norm-20120501/">previous
-            edition</a>. Much of the content is changed and the recommendations
-          are significantly altered. This fact is reflected in a change to the
-          name of the document from "Character Model: Normalization".</p>
+        <p>This version of the document represents a significant change from the <a href="http://www.w3.org/TR/2012/WD-charmod-norm-20120501/">earlier editions</a>. Much of the content is changed and the recommendations are significantly altered. This fact is reflected in a change to the name of the document from "Character Model: Normalization".</p>
       </div>
-    </section>
+    <div class="note">
+    <p data-lang="en" style="font-weight: bold; font-size: 120%">Sending comments on this document</p>
+  	<p data-lang="en">If you wish to make comments regarding this document, please raise them as <a href="https://github.com/w3c/charmod-norm/issues" style="font-size: 120%;">github issues</a> against the <a href="http://www.w3.org/TR/2015/WD-charmod-norm-20150721/" style="font-size: 120%">latest dated version in /TR</a>. Only send comments by email if you are unable to raise issues on github (see links below).   All comments are welcome.</p>
+  	<p data-lang="en">To make it easier to track comments, please raise separate issues or emails for each comment, and point to the section you are commenting on&nbsp; using  a URL for the dated version of the document.</p>
+    </div>
+  </section>
     <section id="intro">
       <h2>Introduction</h2>
       <section id="goals">
@@ -539,7 +291,7 @@ span.example { padding: .1em .5em .15em; }
           HTML document that also has some CSS and a few <code class="kw" translate="no">script</code>
           tags with embedded JavaScript, the entire HTML document, considered as
           a file, is the resource.</p>
-        <p>A <dfn title="vocabulary">vocabulary</dfn> provides the list of
+        <p>A <dfn title="vocabulary" id="dfn_vocabulary">vocabulary</dfn> provides the list of
           reserved names as well as the set of rules and specifications
           controlling how user values (such as identifiers) can be assigned in a
           format or protocol. This can include restrictions on range, order, or
@@ -580,7 +332,7 @@ span.example { padding: .1em .5em .15em; }
           <p><a href="#natural-language-content">Natural language content</a> is
             shown in a <span class="shakespeare">bold blue font with a gray
               background</span>.</p>
-          <p><a href="#user-value">User values</a> are shown in <span class="userValue">italics</span>.</p>
+          <p>User values are shown in <span class="userValue">italics</span>.</p>
           <p class="ednote">still need to mark up vocabulary</p>
           <p>All of the text above (all text in a text file) makes up a
             resource. It's possible that a given resource will contain no
@@ -645,7 +397,7 @@ span.example { padding: .1em .5em .15em; }
       <h2>The String Matching Problem</h2>
       <p>The Web is primarily made up of document formats and protocols based on
         character data. These formats or protocols can be viewed as a set of
-        text files (<a href="#resource" class="termref">resources</a>) that
+        text files (<a href="#dfn-resource" class="termref">resources</a>) that
         include some form of structural markup. Processing such markup or
         document data requires string-based operations such as matching,
         indexing, searching, sorting, regular expression matching, and so forth.
@@ -733,7 +485,7 @@ span.example { padding: .1em .5em .15em; }
           but also applies when defining rules for matching user- or
           content-generated values, such as identifiers. In these situations,
           case-<em>in</em>sensitive matching might be desirable instead.</p>
-        <p>When defining a <a href="#vocabulary">vocabulary</a>, one important
+        <p>When defining a <a href="#dfn_vocabulary">vocabulary</a>, one important
           consideration is whether the values are restricted to the ASCII subset
           of Unicode or if the vocabulary permits the use of characters (such as
           accents on Latin letters or a broad range of Unicode including
@@ -767,7 +519,7 @@ span.example { padding: .1em .5em .15em; }
           Unicode also defines a "common" plus "simple" case-fold.</p>
         <div class="requirement">
           <p>[S][I] The <a href="#unicode-cf">Unicode C+F</a> case-fold form is
-            RECOMMENDED as the case-insensitive matching for <a href="#vocabulary">vocabularies</a>.
+            RECOMMENDED as the case-insensitive matching for <a href="#dfn_vocabulary">vocabularies</a>.
             The Unicode C+S form MUST NOT be used for string identity matching
             on the Web.</p>
         </div>
@@ -796,7 +548,7 @@ span.example { padding: .1em .5em .15em; }
           <li class="dropExampleItem"><span class="dropExample">Ǻ </span><code
 
               class="kw">U+01FA</code>— A "precomposed" character.</li>
-          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><code
+          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><code
 
               class="kw">A&nbsp;+&nbsp;U+030A&nbsp;+&nbsp;U+0301</code>— A <span
 
@@ -804,11 +556,11 @@ span.example { padding: .1em .5em .15em; }
             followed by two combining marks (<span class="uname">U+030A
               COMBINING RING ABOVE</span> and <span class="uname">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
-          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><code class="kw">U+00C5
+          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><code class="kw">U+00C5
               + U+0301</code>—An accented letter (<span class="uname">U+00C5
               LATIN CAPITAL LETTER A WITH RING ABOVE</span>) followed by a
             combining accent (<span class="uname">U+0301 COMBINING ACUTE ACCENT</span>)</li>
-          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><code class="kw">U+212B
+          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><code class="kw">U+212B
               + U+0301</code>—A compatibility character (<span class="uname">U+212B
               ANGSTROM SIGN</span>) followed by a combining accent (<span class="uname">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
@@ -829,14 +581,14 @@ span.example { padding: .1em .5em .15em; }
           that use different code point sequences, Unicode defines a means of
           making two semantically equivalent texts identical: the Unicode
           Normalization Forms [[!UAX15]].</p>
-        <p><a href="resource">Resources</a> are often susceptible to the effects
+        <p><a href="#dfn-resource">Resources</a> are often susceptible to the effects
           of these variations because their specifications and implementations
           on the Web do not require Unicode Normalization of the text, nor do
           they take into consideration the string matching algorithms used when
           processing the markup and content later. For this reason, content
           developers need to ensure that they have provided a consistent
           representation in order to avoid problems later.</p>
-        <p>However, it can be difficult for users to assure that a given <a href="#resource">resource</a>
+        <p>However, it can be difficult for users to assure that a given <a href="#dfn-resource">resource</a>
           or set of resources uses a consistent textual representation because
           the differences are usually not visible when viewed as text. Tools and
           implementations thus need to consider the difficulties experienced by
@@ -866,7 +618,7 @@ span.example { padding: .1em .5em .15em; }
             between two texts.</p>
           <p>Examples of canonical equivalence defined by Unicode include:</p>
           <ul class="dropExampleList">
-            <li class="dropExampleItem"><span class="dropExample">Ç<span style="font-size:75%">vs.</span>Ç</span>
+            <li class="dropExampleItem"><span class="dropExample">Ç<span style="font-size:75%">vs.</span>Ç</span>
               <em>Pre-composed versus combining sequences.</em> Some characters
               can be composed from a base character followed by one or more
               combining characters. The same characters are sometimes also
@@ -877,26 +629,26 @@ span.example { padding: .1em .5em .15em; }
               cedilla character <span class="qchar">̧</span> <span class="uname">U+0327</span>.
               Such equivalence can extend to characters with multiple combining
               marks.</li>
-            <li class="dropExampleItem"><span class="dropExample">q̣̇<span style="font-size:75%">vs.</span>q̣̇</span>
+            <li class="dropExampleItem"><span class="dropExample">q̣̇<span style="font-size:75%">vs.</span>q̣̇</span>
               <em>Order of combining marks.</em> When a base character is
               modified by multiple combining marks, the order of the combining
               marks might not represent a distinct character. Here the sequence
               <span class="qterm">q̣̇</span>(<span class="uname">U+0071 U+0323
-                U+0307</span>) and <span class="qterm">q̣̇</span>(<span class="uname">U+0071
+                U+0307</span>) and <span class="qterm">q̣̇</span>(<span class="uname">U+0071
                 U+0307 U+0323</span>) are equivalent, even though the combining
               marks are in a different order. Note that this example is chosen
               carefully: the dot-above character and dot-below character are on
               opposite "sides" of the base character. The order of combining
               diacritics on the same side have a positional meaning.</li>
-            <li class="dropExampleItem"><span class="dropExample">Ω<span style="font-size:75%">vs.</span>Ω</span>
+            <li class="dropExampleItem"><span class="dropExample">Ω<span style="font-size:75%">vs.</span>Ω</span>
               <em>Singleton mappings.</em> These result from the need to
               separately encode otherwise equivalent characters to support
               legacy character encodings. In this example, the Ohm symbol <span
 
-                class="qchar">Ω</span> <span class="uname">U+2126</span> is
+                class="qchar">Ω</span> <span class="uname">U+2126</span> is
               canonically equivalent (and identical in appearance) to the Greek
               letter Omega <span class="qchar">Ω</span> <span class="uname">U+03A9</span>.</li>
-            <li class="dropExampleItem"><span class="dropExample">가<span style="font-size:75%">vs.</span>가</span>
+            <li class="dropExampleItem"><span class="dropExample">가<span style="font-size:75%">vs.</span>가</span>
               <em>Hangul.</em> The Hangul script is used to write the Korean
               language. This script is constructed logically, with each syllable
               being a roughly-square <a href="#def-grapheme" class="termref">grapheme</a>
@@ -1082,47 +834,47 @@ span.example { padding: .1em .5em .15em; }
                       <span class="tableSub">U+01FA</span></td>
                     <td class="b1">Ǻ <br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">Ǻ <br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                     <td class="b1">Ǻ <br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">Ǻ <br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">Ǻ <br>
+                    <td class="b-clear">Ǻ <br>
                       <span class="tableSub">U+00C5 U+0301</span></td>
                     <td class="b1">Ǻ <br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">Ǻ <br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                     <td class="b1">Ǻ <br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">Ǻ <br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">Ǻ <br>
+                    <td class="b-clear">Ǻ <br>
                       <span class="tableSub">U+212B U+0301</span></td>
                     <td class="b1">Ǻ <br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">Ǻ <br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                     <td class="b1">Ǻ <br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">Ǻ <br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">Ǻ <br>
+                    <td class="b-clear">Ǻ <br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                     <td class="b1">Ǻ <br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ<br>
+                    <td class="b2">Ǻ<br>
                       <span class="tableSub"> U+0041 U+030A U+0301</span></td>
                     <td class="b1">Ǻ <br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">Ǻ <br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
@@ -1134,7 +886,7 @@ span.example { padding: .1em .5em .15em; }
                       <span class="tableSub"> U+FF21 U+030A U+0301</span></td>
                     <td class="b1">Ǻ <br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">Ǻ <br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                 </tbody>
@@ -1256,7 +1008,7 @@ span.example { padding: .1em .5em .15em; }
           sometimes affect meaning.</p>
         <p>Examples of these include:</p>
         <figure> <figcaption>Invisible Controls</figcaption>
-          <table style="width: 100%" border="1">
+          <table style="width: 100%; border: 1px solid #ddd;">
             <thead>
               <tr>
                 <th>Characters</th>
@@ -1309,7 +1061,7 @@ span.example { padding: .1em .5em .15em; }
       </section>
       <section id="legacyCharacterEncoding">
         <h3>Legacy Character Encodings</h3>
-        <p>Finally, <a href="#resource">resources</a> can use different
+        <p>Finally, <a href="#dfn-resource">resources</a> can use different
           character encoding schemes, including <a href="#def-legacyEnc">legacy
             character encodings</a>, to serialize document formats on the Web.
           Each character encoding scheme uses different byte values and
@@ -1418,7 +1170,7 @@ span.example { padding: .1em .5em .15em; }
                 that this can change the length of the string.</li>
             </ol>
           </li>
-          <li>Remove <a href="unicodeControls">Unicode control characters</a></li>
+          <li>Remove <a href="#unicodeControls">Unicode control characters</a></li>
           <li>Test the resulting sequences of code points bit-by-bit for
             identity.</li>
         </ol>
@@ -1440,11 +1192,9 @@ span.example { padding: .1em .5em .15em; }
         <p>Where case-insensitive matching is desired, there are several
           implementation choices that a formal language needs to consider. If
           the vocabulary of strings to be compared is limited to the Basic Latin
-          (ASCII) subset of Unicode, <a href="#aci">ASCII-case-insensitive</a>
+          (ASCII) subset of Unicode, ASCII-case-insensitive
           matching MAY be used.</p>
-        <p>If the vocabulary of strings to be compared is not limited, then <a
-
-            href="#aci">ASCII case-insensitive</a> matching MUST NOT be used. <a
+        <p>If the vocabulary of strings to be compared is not limited, then <a href="#ASCII-case-insensitive">ASCII case-insensitive</a> matching MUST NOT be used. <a
 
             href="#uci">Unicode case-insensitive</a> matching MUST be applied,
           even if the vocabulary does not allow the full range of Unicode.</p>
@@ -1574,7 +1324,7 @@ span.example { padding: .1em .5em .15em; }
             these should be avoided in formal languages, where predictability is
             at a premium. </p>
           <div class="requirement">
-            <p>[S] Specifications MAY specify ASCII case-insensitive comparison
+            <p>[S] Specifications MAY specify ASCI3I case-insensitive comparison
               for portions of a format or protocol that are restricted to an
               ASCII-only vocabulary.</p>
           </div>
@@ -1799,7 +1549,7 @@ span.example { padding: .1em .5em .15em; }
           <li>Ḱ U+1E30</li>
           <li>Ḳ U+1E32</li>
           <li>Ḵ U+1E34</li>
-          <li>K U+212A</li>
+          <li>K U+212A</li>
           <li>Ⓚ U+24C0</li>
           <li>㎅ U+3385</li>
           <li>㏍ U+33CD</li>
@@ -1846,7 +1596,16 @@ span.example { padding: .1em .5em .15em; }
             and Notation</a></li>
         <li>Addition of section discussing <a href="#unicodeControls">Unicode
             controls</a>, including a new requirement.</li>
+        <li>Shakespeare -&gt; natural language content;    Wildebeest -&gt; resource;    namespace -&gt; vocabulary</li>
+        <li>Changed order of sections in section on &quot;The String Matching Problem&quot;</li>
+        <li>Edited intro and integrated the case folding text from the string matching algorithm into the case folding section.</li>
+        <li>Replaced the table in Section 2.2.1 as a first attempt to fix the various examples we borrowed from UAX15.</li>
+        <li>Replaced first table in normalization section with a list of examples, addressing existing ednote.</li>
+        <li> Extensive changes to incorporate the &quot;standard&quot; styles for  International docs.</li>
+        <li>Added explanatory text to the compability equivalents examples. Added characters to the table to further illustrate each category. Removed the &quot;note&quot; marker around additional explanatory text and edited. Removed the ednote saying this was needed.</li>
+        <li>Changes to SOTD and top matter to reflect new i18n publication process.</li>
       </ul>
+      <p>See the <a href="https://github.com/w3c/charmod-norm/commits/gh-pages">github commit log</a> for more details.</p>
     </section>
     <section>
       <h2 id="Acknowledgements" class="informative">Acknowledgements</h2>
