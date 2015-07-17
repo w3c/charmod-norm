@@ -545,10 +545,10 @@
           different character sequences that an HTML document could use to
           represent this character:</p>
         <ul class="dropExampleList">
-          <li class="dropExampleItem"><span class="dropExample">Ǻ </span><code
+          <li class="dropExampleItem"><span class="dropExample">&#x01FA;</span> <code
 
               class="kw">U+01FA</code>— A "precomposed" character.</li>
-          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><code
+          <li class="dropExampleItem"><span class="dropExample">A&#x030A;&#x0301;</span><code
 
               class="kw">A&nbsp;+&nbsp;U+030A&nbsp;+&nbsp;U+0301</code>— A <span
 
@@ -556,15 +556,15 @@
             followed by two combining marks (<span class="uname">U+030A
               COMBINING RING ABOVE</span> and <span class="uname">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
-          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><code class="kw">U+00C5
+          <li class="dropExampleItem"><span class="dropExample">&#x00C5;&#x0301;</span><code class="kw">U+00C5
               + U+0301</code>—An accented letter (<span class="uname">U+00C5
               LATIN CAPITAL LETTER A WITH RING ABOVE</span>) followed by a
             combining accent (<span class="uname">U+0301 COMBINING ACUTE ACCENT</span>)</li>
-          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><code class="kw">U+212B
+          <li class="dropExampleItem"><span class="dropExample">&#x212B;&#x0301;</span><code class="kw">U+212B
               + U+0301</code>—A compatibility character (<span class="uname">U+212B
               ANGSTROM SIGN</span>) followed by a combining accent (<span class="uname">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
-          <li class="dropExampleItem"><span class="dropExample">Ａ̊́ </span><code
+          <li class="dropExampleItem"><span class="dropExample">&#xFF21;&#x030A;&#x0301;</span><code
 
               class="kw">U+FF21 + U+030A + U+0301</code>— A compatibility
             character <span class="uname">U+FF21 FULLWIDTH LATIN LETTER CAPITAL
@@ -618,29 +618,29 @@
             between two texts.</p>
           <p>Examples of canonical equivalence defined by Unicode include:</p>
           <ul class="dropExampleList">
-            <li class="dropExampleItem"><span class="dropExample">Ç<span style="font-size:75%">vs.</span>Ç</span>
+            <li class="dropExampleItem"><span class="dropExample">Ç<span style="font-size:75%"> vs.</span>C&#x0327;</span>
               <em>Pre-composed versus combining sequences.</em> Some characters
               can be composed from a base character followed by one or more
               combining characters. The same characters are sometimes also
               encoded as a distinct "pre-composed" character. In this example,
               the character <span class="qchar">Ç</span> <span class="uname">U+00C7</span>
               is canonically equivalent to the base character <span class="qchar">C</span>
-              <span class="uname">U+0043</span>&gt; followed by the combining
+              <span class="uname">U+0043</span> followed by the combining
               cedilla character <span class="qchar">̧</span> <span class="uname">U+0327</span>.
               Such equivalence can extend to characters with multiple combining
               marks.</li>
-            <li class="dropExampleItem"><span class="dropExample">q̣̇<span style="font-size:75%">vs.</span>q̣̇</span>
+            <li class="dropExampleItem"><span class="dropExample">q&#x0307;&#x0323;<span style="font-size:75%"> vs.</span>q&#x0323;&#x0307;</span>
               <em>Order of combining marks.</em> When a base character is
               modified by multiple combining marks, the order of the combining
               marks might not represent a distinct character. Here the sequence
-              <span class="qterm">q̣̇</span>(<span class="uname">U+0071 U+0323
-                U+0307</span>) and <span class="qterm">q̣̇</span>(<span class="uname">U+0071
+              <span class="qterm">q&#x0307;&#x0323;</span>(<span class="uname">U+0071 U+0323
+                U+0307</span>) and <span class="qterm">q&#x0323;&#x0307;</span>(<span class="uname">U+0071
                 U+0307 U+0323</span>) are equivalent, even though the combining
               marks are in a different order. Note that this example is chosen
               carefully: the dot-above character and dot-below character are on
               opposite "sides" of the base character. The order of combining
               diacritics on the same side have a positional meaning.</li>
-            <li class="dropExampleItem"><span class="dropExample">Ω<span style="font-size:75%">vs.</span>Ω</span>
+            <li class="dropExampleItem"><span class="dropExample">&#x2126;<span style="font-size:75%"> vs.</span>Ω</span>
               <em>Singleton mappings.</em> These result from the need to
               separately encode otherwise equivalent characters to support
               legacy character encodings. In this example, the Ohm symbol <span
@@ -648,7 +648,7 @@
                 class="qchar">Ω</span> <span class="uname">U+2126</span> is
               canonically equivalent (and identical in appearance) to the Greek
               letter Omega <span class="qchar">Ω</span> <span class="uname">U+03A9</span>.</li>
-            <li class="dropExampleItem"><span class="dropExample">가<span style="font-size:75%">vs.</span>가</span>
+            <li class="dropExampleItem"><span class="dropExample">가<span style="font-size:75%"> vs.</span>&#x1100;&#x1161;</span>
               <em>Hangul.</em> The Hangul script is used to write the Korean
               language. This script is constructed logically, with each syllable
               being a roughly-square <a href="#def-grapheme" class="termref">grapheme</a>
@@ -657,7 +657,7 @@
               encoded in Unicode. So too are the pre-composed syllables. Thus
               the syllable <span class="qchar">가</span>&nbsp; <span class="uname">U+AC00</span>
               is canonically equivalent to its constituent <em>jamo</em>
-              characters <span class="qchar">ᄀ</span>&nbsp;<span class="uname">U+1100</span>n&gt;
+              characters <span class="qchar">ᄀ</span>&nbsp;<span class="uname">U+1100</span>n
               and <span class="qchar">ᅡ</span>&nbsp;<span class="uname">U+1161</span>.</li>
           </ul>
           <p><dfn title="compatibility equivalence">Compatibility equivalence</dfn>
@@ -830,63 +830,63 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="b-clear">Ǻ <br>
+                    <td class="b-clear">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b1">Ǻ <br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                    <td class="b1">Ǻ <br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">Ǻ <br>
+                    <td class="b-clear">&#x00C5;&#x0301;<br>
                       <span class="tableSub">U+00C5 U+0301</span></td>
-                    <td class="b1">Ǻ <br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                    <td class="b1">Ǻ <br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">Ǻ <br>
+                    <td class="b-clear">&#x212B;&#x0301;<br>
                       <span class="tableSub">U+212B U+0301</span></td>
-                    <td class="b1">Ǻ <br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                    <td class="b1">Ǻ <br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">Ǻ <br>
+                    <td class="b-clear">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                    <td class="b1">Ǻ <br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ<br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub"> U+0041 U+030A U+0301</span></td>
-                    <td class="b1">Ǻ <br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">Ａ̊́ <br>
+                    <td class="b-clear">&#xFF21;&#x030A;&#x0301;<br>
                       <span class="tableSub">U+FF21 U+030A U+0301</span></td>
-                    <td class="b3">Ａ̊́<br>
+                    <td class="b3">&#xFF21;&#x030A;&#x0301;<br>
                       <span class="tableSub">U+FF21 U+030A U+0301</span></td>
-                    <td class="b3">Ａ̊́<br>
+                    <td class="b3">&#xFF21;&#x030A;&#x0301;<br>
                       <span class="tableSub"> U+FF21 U+030A U+0301</span></td>
-                    <td class="b1">Ǻ <br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ <br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                 </tbody>
@@ -1324,7 +1324,7 @@
             these should be avoided in formal languages, where predictability is
             at a premium. </p>
           <div class="requirement">
-            <p>[S] Specifications MAY specify ASCI3I case-insensitive comparison
+            <p>[S] Specifications MAY specify ASCII case-insensitive comparison
               for portions of a format or protocol that are restricted to an
               ASCII-only vocabulary.</p>
           </div>
