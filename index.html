@@ -133,25 +133,26 @@
       <h2>Introduction</h2>
       <section id="goals">
         <h3>Goals and Scope</h3>
-        <p>The goal of the Character Model for the World Wide Web is to
-          facilitate use of the Web by all people, regardless of their language,
-          script, writing system, and cultural conventions, in accordance with
-          the <a href="http://www.w3.org/Consortium/mission"><cite>W3C goal of
-              universal access</cite></a>. One basic prerequisite to achieve
-          this goal is to be able to transmit and process the characters used
-          around the world in a well-defined and well-understood way.</p>
+        <p>The goal of the <cite>Character Model for the World Wide Web</cite>
+          is to facilitate use of the Web by all people, regardless of their
+          language, script, writing system, and cultural conventions, in
+          accordance with the <a href="http://www.w3.org/Consortium/mission"><cite>W3C
+              goal of universal access</cite></a>. One basic prerequisite to
+          achieve this goal is to be able to transmit and process the characters
+          used around the world in a well-defined and well-understood way.</p>
         <p class="note">This document builds on <cite>Character Model for the
             World Wide Web: Fundamentals</cite> [[!CHARMOD]]. Understanding the
           concepts in that document are important to being able to understand
           and apply this document successfully.</p>
-        <p>This part of the Character Model for the World Wide Web covers string
-          matching—the process by which a specification or implementation
-          defines whether two string values are the same or different from one
-          another. It describes the ways in which texts that are semantically
-          equivalent can be encoded differently and the impact this has on
-          matching operations important to formal languages (such as those used
-          in the formats and protocols that make up the Web). Finally, it
-          discusses the problem of substring searching within documents.</p>
+        <p>This part of the <cite>Character Model for the World Wide Web</cite>
+          covers string matching—the process by which a specification or
+          implementation defines whether two string values are the same or
+          different from one another. It describes the ways in which texts that
+          are semantically equivalent can be encoded differently and the impact
+          this has on matching operations important to formal languages (such as
+          those used in the formats and protocols that make up the Web).
+          Finally, it discusses the problem of substring searching within
+          documents.</p>
         <p>The main target audience of this specification is W3C specification
           developers. This specification and parts of it can be referenced from
           other W3C specifications and it defines conformance criteria for W3C
@@ -169,18 +170,24 @@
           common reference for consistent, interoperable text manipulation on
           the World Wide Web. Working together, these three groups can build a
           globally accessible Web.</p>
+        <p>Note that <span class="quote">what constitutes the Web</span>, versus
+          other aspects of the Internet or modern computing systems in general,
+          is not clearly defined. The considerations in the <cite>Character
+            Model for the World Wide Web</cite> frequently apply to other
+          formats, protocols, and situations and, to that extent, the
+          considerations presented here may prove useful in other contexts.</p>
       </section>
       <section id="structure">
         <h3>Structure of this Document</h3>
-        <p>This document defines two basic building blocks for the Web related
-          to this problem. First, it defines rules and processes for String
-          Identity Matching in document formats. These rules are designed for
-          the identifiers and structural markup (<a href="#markup">markup</a>)
-          used in document formats to ensure consistent processing of each and
-          are targeted to Specification writers. Second, it defines broader
-          guidelines for handling user visible text, such as natural language
-          text that forms most of the <strong>content</strong> of the Web. This
-          section is targeted to implementers.</p>
+        <p>This document defines two basic building blocks for the Web. First,
+          it defines rules and processes for String Identity Matching in
+          document formats. These rules are designed for the identifiers and
+          structural markup (<a href="#markup">markup</a>) used in document
+          formats to ensure consistent processing of each and are targeted to
+          Specification writers. Second, it defines broader guidelines for
+          handling user visible text, such as natural language text that forms
+          most of the <strong>content</strong> of the Web. This section is
+          targeted to implementers.</p>
         <p>This document is divided into three main sections.</p>
         <p>The <a href="#problemStatement">first section</a> lays out the
           problems involved in string matching; the effects of Unicode and case
@@ -245,8 +252,8 @@
           where the character boundaries occur in a visually rendered text, in
           constrast to the Unicode code points (characters) used to encode the
           text in a string. (A discussion of grapheme clusters is also given at
-          the end of Section 2.10 of the <cite>Unicode Standard</cite>,
-          [[!UNICODE]].)</p>
+          the end of the discussion of Combining Characters in Section 2 of the
+          <cite>Unicode Standard</cite>, [[!UNICODE]].)</p>
         <p>What Unicode actually defines is <strong>default</strong> grapheme
           clustering: some languages require tailoring to this default. For
           example, a Slovak user might wish to treat the default pair of
@@ -280,18 +287,25 @@
             word <code class="kw" translate="no">encoding</code> has a defined
             meaning inside the XML document declaration: it is a reserved name.
             XML also allows a user to define elements and attributes for a given
-            document using a DTD. In a document that uses a DTD that defines an
-            element called <code class="kw">&lt;muffin&gt;</code>, <span class="qterm">muffin</span>
+            document format, for example by using a DTD. In a document that
+            defines an element called <code class="kw">muffin</code>, <span class="qterm">muffin</span>
             is a part of the markup.</p>
         </div>
-        <p>A <dfn title="resource">resource</dfn> is a given document, file, or
-          protocol "message" which include both the <a href="#natural-language-content">natural
-            language content</a>) as well as the <a href="#markup" class="termref">markup</a>
-          such as identifiers surrounding or containing it. For example, in an
-          HTML document that also has some CSS and a few <code class="kw" translate="no">script</code>
+        <p>A <dfn title="resource">resource</dfn> (when used in this document)
+          is a given document, file, or protocol "message" which include both
+          the <a href="#natural-language-content">natural language content</a>)
+          as well as the <a href="#markup" class="termref">markup</a> such as
+          identifiers surrounding or containing it. For example, in an HTML
+          document that also has some CSS and a few <code class="kw" translate="no">script</code>
           tags with embedded JavaScript, the entire HTML document, considered as
-          a file, is the resource.</p>
-        <p>A <dfn title="vocabulary" id="dfn_vocabulary">vocabulary</dfn> provides the list of
+          a file, is the resource. </p>
+        <p class="ednote">The use of the term resource is intentionally similar
+          to the use of the word 'resource' in other Internet contexts, such as
+          the word "resource" in "Uniform Resource Identifier". However, the
+          definition given here is meant to refer more generally to different
+          kinds of document or protocol formats and is distinct to this document.
+        </p>
+        <p>A <dfn title="vocabulary">vocabulary</dfn> provides the list of
           reserved names as well as the set of rules and specifications
           controlling how user values (such as identifiers) can be assigned in a
           format or protocol. This can include restrictions on range, order, or
@@ -377,8 +391,9 @@
               document.</p>
           </li>
         </ol>
-        <p>Software conforms to this document if it does not violate any
-          conformance criteria preceded by [I].</p>
+        <p>Implementations (such as a software application) conform to this
+          document if they do not violate any conformance criteria preceded by
+          [I].</p>
         <p>Content conforms to this document if it does not violate any
           conformance criteria preceded by [C].</p>
         <div class="note">
@@ -538,12 +553,13 @@
       </section>
       <section id="unicodeNormalization">
         <h3>Unicode Normalization</h3>
-        <p>Other kinds of variations can occur in Unicode text: some <a href="#def-grapheme">graphemes</a>
-          can be represented by several different Unicode code point sequences.
-          Consider the character <span class="uname">Ǻ U+01FA LATIN LETTER
-            CAPITAL A WITH RING ABOVE AND ACUTE</span>. Here are some of the
-          different character sequences that an HTML document could use to
-          represent this character:</p>
+        <p>Other kinds of variations can occur in Unicode text: some logical
+          characters<a href="#def-grapheme"></a> can be represented by several
+          different Unicode code point sequences. Consider the character <span
+
+            class="uname">Ǻ U+01FA LATIN LETTER CAPITAL A WITH RING ABOVE AND
+            ACUTE</span>. Here are some of the different character sequences
+          that an HTML document could use to represent this character:</p>
         <ul class="dropExampleList">
           <li class="dropExampleItem"><span class="dropExample">&#x01FA;</span> <code
 
@@ -572,11 +588,11 @@
               COMBINING RING ABOVE</span> and <span class="uname">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
         </ul>
-        <p>Each of the above strings contains the same apparent semantic meaning
-          as <span class="qchar">Ǻ</span> (<span class="uname">U+01FA LATIN
-            CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>), but each one is
-          encoded slightly differently. More variations are possible, but are
-          omitted for brevity. </p>
+        <p>Each of the above strings contains the same apparent <span class="quote">meaning
+            </span>as <span class="qchar">Ǻ</span> (<span class="uname">U+01FA
+            LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>), but each
+          one is encoded slightly differently. More variations are possible, but
+          are omitted for brevity. </p>
         <p>Because applications need to find the semantic equivalence in texts
           that use different code point sequences, Unicode defines a means of
           making two semantically equivalent texts identical: the Unicode
@@ -696,11 +712,11 @@
                       in breaking or joining rules, such as the difference
                       between a <span class="qterm">normal</span> and a
                       non-breaking space.</td>
-                    <td style="text-align: center" colspan="4"><span
-                        class="uname">U+00A0 NON-BREAKING SPACE</span></td>
+                    <td style="text-align: center" colspan="4"><span class="uname">U+00A0
+                        NON-BREAKING SPACE</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Presentation forms of Arabic</strong>&mdash;
+                    <td><strong>Presentation forms of Arabic</strong>—
                       characters that encode the specific shapes&nbsp;(initial,
                       medial, final, isolated) needed by visual legacy encodings
                       of the Arabic script.</td>
@@ -716,7 +732,7 @@
                       presentation</td>
                     <td style="text-align: center" colspan="1"> <span class="charSample">①</span></td>
                     <td style="text-align: center" colspan="1"> <span class="charSample">❿</span></td>
-                    <td style="text-align: center" colspan="1"> <span class="charSample">&#x3244;</span></td>
+                    <td style="text-align: center" colspan="1"> <span class="charSample">㉄</span></td>
                     <td style="text-align: center" colspan="1"> <span class="charSample">㊞</span></td>
                   </tr>
                   <tr>
@@ -734,71 +750,74 @@
                     <td><strong>Superscripts/subscripts</strong>—superscript or
                       subscript letters, numbers, and symbols.</td>
                     <td style="text-align: center"> <span class="charSample">⁹</span></td>
-                    <td style="text-align: center"> <span class="charSample">&#x2089;</span></td>
-                    <td style="text-align: center"> <span class="charSample">&#xAA;</span></td>
-                    <td style="text-align: center"> <span class="charSample">&#x208A;</span></td>
+                    <td style="text-align: center"> <span class="charSample">₉</span></td>
+                    <td style="text-align: center"> <span class="charSample">ª</span></td>
+                    <td style="text-align: center"> <span class="charSample">₊</span></td>
                   </tr>
                   <tr>
                     <td><strong><span class="quote">Squared</span> characters</strong>—East
-                      Asian (particularly kana) sequences encoded as a presentation form to
-                      fit in a single ideographic "cell" in text.</td>
+                      Asian (particularly kana) sequences encoded as a
+                      presentation form to fit in a single ideographic "cell" in
+                      text.</td>
                     <td style="text-align: center"> <span class="charSample">㌀</span></td>
-                    <td style="text-align: center"> <span class="charSample">&#x3350;</span></td>
-                    <td style="text-align: center"> <span class="charSample">&#x1F120;</span></td>
-                    <td style="text-align: center"> <span class="charSample">&#x3389;</span></td>
+                    <td style="text-align: center"> <span class="charSample">㍐</span></td>
+                    <td style="text-align: center"> <span class="charSample">🄠</span></td>
+                    <td style="text-align: center"> <span class="charSample">㎉</span></td>
                   </tr>
                   <tr>
                     <td><strong>Fractions</strong>—pre-composed vulgar
                       fractions, often encoded for compatibility with font glyph
                       sets.</td>
                     <td style="text-align: center"> <span class="charSample">¼</span></td>
-                    <td style="text-align: center"> <span class="charSample">&#xBD;</span></td>
-                    <td style="text-align: center"> <span class="charSample">&#x215F;</span></td>
-                    <td style="text-align: center"> <span class="charSample">&#x2189;</span></td>
+                    <td style="text-align: center"> <span class="charSample">½</span></td>
+                    <td style="text-align: center"> <span class="charSample">⅟</span></td>
+                    <td style="text-align: center"> <span class="charSample">↉</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Others</strong>—compatibility
-                      characters encoded for other reasons, generally for compatibility
-                      with legacy character encodings. Many of these characters are simply 
-                      a sequence of characters encoded as a single presentational unit.</td>
+                    <td><strong>Others</strong>—compatibility characters encoded
+                      for other reasons, generally for compatibility with legacy
+                      character encodings. Many of these characters are simply a
+                      sequence of characters encoded as a single presentational
+                      unit.</td>
                     <td style="text-align: center"> <span class="charSample">ǆ</span></td>
-                    <td style="text-align: center"> <span class="charSample">&#x2474;</span></td>
-                    <td style="text-align: center"> <span class="charSample">&#x2488;</span></td>
-                    <td style="text-align: center"> <span class="charSample">&#x2ef3;</span></td>
+                    <td style="text-align: center"> <span class="charSample">⑴</span></td>
+                    <td style="text-align: center"> <span class="charSample">⒈</span></td>
+                    <td style="text-align: center"> <span class="charSample">⻳</span></td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </figure>
+          <p>In the above table, it is important to note that the characters
+            illustrated are <em>actual Unicode codepoints</em>. They were
+            encoded into Unicode for compatibility with various legacy character
+            encodings. They should not be confused with the normal kinds of
+            presentational processing used on their non-compatibility
+            counterparts. </p>
+          <p>For example, most Arabic-script text uses the characters in the <span
 
-            <p>In the above table, it is important to note that the characters
-              illustrated are <em>actual Unicode codepoints</em>. They were
-              encoded into Unicode for compatibility with various legacy
-              character encodings. They should not be confused with the normal
-              kinds of presentational processing used on their non-compatibility
-              counterparts. </p>
-            <p>For example, most Arabic-script text uses the characters in the
-              <span class="uname">Arabic script</span> block of Unicode (starting at <span class="uname">U+0600</span>). The actual glyphs
-              used to display the text are selected using fonts and text processing
-              logic based on the position inside a word (initial, medial, final,
-              or isolated), in a process called "shaping". In the table above,
-              the four presentation forms of the Arabic letter <span class="uname">NOON</span> are shown.
-              The characters shown are compatibility characters in the <span class="uname">U+FE00</span>
-              block, each of which represents a specific "positional" shape and
-              each of the four code points shown have a compatibility
-              decomposition to the <span class="quote">regular</span> Arabic letter <span class="uname">U+0646 NOON</span>.</p>
-            <p>Similarly, the variations in East Asian width and the rotated
-              bracket (for use in vertical text) are encoded as separate code
-              points.</p>
-            <p>In the case of characters with compatibility decompositions, such
-              as those shown above, the <span class="qchar">K</span> Unicode Normalization forms convert
-              the text to the "normal" or "expected" Unicode code point. But the
-              existence of these compatibility characters cannot be taken to
-              imply that similar appearance variations produced in the normal
-              course of text layout and presentation are affected by Unicode
-              Normalization. They are not.</p>
+              class="uname">Arabic script</span> block of Unicode (starting at <span
 
-
+              class="uname">U+0600</span>). The actual glyphs used to display
+            the text are selected using fonts and text processing logic based on
+            the position inside a word (initial, medial, final, or isolated), in
+            a process called "shaping". In the table above, the four
+            presentation forms of the Arabic letter <span class="uname">NOON</span>
+            are shown. The characters shown are compatibility characters in the
+            <span class="uname">U+FE00</span> block, each of which represents a
+            specific "positional" shape and each of the four code points shown
+            have a compatibility decomposition to the <span class="quote">regular</span>
+            Arabic letter <span class="uname">U+0646 NOON</span>.</p>
+          <p>Similarly, the variations in East Asian width and the rotated
+            bracket (for use in vertical text) are encoded as separate code
+            points.</p>
+          <p>In the case of characters with compatibility decompositions, such
+            as those shown above, the <span class="qchar">K</span> Unicode
+            Normalization forms convert the text to the "normal" or "expected"
+            Unicode code point. But the existence of these compatibility
+            characters cannot be taken to imply that similar appearance
+            variations produced in the normal course of text layout and
+            presentation are affected by Unicode Normalization. They are not.</p>
           <p>These two types of Unicode-defined equivalence are then grouped by
             another pair of variations: "decomposition" and "composition". In
             "decomposition", separable logical parts of a visual character are
@@ -809,9 +828,9 @@
             characters. Note that this does <strong>not</strong> mean that all
             of the combining marks have been removed from the resulting
             normalized text. </p>
-          <p>The Unicode Normalization Forms are named using letter codes, with
-            'C' standing for Composition, 'D' for Decomposition, and 'K' for
-            Compatibility decomposition. Having converted a resource to a
+          <p>The Unicode Normalization Forms are identified using letter codes,
+            with 'C' standing for Composition, 'D' for Decomposition, and 'K'
+            for Kompatibility decomposition. Having converted a resource to a
             sequence of Unicode characters and unescaped any escape sequences,
             we can finally "normalize" the Unicode texts given in the example
             above. Here are the resulting sequences in each Unicode
