@@ -175,7 +175,7 @@
         <p>This document defines two basic building blocks for the Web related
           to this problem. First, it defines rules and processes for String
           Identity Matching in document formats. These rules are designed for
-          the identifiers and structural markup (<a href="#markup">markup</a>)
+          the identifiers and structural markup (<a href="#def_markup" class="termref">markup</a>)
           used in document formats to ensure consistent processing of each and
           are targeted to Specification writers. Second, it defines broader
           guidelines for handling user visible text, such as natural language
@@ -204,9 +204,7 @@
           addressed in this specification.</p>
         <p>At the core of the character model is the Universal Character Set
           (UCS), defined jointly by the <cite>Unicode Standard</cite>
-          [[!UNICODE]] and ISO/IEC 10646 [[!ISO10646]]. In this document, <dfn
-
-            id="unicode" title="unicode">Unicode</dfn> is used as a synonym for
+          [[!UNICODE]] and ISO/IEC 10646 [[!ISO10646]]. In this document, <dfn>Unicode</dfn> is used as a synonym for
           the Universal Character Set. A successful character model allows Web
           documents authored in the world's writing systems, scripts, and
           languages (and on different platforms) to be exchanged, read, and
@@ -229,19 +227,17 @@
         <p>Unicode code points are denoted as <code class="kw" translate="no">U+hhhh</code>,
           where <code class="kw" translate="no">hhhh</code> is a sequence of at
           least four, and at most six hexadecimal digits. For example, the
-          character <span class="qchar">€</span> <span class="uname">EURO SIGN</span>
-          has the code point <code class="kw" translate="no">U+20AC</code>.</p>
+          character <span class="qchar">€</span> <span class="uname" translate="no">EURO SIGN</span>
+          has the code point <span class="uname" translate="no">U+20AC</span>.</p>
         <p>Some characters that are used in the various examples might not
           appear as intended unless you have the appropriate font. Care has been
           taken to ensure that the examples nevertheless remain understandable.</p>
-        <p id="def-legacyEnc">A <dfn id="legacyEncoding">legacy character
-            encoding</dfn> is a character encoding not based on the Unicode
+        <p>A <dfn data-lt="legacy character encoding|legacy character encodings">legacy character encoding</dfn> is a character encoding not based on the Unicode
           character set.</p>
-        <p id="def-grapheme-cluster">A <dfn id="def-grapheme">grapheme</dfn> is
+        <p>A <dfn lang-lt="grapheme|graphemes">grapheme</dfn> is
           a sequence of one or more Unicode characters that form a single
           user-perceived "character". <cite>Unicode Standard Annex #29: Text
-            Segmentation</cite> [[!UTR29]] defines a unit called the <dfn id="grapheme-cluster">grapheme
-            cluster</dfn>, which roughly corresponds to the user's perception of
+            Segmentation</cite> [[!UTR29]] defines a unit called the <dfn>grapheme cluster</dfn>, which roughly corresponds to the user's perception of
           where the character boundaries occur in a visually rendered text, in
           constrast to the Unicode code points (characters) used to encode the
           text in a string. (A discussion of grapheme clusters is also given at
@@ -255,14 +251,14 @@
           preferences might be complex. References to <em>grapheme</em> in this
           document refer to default grapheme clusters unless tailoring of the
           grapheme clusters is called out. </p>
-        <p><dfn id="natural-language-content">Natural language content</dfn>
+        <p><dfn>Natural language content</dfn>
           refers to the language-bearing content in a document and <b>not</b>
           to any of the surrounding markup or identifiers that form part of the
           document structure. You can think of it as the actual "content" of the
           document or the "message" in a given protocol. Note that the natural
           language content can include items such as the document title ("Much
           Ado About Nothing") as well as prose content within the document.</p>
-        <p><dfn id="markup">Markup</dfn> is any text in a document format or
+        <p><dfn id="def_markup">Markup</dfn> is any text in a document format or
           protocol that belongs to the structure of the format or protocol. This
           definition can include values that are not typically thought of as
           "markup", such as the name of a field in an HTTP header, as well as
@@ -284,14 +280,14 @@
             element called <code class="kw">&lt;muffin&gt;</code>, <span class="qterm">muffin</span>
             is a part of the markup.</p>
         </div>
-        <p>A <dfn title="resource">resource</dfn> is a given document, file, or
-          protocol "message" which include both the <a href="#natural-language-content">natural
-            language content</a>) as well as the <a href="#markup" class="termref">markup</a>
+        <p>A <dfn data-lt="resource|resources">resource</dfn> is a given document, file, or
+          protocol "message" which includes both the <a>natural
+            language content</a>) as well as the <a href="#def_markup" class="termref">markup</a>
           such as identifiers surrounding or containing it. For example, in an
           HTML document that also has some CSS and a few <code class="kw" translate="no">script</code>
           tags with embedded JavaScript, the entire HTML document, considered as
           a file, is the resource.</p>
-        <p>A <dfn title="vocabulary" id="dfn_vocabulary">vocabulary</dfn> provides the list of
+        <p>A <dfn>vocabulary</dfn> provides the list of
           reserved names as well as the set of rules and specifications
           controlling how user values (such as identifiers) can be assigned in a
           format or protocol. This can include restrictions on range, order, or
@@ -327,9 +323,9 @@
           </div>
           <p>Everything inside the black rectangle (that is, in this HTML file)
             is part of the resource.</p>
-          <p><a href="#markup">Markup</a> is shown in a <span class="markup">monospaced
+          <p><a>Markup</a> is shown in a <span class="markup">monospaced
               font</span>.</p>
-          <p><a href="#natural-language-content">Natural language content</a> is
+          <p><a>Natural language content</a> is
             shown in a <span class="shakespeare">bold blue font with a gray
               background</span>.</p>
           <p>User values are shown in <span class="userValue">italics</span>.</p>
@@ -341,8 +337,7 @@
             orange rectangles). It's also possible that a resource will contain
             <em>no</em> markup and consist solely of natural language content:
             for example, a plain text file with a soliloquy from <cite>Hamlet</cite>
-            in it. Notice too that the HTML entity <code class="kw">&amp;#x2019;</code>
-            appears in the natural language content and belongs to both the
+            in it. Notice too that the HTML entity <span class="uname" translate="no">&amp;#x2019;</span> appears in the natural language content and belongs to both the
             natural language content and the markup in this resource.</p>
         </div>
       </section>
@@ -397,7 +392,7 @@
       <h2>The String Matching Problem</h2>
       <p>The Web is primarily made up of document formats and protocols based on
         character data. These formats or protocols can be viewed as a set of
-        text files (<a href="#dfn-resource" class="termref">resources</a>) that
+        text files (<a data-lt="resource">resources</a>) that
         include some form of structural markup. Processing such markup or
         document data requires string-based operations such as matching,
         indexing, searching, sorting, regular expression matching, and so forth.
@@ -427,12 +422,12 @@
   }
 &lt;/style&gt;
 
-&lt;span class="h&amp;#xe9;llo"&gt;<span class="héllo">Hello World!</span>&lt;/span&gt;
+&lt;span class="h&amp;#xe9;llo"&gt;Hello World!&lt;/span&gt;
 </pre>
         <p>The <code class="kw" translate="no">SPAN</code> in the stylesheet
           matches the <code class="kw" translate="no">span</code> element in
           the document, even though one is uppercase and the other is not.</p>
-        <p id="def-case-folding"><dfn id="case-folding">Case folding</dfn> is
+        <p><dfn>Case folding</dfn> is
           the process of making two texts identical which differ in case but are
           otherwise "the same".</p>
         <p>Case folding might, at first, appear simple. However there are
@@ -457,15 +452,15 @@
             case, this word appears like this: <span class="qterm">DİYARBAKIR</span>.
             Notice that the ASCII letter <span class="qchar">i</span> maps to <span
 
-              class="uname">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>,
-            while the letter <span class="qchar">ı</span> (<span class="uname">U+0131
+              class="uname" translate="no">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>,
+            while the letter <span class="qchar">ı</span> (<span class="uname" translate="no">U+0131
               LATIN SMALL LETTER DOTLESS I</span>) maps to the ASCII uppercase <span
 
               class="qchar">I</span>. </p>
         </aside>
         There are four types of casefold matching defined for the purposes of
         string identity matching in document formats or protocols:
-        <p id="case-sensitive"><dfn title="case sensitive">Case sensitive
+        <p><dfn data-lt="case sensitive">Case sensitive
             matching</dfn>: code points are compared directly with no case
           folding.</p>
         <p>Sometimes case can vary in a way that is not semantically
@@ -474,19 +469,19 @@
           but also applies when defining rules for matching user- or
           content-generated values, such as identifiers. In these situations,
           case-<em>in</em>sensitive matching might be desirable instead.</p>
-        <p>When defining a <a href="#dfn_vocabulary">vocabulary</a>, one important
+        <p>When defining a <a>vocabulary</a>, one important
           consideration is whether the values are restricted to the ASCII subset
           of Unicode or if the vocabulary permits the use of characters (such as
           accents on Latin letters or a broad range of Unicode including
           non-Latin scripts) that potentially have more complex case folding
           requirements.</p>
-        <p><dfn id="ASCII-case-insensitive" title="ASCII case insensitive">ASCII
+        <p><dfn data-lt="ASCII case-insensitive">ASCII
             case-insensitive matching</dfn> compares a sequence of code points
           as if all ASCII code points in the range 0x41 to 0x5A (A to Z) were
           mapped to the corresponding code points in the range 0x61 to 0x7A (a
           to z). When a vocabulary is itself constrained to ASCII, ASCII
           case-insensitive matching can be required. </p>
-        <p id="uci"><dfn id="unicode-case-insensitive" title="Unicode case insensitive">Unicode
+        <p id="uci"><dfn data-lt="Unicode case-insensitive">Unicode
             case-insensitive matching</dfn> compares a sequence of code points
           as-if one of the Unicode-defined language-independent default case
           folding forms had been applied to both input sequences. These forms
@@ -497,10 +492,12 @@
           developers and implementers. We should also add that the case folding
           algorithms are somewhat different from the simple upper and lower case
           conversions.</p>
-        <p>Unicode Full Casefold (<dfn id="unicode-cf">Unicode C+F</dfn>). This
-          case-fold uses the "common" plus the "full" case-fold.</p>
-        <p>Unicode Simple Casefold (<dfn id="unicode-cs">Unicode C+S</dfn>).
-          Unicode also defines a "common" plus "simple" case-fold.</p>
+          <ul>
+        <li><p><dfn>Unicode C+F</dfn> (Unicode Full Casefold). This
+          case-fold uses the "common" plus the "full" case-fold.</p></li>
+        <li><p><dfn>Unicode C+S</dfn> (Unicode Simple Casefold).
+          Unicode also defines a "common" plus "simple" case-fold.</p></li>
+          </ul>
         <p><dfn>Language-sensitive case-sensitive matching</dfn> is useful in
           the rare case where a document format or protocol contains information
           about the language of the markup and where language-sensitive case
@@ -512,42 +509,36 @@
       </section>
       <section id="unicodeNormalization">
         <h3>Unicode Normalization</h3>
-        <p>Other kinds of variations can occur in Unicode text: some <a href="#def-grapheme">graphemes</a>
+        <p>Other kinds of variations can occur in Unicode text: some <a data-lt="grapheme">graphemes</a>
           can be represented by several different Unicode code point sequences.
-          Consider the character <span class="uname">Ǻ U+01FA LATIN LETTER
+          Consider the character <span class="uname" translate="no">Ǻ U+01FA LATIN LETTER
             CAPITAL A WITH RING ABOVE AND ACUTE</span>. Here are some of the
           different character sequences that an HTML document could use to
           represent this character:</p>
         <ul class="dropExampleList">
-          <li class="dropExampleItem"><span class="dropExample">&#x01FA;</span> <code
-
-              class="kw">U+01FA</code>— A "precomposed" character.</li>
-          <li class="dropExampleItem"><span class="dropExample">A&#x030A;&#x0301;</span><code
-
-              class="kw">A&nbsp;+&nbsp;U+030A&nbsp;+&nbsp;U+0301</code>— A <span
+          <li class="dropExampleItem"><span class="dropExample">&#x01FA;</span> <span class="uname" translate="no">U+01FA</span>— A "precomposed" character.</li>
+          <li class="dropExampleItem"><span class="dropExample">A&#x030A;&#x0301;</span><span class="uname" translate="no">A + U+030A + U+0301</span>— A <span
 
               class="qterm">base</span> letter <span class="qchar">A</span>
-            followed by two combining marks (<span class="uname">U+030A
-              COMBINING RING ABOVE</span> and <span class="uname">U+0301
+            followed by two combining marks (<span class="uname" translate="no">U+030A
+              COMBINING RING ABOVE</span> and <span class="uname" translate="no">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
-          <li class="dropExampleItem"><span class="dropExample">&#x00C5;&#x0301;</span><code class="kw">U+00C5
-              + U+0301</code>—An accented letter (<span class="uname">U+00C5
+          <li class="dropExampleItem"><span class="dropExample">&#x00C5;&#x0301;</span><span class="uname" translate="no">U+00C5
+              + U+0301</span>—An accented letter (<span class="uname" translate="no">U+00C5
               LATIN CAPITAL LETTER A WITH RING ABOVE</span>) followed by a
-            combining accent (<span class="uname">U+0301 COMBINING ACUTE ACCENT</span>)</li>
-          <li class="dropExampleItem"><span class="dropExample">&#x212B;&#x0301;</span><code class="kw">U+212B
-              + U+0301</code>—A compatibility character (<span class="uname">U+212B
-              ANGSTROM SIGN</span>) followed by a combining accent (<span class="uname">U+0301
+            combining accent (<span class="uname" translate="no">U+0301 COMBINING ACUTE ACCENT</span>)</li>
+          <li class="dropExampleItem"><span class="dropExample">&#x212B;&#x0301;</span><span class="uname" translate="no">U+212B
+              + U+0301</span>—A compatibility character (<span class="uname" translate="no">U+212B
+              ANGSTROM SIGN</span>) followed by a combining accent (<span class="uname" translate="no">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
-          <li class="dropExampleItem"><span class="dropExample">&#xFF21;&#x030A;&#x0301;</span><code
-
-              class="kw">U+FF21 + U+030A + U+0301</code>— A compatibility
-            character <span class="uname">U+FF21 FULLWIDTH LATIN LETTER CAPITAL
-              A</span>) followed by two combining marks (<span class="uname">U+030A
-              COMBINING RING ABOVE</span> and <span class="uname">U+0301
+          <li class="dropExampleItem"><span class="dropExample">&#xFF21;&#x030A;&#x0301;</span><span class="uname" translate="no">U+FF21 + U+030A + U+0301</span>— A compatibility
+            character <span class="uname" translate="no">U+FF21 FULLWIDTH LATIN LETTER CAPITAL
+              A</span>) followed by two combining marks (<span class="uname" translate="no">U+030A
+              COMBINING RING ABOVE</span> and <span class="uname" translate="no">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
         </ul>
         <p>Each of the above strings contains the same apparent semantic meaning
-          as <span class="qchar">Ǻ</span> (<span class="uname">U+01FA LATIN
+          as <span class="qchar">Ǻ</span> (<span class="uname" translate="no">U+01FA LATIN
             CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>), but each one is
           encoded slightly differently. More variations are possible, but are
           omitted for brevity. </p>
@@ -555,14 +546,14 @@
           that use different code point sequences, Unicode defines a means of
           making two semantically equivalent texts identical: the Unicode
           Normalization Forms [[!UAX15]].</p>
-        <p><a href="#dfn-resource">Resources</a> are often susceptible to the effects
+        <p><a data-lt="resource">Resources</a> are often susceptible to the effects
           of these variations because their specifications and implementations
           on the Web do not require Unicode Normalization of the text, nor do
           they take into consideration the string matching algorithms used when
           processing the markup and content later. For this reason, content
           developers need to ensure that they have provided a consistent
           representation in order to avoid problems later.</p>
-        <p>However, it can be difficult for users to assure that a given <a href="#dfn-resource">resource</a>
+        <p>However, it can be difficult for users to assure that a given <a data-lt="resource">resource</a>
           or set of resources uses a consistent textual representation because
           the differences are usually not visible when viewed as text. Tools and
           implementations thus need to consider the difficulties experienced by
@@ -577,7 +568,7 @@
           <h4>Unicode Normalization Forms</h4>
           <p>Unicode defines two types of equivalence between characters: <em>canonical
               equivalence</em> and <em>compatibility equivalence</em>.</p>
-          <p><dfn title="canonical equivalence">Canonical equivalence</dfn> is a
+          <p><dfn>Canonical equivalence</dfn> is a
             fundamental equivalency between Unicode characters or sequences of
             Unicode characters that represent the same abstract character. When
             correctly displayed, these should always have the same visual
@@ -588,22 +579,22 @@
           <p>Examples of canonical equivalence defined by Unicode include:</p>
           <ul class="dropExampleList">
             <li class="dropExampleItem"><span class="dropExample">Ç<span style="font-size:75%"> vs.</span>C&#x0327;</span>
-              <em>Pre-composed versus combining sequences.</em> Some characters
+              <em>Precomposed versus combining sequences.</em> Some characters
               can be composed from a base character followed by one or more
               combining characters. The same characters are sometimes also
-              encoded as a distinct "pre-composed" character. In this example,
-              the character <span class="qchar">Ç</span> <span class="uname">U+00C7</span>
+              encoded as a distinct "precomposed" character. In this example,
+              the character <span class="qchar">Ç</span> <span class="uname" translate="no">U+00C7</span>
               is canonically equivalent to the base character <span class="qchar">C</span>
-              <span class="uname">U+0043</span> followed by the combining
-              cedilla character <span class="qchar">̧</span> <span class="uname">U+0327</span>.
+              <span class="uname" translate="no">U+0043</span> followed by the combining
+              cedilla character <span class="qchar">̧</span> <span class="uname" translate="no">U+0327</span>.
               Such equivalence can extend to characters with multiple combining
               marks.</li>
             <li class="dropExampleItem"><span class="dropExample">q&#x0307;&#x0323;<span style="font-size:75%"> vs.</span>q&#x0323;&#x0307;</span>
               <em>Order of combining marks.</em> When a base character is
               modified by multiple combining marks, the order of the combining
               marks might not represent a distinct character. Here the sequence
-              <span class="qterm">q&#x0307;&#x0323;</span>(<span class="uname">U+0071 U+0323
-                U+0307</span>) and <span class="qterm">q&#x0323;&#x0307;</span>(<span class="uname">U+0071
+              <span class="qterm">q&#x0307;&#x0323;</span>(<span class="uname" translate="no">U+0071 U+0323
+                U+0307</span>) and <span class="qterm">q&#x0323;&#x0307;</span>(<span class="uname" translate="no">U+0071
                 U+0307 U+0323</span>) are equivalent, even though the combining
               marks are in a different order. Note that this example is chosen
               carefully: the dot-above character and dot-below character are on
@@ -614,22 +605,22 @@
               separately encode otherwise equivalent characters to support
               legacy character encodings. In this example, the Ohm symbol <span
 
-                class="qchar">Ω</span> <span class="uname">U+2126</span> is
+                class="qchar">Ω</span> <span class="uname" translate="no">U+2126</span> is
               canonically equivalent (and identical in appearance) to the Greek
-              letter Omega <span class="qchar">Ω</span> <span class="uname">U+03A9</span>.</li>
+              letter Omega <span class="qchar">Ω</span> <span class="uname" translate="no">U+03A9</span>.</li>
             <li class="dropExampleItem"><span class="dropExample">가<span style="font-size:75%"> vs.</span>&#x1100;&#x1161;</span>
               <em>Hangul.</em> The Hangul script is used to write the Korean
               language. This script is constructed logically, with each syllable
-              being a roughly-square <a href="#def-grapheme" class="termref">grapheme</a>
+              being a roughly-square <a>grapheme</a>
               formed from specific sub-parts that represent consonants and
               vowels. These specific sub-parts, called <em>jamo</em>, are
-              encoded in Unicode. So too are the pre-composed syllables. Thus
-              the syllable <span class="qchar">가</span>&nbsp; <span class="uname">U+AC00</span>
+              encoded in Unicode. So too are the precomposed syllables. Thus
+              the syllable <span class="qchar">가</span>&nbsp; <span class="uname" translate="no">U+AC00</span>
               is canonically equivalent to its constituent <em>jamo</em>
-              characters <span class="qchar">ᄀ</span>&nbsp;<span class="uname">U+1100</span>n
-              and <span class="qchar">ᅡ</span>&nbsp;<span class="uname">U+1161</span>.</li>
+              characters <span class="qchar">ᄀ</span>&nbsp;<span class="uname" translate="no">U+1100</span>n
+              and <span class="qchar">ᅡ</span>&nbsp;<span class="uname" translate="no">U+1161</span>.</li>
           </ul>
-          <p><dfn title="compatibility equivalence">Compatibility equivalence</dfn>
+          <p><dfn>Compatibility equivalence</dfn>
             is a weaker equivalence between characters or sequences of
             characters that represent the same abstract character, but may have
             a different visual appearance or behavior. Generally a compatibility
@@ -644,7 +635,7 @@
             by a formal language.</p>
           <p>The following table illustrates various kinds of compatibility
             equivalence in Unicode:</p>
-          <figure> <figcaption>Compatibility Equivalence</figcaption>
+          <figure> 
             <div style="width:80%; margin-left:10%;margin-right:10%; font-size:18px;">
               <table>
                 <thead>
@@ -666,7 +657,7 @@
                       between a <span class="qterm">normal</span> and a
                       non-breaking space.</td>
                     <td style="text-align: center" colspan="4"><span
-                        class="uname">U+00A0 NON-BREAKING SPACE</span></td>
+                        class="uname" translate="no">U+00A0 NON-BREAKING SPACE</span></td>
                   </tr>
                   <tr>
                     <td><strong>Presentation forms of Arabic</strong>&mdash;
@@ -717,7 +708,7 @@
                     <td style="text-align: center"> <span class="charSample">&#x3389;</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Fractions</strong>—pre-composed vulgar
+                    <td><strong>Fractions</strong>—precomposed vulgar
                       fractions, often encoded for compatibility with font glyph
                       sets.</td>
                     <td style="text-align: center"> <span class="charSample">¼</span></td>
@@ -738,6 +729,7 @@
                 </tbody>
               </table>
             </div>
+            <figcaption>Compatibility Equivalence</figcaption>
           </figure>
 
             <p>In the above table, it is important to note that the characters
@@ -746,16 +738,15 @@
               character encodings. They should not be confused with the normal
               kinds of presentational processing used on their non-compatibility
               counterparts. </p>
-            <p>For example, most Arabic-script text uses the characters in the
-              <span class="uname">Arabic script</span> block of Unicode (starting at <span class="uname">U+0600</span>). The actual glyphs
+            <p>For example, most Arabic-script text uses the characters in the              Arabic script block of Unicode (starting at <span class="uname" translate="no">U+0600</span>). The actual glyphs
               used to display the text are selected using fonts and text processing
               logic based on the position inside a word (initial, medial, final,
               or isolated), in a process called "shaping". In the table above,
-              the four presentation forms of the Arabic letter <span class="uname">NOON</span> are shown.
-              The characters shown are compatibility characters in the <span class="uname">U+FE00</span>
+              the four presentation forms of the Arabic letter <span class="uname" translate="no">NOON</span> are shown.
+              The characters shown are compatibility characters in the <span class="uname" translate="no">U+FE00</span>
               block, each of which represents a specific "positional" shape and
               each of the four code points shown have a compatibility
-              decomposition to the <span class="quote">regular</span> Arabic letter <span class="uname">U+0646 NOON</span>.</p>
+              decomposition to the <span class="quote">regular</span> Arabic letter <span class="uname" translate="no">U+0646 NOON</span>.</p>
             <p>Similarly, the variations in East Asian width and the rotated
               bracket (for use in vertical text) are encoded as separate code
               points.</p>
@@ -785,7 +776,7 @@
             we can finally "normalize" the Unicode texts given in the example
             above. Here are the resulting sequences in each Unicode
             Normalization form for the U+01FA example given earlier: </p>
-          <figure> <figcaption>Comparison of Unicode Normalization Forms</figcaption>
+          <figure> 
             <div style="margin-left:5%; margin-right:15%; width:80%; text-align:center;">
               <table>
                 <thead>
@@ -861,6 +852,7 @@
                 </tbody>
               </table>
             </div>
+            <figcaption>Comparison of Unicode Normalization Forms</figcaption>
           </figure>
           <p>Unicode Normalization reduces these (and other potential sequences
             of escapes representing the same character) to just three possible
@@ -875,18 +867,18 @@
               actually distinct in Unicode and don't have canonical or
               compatibility decompositions to link them together. For example, <span
 
-                class="qchar">。</span> <span class="uname">U+3002 IDEOGRAPHIC
+                class="qchar">。</span> <span class="uname" translate="no">U+3002 IDEOGRAPHIC
                 FULL STOP</span> is used as a <span class="quote">period</span>
               at the end of sentences in languages such as Chinese or Japanese.
               However, it is not considered equivalent to the ASCII <span class="quote">period</span>
-              character <span class="uname">U+002E FULL STOP</span>.</li>
+              character <span class="uname" translate="no">U+002E FULL STOP</span>.</li>
             <li>Some character variations are not handled by the Unicode
               Normalization Forms. For example, UPPER, Title, and lowercase
               variations are a separate and distinct textual variation that must
               be separately handled when comparing text.</li>
             <li>Normalization can remove meaning. For example, the character
               sequence <span class="qterm"><samp>8½</samp></span> (including
-              the character <span class="uname">U+00BD VULGAR FRACTION ONE HALF</span>),
+              the character <span class="uname" translate="no">U+00BD VULGAR FRACTION ONE HALF</span>),
               when normalized using one of the <span class="quote">compatibility</span>
               normalization forms (that is, NFKD or NFKC), becomes an ASCII
               character sequence that looks like: <samp>81/2</samp>.</li>
@@ -902,7 +894,7 @@
           additional equivalent means of representing characters inside a given
           resource. They also allow for the encoding of Unicode characters not
           represented in the character encoding scheme used by the document.</p>
-        <p>For example, <span class="qchar">€</span> <span class="uname">U+20AC
+        <p>For example, <span class="qchar">€</span> <span class="uname" translate="no">U+20AC
             EURO SIGN</span> can also be encoded in HTML as the hexadecimal
           entity <code>&amp;#x20ac;</code> or as the decimal entity <code>&amp;#8364;</code>.
           In a JavaScript or JSON file, it can appear as <code>\u20ac</code>
@@ -931,7 +923,7 @@
           considered "the same" according to a specification: the class name <code>h\e9llo</code>
           matched the class name in the HTML mark-up <code>h&amp;#xe9;llo</code>
           (and would also match the literal value <code>héllo</code> using the
-          code point <span class="uname">U+00E9</span>).</p>
+          code point <span class="uname" translate="no">U+00E9</span>).</p>
       </section>
       <section id="unicodeControls">
         <h3>Unicode Controls and Invisible Markers</h3>
@@ -944,7 +936,7 @@
         <p>A special case is for ZWJ and ZWNJ. These invisible controls
           sometimes affect meaning.</p>
         <p>Examples of these include:</p>
-        <figure> <figcaption>Invisible Controls</figcaption>
+        <figure> 
           <table style="width: 100%; border: 1px solid #ddd;">
             <thead>
               <tr>
@@ -985,6 +977,7 @@
               </tr>
             </tbody>
           </table>
+          <figcaption>Invisible Controls</figcaption>
         </figure>
         <p class="ednote">This section was added and needs further fleshing out.
           The requirement probably wants to live in the requirements section. <span
@@ -993,8 +986,8 @@
       </section>
       <section id="legacyCharacterEncoding">
         <h3>Legacy Character Encodings</h3>
-        <p>Finally, <a href="#dfn-resource">resources</a> can use different
-          character encoding schemes, including <a href="#def-legacyEnc">legacy
+        <p>Finally, <a>resources</a> can use different
+          character encoding schemes, including <a>legacy
             character encodings</a>, to serialize document formats on the Web.
           Each character encoding scheme uses different byte values and
           sequences to represent a given subset of the Universal Character Set.</p>
@@ -1005,7 +998,7 @@
             encoding and the considerations in the rest of this section would be
             completely avoided.</p>
         </div>
-        <p>For example, <span class="qchar">€</span> (<span class="uname">U+20AC
+        <p>For example, <span class="qchar">€</span> (<span class="uname" translate="no">U+20AC
             EURO SIGN</span>) is encoded as the byte sequence <code>0xE2.82.AC</code>
           in the <code class="kw">UTF-8</code> character encoding. This same
           character is encoded as the byte sequence <code>0x80</code> in the
@@ -1029,8 +1022,8 @@
           transcoder implementations faced choices about how to map specific
           byte sequences to Unicode. So the byte sequence <code>0x80.60</code>
           (<code>0x2141</code> in the JIS X 0208 character set) was mapped by
-          some implementations to <span class="uname">U+301C WAVE DASH</span>
-          while others chose <span class="uname">U+FF5E FULL WIDTH TILDE</span>.
+          some implementations to <span class="uname" translate="no">U+301C WAVE DASH</span>
+          while others chose <span class="uname" translate="no">U+FF5E FULL WIDTH TILDE</span>.
           This means that two reasonable, self-consistent, transcoders could
           produce different Unicode character sequences from the same input. The
           <cite>Encoding</cite> [[Encoding]] specification exists, in part, to
@@ -1040,11 +1033,11 @@
           the Web or used to process data appearing in a particular document
           format or protocol.</p>
       </section>
-    </section>
+  </section>
     <section id="identityMatching">
       <h2>String Matching of Markup in Document Formats and Protocols</h2>
       <p>This chapter defines the implementation and requirements for string
-        matching in <a href="#markup">markup</a>.</p>
+        matching in <a href="#def_markup" class="termref">markup</a>.</p>
       <section id="matchingAlgorithm">
         <h2>The Matching Algorithm</h2>
         <p>This section defines the algorithm for matching strings. String
@@ -1080,10 +1073,10 @@
             <ol>
               <li><em><a href="#case-sensitive">Case sensitive</a></em>: Go to
                 step 4.</li>
-              <li><em><a href="#ASCII-case-insensitive">ASCII case folding</a></em>:
+              <li><em><a data-lt="ASCII case-insensitive">ASCII case folding</a></em>:
                 map all code points in the range 0x41 to 0x5A (A to Z) to the
                 corresponding code points in the range 0x61 to 0x7A (a to z).</li>
-              <li><em><a href="#unicode-cf">Unicode case folding</a></em>: map
+              <li><em><a>Unicode case folding</a></em>: map
                 all code points to their Unicode C+F case fold equivalents. Note
                 that this can change the length of the string.</li>
             </ol>
@@ -1133,7 +1126,7 @@
             one-to-one, to a Unicode encoding), as well as data created by
             current software, is already in this form; NFC also has a slight
             compactness advantage and is a better match to user expectations
-            with respect to the character vs. <a href="#def-grapheme">grapheme</a>
+            with respect to the character vs. <a>grapheme</a>
             issue. This document therefore recommends, when possible, that all
             content be stored and exchanged in Unicode Normalization Form C
             (NFC).</p>
@@ -1187,7 +1180,7 @@
             characters (such as a Unicode demo). This avoids problems with
             unintentional display or with naive implementations that combine the
             combining mark with adjacent markup or other natural language
-            content. For example, if you were to use <code>U+301</code> as the
+            content. For example, if you were to use <span class="uname" translate="no">U+301</span> as the
             start of a "class" attribute value in HTML, the class name might not
           display properly in your editor.</p>
         </section>
@@ -1348,9 +1341,9 @@
         <p>Where case-insensitive matching is desired, there are several
           implementation choices that a formal language needs to consider. If
           the vocabulary of strings to be compared is limited to the Basic Latin
-          (ASCII) subset of Unicode, ASCII-case-insensitive
+          (ASCII) subset of Unicode, ASCII case-insensitive
           matching MAY be used.</p>
-        <p>If the vocabulary of strings to be compared is not limited, then <a href="#ASCII-case-insensitive">ASCII case-insensitive</a> matching MUST NOT be used. <a
+        <p>If the vocabulary of strings to be compared is not limited, then <a>ASCII case-insensitive</a> matching MUST NOT be used. <a
 
             href="#uci">Unicode case-insensitive</a> matching MUST be applied,
           even if the vocabulary does not allow the full range of Unicode.</p>
@@ -1401,8 +1394,8 @@
             case-insensitive matching MUST NOT be required.</p>
         </div>
          <div class="requirement">
-          <p>[S][I] The <a href="#unicode-cf">Unicode C+F</a> case-fold form is
-            RECOMMENDED as the case-insensitive matching for <a href="#dfn_vocabulary">vocabularies</a>.
+          <p>[S][I] The <a>Unicode C+F</a> case-fold form is
+            RECOMMENDED as the case-insensitive matching for <a data-lt="vocabulary">vocabularies</a>.
             The Unicode C+S form MUST NOT be used for string identity matching
             on the Web.</p>
         </div>
@@ -1495,9 +1488,7 @@
         the Web <em>other than</em> that mandated by a formal language or
         document format.</p>
       <p>There are several different kinds of string searching.</p>
-      <p>When you are using a search engine, you are generally using a form of <dfn
-
-          id="fts">full text search</dfn>. Full text search generally breaks
+      <p>When you are using a search engine, you are generally using a form of full text search. <dfn>Full text search</dfn> generally breaks
         natural language text into word segments and may apply complex
         processing to get at the semantic "root" values of words. For example,
         if the user searches for "run", you might want to find words like
@@ -1603,8 +1594,8 @@
           "user-perceived characters" can be important. See Section 3 of <cite>Character
             Model for the World Wide Web: Fundamentals</cite> [[!CHARMOD]] for a
           description. For example, if the user has entered a capital "A" into a
-          search box, should the software find the character À (<code>U+00C0
-            LATIN CAPITAL LETTER A WITH ACCENT GRAVE</code>)? What about the
+          search box, should the software find the character À (<span class="uname" translate="no">U+00C0
+            LATIN CAPITAL LETTER A WITH ACCENT GRAVE</span>)? What about the
           character "A" followed by U+0300 (a combining accent grave)? What
           about writing systems, such as Devanagari, which use combining marks
           to suppress or express certain vowels?</p>
