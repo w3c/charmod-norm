@@ -483,18 +483,7 @@
         <p id="case-sensitive"><dfn title="case sensitive">Case sensitive
             matching</dfn>: code points are compared directly with no case
           folding.</p>
-        <div class="requirement">
-          <p>Case sensitive matching is RECOMMENDED as the default for any new
-            protocol or format.</p>
-        </div>
-        <p>Case-sensitive matching is the easiest to implement and introduces
-          the least potential for confusion, since it generally consists of a
-          comparison of the underlying Unicode code point sequence. Because it
-          is not affected by considerations such as language-specific case
-          mappings, it produces the least surprise for document authors that
-          have included words (such as the Turkish example above) in their
-          markup.</p>
-        <p>Sometimes, however, case can vary in a way that is not semantically
+        <p>Sometimes case can vary in a way that is not semantically
           meaningful or is not fully under the user's control. This is
           particularly true when <a href="#searching">searching</a> a document,
           but also applies when defining rules for matching user- or
@@ -512,11 +501,6 @@
           mapped to the corresponding code points in the range 0x61 to 0x7A (a
           to z). When a vocabulary is itself constrained to ASCII, ASCII
           case-insensitive matching can be required. </p>
-        <div class="requirement">
-          <p>If the vocabulary is not restricted to ASCII or permits
-            user-defined values that use a broader range of Unicode, ASCII
-            case-insensitive matching MUST NOT be required.</p>
-        </div>
         <p id="uci"><dfn id="unicode-case-insensitive" title="Unicode case insensitive">Unicode
             case-insensitive matching</dfn> compares a sequence of code points
           as-if one of the Unicode-defined language-independent default case
@@ -532,12 +516,6 @@
           case-fold uses the "common" plus the "full" case-fold.</p>
         <p>Unicode Simple Casefold (<dfn id="unicode-cs">Unicode C+S</dfn>).
           Unicode also defines a "common" plus "simple" case-fold.</p>
-        <div class="requirement">
-          <p>[S][I] The <a href="#unicode-cf">Unicode C+F</a> case-fold form is
-            RECOMMENDED as the case-insensitive matching for <a href="#dfn_vocabulary">vocabularies</a>.
-            The Unicode C+S form MUST NOT be used for string identity matching
-            on the Web.</p>
-        </div>
         <p><dfn>Language-sensitive case-sensitive matching</dfn> is useful in
           the rare case where a document format or protocol contains information
           about the language of the markup and where language-sensitive case
@@ -546,10 +524,6 @@
             the expectations of that language SHOULD be specified and applied.</span>
           These case-fold mappings are defined in the <cite>Common Locale Data
             Repository</cite> [[UAX35]] project of the Unicode Consortium.</p>
-        <p>However, language-sensitive case-sensitive matching in document
-          formats and protocols is NOT RECOMMENDED because language information
-          can be hard to obtain, verify, or manage and the resulting operations
-          can produce results that frustrate users.</p>
       </section>
       <section id="unicodeNormalization">
         <h3>Unicode Normalization</h3>
@@ -615,11 +589,6 @@
           that spring from invisible differences in their source documents. For
           example, the W3C Validator warns when an HTML document is not fully in
           Unicode Normalization Form C.</p>
-        <div class="requirement">
-          <p>[I] Authoring tools SHOULD provide a means of normalizing resources
-            and warn the user when a given resources is not in Unicode
-            Normalization Form C.</p>
-        </div>
         <section id="normalizationForms">
           <h4>Unicode Normalization Forms</h4>
           <p>Unicode defines two types of equivalence between characters: <em>canonical
@@ -942,39 +911,7 @@
               character sequence that looks like: <samp>81/2</samp>.</li>
           </ul>
         </section>
-        <section>
-          <h4>Choice of Normalization Form</h4>
-          <p>Given that there are many character sequences that content authors
-            or applications could choose when inputting or exchanging text, and
-            that when providing text in a normalized form, there are different
-            options for the normalization form to be used, what form is most
-            appropriate for content on the Web?</p>
-          <p>For use on the Web, it is important not to lose compatibility
-            distinctions, which are often important to the content (see Chapter
-            5 <span class="qterm">Characters with Compatibility Mappings</span>
-            in <cite>Unicode in XML and other Markup Languages</cite>
-            [[UNICODE-XML]] for a discussion). The NFKD and NFKC normalization
-            forms are therefore excluded. Among the remaining two forms, NFC has
-            the advantage that almost all legacy data (if transcoded trivially,
-            one-to-one, to a Unicode encoding), as well as data created by
-            current software, is already in this form; NFC also has a slight
-            compactness advantage and is a better match to user expectations
-            with respect to the character vs. <a href="#def-grapheme">grapheme</a>
-            issue. This document therefore recommends, when possible, that all
-            content be stored and exchanged in Unicode Normalization Form C
-            (NFC).</p>
-          <div class="note">
-            <p>Roughly speaking, <abbr title="Normalization Form C">NFC</abbr>
-              is defined such that each combining character sequence (a base
-              character followed by one or more combining characters) is
-              replaced, as far as possible, by a canonically equivalent
-              precomposed character. Text in a Unicode character encoding form
-              (such as UTF-8 or UTF-16) is said to be in NFC if it doesn't
-              contain any combining sequence that could be replaced with a
-              precomposed character and if any remaining combining sequence is
-              in canonical order.</p>
-          </div>
-        </section>
+        
       </section>
       <section id="characterEscapes">
         <h3>Character Escapes</h3>
@@ -1068,11 +1005,6 @@
             </tbody>
           </table>
         </figure>
-        <div class="requirement">
-          <p>Applications that do string matching SHOULD ignore Unicode
-            formatting controls such as variation selectors; grapheme or word
-            joiners; or other non-semantic controls.</p>
-        </div>
         <p class="ednote">This section was added and needs further fleshing out.
           The requirement probably wants to live in the requirements section. <span
 
@@ -1126,20 +1058,6 @@
           with the Encoding specification won't be applied to documents found on
           the Web or used to process data appearing in a particular document
           format or protocol.</p>
-        <div class="requirement">
-          <p>[C][I] For content authors and implementations, it is RECOMMENDED
-            that conversions from legacy character encodings use a "normalizing
-            transcoder".</p>
-        </div>
-        <p id="def-normalizing-transcoder">A <span class="new-term">normalizing
-            transcoder</span> is a transcoder that converts from a <a href="#def-legacyEnc">legacy
-            character encoding</a> to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode
-            encoding form</a> <em>and</em> ensures that the result is in
-          Unicode Normalization Form C. For most legacy character encodings, it
-          is possible to construct a normalizing transcoder (by using any
-          transcoder followed by a normalizer); it is not possible to do so if
-          the encoding's <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a>
-          contains characters not represented in Unicode.</p>
       </section>
     </section>
     <section id="identityMatching">
@@ -1195,59 +1113,63 @@
         </ol>
         <br>
       </section>
-      <section id="identityMatchReqs">
-        <h2>Requirements for String Identity Matching</h2>
-        <p>In the Web environment, where multiple character encodings are used
-          to represent strings, including some character encodings which allow
-          multiple representations for the same thing, it's important to
-          establish a consistent process for evaluating string identity.</p>
-        <p>One main consideration in string identity matching is whether the
-          comparison is case sensitive or case insensitive.</p>
-        <div class="requirement">
-          <p>[S] <a href="#case-sensitive">Case sensitive</a> matching is
-            RECOMMENDED as the default for new protocols and formats.</p>
-        </div>
-        <p>However, cases exist in which case-insensitivity is desirable.</p>
-        <p>Where case-insensitive matching is desired, there are several
-          implementation choices that a formal language needs to consider. If
-          the vocabulary of strings to be compared is limited to the Basic Latin
-          (ASCII) subset of Unicode, ASCII-case-insensitive
-          matching MAY be used.</p>
-        <p>If the vocabulary of strings to be compared is not limited, then <a href="#ASCII-case-insensitive">ASCII case-insensitive</a> matching MUST NOT be used. <a
 
-            href="#uci">Unicode case-insensitive</a> matching MUST be applied,
-          even if the vocabulary does not allow the full range of Unicode.</p>
-        <p><a href="#uci">Unicode case-insensitive</a> matching can take several
-          forms. Unicode defines the "common" (C) casefoldings for characters
-          that always have 1:1 mappings of the character to its case folded form
-          and this covers the majority of characters that have a case folding. A
-          few characters in Unicode have a 1:many case folding. This 1:many
-          mapping is called the "full" (F) case fold mapping. For compatibility
-          with certain types of implementation, Unicode also defines a "simple"
-          (S) case fold that is always 1:1.</p>
-        <div class="requirement">
-          <p>Because the "simple" case-fold mapping removes information that can
-            be important to forming an identity match, the "Common plus Full"
-            (or "Unicode C+F") case fold mapping is RECOMMENDED for Unicode
-            case-insensitive matching.</p>
-        </div>
-        <p>A vocabulary is considered to be "ASCII-only" if and only if all
-          tokens and identifiers are defined by the specification directly and
-          these identifiers or tokens use only the Basic Latin subset of
-          Unicode. If user-defined identifiers are permitted, the full range of
-          Unicode characters (limited, as appropriate, for security or
-          interchange concerns, see [[UTR36]]) SHOULD be allowed and Unicode
-          case insensitivity used for identity matching.</p>
-        <div class="requirement">
-          <p>ASCII case-insensitive matching MUST only be applied to
-            vocabularies that are restricted to ASCII. Unicode
-            case-insensitivity MUST be used for all other vocabularies.</p>
-        </div>
-        <p>Note that an ASCII-only vocabulary can exist inside a document format
-          or protocol that allows a larger range of Unicode in identifiers or
-          values.</p>
-        <p class="ednote">Insert example from CSS here.</p>
-        <section id="content-reqs">
+
+    <section id="convertingToCommonUnicodeForm">
+      <h2>Converting to a Common Unicode Form</h2>
+      <div class="requirement">
+        <p>[C][I] For content authors and implementations, it is RECOMMENDED
+          that conversions from legacy character encodings use a "normalizing
+          transcoder".</p>
+      </div>
+      <p id="def-normalizing-transcoder">A <span class="new-term">normalizing
+        transcoder</span> is a transcoder that converts from a <a href="#def-legacyEnc">legacy
+          character encoding</a> to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode
+            encoding form</a> <em>and</em> ensures that the result is in
+        Unicode Normalization Form C. For most legacy character encodings, it
+        is possible to construct a normalizing transcoder (by using any
+        transcoder followed by a normalizer); it is not possible to do so if
+        the encoding's <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a> contains characters not represented in Unicode.</p>
+      <div class="requirement">
+        <p>[I] Authoring tools SHOULD provide a means of normalizing resources
+          and warn the user when a given resources is not in Unicode
+          Normalization Form C.</p>
+      </div>
+      <section>
+          <h4>Choice of Normalization Form</h4>
+          <p>Given that there are many character sequences that content authors
+            or applications could choose when inputting or exchanging text, and
+            that when providing text in a normalized form, there are different
+            options for the normalization form to be used, what form is most
+            appropriate for content on the Web?</p>
+          <p>For use on the Web, it is important not to lose compatibility
+            distinctions, which are often important to the content (see Chapter
+            5 <span class="qterm">Characters with Compatibility Mappings</span>
+            in <cite>Unicode in XML and other Markup Languages</cite>
+            [[UNICODE-XML]] for a discussion). The NFKD and NFKC normalization
+            forms are therefore excluded. Among the remaining two forms, NFC has
+            the advantage that almost all legacy data (if transcoded trivially,
+            one-to-one, to a Unicode encoding), as well as data created by
+            current software, is already in this form; NFC also has a slight
+            compactness advantage and is a better match to user expectations
+            with respect to the character vs. <a href="#def-grapheme">grapheme</a>
+            issue. This document therefore recommends, when possible, that all
+            content be stored and exchanged in Unicode Normalization Form C
+            (NFC).</p>
+          <div class="note">
+            <p>Roughly speaking, <abbr title="Normalization Form C">NFC</abbr>
+              is defined such that each combining character sequence (a base
+              character followed by one or more combining characters) is
+              replaced, as far as possible, by a canonically equivalent
+              precomposed character. Text in a Unicode character encoding form
+              (such as UTF-8 or UTF-16) is said to be in NFC if it doesn't
+              contain any combining sequence that could be replaced with a
+              precomposed character and if any remaining combining sequence is
+              in canonical order.</p>
+          </div>
+        </section>
+        
+      <section id="content-reqs">
           <h4>Requirements for Resources</h4>
           <p>These requirements pertain to the authoring and creation of
             documents and are intended as guidelines for resource authors.</p>
@@ -1280,23 +1202,14 @@
               preceding base character in a resource.</p>
           </div>
           <p class="ednote">Following examples need improvement.</p>
-          <p>There can be exceptions to this, for example, when making a list of
+        <p>There can be exceptions to this, for example, when making a list of
             characters (such as a Unicode demo). This avoids problems with
             unintentional display or with naive implementations that combine the
             combining mark with adjacent markup or other natural language
             content. For example, if you were to use <code>U+301</code> as the
             start of a "class" attribute value in HTML, the class name might not
-            display properly in your editor.</p>
-          <div class="requirement">
-            <p>[C] Identifiers SHOULD use consistent case (upper, lower, mixed
-              case) to facilitate matching, even if case-insensitive matching is
-              supported by the format or implementation. </p>
-          </div>
+          display properly in your editor.</p>
         </section>
-        <section id="formal-language">
-          <h4>Requirements for Specifications</h4>
-          <p>These requirements pertain to specifications for document formats
-            or programming/scripting languages and their implementations.</p>
           <div class="requirement">
             <p>[S] Specifications of text-based formats and protocols MAY
               specify that all or part of the textual content of that format or
@@ -1316,49 +1229,8 @@
               denormalized content need to be carefully considered and well
               specified in these cases. </p>
           </div>
-          <div class="requirement">
-            <p>[S][I] Specifications and implementations that define string
-              matching as part of the definition of a format, protocol, or
-              formal language (which might include operations such as parsing,
-              matching, tokenizing, etc.) MUST define the criteria and matching
-              forms used. These MUST be one of: </p>
-            <ul>
-              <li>Case-sensitive</li>
-              <li>Unicode case-insensitive using Unicode case-folding C+F</li>
-              <li>ASCII case-insensitive</li>
-            </ul>
-          </div>
-          <div class="requirement">
-            <p>[S] Specifications SHOULD NOT specify case-insensitive comparison
-              of strings.</p>
-          </div>
-          <div class="requirement">
-            <p>[S] Specifications that specify case-insensitive comparison for
-              non-ASCII vocabularies SHOULD specify Unicode case-folding C+F.</p>
-          </div>
-          <p>In some limited cases, locale- or language-specific tailoring might
-            also be appropriate. However, such cases are generally linked to
-            natural language processing operations. Because they produce
-            potentially different results from the generic case folding rules,
-            these should be avoided in formal languages, where predictability is
-            at a premium. </p>
-          <div class="requirement">
-            <p>[S] Specifications MAY specify ASCII case-insensitive comparison
-              for portions of a format or protocol that are restricted to an
-              ASCII-only vocabulary.</p>
-          </div>
-          <p>This requirement applies to formal languages whose keywords are all
-            ASCII and which do not allow user-defined names or identifiers. An
-            example of this is HTML, which defines the use of ASCII
-            case-insensitive comparison for element and attribute names defined
-            by the HTML specification.</p>
-          <div class="requirement">
-            <p>[S][I] Specifications and implementations MUST NOT specify
-              ASCII-only case-insensitive matching for values or constructs that
-              permit non-ASCII characters. </p>
-          </div>
-        </section>
-        <section id="non-normalizing">
+          
+          <section id="non-normalizing">
           <h4> Non-Normalizing Specification Requirements </h4>
           <p class="ednote"> The following paragraph was changed and requires WG
             approval. </p>
@@ -1378,16 +1250,11 @@
           <p>The normalization form or lack of normalization for any given
             content has to be considered intentional in these cases.</p>
           <div class="requirement">
-            <p>[S][I] For vocabularies and values that are not restricted to
-              Basic Latin (ASCII), case-insensitive matching MUST specify either
-              Unicode C+F or locale-sensitive string comparison. </p>
-          </div>
-          <div class="requirement">
             <p>[I] Implementations MUST NOT alter the normalization form of
               content being exchanged, read, parsed, or processed except when
               required to do so as a side-effect of transcoding the content to a
               Unicode character encoding, as content might depend on the
-              de-normalized representation. </p>
+            de-normalized representation. </p>
           </div>
           <p class="ednote"> The following requirement was noted by Mati as
             being problematic. It was not marked with mustard and needs further
@@ -1407,6 +1274,7 @@
               and SHOULD provide Extended or Tailored (Levels 2 and 3) support.</p>
           </div>
         </section>
+        
         <section id="normalizing-spec">
           <h4> Unicode Normalizing Specification Requirements </h4>
           <p>For specifications of text-based formats and protocols that define
@@ -1472,7 +1340,169 @@
               require that the final output of this mechanism be normalized. </p>
           </div>
         </section>
+    </section>
+
+
+
+
+    <section id="expandingCharacterEscapes">
+      <h2>Expanding Character Escapes and Includes</h2>
+      <p>Edit me!</p>
+    </section>
+
+
+    <section id="handlingCaseFolding">
+      <h2>Handling Case Folding</h2>
+        <p>In the Web environment, where multiple character encodings are used
+          to represent strings, including some character encodings which allow
+          multiple representations for the same thing, it's important to
+          establish a consistent process for evaluating string identity.</p>
+        <p>One main consideration in string identity matching is whether the
+          comparison is case sensitive or case insensitive.</p>
+        <div class="requirement">
+          <p>[S] <a href="#case-sensitive">Case sensitive</a> matching is
+            RECOMMENDED as the default for new protocols and formats.</p>
+        </div>
+        <p>However, cases exist in which case-insensitivity is desirable.</p>
+        <p>Where case-insensitive matching is desired, there are several
+          implementation choices that a formal language needs to consider. If
+          the vocabulary of strings to be compared is limited to the Basic Latin
+          (ASCII) subset of Unicode, ASCII-case-insensitive
+          matching MAY be used.</p>
+        <p>If the vocabulary of strings to be compared is not limited, then <a href="#ASCII-case-insensitive">ASCII case-insensitive</a> matching MUST NOT be used. <a
+
+            href="#uci">Unicode case-insensitive</a> matching MUST be applied,
+          even if the vocabulary does not allow the full range of Unicode.</p>
+        <p><a href="#uci">Unicode case-insensitive</a> matching can take several
+          forms. Unicode defines the "common" (C) casefoldings for characters
+          that always have 1:1 mappings of the character to its case folded form
+          and this covers the majority of characters that have a case folding. A
+          few characters in Unicode have a 1:many case folding. This 1:many
+          mapping is called the "full" (F) case fold mapping. For compatibility
+          with certain types of implementation, Unicode also defines a "simple"
+          (S) case fold that is always 1:1.</p>
+        <div class="requirement">
+          <p>Because the "simple" case-fold mapping removes information that can
+            be important to forming an identity match, the "Common plus Full"
+            (or "Unicode C+F") case fold mapping is RECOMMENDED for Unicode
+            case-insensitive matching.</p>
+        </div>
+        <p>A vocabulary is considered to be "ASCII-only" if and only if all
+          tokens and identifiers are defined by the specification directly and
+          these identifiers or tokens use only the Basic Latin subset of
+          Unicode. If user-defined identifiers are permitted, the full range of
+          Unicode characters (limited, as appropriate, for security or
+          interchange concerns, see [[UTR36]]) SHOULD be allowed and Unicode
+          case insensitivity used for identity matching.</p>
+        <div class="requirement">
+          <p>ASCII case-insensitive matching MUST only be applied to
+            vocabularies that are restricted to ASCII. Unicode
+            case-insensitivity MUST be used for all other vocabularies.</p>
+        </div>
+        <p>Note that an ASCII-only vocabulary can exist inside a document format
+          or protocol that allows a larger range of Unicode in identifiers or
+          values.</p>
+        <p class="ednote">Insert example from CSS here.</p>
+        <div class="requirement">
+          <p>Case sensitive matching is RECOMMENDED as the default for any new
+            protocol or format.</p>
+        </div>
+        <p>Case-sensitive matching is the easiest to implement and introduces
+          the least potential for confusion, since it generally consists of a
+          comparison of the underlying Unicode code point sequence. Because it
+          is not affected by considerations such as language-specific case
+          mappings, it produces the least surprise for document authors that
+          have included words (such as the Turkish example above) in their
+          markup.</p>
+        <div class="requirement">
+          <p>If the vocabulary is not restricted to ASCII or permits
+            user-defined values that use a broader range of Unicode, ASCII
+            case-insensitive matching MUST NOT be required.</p>
+        </div>
+         <div class="requirement">
+          <p>[S][I] The <a href="#unicode-cf">Unicode C+F</a> case-fold form is
+            RECOMMENDED as the case-insensitive matching for <a href="#dfn_vocabulary">vocabularies</a>.
+            The Unicode C+S form MUST NOT be used for string identity matching
+            on the Web.</p>
+        </div>
+         <p>Language-sensitive case-sensitive matching in document
+           formats and protocols is NOT RECOMMENDED because language information
+           can be hard to obtain, verify, or manage and the resulting operations
+           can produce results that frustrate users.</p>
+         <div class="requirement">
+           <p>[C] Identifiers SHOULD use consistent case (upper, lower, mixed
+             case) to facilitate matching, even if case-insensitive matching is
+             supported by the format or implementation. </p>
+         </div>
+<section id="formal-language">
+          <h4>Requirements for Specifications</h4>
+          <p>These requirements pertain to specifications for document formats
+            or programming/scripting languages and their implementations.</p>
+          <div class="requirement">
+            <p>[S][I] Specifications and implementations that define string
+              matching as part of the definition of a format, protocol, or
+              formal language (which might include operations such as parsing,
+              matching, tokenizing, etc.) MUST define the criteria and matching
+              forms used. These MUST be one of: </p>
+            <ul>
+              <li>Case-sensitive</li>
+              <li>Unicode case-insensitive using Unicode case-folding C+F</li>
+              <li>ASCII case-insensitive</li>
+            </ul>
+          </div>
+          <div class="requirement">
+            <p>[S] Specifications SHOULD NOT specify case-insensitive comparison
+              of strings.</p>
+          </div>
+          <div class="requirement">
+            <p>[S] Specifications that specify case-insensitive comparison for
+              non-ASCII vocabularies SHOULD specify Unicode case-folding C+F.</p>
+          </div>
+          <p>In some limited cases, locale- or language-specific tailoring might
+            also be appropriate. However, such cases are generally linked to
+            natural language processing operations. Because they produce
+            potentially different results from the generic case folding rules,
+            these should be avoided in formal languages, where predictability is
+            at a premium. </p>
+          <div class="requirement">
+            <p>[S] Specifications MAY specify ASCII case-insensitive comparison
+              for portions of a format or protocol that are restricted to an
+              ASCII-only vocabulary.</p>
+          </div>
+          <p>This requirement applies to formal languages whose keywords are all
+            ASCII and which do not allow user-defined names or identifiers. An
+            example of this is HTML, which defines the use of ASCII
+            case-insensitive comparison for element and attribute names defined
+            by the HTML specification.</p>
+          <div class="requirement">
+            <p>[S][I] Specifications and implementations MUST NOT specify
+              ASCII-only case-insensitive matching for values or constructs that
+              permit non-ASCII characters. </p>
+          </div>
       </section>
+        
+        <section id="non-normalizing">
+          <h4> Non-Normalizing Specification Requirements </h4>
+          <div class="requirement">
+            <p>[S][I] For vocabularies and values that are not restricted to
+              Basic Latin (ASCII), case-insensitive matching MUST specify either
+            Unicode C+F or locale-sensitive string comparison. </p>
+          </div>
+        </section>
+        
+      </section>
+
+
+    <section id="handlingUnicodeControls">
+      <h2>Handling Unicode Controls and Invisible Markers</h2>
+      <div class="requirement">
+        <p>Applications that do string matching SHOULD ignore Unicode
+          formatting controls such as variation selectors; grapheme or word
+          joiners; or other non-semantic controls.</p>
+      </div>
+
+        
+            </section>
     </section>
     <section id="searching">
       <h2>String Searching in Natural Language Content</h2>
