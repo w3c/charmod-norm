@@ -262,7 +262,7 @@
           format as well as string tokens and identifiers that are defined by
           document authors to form the structure of the document (rather than
           the "content" of the document).</p>
-        <div class="example">
+        <aside class="example">
           <p><cite>XML</cite> [[XML10]] defines specific elements, attributes,
             and values that are reserved across all XML documents. Thus, the
             word <code class="kw" translate="no">encoding</code> has a defined
@@ -271,7 +271,7 @@
             document using a DTD. In a document that uses a DTD that defines an
             element called <code class="kw">&lt;muffin&gt;</code>, <span class="qterm">muffin</span>
             is a part of the markup.</p>
-        </div>
+        </aside>
         <p>A <dfn data-lt="resource|resources">resource</dfn> is a given document, file, or
           protocol "message" which includes both the <a>natural
             language content</a> as well as the <a href="#def_markup" class="termref">markup</a>
@@ -556,8 +556,9 @@
           that spring from invisible differences in their source documents. For
           example, the W3C Validator warns when an HTML document is not fully in
           Unicode Normalization Form C.</p>
-        <section id="normalizationForms">
-          <h4>Unicode Normalization Forms</h4>
+          
+          <section id="canonical_compatibility">
+          <h4>Canonical vs. Compatibility Equivalence</h4>
           <p>Unicode defines two types of equivalence between characters: <em>canonical
               equivalence</em> and <em>compatibility equivalence</em>.</p>
           <p><dfn>Canonical equivalence</dfn> is a
@@ -748,8 +749,10 @@
               imply that similar appearance variations produced in the normal
               course of text layout and presentation are affected by Unicode
               Normalization. They are not.</p>
+			</section>
 
-
+		<section id="composition_decomposition">
+        <h4>Composition vs. Decomposition</h4>
           <p>These two types of Unicode-defined equivalence are then grouped by
             another pair of variations: "decomposition" and "composition". In
             "decomposition", separable logical parts of a visual character are
@@ -760,6 +763,21 @@
             characters. Note that this does <strong>not</strong> mean that all
             of the combining marks have been removed from the resulting
             normalized text. </p>
+        <div class="note">
+            <p>Roughly speaking, <abbr title="Normalization Form C">NFC</abbr>
+              is defined such that each combining character sequence (a base
+              character followed by one or more combining characters) is
+              replaced, as far as possible, by a canonically equivalent
+              precomposed character. Text in a Unicode character encoding form
+              (such as UTF-8 or UTF-16) is said to be in NFC if it doesn't
+              contain any combining sequence that could be replaced with a
+              precomposed character and if any remaining combining sequence is
+              in canonical order.</p>
+          </div>
+</section>
+          
+          <section id="normalization_forms">
+          <h4>Unicode Normalization Forms</h4>
           <p>The Unicode Normalization Forms are named using letter codes, with
             'C' standing for Composition, 'D' for Decomposition, and 'K' for
             Compatibility decomposition. Having converted a resource to a
@@ -874,7 +892,7 @@
               normalization forms (that is, NFKD or NFKC), becomes an ASCII
               character sequence that looks like: <samp>81/2</samp>.</li>
           </ul>
-        </section>
+          </section>
         
       </section>
       <section id="characterEscapes">
@@ -1067,7 +1085,7 @@
               <li><em><a data-lt="ASCII case-insensitive">ASCII case folding</a></em>:
                 map all code points in the range 0x41 to 0x5A (A to Z) to the
                 corresponding code points in the range 0x61 to 0x7A (a to z).</li>
-              <li><em><a>Unicode case folding</a></em>: map
+              <li><em><a data-lt="case folding">Unicode case folding</a></em>: map
                 all code points to their Unicode C+F case fold equivalents. Note
                 that this can change the length of the string.</li>
             </ol>
@@ -1112,7 +1130,8 @@
             5 <span class="qterm">Characters with Compatibility Mappings</span>
             in <cite>Unicode in XML and other Markup Languages</cite>
             [[UNICODE-XML]] for a discussion). The NFKD and NFKC normalization
-            forms are therefore excluded. Among the remaining two forms, NFC has
+            forms are therefore excluded.</p>
+          <p>Among the remaining two forms, NFC has
             the advantage that almost all legacy data (if transcoded trivially,
             one-to-one, to a Unicode encoding), as well as data created by
             current software, is already in this form; NFC also has a slight
@@ -1121,17 +1140,6 @@
             issue. This document therefore recommends, when possible, that all
             content be stored and exchanged in Unicode Normalization Form C
             (NFC).</p>
-          <div class="note">
-            <p>Roughly speaking, <abbr title="Normalization Form C">NFC</abbr>
-              is defined such that each combining character sequence (a base
-              character followed by one or more combining characters) is
-              replaced, as far as possible, by a canonically equivalent
-              precomposed character. Text in a Unicode character encoding form
-              (such as UTF-8 or UTF-16) is said to be in NFC if it doesn't
-              contain any combining sequence that could be replaced with a
-              precomposed character and if any remaining combining sequence is
-              in canonical order.</p>
-          </div>
         </section>
         
       <section id="content-reqs">
