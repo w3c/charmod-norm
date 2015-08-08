@@ -108,8 +108,8 @@ span.tableSub {
     
 span.dropExample {
     float: left;
-    width: 3em;
-    margin-left: -3em;
+    width: 6em;
+    margin-left: -6em;
     text-align: center;
     font-size: 200%;
     font-family: sans-serif;
@@ -121,7 +121,7 @@ ul.dropExampleList {
 }
     
 li.dropExampleItem {
-   padding-left: 4em;
+   padding-left: 6em;
    margin-bottom: 1em;
 }
     
