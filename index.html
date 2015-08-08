@@ -5,23 +5,19 @@
     <title>Character Model for the World Wide Web: String Matching and Searching</title>
     <!-- local styles. Includes the styles from http://www.w3.org/International/docs/styleguide -->
 	<link rel="stylesheet" href="local.css" type="text/css" />
-<!--      === NOTA BENE ===      For the three scripts below, if your spec resides on dev.w3 you can check them      out in the same tree and use relative links so that they'll work offline,     -->
     <script src="http://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
     <script class="remove">
       var respecConfig = {
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
           specStatus:           "ED",
-          noRecTrack:           true,
-          
-          shortName:            "charmod-norm",
-
-          copyrightStart: "2004",
-	  
           //publishDate:  "2015-07-21",
-		  previousPublishDate: "2014-07-15",
-		  previousMaturity: "WD",
-		  previousURI: "http://www.w3.org/TR/2012/WD-charmod-norm-20150715/",
-          edDraftURI:   "http://w3c.github.io/charmod-norm/",
+          //previousPublishDate:  "2014-12-16",
+          //previousMaturity:  "FPWD",
+
+          noRecTrack:           true,
+          shortName:            "charmod-norm",
+          copyrightStart: 		"2004",
+          edDraftURI:   		"http://w3c.github.io/charmod-norm/",
 
           // lcEnd: "2009-08-05",
 
@@ -40,14 +36,10 @@
           
           // name of the WG
           wg:           "Internationalization Working Group",
-          
-          // URI of the public WG page
           wgURI:        "http://www.w3.org/International/core/",
-          
-          // name (without the @w3c.org) of the public mailing to which comments are due
           wgPublicList: "www-international",
           
-		  bugTracker: { new: "https://github.com/w3c/charmod-norm/issues", open: "https://github.com/w3c/ilreq/issues" } ,
+		  bugTracker: { new: "https://github.com/w3c/charmod-norm/issues", open: "https://github.com/w3c/charmod-norm/issues" } ,
 		otherLinks: [
 			{
 			key: "Github",
@@ -270,7 +262,7 @@
           format as well as string tokens and identifiers that are defined by
           document authors to form the structure of the document (rather than
           the "content" of the document).</p>
-        <div class="example">
+        <aside class="example">
           <p><cite>XML</cite> [[XML10]] defines specific elements, attributes,
             and values that are reserved across all XML documents. Thus, the
             word <code class="kw" translate="no">encoding</code> has a defined
@@ -279,10 +271,10 @@
             document using a DTD. In a document that uses a DTD that defines an
             element called <code class="kw">&lt;muffin&gt;</code>, <span class="qterm">muffin</span>
             is a part of the markup.</p>
-        </div>
+        </aside>
         <p>A <dfn data-lt="resource|resources">resource</dfn> is a given document, file, or
           protocol "message" which includes both the <a>natural
-            language content</a>) as well as the <a href="#def_markup" class="termref">markup</a>
+            language content</a> as well as the <a href="#def_markup" class="termref">markup</a>
           such as identifiers surrounding or containing it. For example, in an
           HTML document that also has some CSS and a few <code class="kw" translate="no">script</code>
           tags with embedded JavaScript, the entire HTML document, considered as
@@ -483,7 +475,7 @@
           case-insensitive matching can be required. </p>
         <p id="uci"><dfn data-lt="Unicode case-insensitive">Unicode
             case-insensitive matching</dfn> compares a sequence of code points
-          as-if one of the Unicode-defined language-independent default case
+          as if one of the Unicode-defined language-independent default case
           folding forms had been applied to both input sequences. These forms
           are:</p>
         <p class="ednote">Need to insert descriptions of common, full, and
@@ -565,8 +557,9 @@
           that spring from invisible differences in their source documents. For
           example, the W3C Validator warns when an HTML document is not fully in
           Unicode Normalization Form C.</p>
-        <section id="normalizationForms">
-          <h4>Unicode Normalization Forms</h4>
+          
+          <section id="canonical_compatibility">
+          <h4>Canonical vs. Compatibility Equivalence</h4>
           <p>Unicode defines two types of equivalence between characters: <em>canonical
               equivalence</em> and <em>compatibility equivalence</em>.</p>
           <p><dfn>Canonical equivalence</dfn> is a
@@ -618,8 +611,7 @@
               encoded in Unicode. So too are the precomposed syllables. Thus
               the syllable <span class="qchar">가</span>&nbsp; <span class="uname" translate="no">U+AC00</span>
               is canonically equivalent to its constituent <em>jamo</em>
-              characters <span class="qchar">ᄀ</span>&nbsp;<span class="uname" translate="no">U+1100</span>n
-              and <span class="qchar">ᅡ</span>&nbsp;<span class="uname" translate="no">U+1161</span>.</li>
+              characters <span class="qchar">ᄀ</span>&nbsp;<span class="uname" translate="no">U+1100</span> and <span class="qchar">ᅡ</span>&nbsp;<span class="uname" translate="no">U+1161</span>.</li>
           </ul>
           <p><dfn>Compatibility equivalence</dfn>
             is a weaker equivalence between characters or sequences of
@@ -759,8 +751,10 @@
               imply that similar appearance variations produced in the normal
               course of text layout and presentation are affected by Unicode
               Normalization. They are not.</p>
+			</section>
 
-
+		<section id="composition_decomposition">
+        <h4>Composition vs. Decomposition</h4>
           <p>These two types of Unicode-defined equivalence are then grouped by
             another pair of variations: "decomposition" and "composition". In
             "decomposition", separable logical parts of a visual character are
@@ -771,9 +765,24 @@
             characters. Note that this does <strong>not</strong> mean that all
             of the combining marks have been removed from the resulting
             normalized text. </p>
-          <p>The Unicode Normalization Forms are identified using letter codes,
-            with 'C' standing for Composition, 'D' for Decomposition, and 'K'
-            for Kompatibility decomposition. Having converted a resource to a
+        <div class="note">
+            <p>Roughly speaking, <abbr title="Normalization Form C">NFC</abbr>
+              is defined such that each combining character sequence (a base
+              character followed by one or more combining characters) is
+              replaced, as far as possible, by a canonically equivalent
+              precomposed character. Text in a Unicode character encoding form
+              (such as UTF-8 or UTF-16) is said to be in NFC if it doesn't
+              contain any combining sequence that could be replaced with a
+              precomposed character and if any remaining combining sequence is
+              in canonical order.</p>
+          </div>
+</section>
+          
+          <section id="normalization_forms">
+          <h4>Unicode Normalization Forms</h4>
+          <p>The Unicode Normalization Forms are named using letter codes, with
+            'C' standing for Composition, 'D' for Decomposition, and 'K' for
+            Compatibility decomposition. Having converted a resource to a
             sequence of Unicode characters and unescaped any escape sequences,
             we can finally "normalize" the Unicode texts given in the example
             above. Here are the resulting sequences in each Unicode
@@ -914,7 +923,7 @@
   }
 &lt;/style&gt;
 
-&lt;span class="h&amp;#xe9;llo"&gt;<span class="héllo">Hello World!</span>&lt;/span&gt;
+&lt;span class="h&amp;#xe9;llo"&gt;Hello World!&lt;/span&gt;
 </pre>
         <p>You would expect that text to display like the following: <span class="héllo">Hello
             world!</span></p>
@@ -1078,7 +1087,7 @@
               <li><em><a data-lt="ASCII case-insensitive">ASCII case folding</a></em>:
                 map all code points in the range 0x41 to 0x5A (A to Z) to the
                 corresponding code points in the range 0x61 to 0x7A (a to z).</li>
-              <li><em><a>Unicode case folding</a></em>: map
+              <li><em><a data-lt="case folding">Unicode case folding</a></em>: map
                 all code points to their Unicode C+F case fold equivalents. Note
                 that this can change the length of the string.</li>
             </ol>
@@ -1108,7 +1117,7 @@
         the encoding's <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a> contains characters not represented in Unicode.</p>
       <div class="requirement">
         <p>[I] Authoring tools SHOULD provide a means of normalizing resources
-          and warn the user when a given resources is not in Unicode
+          and warn the user when a given resource is not in Unicode
           Normalization Form C.</p>
       </div>
       <section>
@@ -1123,7 +1132,8 @@
             5 <span class="qterm">Characters with Compatibility Mappings</span>
             in <cite>Unicode in XML and other Markup Languages</cite>
             [[UNICODE-XML]] for a discussion). The NFKD and NFKC normalization
-            forms are therefore excluded. Among the remaining two forms, NFC has
+            forms are therefore excluded.</p>
+          <p>Among the remaining two forms, NFC has
             the advantage that almost all legacy data (if transcoded trivially,
             one-to-one, to a Unicode encoding), as well as data created by
             current software, is already in this form; NFC also has a slight
@@ -1132,17 +1142,6 @@
             issue. This document therefore recommends, when possible, that all
             content be stored and exchanged in Unicode Normalization Form C
             (NFC).</p>
-          <div class="note">
-            <p>Roughly speaking, <abbr title="Normalization Form C">NFC</abbr>
-              is defined such that each combining character sequence (a base
-              character followed by one or more combining characters) is
-              replaced, as far as possible, by a canonically equivalent
-              precomposed character. Text in a Unicode character encoding form
-              (such as UTF-8 or UTF-16) is said to be in NFC if it doesn't
-              contain any combining sequence that could be replaced with a
-              precomposed character and if any remaining combining sequence is
-              in canonical order.</p>
-          </div>
         </section>
         
       <section id="content-reqs">
