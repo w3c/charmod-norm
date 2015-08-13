@@ -260,15 +260,17 @@
           wish to treat the default pair of grapheme clusters "ch" as a single
           grapheme cluster. Note that the interaction between the language of
           string content and the end-user's preferences might be complex.</p>
-        <aside class="example"><p>The Hindi word for Unicode <q>यूनिकोड</q> is composed of a
-          sequence of seven Unicode characters from the Devanagari script (<span
-          class="uname" translate="no">U+092F U+0942 U+0928 U+093F U+0915
-          U+094B U+0921</span>). However, most users would identify this word
-          as containing four units of text&mdash;यू, नि, को, and ड. Each of the first
-          three graphemes consists of two characters: a syllable and a modifying
-          vowel character. So the word contains seven Unicode characters, but
-          only four graphemes.</p></aside>
+        <aside class="example">
+          <p>The Hindi word for Unicode <q>यूनिकोड</q> is composed of a
+            sequence of seven Unicode characters from the Devanagari script (<span
 
+              class="uname" translate="no">U+092F U+0942 U+0928 U+093F U+0915
+              U+094B U+0921</span>). However, most users would identify this
+            word as containing four units of text—यू, नि, को, and ड. Each of the
+            first three graphemes consists of two characters: a syllable and a
+            modifying vowel character. So the word contains seven Unicode
+            characters, but only four graphemes.</p>
+        </aside>
         <p><dfn>Natural language content</dfn> refers to the language-bearing
           content in a document and <b>not</b> to any of the surrounding markup
           or identifiers that form part of the document structure. You can think
@@ -450,11 +452,62 @@
           variations that need to be considered when treating the full range of
           Unicode in diverse languages. For more information, <cite>Unicode</cite>
           [[!UNICODE]] Section 5.18 discusses case folding in detail.</p>
-        <p>Case folding in Unicode has a number of side-effects or potential
-          side-effects on the processing of a resource. One is that case folding
-          may not preserve the length of the original text: some mappings
-          increase or decrease the total number of characters needed. In
-          addition, case folding removes information from a string which cannot
+          
+        <p>Unicode defines the default case fold mapping for each Unicode code point.
+         Since most scripts do not provide a case distinction, most Unicode code 
+		points do not require a case fold mapping. For those characters that 
+		have a case fold mapping, the majority have a simple, straight-forward 
+		mapping to a single matching (generally lowercase) code point. Unicode 
+		calls these the <code class="kw">common</code> case fold mappings, as they are shared by 
+		Unicode's case fold mappings.
+         </p>
+		  <p>In addition to the <code class="kw">common</code> case folding mappings, a few characters 
+		  have a case fold mapping that would normally require more than one 
+		  Unicode character. These are called the <code class="kw">full</code> case fold mappings. 
+		  Together with the <code class="kw">common</code> case fold mappings, these provide the 
+		  default case fold mapping for all of Unicode and referred to in this 
+		  document as <dfn id="dfn-UnicodeC+F">Unicode C+F</dfn>.
+         </p>
+		  <p>Because some applications cannot allocate additional storage when 
+		  performaing a case fold operation, Unicode provides a <code class="kw">simple</code> case 
+		  fold mapping that maps characters that would normally map to more or 
+		  fewer code points to use a single code point for comparison purposes 
+		  instead. Unlike the full mapping, this mapping invariably alters the 
+		  content of the text. This <code class="kw">simple</code> case fold mapping, referred to in this document 
+		  as <dfn id=""dfn="UnicodeC+S">Unicode C+S</dfn>, is not appropriate for the Web. </p>
+		  
+		  <aside class="example">
+		  <p>One well-known example of a 'full' case fold mapping is the character <span class="qchar">&#xdf;</span>
+		  <span class="uname" translate="no">U+00DF LATIN SMALL LETTER SHARP S</span>, a letter that is commonly
+		  used in the German language. The 'full' mapping of this character is to two ASCII letters 's'. 
+		  There is no 'simple' mapping for this letter. Other examples can 
+		  be found in the Greek script, where several precomposed characters have multi-character
+		  case fold mappings. For example:</p>
+		  	<table style="width: 100%">
+				<tr>
+					<td>Mapping</td>
+					<td>From</td>
+					<td>To</td>
+					<td>Comments</td>
+				</tr>
+				<tr>
+					<td>Full</td>
+					<td>ᾛ U+1F9B</td>
+					<td>ἣι U+1F23 U+03B9</td>
+					<td>GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND 
+					PROSGEGRAMMENI</td>
+				</tr>
+				<tr>
+					<td>Simple</td>
+					<td>ᾛ U+1F9B</td>
+					<td>ᾓ U+1F93</td>
+					<td>&nbsp;</td>
+				</tr>
+			  </table>
+		  <p class="ednote">Needs more work.</p>
+		  </aside>
+          
+        <p>Note that case folding removes information from a string which cannot
           be recovered later.</p>
         <p>Another aspect of case folding is that it can be language sensitive.
           Unicode defines default case mappings for each encoded character, but
@@ -474,10 +527,6 @@
               class="uname" translate="no">U+0131 LATIN SMALL LETTER DOTLESS I</span>)
             maps to the ASCII uppercase <span class="qchar">I</span>. </p>
         </aside>
-        There are four types of casefold matching defined for the purposes of
-        string identity matching in document formats or protocols:
-        <p><dfn data-lt="case sensitive">Case sensitive matching</dfn>: code
-          points are compared directly with no case folding.</p>
         <p>Sometimes case can vary in a way that is not semantically meaningful
           or is not fully under the user's control. This is particularly true
           when <a href="#searching">searching</a> a document, but also applies
@@ -488,7 +537,11 @@
           whether the values are restricted to the ASCII subset of Unicode or if
           the vocabulary permits the use of characters (such as accents on Latin
           letters or a broad range of Unicode including non-Latin scripts) that
-          potentially have more complex case folding requirements.</p>
+          potentially have more complex case folding requirements.
+        To address these different requirements, there are four types of casefold matching defined by this document for the purposes of
+        string identity matching in document formats or protocols:
+        <p><dfn data-lt="case sensitive">Case sensitive matching</dfn>: code
+          points are compared directly with no case folding.</p>
         <p><dfn data-lt="ASCII case-insensitive">ASCII case-insensitive matching</dfn>
           compares a sequence of code points as if all ASCII code points in the
           range 0x41 to 0x5A (A to Z) were mapped to the corresponding code
@@ -497,25 +550,8 @@
         </p>
         <p id="uci"><dfn data-lt="Unicode case-insensitive">Unicode
             case-insensitive matching</dfn> compares a sequence of code points
-          as if one of the Unicode-defined language-independent default case
-          folding forms had been applied to both input sequences. These forms
-          are:</p>
-        <p class="ednote">Need to insert descriptions of common, full, and
-          simple. Richard mentions: The above needs significant expansion - it's
-          some of the stuff that we need to explain most clearly to spec
-          developers and implementers. We should also add that the case folding
-          algorithms are somewhat different from the simple upper and lower case
-          conversions.</p>
-        <ul>
-          <li>
-            <p><dfn>Unicode C+F</dfn> (Unicode Full Casefold). This case-fold
-              uses the "common" plus the "full" case-fold.</p>
-          </li>
-          <li>
-            <p><dfn>Unicode C+S</dfn> (Unicode Simple Casefold). Unicode also
-              defines a "common" plus "simple" case-fold.</p>
-          </li>
-        </ul>
+          as if the Unicode C+F Unicode-defined language-independent default case
+          folding form mentioned above had been applied to both input sequences.</p>
         <p><dfn>Language-sensitive case-sensitive matching</dfn> is useful in
           the rare case where a document format or protocol contains information
           about the language of the markup and where language-sensitive case
@@ -748,7 +784,7 @@
                       text.</td>
                     <td style="text-align: center"> <span class="charSample">㌀</span></td>
                     <td style="text-align: center"> <span class="charSample">㍐</span></td>
-                    <td style="text-align: center"> <span class="charSample">🄠</span></td>
+                    <td style="text-align: center"> <span class="charSample">��</span></td>
                     <td style="text-align: center"> <span class="charSample">㎉</span></td>
                   </tr>
                   <tr>
@@ -1013,7 +1049,7 @@
                   graphemes and which are common in languages that do not use
                   spaces between words or for which the renderer needs
                   assistance in composing characters</td>
-                <td><br>
+                <td> <br>
                 </td>
               </tr>
               <tr>
@@ -1025,15 +1061,15 @@
                   as well as generally for certain scripts (such as Mongolian).
                   They are also used to select between black-and-white and color
                   emoji.</td>
-                <td><br>
+                <td> <br>
                 </td>
               </tr>
               <tr>
-                <td><br>
+                <td> <br>
                 </td>
-                <td><br>
+                <td> <br>
                 </td>
-                <td><br>
+                <td> <br>
                 </td>
               </tr>
             </tbody>
@@ -1042,7 +1078,8 @@
         <p class="ednote">This section was added and needs further fleshing out.
           The requirement probably wants to live in the requirements section. <span
 
-            style="color:blue;font-size:small">2015-02-07AP</span> </p>
+            style="color:blue;font-size:small">2015-02-07AP</span>
+        </p>
       </section>
       <section id="legacyCharacterEncoding">
         <h3>Legacy Character Encodings</h3>
@@ -1145,7 +1182,6 @@
           <li>Test the resulting sequences of code points bit-by-bit for
             identity.</li>
         </ol>
-        <br>
       </section>
       <section id="convertingToCommonUnicodeForm">
         <h2>Converting to a Common Unicode Form</h2>
@@ -1611,8 +1647,8 @@
           <li>Ｋ U+FF2B</li>
           <li>(a variety of mathematical symbols such as
             U+1D40A,U+1D43E,U+1D472,U+1D4A6,U+1D4DA)</li>
-          <li>🄚 U+1F11A</li>
-          <li>🄺 U+1F13A.</li>
+          <li>�� U+1F11A</li>
+          <li>�� U+1F13A.</li>
         </ol>
         <p>Other differences include Unicode Normalization forms (or lack
           thereof). There are also ignorable characters (such as the variation
@@ -1689,6 +1725,5 @@
           Progress Software)</li>
       </ul>
     </section>
-    
   </body>
 </html>
