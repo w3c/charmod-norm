@@ -12,21 +12,16 @@ This document is being developed by the Internationalization Working Group.
 
 ##Last-minute Pre-publication edits##
 
-make the following changes to the respec file and push to github 
+1. make the following changes to the respec file and push to github 
 
-[1] in the SOTD, change the link on "latest dated version in /TR" to point to the location of the document that is about to be published 
+ 1. in the SOTD, change the link on "latest dated version in /TR" to point to the location of the document that is about to be published 
 
-[2] change  
-```<link rel="canonical" href="http://www.w3.org/TR/2015/WD-clreq-XXXXXXX/"/>```
-to point to the same location 
+ 2. change the following to point to the same location
+ ```<link rel="canonical" href="http://www.w3.org/TR/2015/WD-charmod-norm-XXXXXXX/"/>```
 
-[3] change previousPublishDate to reflect the date of the last publication 
+ 3. change previousPublishDate to reflect the date of the last publication 
 
+2. Remove the following from the snapshot of the file that will be published to TR. 
+ ```<link rel="canonical" href="http://www.w3.org/TR/2015/WD-charmod-norm-XXXXXXXX/"/>``` 
 
-Make the following edit to the snapshot of the file that will be published to TR. 
-
-remove 
-```<link rel="canonical" href="http://www.w3.org/TR/2015/WD-clreq-XXXXXXXX/"/>``` 
-
-
-Edit this README file to point to the latest published version.
+3. Edit this README file to point to the latest published version.
