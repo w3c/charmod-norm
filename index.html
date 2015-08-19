@@ -242,7 +242,7 @@
         <p>A <dfn data-lt="legacy character encoding|legacy character encodings">legacy
             character encoding</dfn> is a character encoding not based on the
           Unicode character set.</p>
-        <p>A <dfn lang-lt="grapheme|graphemes">grapheme</dfn> is a sequence of
+        <p>A <dfn data-lt="grapheme|graphemes">grapheme</dfn> is a sequence of
           one or more Unicode characters in a visual representation of some text
           that a typical user would perceive as being a single unit (<q>character</q>).
           Graphemes are important for a number of text operations such as
@@ -565,37 +565,34 @@
         <h3>Unicode Normalization</h3>
         <p>Other kinds of variations can occur in Unicode text: some <a data-lt="grapheme">graphemes</a>
           can be represented by several different Unicode code point sequences.
-          Consider the character <span class="uname" translate="no">Ǻ U+01FA
+          Consider the character &#x01FA; <span class="uname" translate="no"> U+01FA
             LATIN LETTER CAPITAL A WITH RING ABOVE AND ACUTE</span>. Here are
           some of the different character sequences that an HTML document could
           use to represent this character:</p>
         <ul class="dropExampleList">
-          <li class="dropExampleItem"><span class="dropExample">Ǻ</span> <span
-
-              class="uname" translate="no">U+01FA</span>— A "precomposed"
-            character.</li>
-          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><span
+          <li class="dropExampleItem"><span class="dropExample">&#x01FA;</span> <span class="uname" translate="no">U+01FA</span>—A "precomposed" character.</li>
+          <li class="dropExampleItem"><span class="dropExample">A&#x030A;&#x0301;</span><span
 
               class="uname" translate="no">A&nbsp;+&nbsp;U+030A&nbsp;+&nbsp;U+0301</span>—
             A <span class="qterm">base</span> letter <span class="qchar">A</span>
             followed by two combining marks (<span class="uname" translate="no">U+030A
               COMBINING RING ABOVE</span> and <span class="uname" translate="no">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
-          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><span class="uname"
+          <li class="dropExampleItem"><span class="dropExample">&#x00C5;&#x0301;</span><span class="uname"
 
               translate="no">U+00C5 + U+0301</span>—An accented letter (<span class="uname"
 
               translate="no">U+00C5 LATIN CAPITAL LETTER A WITH RING ABOVE</span>)
             followed by a combining accent (<span class="uname" translate="no">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
-          <li class="dropExampleItem"><span class="dropExample">Ǻ</span><span class="uname"
+          <li class="dropExampleItem"><span class="dropExample">&#x212B;&#x0301;</span><span class="uname"
 
               translate="no">U+212B + U+0301</span>—A compatibility character (<span
 
               class="uname" translate="no">U+212B ANGSTROM SIGN</span>) followed
             by a combining accent (<span class="uname" translate="no">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
-          <li class="dropExampleItem"><span class="dropExample">Ａ̊́</span><span
+          <li class="dropExampleItem"><span class="dropExample">&#xFF21;&#x030A;&#x0301;</span><span
 
               class="uname" translate="no">U+FF21 + U+030A + U+0301</span>— A
             compatibility character <span class="uname" translate="no">U+FF21
@@ -646,7 +643,7 @@
           <p>Examples of canonical equivalence defined by Unicode include:</p>
           <ul class="dropExampleList">
             <li class="dropExampleItem"><span class="dropExample">Ç<span style="font-size:75%">
-                  vs.</span>Ç</span> <em>Precomposed versus combining
+                  vs.</span>C&#x0327;</span> <em>Precomposed versus combining
                 sequences.</em> Some characters can be composed from a base
               character followed by one or more combining characters. The same
               characters are sometimes also encoded as a distinct "precomposed"
@@ -659,21 +656,21 @@
 
                 translate="no">U+0327</span>. Such equivalence can extend to
               characters with multiple combining marks.</li>
-            <li class="dropExampleItem"><span class="dropExample">q̣̇<span style="font-size:75%">
-                  vs.</span>q̣̇</span> <em>Order of combining marks.</em> When
+            <li class="dropExampleItem"><span class="dropExample">q&#x0307;&#x0323;<span style="font-size:75%">
+                  vs.</span>q&#x0323;&#x0307;</span> <em>Order of combining marks.</em> When
               a base character is modified by multiple combining marks, the
               order of the combining marks might not represent a distinct
-              character. Here the sequence <span class="qterm">q̣̇</span>(<span
+              character. Here the sequence <span class="qterm">q&#x0307;&#x0323;</span>(<span
 
                 class="uname" translate="no">U+0071 U+0323 U+0307</span>) and <span
 
-                class="qterm">q̣̇</span>(<span class="uname" translate="no">U+0071
+                class="qterm">q&#x0323;&#x0307;</span>(<span class="uname" translate="no">U+0071
                 U+0307 U+0323</span>) are equivalent, even though the combining
               marks are in a different order. Note that this example is chosen
               carefully: the dot-above character and dot-below character are on
               opposite "sides" of the base character. The order of combining
               diacritics on the same side have a positional meaning.</li>
-            <li class="dropExampleItem"><span class="dropExample">Ω<span style="font-size:75%">
+            <li class="dropExampleItem"><span class="dropExample">&#x2126;<span style="font-size:75%">
                   vs.</span>Ω</span> <em>Singleton mappings.</em> These result
               from the need to separately encode otherwise equivalent characters
               to support legacy character encodings. In this example, the Ohm
@@ -683,7 +680,7 @@
 
                 translate="no">U+03A9</span>.</li>
             <li class="dropExampleItem"><span class="dropExample">가<span style="font-size:75%">
-                  vs.</span>가</span> <em>Hangul.</em> The Hangul script is
+                  vs.</span>&#x1100;&#x1161;</span> <em>Hangul.</em> The Hangul script is
               used to write the Korean language. This script is constructed
               logically, with each syllable being a roughly-square <a>grapheme</a>
               formed from specific sub-parts that represent consonants and
@@ -784,7 +781,7 @@
                       text.</td>
                     <td style="text-align: center"> <span class="charSample">㌀</span></td>
                     <td style="text-align: center"> <span class="charSample">㍐</span></td>
-                    <td style="text-align: center"> <span class="charSample">��</span></td>
+                    <td style="text-align: center"> <span class="charSample">🄠</span></td>
                     <td style="text-align: center"> <span class="charSample">㎉</span></td>
                   </tr>
                   <tr>
@@ -885,69 +882,69 @@
                     <th>NFKD</th>
                   </tr>
                 </thead>
-                <tbody>
+<tbody>
                   <tr>
-                    <td class="b-clear">Ǻ<br>
+                    <td class="b-clear">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b1">Ǻ<br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ<br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                    <td class="b1">Ǻ<br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ<br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">Ǻ<br>
+                    <td class="b-clear">&#x00C5;&#x0301;<br>
                       <span class="tableSub">U+00C5 U+0301</span></td>
-                    <td class="b1">Ǻ<br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ<br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                    <td class="b1">Ǻ<br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ<br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">Ǻ<br>
+                    <td class="b-clear">&#x212B;&#x0301;<br>
                       <span class="tableSub">U+212B U+0301</span></td>
-                    <td class="b1">Ǻ<br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ<br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                    <td class="b1">Ǻ<br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ<br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">Ǻ<br>
+                    <td class="b-clear">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                    <td class="b1">Ǻ<br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ<br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub"> U+0041 U+030A U+0301</span></td>
-                    <td class="b1">Ǻ<br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ<br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">Ａ̊́<br>
+                    <td class="b-clear">&#xFF21;&#x030A;&#x0301;<br>
                       <span class="tableSub">U+FF21 U+030A U+0301</span></td>
-                    <td class="b3">Ａ̊́<br>
+                    <td class="b3">&#xFF21;&#x030A;&#x0301;<br>
                       <span class="tableSub">U+FF21 U+030A U+0301</span></td>
-                    <td class="b3">Ａ̊́<br>
+                    <td class="b3">&#xFF21;&#x030A;&#x0301;<br>
                       <span class="tableSub"> U+FF21 U+030A U+0301</span></td>
-                    <td class="b1">Ǻ<br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">Ǻ<br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                 </tbody>
-              </table>
+               </table>
             </div>
             <figcaption>Comparison of Unicode Normalization Forms</figcaption> </figure>
           <p>Unicode Normalization reduces these (and other potential sequences
@@ -1190,9 +1187,7 @@
             that conversions from legacy character encodings use a "normalizing
             transcoder".</p>
         </div>
-        <p id="def-normalizing-transcoder">A <span class="new-term">normalizing
-            transcoder</span> is a transcoder that converts from a <a href="#def-legacyEnc">legacy
-            character encoding</a> to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode
+        <p>A <dfn data-lt="normalizing transcoder|normalizing transcoders">normalizing transcoder</dfn> is a transcoder that converts from a <a>legacy character encoding</a> to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode
             encoding form</a> <em>and</em> ensures that the result is in
           Unicode Normalization Form C. For most legacy character encodings, it
           is possible to construct a normalizing transcoder (by using any
@@ -1647,8 +1642,8 @@
           <li>Ｋ U+FF2B</li>
           <li>(a variety of mathematical symbols such as
             U+1D40A,U+1D43E,U+1D472,U+1D4A6,U+1D4DA)</li>
-          <li>�� U+1F11A</li>
-          <li>�� U+1F13A.</li>
+          <li>🄚  U+1F11A</li>
+          <li>🄺 U+1F13A.</li>
         </ol>
         <p>Other differences include Unicode Normalization forms (or lack
           thereof). There are also ignorable characters (such as the variation
