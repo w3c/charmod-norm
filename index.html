@@ -183,7 +183,7 @@
         <p>This document defines two basic building blocks for the Web related
           to this problem. First, it defines rules and processes for String
           Identity Matching in document formats. These rules are designed for
-          the identifiers and structural markup (<a href="#def_markup" class="termref">markup</a>)
+          the identifiers and structural markup (<a href="#def_syntactic_content" class="termref">syntactic content</a>)
           used in document formats to ensure consistent processing of each and
           are targeted to Specification writers. Second, it defines broader
           guidelines for handling user visible text, such as natural language
@@ -273,24 +273,24 @@
             characters, but only four graphemes.</p>
         </aside>
         <p><dfn>Natural language content</dfn> refers to the language-bearing
-          content in a document and <b>not</b> to any of the surrounding markup
+          content in a document and <b>not</b> to any of the surrounding syntactic content
           or identifiers that form part of the document structure. You can think
           of it as the actual "content" of the document or the "message" in a
           given protocol. Note that the natural language content can include
           items such as the document title as well as prose content within the
           document.</p>
-        <p><dfn id="def_markup">Markup</dfn> is any text in a document format or
+        <p><dfn id="def_syntactic_content">Syntactic content</dfn> is any text in a document format or
           protocol that belongs to the structure of the format or protocol. This
           definition can include values that are not typically thought of as
           "markup", such as the name of a field in an HTTP header, as well as
           all of the characters that form the structure of a format or protocol.
           For example, <span class="qchar">&lt;</span> or <span class="qchar">&gt;</span>
           are part of the markup in an HTML document. </p>
-        <p>Markup usually is defined by a specification or specifications and
+        <p>Syntactic content usually is defined by a specification or specifications and
           includes both the defined, reserved keywords for the given protocol or
           format as well as string tokens and identifiers that are defined by
           document authors to form the structure of the document (rather than
-          the "content" of the document).</p>
+        the "content" of the document).</p>
         <aside class="example">
           <p><cite>XML</cite> [[XML10]] defines specific elements, attributes,
             and values that are reserved across all XML documents. Thus, the
@@ -299,11 +299,11 @@
             XML also allows a user to define elements and attributes for a given
             document using a DTD. In a document that uses a DTD that defines an
             element called <code class="kw">&lt;muffin&gt;</code>, <span class="qterm">muffin</span>
-            is a part of the markup.</p>
+          is a part of the syntactic content.</p>
         </aside>
         <p>A <dfn data-lt="resource|resources">resource</dfn> is a given
           document, file, or protocol "message" which includes both the <a>natural
-            language content</a> as well as the <a href="#def_markup" class="termref">markup</a>
+            language content</a> as well as the <a href="#def_syntactic_content" class="termref">syntactic content</a>
           such as identifiers surrounding or containing it. For example, in an
           HTML document that also has some CSS and a few <code class="kw" translate="no">script</code>
           tags with embedded JavaScript, the entire HTML document, considered as
@@ -344,7 +344,7 @@
           </div>
           <p>Everything inside the black rectangle (that is, in this HTML file)
             is part of the resource.</p>
-          <p><a>Markup</a> is shown in a <span class="markup">monospaced font</span>.</p>
+          <p><a>Syntactic content</a> is shown in a <span class="markup">monospaced font</span>.</p>
           <p><a>Natural language content</a> is shown in a <span class="shakespeare">bold
               blue font with a gray background</span>.</p>
           <p>User values are shown in <span class="userValue">italics</span>.</p>
@@ -354,11 +354,11 @@
             natural language content at all (consider an HTML document
             consisting of four empty <code>div</code> elements styled to be
             orange rectangles). It's also possible that a resource will contain
-            <em>no</em> markup and consist solely of natural language content:
+            <em>no</em> syntactic content and consist solely of natural language content:
             for example, a plain text file with a soliloquy from <cite>Hamlet</cite>
             in it. Notice too that the HTML entity <span class="uname" translate="no">&amp;#x2019;</span>
             appears in the natural language content and belongs to both the
-            natural language content and the markup in this resource.</p>
+          natural language content and the syntactic content in this resource.</p>
         </div>
       </section>
       <section id="conformance">
@@ -413,7 +413,7 @@
       <p>The Web is primarily made up of document formats and protocols based on
         character data. These formats or protocols can be viewed as a set of
         text files (<a data-lt="resource">resources</a>) that include some form
-        of structural markup. Processing such markup or document data requires
+        of structural markup or syntactic content. Processing such syntactic content or document data requires
         string-based operations such as matching, indexing, searching, sorting,
         regular expression matching, and so forth. As a result, the Web is
         sensitive to the different ways in which text might be represented in a
@@ -555,7 +555,7 @@
           folding form mentioned above had been applied to both input sequences.</p>
         <p><dfn>Language-sensitive case-sensitive matching</dfn> is useful in
           the rare case where a document format or protocol contains information
-          about the language of the markup and where language-sensitive case
+          about the language of the syntactic content and where language-sensitive case
           folding might sensibly be applied. <span class="requirement">In these
             cases, tailoring of the Unicode case-fold mappings above to match
             the expectations of that language SHOULD be specified and applied.</span>
@@ -616,7 +616,7 @@
           effects of these variations because their specifications and
           implementations on the Web do not require Unicode Normalization of the
           text, nor do they take into consideration the string matching
-          algorithms used when processing the markup and content later. For this
+          algorithms used when processing the syntactic content and natural language content later. For this
           reason, content developers need to ensure that they have provided a
           consistent representation in order to avoid problems later.</p>
         <p>However, it can be difficult for users to assure that a given <a data-lt="resource">resource</a>
@@ -1130,9 +1130,9 @@
       </section>
     </section>
     <section id="identityMatching">
-      <h2>String Matching of Markup in Document Formats and Protocols</h2>
+      <h2>String Matching of Syntactic Content in Document Formats and Protocols</h2>
       <p>This chapter defines the implementation and requirements for string
-        matching in <a href="#def_markup" class="termref">markup</a>.</p>
+        matching in <a href="#def_syntactic_content" class="termref">syntactic content</a>.</p>
       <section id="matchingAlgorithm">
         <h2>The Matching Algorithm</h2>
         <p>This section defines the algorithm for matching strings. String
@@ -1258,7 +1258,7 @@
           <p>There can be exceptions to this, for example, when making a list of
             characters (such as a Unicode demo). This avoids problems with
             unintentional display or with naive implementations that combine the
-            combining mark with adjacent markup or other natural language
+            combining mark with adjacent syntactic content or other natural language
             content. For example, if you were to use <span class="uname" translate="no">U+301</span>
             as the start of a "class" attribute value in HTML, the class name
             might not display properly in your editor.</p>
@@ -1358,7 +1358,7 @@
             <p>[S] Specifications of text-based languages and protocols SHOULD
               define precisely the construct boundaries necessary to obtain a
               complete definition of full-normalization. These definitions
-              SHOULD include at least the boundaries between markup and
+              SHOULD include at least the boundaries between syntactic content and
               character data as well as entity boundaries (if the language has
               any include mechanism) , SHOULD include any other boundary that
               may create denormalization when instances of the language are
@@ -1371,7 +1371,7 @@
               from creating content with composing characters at the beginning
               of constructs that may be significant, such as at the beginning of
               an entity that will be included, immediately after a construct
-              that causes inclusion or immediately after markup, or SHOULD warn
+              that causes inclusion or immediately after syntactic content, or SHOULD warn
               users when they do so. </p>
           </div>
           <div class="requirement">
@@ -1458,7 +1458,7 @@
           is not affected by considerations such as language-specific case
           mappings, it produces the least surprise for document authors that
           have included words (such as the Turkish example above) in their
-          markup.</p>
+          syntactic content.</p>
         <div class="requirement">
           <p>If the vocabulary is not restricted to ASCII or permits
             user-defined values that use a broader range of Unicode, ASCII
