@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Noto Sans'), local('NotoSans'), url('./font.woff2')
+}
+
 body {
 	counter-reset: requirement;
 }
@@ -33,10 +40,9 @@ del {
 
 figure { 
 	margin-bottom: 2em; 
-	text-align: center;
-	}
+}
 figcaption {
-	 text-align: center;
+	text-align: center;
 	margin: 0.5em 2em;
 	font-style: italic;
 	font-size: 90%;
@@ -72,11 +78,11 @@ a.termref:active {
 .quote:after { content: '"'; }
 code { 
 	color: #A52A2A; 
-    font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace; 
+    font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", NotoSans, monospace; 
     font-size: 100%; 
     }
 samp, kbd { 
-	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace; 
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", NotoSans, monospace; 
     font-size: 100%; 
     }
 .uname {
@@ -95,7 +101,7 @@ div.requirement {
 
 div.requirement p:before {
 	content: "C" counter(requirement) " \00A0";
-	font-family:Tahoma, Geneva, sans-serif;
+	font-family:Tahoma, Geneva, NotoSans, sans-serif;
 	font-weight: bold;
 	font-size: smaller;
 	text-transform: capitalize;
@@ -155,7 +161,7 @@ div.exampleBox {
 }
 
 .markup {
-	font-family: Lucida Console,monospaced;
+	font-family: Lucida Console,NotoSans, monospaced;
 }
 
 .shakespeare {
