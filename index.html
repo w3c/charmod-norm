@@ -297,7 +297,7 @@
           "markup", such as the name of a field in an HTTP header, as well as
           all of the characters that form the structure of a format or protocol.
           For example, <span class="qchar">&lt;</span> or <span class="qchar">&gt;</span>
-          are part of the markup in an HTML document. </p>
+          are part of the syntactic content in an HTML document. </p>
         <p>Syntactic content usually is defined by a specification or specifications and
           includes both the defined, reserved keywords for the given protocol or
           format as well as string tokens and identifiers that are defined by
@@ -327,7 +327,7 @@
           type of characters that can appear in different places. For example,
           HTML defines the names of its elements and attributes, as well as
           enumerated attribute values, which defines the "vocabulary" of HTML
-          markup. ECMAScript restricts the range of characters that can appear
+          <a href="#def_syntactic_content" class="termref">syntactic content</a>. ECMAScript restricts the range of characters that can appear
           at the start or in the body of an identifier or variable name (while
           different rules apply to the values of, say, string literals).</p>
         <aside class="example" id="Figure1">
@@ -1164,13 +1164,13 @@
             <p>Expansion of all character escapes and includes.</p>
             <div class="note">
               <p>The expansion of character escapes and includes is dependent on
-                context, that is, on which markup or programming language is
+                context, that is, on which <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language is
                 considered to apply when the string matching operation is
                 performed. Consider a search for the string <span class="qterm">suçon</span>
                 in an XML document containing <code>su&amp;#xE7;on</code> but
                 not <code>suçon</code>. If the search is performed in a plain
                 text editor, the context is <span class="new-term">plain text</span>
-                (no markup or programming language applies), the <code class="kw">&amp;#xE7;</code>
+                (no <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language applies), the <code class="kw">&amp;#xE7;</code>
                 character escape is not recognized, hence not expanded and the
                 search fails. If the search is performed in an XML browser, the
                 context is <code>XML</code>, the character escape (defined by
