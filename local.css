@@ -1,3 +1,7 @@
+body {
+	counter-reset: requirement;
+}
+
 h2 {
 	margin-top: 3em;
 	margin-bottom: 0em;
