@@ -318,9 +318,10 @@
           markup. ECMAScript restricts the range of characters that can appear
           at the start or in the body of an identifier or variable name (while
           different rules apply to the values of, say, string literals).</p>
-        <div class="exampleBox" id="Figure1">
-          <h2>Figure 1: Terminology examples</h2>
-          <div style="border-style: solid; border-width:3px; padding-left: 50px; padding-right: 50px; padding-top: 10px; width: 80%">
+        <aside class="example" id="Figure1">
+        <figure id="f1">
+          <figcaption>Terminology examples</figcaption>
+          <div style="background-color:white;text-align: left; border-style: solid; border-width:3px; padding-left: 50px; padding-right: 50px; padding-top: 10px; width: 80%">
             <p> <span class="markup">&lt;html lang="en" dir="ltr"&gt;<br>
                 &lt;head&gt;</span></p>
             <p><span class="markup">&nbsp; &lt;meta charset="UTF-8"&gt;<br>
@@ -342,14 +343,15 @@
                 &lt;/body&gt;<br>
                 &lt;/html&gt;</span> </p>
           </div>
-          <p>Everything inside the black rectangle (that is, in this HTML file)
-            is part of the resource.</p>
-          <p><a>Syntactic content</a> is shown in a <span class="markup">monospaced font</span>.</p>
-          <p><a>Natural language content</a> is shown in a <span class="shakespeare">bold
-              blue font with a gray background</span>.</p>
-          <p>User values are shown in <span class="userValue">italics</span>.</p>
-          <p class="issue">still need to mark up vocabulary</p>
-          <p>All of the text above (all text in a text file) makes up a
+          <ul style="text-align:left">
+          <li>Everything inside the black rectangle (that is, in this HTML file)
+            is part of the resource.</li>
+          <li><a>Syntactic content</a> is shown in a <span class="markup">monospaced font</span>.</li>
+          <li><a>Natural language content</a> is shown in a <span class="shakespeare">bold
+              blue font with a gray background</span>.</li>
+          <li>User values are shown in <span class="userValue">italics</span>.</li>
+          <li class="issue">still need to mark up vocabulary</li>
+          <li>All of the text above (all text in a text file) makes up a
             resource. It's possible that a given resource will contain no
             natural language content at all (consider an HTML document
             consisting of four empty <code>div</code> elements styled to be
@@ -358,8 +360,9 @@
             for example, a plain text file with a soliloquy from <cite>Hamlet</cite>
             in it. Notice too that the HTML entity <span class="uname" translate="no">&amp;#x2019;</span>
             appears in the natural language content and belongs to both the
-          natural language content and the syntactic content in this resource.</p>
-        </div>
+          natural language content and the syntactic content in this resource.</li>
+          </ul>
+        </figure></aside>
       </section>
       <section id="conformance">
         <h4>Conformance</h4>
