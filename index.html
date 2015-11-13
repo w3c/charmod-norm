@@ -1100,7 +1100,7 @@
       </section>
       <section id="legacyCharacterEncoding">
         <h3>Legacy Character Encodings</h3>
-        <p>Finally, <a>resources</a> can use different character encoding
+        <p>R<a>esources</a> can use different character encoding
           schemes, including <a>legacy character encodings</a>, to serialize
           document formats on the Web. Each character encoding scheme uses
           different byte values and sequences to represent a given subset of the
@@ -1146,6 +1146,21 @@
           that transcoders inconsistent with the Encoding specification won't be
           applied to documents found on the Web or used to process data
           appearing in a particular document format or protocol.</p>
+      </section>
+      <section id="otherEquivalences">
+         <h3>Other Types of Equivalence</h3>
+         <p>The preceding types of character equivalence are all based on 
+		 character properties assigned by Unicode or due to the mapping of 
+		 legacy character encodings to the Unicode character set. There also 
+		 exist certain types of "interesting equivalence" that may be useful, 
+		 particularly in searching text, that are outside of the equivalences 
+		 defined by Unicode. For example, Japanese uses two syllabic scripts,
+		 <code>hiragana</code> and <code>katakana</code>. A user searching a 
+		 document may type in one script, but wish to find equivalent text in 
+		 the both scripts. These additional "text normalizations" are sometimes 
+		 application, natural language, or domain specific and shouldn't be 
+		 overlooked by specifications or implementations as an additional 
+		 consideration.</p>
       </section>
     </section>
     <section id="identityMatching">
