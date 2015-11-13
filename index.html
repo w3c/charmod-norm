@@ -80,6 +80,12 @@
 			authors: [ "Mark Davis", "Ken Whistler", "Markus Scherer" ]
 		},
 		
+		"UAX11": {
+		    title: "Unicode Standard Annex #11: East Asian Width",
+		    href: "http://www.unicode.org/reports/tr11/",
+		    authors: [ "Ken Lunde 小林劍" ]
+		},
+		
 		"UTR29": {
 			title: "Unicode Text Segmentation",
 			href: "http://www.unicode.org/reports/tr29/",
@@ -90,6 +96,12 @@
 			title: "Unicode Technical Report #36: Unicode Security Considerations",
 			href: "http://www.unicode.org/reports/tr36/",
 			authors: [ "Mark Davis", "Michel Suignard" ]
+		},
+		
+		"UTR50": {
+		    title: "Unicode Technical Report #50: Unicode Vertical Text Layout",
+		    href: "http://www.unicode.org/reports/tr50/",
+		    authors: [ "Koji Ishii 石井宏治" ]
 		},
 		
 		"Nicol": {
@@ -760,9 +772,9 @@
                     <td style="text-align: center" colspan="1"> <span class="charSample">㊞</span></td>
                   </tr>
                   <tr>
-                    <td><strong>East Asian Width, size, rotated presentation
+                    <td><strong>Width variation, size, rotated presentation
                         forms</strong>—narrow vs. wide presentational forms of
-                      East Asian characters (often associated with legacy
+                      characters (such as those associated with legacy
                       multibyte encodings), as well as "rotated" presentation
                       forms necessary for vertical text.</td>
                     <td style="text-align: center"><span class="charSample">ｶ</span></td>
@@ -830,9 +842,13 @@
             represents a specific "positional" shape and each of the four code
             points shown have a compatibility decomposition to the <span class="quote">regular</span>
             Arabic letter <span class="uname" translate="no">U+0646 NOON</span>.</p>
-          <p>Similarly, the variations in East Asian width and the rotated
-            bracket (for use in vertical text) are encoded as separate code
-            points.</p>
+          <p>Similarly, the variations in half-width and full-width forms and rotated
+            characters (for use in vertical text) are encoded as separate code
+            points, mainly for compatibility with legacy character encodings. In 
+		  many cases these variations are associated with the Unicode properties 
+		  described in <cite>East Asian Width</cite> [[UAX11]]. See also <cite>Unicode 
+		  Vertical Text Layout</cite> [[UTR50]] for a discussion of vertical text 
+		  presentation forms.</p>
           <p>In the case of characters with compatibility decompositions, such
             as those shown above, the <span class="qchar">K</span> Unicode
             Normalization forms convert the text to the "normal" or "expected"
