@@ -165,7 +165,7 @@ div.exampleBox {
 }
 
 .shakespeare {
-	color: #03F;
+  color: #03F;
   font-weight: bold;
   background-color: #EfEfEf;
 }
@@ -173,3 +173,9 @@ div.exampleBox {
 .userValue {
 	font-style: italic;
 }
+
+.vocabulary {
+   color: red;
+   text-decoration: underline;
+}
+
