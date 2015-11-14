@@ -450,6 +450,7 @@
           format or protocol. For example, this occurs when matching class names
           between an HTML document and its associated style sheet. Consider this
           HTML fragment: </p>
+          <aside class="example">
         <pre>&lt;style type="text/css"&gt;
 
   SPAN.h\e9llo {
@@ -459,6 +460,7 @@
 
 &lt;span class="h&amp;#xe9;llo"&gt;Hello World!&lt;/span&gt;
 </pre>
+</aside>
         <p>The <code class="kw" translate="no">SPAN</code> in the stylesheet
           matches the <code class="kw" translate="no">span</code> element in
           the document, even though one is uppercase and the other is not.</p>
@@ -501,26 +503,26 @@
 		  case fold mappings. For example:</p>
 		  	<table style="width: 100%">
 				<tr>
-					<td>Mapping</td>
-					<td>From</td>
-					<td>To</td>
-					<td>Comments</td>
+					<th>Mapping</th>
+					<th>From</th>
+					<th>To</th>
+				    <th style="column-width:50%">Comments</th>
 				</tr>
 				<tr>
 					<td>Full</td>
 					<td>ᾛ U+1F9B</td>
 					<td>ἣι U+1F23 U+03B9</td>
-					<td>GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND 
+					<td class="uname">GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND 
 					PROSGEGRAMMENI</td>
 				</tr>
 				<tr>
 					<td>Simple</td>
 					<td>ᾛ U+1F9B</td>
 					<td>ᾓ U+1F93</td>
-					<td>&nbsp;</td>
+					<td class="uname">GREEK SMALL LETTER ETA WITH DASIA AND VARIA AND YPOGEGRAMMENI</td>
 				</tr>
 			  </table>
-		  <p class="issue">Needs more work.</p>
+
 		  </aside>
           
         <p>Note that case folding removes information from a string which cannot
@@ -532,9 +534,9 @@
           needs. One common example of this are Turkic languages written in the
           Latin script.</p>
         <aside class="example">
-          <p>The Turkish word "Diyarbakır" contains both the dotted and dotless
+          <p>The Turkish word "<code>Diyarbakır</code>" contains both the dotted and dotless
             letters <span class="qchar">i</span>. When rendered into upper
-            case, this word appears like this: <span class="qterm">DİYARBAKIR</span>.
+            case, this word appears like this: <span class="qterm"><code>DİYARBAKIR</code></span>.
             Notice that the ASCII letter <span class="qchar">i</span> maps to <span
 
               class="uname" translate="no">U+0130 LATIN CAPITAL LETTER I WITH
@@ -1019,6 +1021,7 @@
         <p>Character escapes are normally interpreted before a document is
           processed and strings within the format or protocol are matched.
           Returning to an example we used above: </p>
+<aside class="example">
         <pre>&lt;style type="text/css"&gt;
 
   span.h\e9llo {
@@ -1028,6 +1031,7 @@
 
 &lt;span class="h&amp;#xe9;llo"&gt;Hello World!&lt;/span&gt;
 </pre>
+</aside>
         <p>You would expect that text to display like the following: <span class="héllo">Hello
             world!</span></p>
         <p>In order for this to work, the user-agent (browser) had to match two
@@ -1055,14 +1059,14 @@
             <thead>
               <tr>
                 <th>Characters</th>
-                <th>Description</th>
-                <th>Examples</th>
+                <th style="column-width:30%">Description</th>
+                <th style="column-width:50%">Examples</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>ZWJ, ZWNJ, ZWSP, CGJ, etc.</td>
-                <td>zero width characters used to join or separate words or
+                <td>Zero width characters used to join or separate words or
                   graphemes and which are common in languages that do not use
                   spaces between words or for which the renderer needs
                   assistance in composing characters</td>
@@ -1070,16 +1074,36 @@
                 </td>
               </tr>
               <tr>
-                <td>variation selectors</td>
-                <td>characters used to select an alternate appearance or glyph
+                 <td>ZWJ U+200D</td>
+                 <td>Zero width joiner</td>
+                 <td></td>
+              </tr>
+              <tr>
+                 <td>ZWNJ</td>
+                 <td>Zero width non-joiner</td>
+                 <td></td>
+              </tr>
+              <tr>
+                <td>ZWSP</td>
+                <td>zero width space</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>CGJ</td>
+                <td>Combining grapheme joiner</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Variation Selectors</td>
+                <td>Characters used to select an alternate appearance or glyph
                   (see <cite>Character Model: Fundamentals</cite> [[CHARMOD]]).
                   These are used in predefined <span class="qterm">ideographic
                     variation sequences</span> (<abbr title="ideographic variation sequence">IVS</abbr>)
                   as well as generally for certain scripts (such as Mongolian).
                   They are also used to select between black-and-white and color
                   emoji.</td>
-                <td> <br>
-                </td>
+                <td>&#x2614;&#xfe0e;&nbsp;&#x2614;&#xfe0f;
+                <br>&#x1820;&#x180c;&nbsp;&#x1820;&#x180b;</td>
               </tr>
               <tr>
                 <td> <br>
