@@ -2,7 +2,7 @@
   font-family: 'Noto Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Noto Sans'), local('NotoSans'), url('./font.woff2')
+  src: local('Noto Sans'), local('NotoSans'), url('./font.woff2') format('woff2');
 }
 
 body {
@@ -146,7 +146,6 @@ td.b2 {
 
 td.b3 {
 	background-color: #F99;
-}
 
 td.b-clear {
 	background-color: white;
@@ -179,3 +178,7 @@ div.exampleBox {
    text-decoration: underline;
 }
 
+.charSample {
+	font-family: 'Noto Sans', Lucida Console, sans-serif;
+	color: red;
+}
