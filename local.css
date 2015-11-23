@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'NoToFu';
+  font-family: NoToFu;
   font-style: normal;
   font-weight: 400;
   src: url('font.woff2') format('woff2');
@@ -146,6 +146,7 @@ td.b2 {
 
 td.b3 {
 	background-color: #F99;
+}
 
 td.b-clear {
 	background-color: white;
@@ -180,5 +181,6 @@ div.exampleBox {
 
 .sampleCharacter {
 	color: red;
-	font-family: 'NoToFu', Code2000, 'Lucida Console', sans-serif;
+	font-family: "NoToFu", "Code2000", "Lucida Console", sans-serif;
 }
+
