@@ -372,7 +372,7 @@
             orange rectangles). It's also possible that a resource will contain
             <em>no</em> syntactic content and consist solely of natural language content:
             for example, a plain text file with a soliloquy from <cite>Hamlet</cite>
-            in it. Notice too that the HTML entity <span class="uname" translate="no">&amp;#x2019;</span>
+            in it. Notice too that the HTML entity <code>&amp;#x2019;</code>
             appears in the natural language content and belongs to both the
           natural language content and the syntactic content in this resource.</li>
           </ul>
@@ -536,7 +536,8 @@
           needs. One common example of this are Turkic languages written in the
           Latin script.</p>
         <aside class="example">
-          <p>The Turkish word "<code>Diyarbakır</code>" contains both the dotted and dotless
+          <p>The name of the second largest city in Turkey is "<code>Diyarbakır</code>", which
+           contains both the dotted and dotless
             letters <span class="qchar">i</span>. When rendered into upper
             case, this word appears like this: <span class="qterm"><code>DİYARBAKIR</code></span>.
             Notice that the ASCII letter <span class="qchar">i</span> maps to <span
@@ -1047,14 +1048,16 @@
       </section>
       <section id="unicodeControls">
         <h3>Unicode Controls and Invisible Markers</h3>
-        <p>Unicode provides a number of special purpose control characters or
+        <p>Unicode provides a number of special purpose control characters and other
           invisible markers that help document authors control the appearance or
           performance of text. In poorly implemented applications, these
-          characters can interfere with string matching when they are not
-          semantically part of the text but do form part of the encoded
+          characters can interfere with string matching because, while they are not
+          semantically part of the text, they do form part of the encoded
           character sequence. </p>
-        <p>A special case is for ZWJ and ZWNJ. These invisible controls
-          sometimes affect meaning.</p>
+        <p>A special case is for the Unicode control characters <span class="uname" translate="no">U+200D Zero Width Joiner</span> (also known 
+        as <em>ZWJ</em>) and <span class="uname" translate="no">U+200C Zero Width Non-Joiner</span> (also known as <em>ZWNJ</em>). These invisible controls
+          sometimes do affect the meaning of characters sequences where they appear, although their usual use is to prevent
+          the formation of undesirable ligatures.</p>
         <p>Examples of these include:</p>
         <figure>
           <table style="width: 100%; border: 1px solid #ddd;">
@@ -1081,7 +1084,7 @@
                  <td></td>
               </tr>
               <tr>
-                 <td>ZWNJ</td>
+                 <td>ZWNJ U+200C</td>
                  <td>Zero width non-joiner</td>
                  <td></td>
               </tr>
@@ -1151,11 +1154,6 @@
           character encoding or a Unicode encoding such as UTF-8) and then
           unescaping any character escapes before proceeding to process the
           document. </p>
-        <p class="issue">The following paragraphs about normalization
-          transcoders are "at risk". The WG feels that this requirement is
-          difficult for content authors or implementers to verify. Needed
-          action: verify if all of [[Encoding]] spec's transcoders are
-          normalizing.</p>
         <p class="note">Even within a single legacy character encoding there can
           be variations in implementation. One famous example is the legacy
           Japanese encoding <code class="kw">Shift_JIS</code>. Different
@@ -1243,6 +1241,12 @@
       </section>
       <section id="convertingToCommonUnicodeForm">
         <h2>Converting to a Common Unicode Form</h2>
+                <p class="issue">The following requirements about normalization
+          transcoders are "at risk". The WG feels that this requirement is
+          difficult for content authors or implementers to verify. The Encoding specs transcoders are <em>not</em>
+          normalizing and it is actually a Good Thing that they are not. Instead we should probably say something
+          about the need to use character sequences consistent with any legacy encodings in use. <span style="font-size:small;color:blue">Addison 2015-12-16</span></p>
+
         <div class="requirement">
           <p>[C][I] For content authors and implementations, it is RECOMMENDED
             that conversions from legacy character encodings use a "normalizing
