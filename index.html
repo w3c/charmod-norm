@@ -622,12 +622,11 @@
               ABOVE</span> and <span class="uname" translate="no">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
         </ul>
-        <p>Each of the above strings contains the same apparent <span class="quote">meaning
-            </span>as <span class="qchar">Ǻ</span> (<span class="uname">U+01FA
-            as <span class="qchar">Ǻ</span> (<span class="uname" translate="no">U+01FA
+        <p>Each of the above strings contains the same apparent 
+        <span class="quote">meaning</span> as <span class="qchar">Ǻ</span> (<span class="uname" translate="no">U+01FA
               LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>), but each
             one is encoded slightly differently. More variations are possible,
-            but are omitted for brevity. </span></p>
+            but are omitted for brevity.</p>
         <p>Because applications need to find the semantic equivalence in texts
           that use different code point sequences, Unicode defines a means of
           making two semantically equivalent texts identical: the Unicode
@@ -1054,73 +1053,20 @@
           characters can interfere with string matching because, while they are not
           semantically part of the text, they do form part of the encoded
           character sequence. </p>
-        <p>A special case is for the Unicode control characters <span class="uname" translate="no">U+200D Zero Width Joiner</span> (also known 
+        <p>A special case are the Unicode control characters <span class="uname" translate="no">U+200D Zero Width Joiner</span> (also known 
         as <em>ZWJ</em>) and <span class="uname" translate="no">U+200C Zero Width Non-Joiner</span> (also known as <em>ZWNJ</em>). These invisible controls
-          sometimes do affect the meaning of characters sequences where they appear, although their usual use is to prevent
-          the formation of undesirable ligatures.</p>
-        <p>Examples of these include:</p>
-        <figure>
-          <table style="width: 100%; border: 1px solid #ddd;">
-            <thead>
-              <tr>
-                <th>Characters</th>
-                <th style="width:30%">Description</th>
-                <th style="width:50%">Examples</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>ZWJ, ZWNJ, ZWSP, CGJ, etc.</td>
-                <td>Zero width characters used to join or separate words or
-                  graphemes and which are common in languages that do not use
-                  spaces between words or for which the renderer needs
-                  assistance in composing characters</td>
-                <td> <br>
-                </td>
-              </tr>
-              <tr>
-                 <td>ZWJ U+200D</td>
-                 <td>Zero width joiner</td>
-                 <td></td>
-              </tr>
-              <tr>
-                 <td>ZWNJ U+200C</td>
-                 <td>Zero width non-joiner</td>
-                 <td></td>
-              </tr>
-              <tr>
-                <td>ZWSP</td>
-                <td>zero width space</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>CGJ</td>
-                <td>Combining grapheme joiner</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Variation Selectors</td>
-                <td>Characters used to select an alternate appearance or glyph
-                  (see <cite>Character Model: Fundamentals</cite> [[CHARMOD]]).
-                  These are used in predefined <span class="qterm">ideographic
-                    variation sequences</span> (<abbr title="ideographic variation sequence">IVS</abbr>)
-                  as well as generally for certain scripts (such as Mongolian).
-                  They are also used to select between black-and-white and color
-                  emoji.</td>
-                <td>&#x2614;&#xfe0e;&nbsp;&#x2614;&#xfe0f;
-                <br>&#x1820;&#x180c;&nbsp;&#x1820;&#x180b;</td>
-              </tr>
-              <tr>
-                <td> <br>
-                </td>
-                <td> <br>
-                </td>
-                <td> <br>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <figcaption>Invisible Controls</figcaption> </figure>
+          sometimes <em>do</em> affect the meaning of characters sequences where they appear, although their usual use is to control
+          ligature formation&mdash; either preventing the formation of undesirable ligatures or encouraging the formation
+          for desirable ones.</p>
+        <p>Some of the other types of invisible markers and controls include the following:
+        </p>
+        <p>Variation selectors (<span class="uname">U+FE00-U+FE0F</span>) are characters used to select an alternate appearance or glyph 
+        (see Character Model: Fundamentals [[CHARMOD]]). For example, they are used to select between black-and-white and color emoji. 
+        These are also used in predefined ideographic variation sequences (<span class="qterm">IVS</span>). Many
+        examples are given in the "Standardized Variants" portion of the Unicode Character Database (UCD).</p>
+        <p>A few scripts also provide a way to encode visual variation selection: a prominent example of this are the Mongolian free 
+        variation selectors (<span class="uname">U+180B-U+180D</span>). </p>
+		<div class="ednote"><p>Describe: CGJ, ZWSP, NNBSP, NBSP, etc</p></div>
         <p class="issue">This section was added and needs further fleshing out.
           The requirement probably wants to live in the requirements section. <span
 
@@ -1458,7 +1404,7 @@
       </section>
       <section id="expandingCharacterEscapes">
         <h2>Expanding Character Escapes and Includes</h2>
-        <p>Edit me!</p>
+        <div class="ednote"><p>Edit me!</p></div>
       </section>
       <section id="handlingCaseFolding">
         <h2>Handling Case Folding</h2>
