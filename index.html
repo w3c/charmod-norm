@@ -1058,16 +1058,21 @@
           sometimes <em>do</em> affect the meaning of characters sequences where they appear, although their usual use is to control
           ligature formation&mdash; either preventing the formation of undesirable ligatures or encouraging the formation
           for desirable ones.</p>
+		  <p class="issue">How is it meaning affecting? Full/half/conjunct form selection 
+		  doesn't change the meaning, I think.</p>
         <p>Some of the other types of invisible markers and controls include the following:
         </p>
-        <p>Variation selectors (<span class="uname">U+FE00-U+FE0F</span>) are characters used to select an alternate appearance or glyph 
+        <p>Variation selectors (<span class="uname">U+FE00</span> through <span class="uname" translate="no">U+FE0F</span>) are 
+        characters used to select an alternate appearance or glyph 
         (see Character Model: Fundamentals [[CHARMOD]]). For example, they are used to select between black-and-white and color emoji. 
         These are also used in predefined ideographic variation sequences (<span class="qterm">IVS</span>). Many
         examples are given in the "Standardized Variants" portion of the Unicode Character Database (UCD).</p>
         <p>A few scripts also provide a way to encode visual variation selection: a prominent example of this are the Mongolian free 
-        variation selectors (<span class="uname">U+180B-U+180D</span>). </p>
-		<div class="ednote"><p>Describe: CGJ, ZWSP, NNBSP, NBSP, etc</p></div>
-        <p class="issue">This section was added and needs further fleshing out.
+        variation selectors (<span class="uname">U+180B</span> through <span class="uname" translate="no">U+180D</span>). </p>
+
+
+
+        <p class="issue">Describe: CGJ, ZWSP, NNBSP, NBSP, etc. This section was added and needs further fleshing out.
           The requirement probably wants to live in the requirements section. <span
 
             style="color:blue;font-size:small">2015-02-07AP</span>
@@ -1135,6 +1140,10 @@
     </section>
     <section id="identityMatching">
       <h2>String Matching of Syntactic Content in Document Formats and Protocols</h2>
+        <p>In the Web environment, where strings can be encoded in different 
+		encodings, using different character sequences, and with variations such 
+		as case, it's important to
+          establish a consistent process for evaluating string identity.</p>
       <p>This chapter defines the implementation and requirements for string
         matching in <a href="#def_syntactic_content" class="termref">syntactic content</a>.</p>
       <section id="matchingAlgorithm">
@@ -1318,7 +1327,7 @@
               Unicode character encoding, as content might depend on the
               de-normalized representation. </p>
           </div>
-          <p class="ednote"> The following requirement was noted by Mati as
+          <p class="issue"> The following requirement was noted by Mati as
             being problematic. It was not marked with mustard and needs further
             consideration. </p>
           <div class="requirement">
@@ -1328,7 +1337,7 @@
               is specified, code unit-by-code unit comparison of the sequences.
             </p>
           </div>
-          <p class="ednote">Following requirements added 2013-10-29. Needs
+          <p class="issue">Following requirements added 2013-10-29. Needs
             discussion of regular expressions.</p>
           <div class="requirement">
             <p>[S][I] Specifications that define a regular expression syntax
@@ -1404,15 +1413,15 @@
       </section>
       <section id="expandingCharacterEscapes">
         <h2>Expanding Character Escapes and Includes</h2>
-        <div class="ednote"><p>Edit me!</p></div>
+        <p>Character escapes, such as HTML's numeric character references (for example, <code>&amp;#x20AC;</code>)
+        or named entity references (<code>&amp;amp;</code>), and other included values that are intended
+        to form part of matched string values require expansion when matching strings.</p>
+        <p class="issue">Edit me!</p>
       </section>
       <section id="handlingCaseFolding">
         <h2>Handling Case Folding</h2>
-        <p>In the Web environment, where multiple character encodings are used
-          to represent strings, including some character encodings which allow
-          multiple representations for the same thing, it's important to
-          establish a consistent process for evaluating string identity.</p>
-        <p>One main consideration in string identity matching is whether the
+        <p>As described <a href="#definitionCaseFolding">above</a>, one 
+		important consideration in string identity matching is whether the
           comparison is case sensitive or case insensitive.</p>
         <div class="requirement">
           <p>[S] <a href="#case-sensitive">Case sensitive</a> matching is
@@ -1457,7 +1466,7 @@
         <p>Note that an ASCII-only vocabulary can exist inside a document format
           or protocol that allows a larger range of Unicode in identifiers or
           values.</p>
-        <p class="ednote">Insert example from CSS here.</p>
+        <p class="issue">Insert example from CSS here.</p>
         <div class="requirement">
           <p>Case sensitive matching is RECOMMENDED as the default for any new
             protocol or format.</p>
@@ -1580,7 +1589,7 @@
         "wildcards".</p>
       <section id="searchingConsiderations">
         <h2>Considerations for Matching Natural Language Content</h2>
-        <p class="ednote">This section was identified as a new area needing
+        <p class="issue">This section was identified as a new area needing
           document as part of the overall rearchitecting of the document. The
           text here is incomplete and needs further development. Contributions
           from the community are invited.</p>
