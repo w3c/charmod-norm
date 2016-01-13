@@ -257,42 +257,6 @@
         <p>A <dfn data-lt="legacy character encoding|legacy character encodings">legacy
             character encoding</dfn> is a character encoding not based on the
           Unicode character set.</p>
-        <p>A <dfn data-lt="grapheme|graphemes">grapheme</dfn> is a sequence of
-          one or more Unicode characters in a visual representation of some text
-          that a typical user would perceive as being a single unit (<q>character</q>).
-          Graphemes are important for a number of text operations such as
-          sorting or text selection, so it is necessary to be able to compute
-          the boundaries between each user-perceived character. Unicode defines
-          the default mechanism for computing graphemes in <cite>Unicode
-            Standard Annex #29: Text Segmentation</cite> [[!UTR29]] and calls
-          this approximation a <dfn>grapheme cluster</dfn>. There are two types
-          of default grapheme cluster defined. Unless otherwise noted, grapheme
-          cluster in this document refers to an extended default grapheme
-          cluster. (A discussion of grapheme clusters is also given at the end
-          of Section 2.10 of the <cite>Unicode Standard</cite>, [[!UNICODE]].)</p>
-        <p>Because different languages have different needs, grapheme clusters
-          can also sometimes require tailoring. For example, a Slovak user might
-          wish to treat the default pair of grapheme clusters "ch" as a single
-          grapheme cluster. Note that the interaction between the language of
-          string content and the end-user's preferences might be complex.</p>
-        <aside class="example">
-          <p>The Hindi word for Unicode <q>यूनिकोड</q> is composed of a
-            sequence of seven Unicode characters from the Devanagari script (<span
-
-              class="uname" translate="no">U+092F U+0942 U+0928 U+093F U+0915
-              U+094B U+0921</span>). However, most users would identify this
-            word as containing four units of text—यू, नि, को, and ड. Each of the
-            first three graphemes consists of two characters: a syllable and a
-            modifying vowel character. So the word contains seven Unicode
-            characters, but only four graphemes.</p>
-        </aside>
-        <p><dfn>Natural language content</dfn> refers to the language-bearing
-          content in a document and <b>not</b> to any of the surrounding syntactic content
-          or identifiers that form part of the document structure. You can think
-          of it as the actual "content" of the document or the "message" in a
-          given protocol. Note that the natural language content can include
-          items such as the document title as well as prose content within the
-          document.</p>
         <p><dfn id="def_syntactic_content">Syntactic content</dfn> is any text in a document format or
           protocol that belongs to the structure of the format or protocol. This
           definition can include values that are not typically thought of as
@@ -315,6 +279,13 @@
             element called <code class="kw">&lt;muffin&gt;</code>, <span class="qterm">muffin</span>
           is a part of the syntactic content.</p>
         </aside>
+        <p><dfn>Natural language content</dfn> refers to the language-bearing
+          content in a document and <b>not</b> to any of the surrounding syntactic content
+          or identifiers that form part of the document structure. You can think
+          of it as the actual "content" of the document or the "message" in a
+          given protocol. Note that the natural language content can include
+          items such as the document title as well as prose content within the
+          document.</p>
         <p>A <dfn data-lt="resource|resources">resource</dfn> is a given
           document, file, or protocol "message" which includes both the <a>natural
             language content</a> as well as the <a href="#def_syntactic_content" class="termref">syntactic content</a>
@@ -332,6 +303,35 @@
           <a href="#def_syntactic_content" class="termref">syntactic content</a>. ECMAScript restricts the range of characters that can appear
           at the start or in the body of an identifier or variable name (while
           different rules apply to the values of, say, string literals).</p>
+        <p>A <dfn data-lt="grapheme|graphemes">grapheme</dfn> is a sequence of
+          one or more Unicode characters in a visual representation of some text
+          that a typical user would perceive as being a single unit (<q>character</q>).
+          Graphemes are important for a number of text operations such as
+          sorting or text selection, so it is necessary to be able to compute
+          the boundaries between each user-perceived character. Unicode defines
+          the default mechanism for computing graphemes in <cite>Unicode
+            Standard Annex #29: Text Segmentation</cite> [[!UTR29]] and calls
+          this approximation a <dfn>grapheme cluster</dfn>. There are two types
+          of default grapheme cluster defined. Unless otherwise noted, grapheme
+          cluster in this document refers to an extended default grapheme
+          cluster. (A discussion of grapheme clusters is also given at the end
+          of Section 2.10 of the <cite>Unicode Standard</cite>, [[!UNICODE]].)</p>
+        <p>Because different natural languages have different needs, grapheme clusters
+          can also sometimes require tailoring. For example, a Slovak user might
+          wish to treat the default pair of grapheme clusters "ch" as a single
+          grapheme cluster. Note that the interaction between the language of
+          string content and the end-user's preferences might be complex.</p>
+        <aside class="example">
+          <p>The Hindi word for Unicode <q>यूनिकोड</q> is composed of a
+            sequence of seven Unicode characters from the Devanagari script (<span
+
+              class="uname" translate="no">U+092F U+0942 U+0928 U+093F U+0915
+              U+094B U+0921</span>). However, most users would identify this
+            word as containing four units of text—यू, नि, को, and ड. Each of the
+            first three graphemes consists of two characters: a syllable and a
+            modifying vowel character. So the word contains seven Unicode
+            characters, but only four graphemes.</p>
+        </aside>
         <aside class="example" id="Figure1">
         <figure id="f1">
           <figcaption>Terminology examples</figcaption>
@@ -448,7 +448,7 @@
           as Greek, Armenian, or Cyrillic. </p>
         <p>Some document formats or protocols seek to aid interoperability or
           provide an aid to content authors by ignoring case variations in the
-          vocabulary they define or in user-defined values permitted by the
+          <a data-lt="vocabulary">vocabulary</a> they define or in user-defined values permitted by the
           format or protocol. For example, this occurs when matching class names
           between an HTML document and its associated style sheet. Consider this
           HTML fragment: </p>
@@ -485,7 +485,7 @@
 		  have a case fold mapping that would normally require more than one 
 		  Unicode character. These are called the <code class="kw">full</code> case fold mappings. 
 		  Together with the <code class="kw">common</code> case fold mappings, these provide the 
-		  default case fold mapping for all of Unicode and referred to in this 
+		  default case fold mapping for all of Unicode. This case fold mapping is referred to in this 
 		  document as <dfn id="dfn-UnicodeC+F">Unicode C+F</dfn>.
          </p>
 		  <p>Because some applications cannot allocate additional storage when 
@@ -493,42 +493,38 @@
 		  fold mapping that maps characters that would normally map to more or 
 		  fewer code points to use a single code point for comparison purposes 
 		  instead. Unlike the full mapping, this mapping invariably alters the 
-		  content of the text. This <code class="kw">simple</code> case fold mapping, referred to in this document 
+		  content (and potentially the meaning) of the text. This <code class="kw">simple</code> case fold mapping, referred to in this document 
 		  as <dfn id="UnicodeC+S">Unicode C+S</dfn>, is not appropriate for the Web. </p>
 		  
 		  <aside class="example">
 		  <p>One well-known example of a 'full' case fold mapping is the character <span class="qchar">&#xdf;</span>
 		  <span class="uname" translate="no">U+00DF LATIN SMALL LETTER SHARP S</span>, a letter that is commonly
 		  used in the German language. The 'full' mapping of this character is to two ASCII letters 's'. 
-		  There is no 'simple' mapping for this letter. Other examples can 
+		  There is no 'simple' mapping for this letter. </p>
+		  <p>Other examples can 
 		  be found in the Greek script, where several precomposed characters have multi-character
-		  case fold mappings. For example:</p>
+		  case fold mappings. For example, consider the character <code>U+1F9B</code> (<span class="uname" translate="no">GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND 
+					PROSGEGRAMMENI</span>). This character has both a <code class="kw">full</code> and <code class="kw">simple</code> mapping:</p>
 		  	<table style="width: 100%">
 				<tr>
-					<th>Mapping</th>
-					<th>From</th>
-					<th>To</th>
-				    <th style="width:50%">Comments</th>
+					<th>Source</th>
+					<th>Full</th>
+					<th>Simple</th>
+					<th>Comments</th>
 				</tr>
 				<tr>
-					<td>Full</td>
-					<td>ᾛ U+1F9B</td>
-					<td>ἣι U+1F23 U+03B9</td>
-					<td><span class="uname">GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND 
-					PROSGEGRAMMENI</span> maps to <span class="uname">GREEK SMALL LETTER ETA WITH DASIA AND VARIA</span> + <span class="uname">GREEK SMALL LETTER IOTA</span></td>
-				</tr>
-				<tr>
-					<td>Simple</td>
-					<td>ᾛ U+1F9B</td>
-					<td>ᾓ U+1F93</td>
-					<td class="uname">GREEK SMALL LETTER ETA WITH DASIA AND VARIA AND YPOGEGRAMMENI</td>
+					<td>ᾛ <code class="kw">U+1F9B</code></td>
+					<td>ἣι <code class="kw">U+1F23&nbsp;U+03B9</code></td>
+					<td>ᾓ <code class="kw">U+1F93</code></td>
+					<td><span class="uname">GREEK SMALL LETTER ETA WITH DASIA AND VARIA</span> + <span class="uname">GREEK SMALL LETTER IOTA</span><br>
+					<em>versus</em> <span class="uname" translate="no">GREEK SMALL LETTER ETA WITH DASIA AND VARIA AND YPOGEGRAMMENI</span></td>
 				</tr>
 			  </table>
 
 		  </aside>
           
-        <p>Note that case folding removes information from a string which cannot
-          be recovered later.</p>
+        <p>Note that case folding removes information from a string which cannot 
+		be recovered later. </p>
         <p>Another aspect of case folding is that it can be language sensitive.
           Unicode defines default case mappings for each encoded character, but
           these are only defaults and are not appropriate in all cases. Some
@@ -1196,24 +1192,32 @@
       </section>
       <section id="convertingToCommonUnicodeForm">
         <h2>Converting to a Common Unicode Form</h2>
-                <p class="issue">The following requirements about normalization
-          transcoders are "at risk". The WG feels that this requirement is
-          difficult for content authors or implementers to verify. The Encoding specs transcoders are <em>not</em>
-          normalizing and it is actually a Good Thing that they are not. Instead we should probably say something
-          about the need to use character sequences consistent with any legacy encodings in use. <span style="font-size:small;color:blue">Addison 2015-12-16</span></p>
 
-        <div class="requirement">
-          <p>[C][I] For content authors and implementations, it is RECOMMENDED
-            that conversions from legacy character encodings use a "normalizing
-            transcoder".</p>
-        </div>
-        <p>A <dfn data-lt="normalizing transcoder|normalizing transcoders">normalizing transcoder</dfn> is a transcoder that converts from a <a>legacy character encoding</a> to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode
-            encoding form</a> <em>and</em> ensures that the result is in
-          Unicode Normalization Form C. For most legacy character encodings, it
+        <p>A transcoder is a process that converts code units (generally bytes) from a <a>legacy character encoding</a> 
+        to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode encoding form</a>.
+        A <dfn data-lt="normalizing transcoder|normalizing transcoders">normalizing transcoder</dfn> is a transcoder that performs
+        such a conversion <em>and</em> ensures that the result is in
+        Unicode Normalization Form C. For most legacy character encodings, it
           is possible to construct a normalizing transcoder (by using any
           transcoder followed by a normalizer); it is not possible to do so if
           the encoding's <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a>
           contains characters not represented in Unicode.</p>
+
+        <p>Previous versions of this document recommended the use of a "normalizing transcoder" when mapping from a 
+        legacy character encoding to Unicode. Normalizing transcoders are expected to produce only character sequences in 
+        Unicode Normalization Form C (NFC), although the resulting character sequence might still be partially
+        de-normalized (for example, if it begins with a combining mark).</p>
+        
+        <p>It turns out that, while most transcoders used on the Web produce Normalization Form C as their output,
+        several do not. The difference is important if the transcoder is to be round-trip
+        compatible with the source legacy character encoding or consistent with the transcoders used by 
+        browsers and other user-agents on the Web. This includes several of the transcoders in [[Encoding]].</p>
+        
+        <div class="requirement">
+          <p>[C][I] For content authors, it is RECOMMENDED that content converted from a legacy character encoding
+          be normalized to Unicode Normalization Form C unless the mapping of specific characters interferes with
+          the meaning.</p>
+        </div>
         <div class="requirement">
           <p>[I] Authoring tools SHOULD provide a means of normalizing resources
             and warn the user when a given resource is not in Unicode
@@ -1303,8 +1307,7 @@
         </div>
         <section id="non-normalizing">
           <h4> Non-Normalizing Specification Requirements </h4>
-          <p class="issue"> The following paragraph was changed and requires WG
-            approval. </p>
+
           <p>The following requirements pertain to any specification that
             specifies explicitly that normalization is not to be applied
             automatically to content (which SHOULD include all new
