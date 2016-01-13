@@ -1193,9 +1193,9 @@
       <section id="convertingToCommonUnicodeForm">
         <h2>Converting to a Common Unicode Form</h2>
 
-        <p>A transcoder is a process that converts code units (generally bytes) from a <a>legacy character encoding</a> 
+        <p>A <dfn data-lt="transcoder">transcoder</dfn> is a process that converts code units (generally bytes) from a <a>legacy character encoding</a> 
         to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode encoding form</a>.
-        A <dfn data-lt="normalizing transcoder|normalizing transcoders">normalizing transcoder</dfn> is a transcoder that performs
+        A <dfn data-lt="normalizing transcoder">normalizing transcoder</dfn> is a transcoder that performs
         such a conversion <em>and</em> ensures that the result is in
         Unicode Normalization Form C. For most legacy character encodings, it
           is possible to construct a normalizing transcoder (by using any
@@ -1350,9 +1350,9 @@
         </section>
         <section id="normalizing-spec">
           <h4> Unicode Normalizing Specification Requirements </h4>
-          <p>For specifications of text-based formats and protocols that define
-            Unicode Normalization as a requirement, the following requirements
-            apply: </p>
+          <p>This section contains requirements for specifications of text-based formats and protocols that define
+            Unicode Normalization as a requirement. New specifications SHOULD NOT require normalization
+            unless special circumstances apply.</p>
           <div class="requirement">
             <p>[S] Specifications of text-based formats and protocols that, as
               part of their syntax definition, require that the text be in
