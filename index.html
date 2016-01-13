@@ -257,6 +257,8 @@
         <p>A <dfn data-lt="legacy character encoding|legacy character encodings">legacy
             character encoding</dfn> is a character encoding not based on the
           Unicode character set.</p>
+        <p>A <dfn>transcoder</dfn> is a process that converts code units (generally bytes) from a <a>legacy character encoding</a> 
+        to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode encoding form</a>.</p>
         <p><dfn id="def_syntactic_content">Syntactic content</dfn> is any text in a document format or
           protocol that belongs to the structure of the format or protocol. This
           definition can include values that are not typically thought of as
@@ -1193,17 +1195,15 @@
       <section id="convertingToCommonUnicodeForm">
         <h2>Converting to a Common Unicode Form</h2>
 
-        <p>A <dfn data-lt="transcoder">transcoder</dfn> is a process that converts code units (generally bytes) from a <a>legacy character encoding</a> 
-        to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode encoding form</a>.
-        A <dfn data-lt="normalizing transcoder">normalizing transcoder</dfn> is a transcoder that performs
-        such a conversion <em>and</em> ensures that the result is in
+        <p>A <dfn>normalizing transcoder</dfn> is a <a>transcoder</a> that performs
+        a conversion from a <a>legacy character encoding</a> to Unicode <em>and</em> ensures that the result is in
         Unicode Normalization Form C. For most legacy character encodings, it
           is possible to construct a normalizing transcoder (by using any
           transcoder followed by a normalizer); it is not possible to do so if
-          the encoding's <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a>
+          the <a>legacy character encoding</a>'s <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a>
           contains characters not represented in Unicode.</p>
 
-        <p>Previous versions of this document recommended the use of a "normalizing transcoder" when mapping from a 
+        <p>Previous versions of this document recommended the use of a <a>normalizing transcoder</a> when mapping from a 
         legacy character encoding to Unicode. Normalizing transcoders are expected to produce only character sequences in 
         Unicode Normalization Form C (NFC), although the resulting character sequence might still be partially
         de-normalized (for example, if it begins with a combining mark).</p>
