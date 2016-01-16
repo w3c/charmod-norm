@@ -1045,36 +1045,63 @@
       </section>
       <section id="unicodeControls">
         <h3>Unicode Controls and Invisible Markers</h3>
-        <p>Unicode provides a number of special purpose control characters and other
-          invisible markers that help document authors control the appearance or
-          performance of text. In poorly implemented applications, these
-          characters can interfere with string matching because, while they are not
-          semantically part of the text, they do form part of the encoded
-          character sequence. </p>
-        <p>A special case are the Unicode control characters <span class="uname" translate="no">U+200D Zero Width Joiner</span> (also known 
-        as <em>ZWJ</em>) and <span class="uname" translate="no">U+200C Zero Width Non-Joiner</span> (also known as <em>ZWNJ</em>). These invisible controls
-          sometimes <em>do</em> affect the meaning of characters sequences where they appear, although their usual use is to control
+        <p>Unicode provides a number of invisble, special-purpose characters 
+		that help document authors control the appearance or performance of 
+		text. Because these characters are invisible, users are not always aware 
+		of their presence or absence. As a result, these characters can 
+		interfere with string matching when they are part of the encoded 
+		character sequence but the expected matching text does not include them. 
+		Some examples of these characters include:</p>
+          <p>The Unicode control characters <span class="uname" translate="no">U+200D Zero Width Joiner</span> (also known 
+        as <em>ZWJ</em>) and <span class="uname" translate="no">U+200C Zero Width Non-Joiner</span> (also known as 
+		  <em>ZWNJ</em>). 
+		Their original use was to control
           ligature formation&mdash; either preventing the formation of undesirable ligatures or encouraging the formation
-          for desirable ones.</p>
-		  <p class="issue">How is it meaning affecting? Full/half/conjunct form selection 
-		  doesn't change the meaning, I think.</p>
-        <p>Some of the other types of invisible markers and controls include the following:
-        </p>
-        <p>Variation selectors (<span class="uname">U+FE00</span> through <span class="uname" translate="no">U+FE0F</span>) are 
+          for desirable ones. However, their primary use today is control 
+		joining and shape selection in Arabic and Indic scripts. For example, ZWJ and ZWNJ are used in some Indic scripts to allow 
+		  authors to specify the shape that certain conjuncts take. See the 
+		  discussion in Chapter 12 of [[Unicode]].</p>
+		  <div class="example">
+			  <p>The <span class="uname" translate="no">Zero Width Non-Joiner</span> is used in Persian to 
+		  prevent certain "normal" Arabic script joining. In these cases, the 
+		  character can affected the meaning. For example, the word تنها ("alone") and the word تن‌ها&nbsp; ("bodies" 
+		  or "corpuses") are encoded as "<span class="uname">U+062A 
+		  U+0646 U+0647 U+0627</span>" and "<span class="uname">U+062A U+0646 U+200C U+0647 U+0627</span>" 
+		  respectively, the only difference being the ZWNJ in the latter word.</p>
+		  </div>
+		  <p>Variation selectors (<span class="uname">U+FE00</span> through 
+		  <span class="uname" translate="no">U+FE0F</span>) are 
         characters used to select an alternate appearance or glyph 
         (see Character Model: Fundamentals [[CHARMOD]]). For example, they are used to select between black-and-white and color emoji. 
         These are also used in predefined ideographic variation sequences (<span class="qterm">IVS</span>). Many
         examples are given in the "Standardized Variants" portion of the Unicode Character Database (UCD).</p>
-        <p>A few scripts also provide a way to encode visual variation selection: a prominent example of this are the Mongolian free 
-        variation selectors (<span class="uname">U+180B</span> through <span class="uname" translate="no">U+180D</span>). </p>
+		  <p>A few scripts also provide a way to encode visual variation selection: a prominent example of this are the Mongolian 
+		  script's free 
+        variation selectors (<span class="uname">U+180B</span> through 
+		  <span class="uname" translate="no">U+180D</span>). </p>
+		  <p>The character <span class="uname" translate="no">U+034F Combining Grapheme Joiner</span>, 
+		  whose name is misleading (as it does not join graphemes or affect line 
+		  breaking), is used to separate characters that might otherwise be 
+		  considered a grapheme for the purposes of sorting or to provide a 
+		  means of maintaing certain textual distinctions when applying Unicode 
+		  normalization to text. </p>
+		  <p>Whitespace variations can also affect the interpretation and 
+		  matching of text. For example, the various non-breaking space 
+		  characters, such as NBSP, NNBSP, etc.</p>
+		  <p><span class="uname" translate="no">U+200B Zero Width Space</span> is a character used to 
+		  indicate word boundaries in text where spaces do not otherwise appear. 
+		  For example, it might be used in a Thai language document to assist 
+		  with word-breaking. </p>
+		  <p>The <span class="uname" translate="no">U+00AD Soft Hyphen</span> can be used in text 
+		  to indidate a potential or preferred hyphenation position. It only 
+		  becomes visible when the text is reflowed to wrap at that position.</p>
+		  <p>In almost all of these cases, users may not be aware of or cannot 
+		  be sure if a given document or text string has included or omitted one 
+		  of these characters. Because text matching depends on matching the 
+		  underlying codepoints, variation in the encoding of the text due to 
+		  these markers can cause matches that ought to succeed to mysteriously 
+		  fail (from the point of view of the user).</p>
 
-
-
-        <p class="issue">Describe: CGJ, ZWSP, NNBSP, NBSP, etc. This section was added and needs further fleshing out.
-          The requirement probably wants to live in the requirements section. <span
-
-            style="color:blue;font-size:small">2015-02-07AP</span>
-        </p>
       </section>
       <section id="legacyCharacterEncoding">
         <h3>Legacy Character Encodings</h3>
@@ -1731,7 +1758,8 @@
       <h2 id="Acknowledgements" class="informative">Acknowledgements</h2>
       <p>The W3C Internationalization Working Group and Interest Group, as well
         as others, provided many comments and suggestions. The Working Group
-        would like to thank: Mati Allouche, John Klensin, and all of the CharMod
+        would like to thank: Mati Allouche, John Cowan, Martin Dürst, Behdad Esfahbod, John Klensin, 
+	  Amir Sarabadani, ebraminio, and all of the CharMod
         contributors over the many years of this document's development. </p>
       <p>The previous version of this document was edited by:</p>
       <ul>
