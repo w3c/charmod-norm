@@ -1305,12 +1305,16 @@
             <p>[C] Authors SHOULD NOT include combining marks without a
               preceding base character in a resource.</p>
           </div>
-          <p class="issue">Following examples need improvement.</p>
-          <p>There can be exceptions to this, for example, when making a list of
-            characters (such as a Unicode demo). This avoids problems with
-            unintentional display or with naive implementations that combine the
+
+          <p>There can be exceptions to this. For example, when making a list of
+            characters (such as a list of [[!Unicode]] characters), an author might want to use 
+		  combining marks without a corresponding base character. However, use 
+		  of a combining mark without a base character can cause
+            unintentional display or, with naive implementations that combine the
             combining mark with adjacent syntactic content or other natural language
-            content. For example, if you were to use <span class="uname" translate="no">U+301</span>
+            content, processing problems. For example, if you were to use 
+            a combining mark, such as the character 
+            <span class="uname" translate="no">U+301 Combining Acute Accent</span>,
             as the start of a "class" attribute value in HTML, the class name
             might not display properly in your editor.</p>
         </section>
