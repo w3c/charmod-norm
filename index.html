@@ -226,13 +226,13 @@
           addressed in this specification.</p>
         <p>At the core of the character model is the Universal Character Set
           (UCS), defined jointly by the <cite>Unicode Standard</cite>
-          [[!UNICODE]] and ISO/IEC 10646 [[!ISO10646]]. In this document, <dfn>Unicode</dfn>
+          [[!Unicode]] and ISO/IEC 10646 [[!ISO10646]]. In this document, <dfn>Unicode</dfn>
           is used as a synonym for the Universal Character Set. A successful
           character model allows Web documents authored in the world's writing
           systems, scripts, and languages (and on different platforms) to be
           exchanged, read, and searched by the Web's users around the world.</p>
         <p>The first few chapters of the <cite>Unicode Standard</cite>
-          [[!UNICODE]] provide useful background reading.</p>
+          [[!Unicode]] provide useful background reading.</p>
         <p>For information about the requirements that informed the development
           of important parts of this specification, see <cite>Requirements for
             String Identity Matching and String Indexing</cite> [[CHARREQ]].</p>
@@ -317,7 +317,7 @@
           of default grapheme cluster defined. Unless otherwise noted, grapheme
           cluster in this document refers to an extended default grapheme
           cluster. (A discussion of grapheme clusters is also given at the end
-          of Section 2.10 of the <cite>Unicode Standard</cite>, [[!UNICODE]].)</p>
+          of Section 2.10 of the <cite>Unicode Standard</cite>, [[!Unicode]].)</p>
         <p>Because different natural languages have different needs, grapheme clusters
           can also sometimes require tailoring. For example, a Slovak user might
           wish to treat the default pair of grapheme clusters "ch" as a single
@@ -334,9 +334,9 @@
             modifying vowel character. So the word contains seven Unicode
             characters, but only four graphemes.</p>
         </aside>
-        <aside class="example" id="Figure1">
-        <figure id="f1">
-          <figcaption>Terminology examples</figcaption>
+        <section>
+        <h5>Terminology Examples</h5>
+        <p>This section illustrates some of the terminology defined above.</p>
           <div style="background-color:white;text-align: left; border-style: solid; border-width:3px; padding-left: 50px; padding-right: 50px; padding-top: 10px; width: 80%">
             <p> <span class="markup">&lt;<span class="vocabulary">html</span> <span class="vocabulary">lang</span>="en" <span class="vocabulary">dir</span>="<span class="vocabulary">ltr</span>"&gt;<br>
                 &lt;<span class="vocabulary">head</span>&gt;</span></p>
@@ -378,7 +378,7 @@
             appears in the natural language content and belongs to both the
           natural language content and the syntactic content in this resource.</li>
           </ul>
-        </figure></aside>
+        </section>
       </section>
       <section id="conformance">
         <h4>Conformance</h4>
@@ -472,8 +472,8 @@
           which differ in case but are otherwise "the same".</p>
         <p>Case folding might, at first, appear simple. However there are
           variations that need to be considered when treating the full range of
-          Unicode in diverse languages. For more information, <cite>Unicode</cite>
-          [[!UNICODE]] Section 5.18 discusses case folding in detail.</p>
+          Unicode in diverse languages. For more information, 
+          <cite>[[!Unicode]]</cite> Section 5.18 discusses case folding in detail.</p>
           
         <p>Unicode defines the default case fold mapping for each Unicode code point.
          Since most scripts do not provide a case distinction, most Unicode code 
@@ -1060,7 +1060,7 @@
           for desirable ones. However, their primary use today is control 
 		joining and shape selection in Arabic and Indic scripts. For example, ZWJ and ZWNJ are used in some Indic scripts to allow 
 		  authors to specify the shape that certain conjuncts take. See the 
-		  discussion in Chapter 12 of [[Unicode]].</p>
+		  discussion in Chapter 12 of [[!Unicode]].</p>
 		  <div class="example">
 			  <p>The <span class="uname" translate="no">Zero Width Non-Joiner</span> is used in Persian to 
 		  prevent certain "normal" Arabic script joining. In these cases, the 
@@ -1759,8 +1759,8 @@
       <h2 id="Acknowledgements" class="informative">Acknowledgements</h2>
       <p>The W3C Internationalization Working Group and Interest Group, as well
         as others, provided many comments and suggestions. The Working Group
-        would like to thank: Mati Allouche, John Cowan, Martin Dürst, Behdad Esfahbod, John Klensin, 
-	  Amir Sarabadani, ebraminio, and all of the CharMod
+        would like to thank: Mati Allouche, Ebrahim Byagowi, John Cowan, Martin Dürst, Behdad Esfahbod, John Klensin, 
+	  Amir Sarabadani, and all of the CharMod
         contributors over the many years of this document's development. </p>
       <p>The previous version of this document was edited by:</p>
       <ul>
