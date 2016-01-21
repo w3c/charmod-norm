@@ -728,9 +728,7 @@
             language.</p>
           <p>The following table illustrates various kinds of compatibility
             equivalence in Unicode:</p>
-          <figure>
-            <div style="width:80%; margin-left:10%;margin-right:10%; font-size:18px;">
-              <table>
+              <table class="data">
                 <thead>
                   <tr>
                     <th colspan="5">Compatibility Equivalance</th>
@@ -738,14 +736,14 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td><strong>Font variants</strong>—characters that have a
+                    <td class="long"><strong>Font variants</strong>—characters that have a
                       specific visual appearance (generally associated with a
                       specialized use, such as in mathematics).</td>
                     <td style="text-align: center" colspan="2"> <span class="sampleCharacter">ℌ</span></td>
                     <td style="text-align: center" colspan="2"> <span class="sampleCharacter">ℍ</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Breaking versus non-breaking</strong>—variations
+                    <td class="long"><strong>Breaking versus non-breaking</strong>—variations
                       in breaking or joining rules, such as the difference
                       between a <span class="qterm">normal</span> and a
                       non-breaking space.</td>
@@ -754,7 +752,7 @@
                         translate="no">U+00A0 NON-BREAKING SPACE</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Presentation forms of Arabic</strong>—
+                    <td class="long"><strong>Presentation forms of Arabic</strong>—
                       characters that encode the specific shapes&nbsp;(initial,
                       medial, final, isolated) needed by visual legacy encodings
                       of the Arabic script.</td>
@@ -764,7 +762,7 @@
                     <td style="text-align: center"> <span class="sampleCharacter">ﻥ</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Circled</strong>—numbers, letters, and other
+                    <td class="long"><strong>Circled</strong>—numbers, letters, and other
                       characters in a circled, bullet, or other presentational
                       form; often used for lists, footnotes, and specialized
                       presentation</td>
@@ -774,7 +772,7 @@
                     <td style="text-align: center" colspan="1"> <span class="sampleCharacter">㊞</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Width variation, size, rotated presentation
+                    <td class="long"><strong>Width variation, size, rotated presentation
                         forms</strong>—narrow vs. wide presentational forms of
                       characters (such as those associated with legacy
                       multibyte encodings), as well as "rotated" presentation
@@ -785,7 +783,7 @@
                     <td style="text-align: center"><span class="sampleCharacter">{</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Superscripts/subscripts</strong>—superscript or
+                    <td class="long"><strong>Superscripts/subscripts</strong>—superscript or
                       subscript letters, numbers, and symbols.</td>
                     <td style="text-align: center"> <span class="sampleCharacter">⁹</span></td>
                     <td style="text-align: center"> <span class="sampleCharacter">₉</span></td>
@@ -793,7 +791,7 @@
                     <td style="text-align: center"> <span class="sampleCharacter">₊</span></td>
                   </tr>
                   <tr>
-                    <td><strong><span class="quote">Squared</span> characters</strong>—East
+                    <td class="long"><strong><span class="quote">Squared</span> characters</strong>—East
                       Asian (particularly kana) sequences encoded as a
                       presentation form to fit in a single ideographic "cell" in
                       text.</td>
@@ -803,7 +801,7 @@
                     <td style="text-align: center"> <span class="sampleCharacter">㎉</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Fractions</strong>—precomposed vulgar fractions,
+                    <td class="long"><strong>Fractions</strong>—precomposed vulgar fractions,
                       often encoded for compatibility with font glyph sets.</td>
                     <td style="text-align: center"> <span class="sampleCharacter">¼</span></td>
                     <td style="text-align: center"> <span class="sampleCharacter">½</span></td>
@@ -811,7 +809,7 @@
                     <td style="text-align: center"> <span class="sampleCharacter">↉</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Others</strong>—compatibility characters encoded
+                    <td class="long"><strong>Others</strong>—compatibility characters encoded
                       for other reasons, generally for compatibility with legacy
                       character encodings. Many of these characters are simply a
                       sequence of characters encoded as a single presentational
@@ -823,8 +821,6 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
-            <figcaption>Compatibility Equivalence</figcaption> </figure>
           <p>In the above table, it is important to note that the characters
             illustrated are <em>actual Unicode codepoints</em>. They were
             encoded into Unicode for compatibility with various legacy character
@@ -893,8 +889,8 @@
             above. Here are the resulting sequences in each Unicode
             Normalization form for the U+01FA example given earlier: </p>
           <figure>
-            <div style="margin-left:5%; margin-right:15%; width:80%; text-align:center;">
-              <table>
+            <div>
+              <table class="data">
                 <thead>
                   <tr>
                     <th>Original Codepoints</th>
@@ -1653,7 +1649,7 @@
           "RE-RESUME", "re-résumé", and "RE-RÉSUMÉ".</p>
         <p>In the table below, the user's input (on the left) might be
           considered a match for the above items as follows:</p>
-        <table class="TableGen" style="width:95%; margin-left:5%;">
+        <table class="data">
           <tbody>
             <tr>
               <th scope="col">User Input</th>
@@ -1672,7 +1668,7 @@
               <td>"re-résumé" and "RE-RÉSUMÉ"</td>
             </tr>
             <tr>
-              <td>É</td>
+              <td>É (uppercase 'E' with acute accent)</td>
               <td>"RE-RÉSUMÉ"</td>
             </tr>
           </tbody>
