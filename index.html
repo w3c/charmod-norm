@@ -1292,10 +1292,20 @@
               processing, storage, or exchange except with explicit permission
               from the user.</p>
           </div>
-          <div class="requirement">
-            <p>[I] Implementations which transcode text from a legacy character
-              encoding to a Unicode encoding form SHOULD use a normalizing
-              transcoder that produces Unicode Normalization Form C (NFC). </p>
+          <div class="note">
+          <p>The [[!Encoding]] specification includes a number of <a>transcoders</a> that do not produce
+             Unicode text in a normalized form when converting to Unicode from a legacy character encoding.
+             This is necessary to preserve round-trip behavior and other character distinctions. Indeed, many
+             compatibility characters in Unicode exist solely for round-trip conversion from legacy encodings.
+             Earlier versions of this specification recommended or required that implementations use a 
+             normalizing transcoder that produced Unicode Normalization Form C (NFC), but, given that this
+             is at odds with how transcoders are actually implemented, this version no longer includes
+             this requirement. Bear in mind that most transcoders produce NFC output and that even those
+             transcoders that do not produce NFC for all characters mainly produce NFC for the preponderence
+             of characters. In particular, there are no transcoders that produce decomposed forms where 
+             precomposed forms exist or which produce a different combining character sequence from the
+             normalized sequence.</p>
+
           </div>
           <div class="requirement">
             <p>[C] Authors SHOULD NOT include combining marks without a
