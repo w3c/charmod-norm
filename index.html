@@ -257,7 +257,7 @@
         <p>A <dfn data-lt="legacy character encoding|legacy character encodings">legacy
             character encoding</dfn> is a character encoding not based on the
           Unicode character set.</p>
-        <p>A <dfn>transcoder</dfn> is a process that converts code units (generally bytes) from a <a>legacy character encoding</a> 
+        <p>A <dfn data-lt="transcoder|transcoders">transcoder</dfn> is a process that converts code units (generally bytes) from a <a>legacy character encoding</a> 
         to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode encoding form</a>.</p>
         <p><dfn id="def_syntactic_content">Syntactic content</dfn> is any text in a document format or
           protocol that belongs to the structure of the format or protocol. This
@@ -1057,7 +1057,8 @@
 		joining and shape selection in Arabic and Indic scripts. For example, ZWJ and ZWNJ are used in some Indic scripts to allow 
 		  authors to specify the shape that certain conjuncts take. See the 
 		  discussion in Chapter 12 of [[!Unicode]].</p>
-		  <div class="example">
+		  <aside class="example">
+		  <div class="example-title marker"></div>
 			  <p>The <span class="uname" translate="no">Zero Width Non-Joiner</span> is used in Persian to 
 		  prevent certain "normal" Arabic script joining. In these cases, the 
 		  character affects the meaning. For example, the word تنها ("alone") and the word تن‌ها&nbsp; ("bodies" 
@@ -1065,7 +1066,7 @@
 		  U+0646 U+0647 U+0627</span>" and "<span class="uname">U+062A U+0646 
 			  <span style="text-decoration:underline">U+200C</span> U+0647 U+0627</span>" 
 		  respectively, the only difference being the ZWNJ in the latter word.</p>
-		  </div>
+		  </aside>
 		  <p>Variation selectors (<span class="uname">U+FE00</span> through 
 		  <span class="uname" translate="no">U+FE0F</span>) are 
         characters used to select an alternate appearance or glyph 
@@ -1302,7 +1303,7 @@
              is at odds with how transcoders are actually implemented, this version no longer includes
              this requirement. Bear in mind that most transcoders produce NFC output and that even those
              transcoders that do not produce NFC for all characters mainly produce NFC for the preponderence
-             of characters. In particular, there are no transcoders that produce decomposed forms where 
+             of characters. In particular, there are no commonly-used transcoders that produce decomposed forms where 
              precomposed forms exist or which produce a different combining character sequence from the
              normalized sequence.</p>
 
