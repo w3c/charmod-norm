@@ -264,7 +264,8 @@
           definition can include values that are not typically thought of as
           "markup", such as the name of a field in an HTTP header, as well as
           all of the characters that form the structure of a format or protocol.
-          For example, <span class="qchar">&lt;</span> or <span class="qchar">&gt;</span>
+          For example, <span class="qchar">&lt;</span> and <span class="qchar">&gt;</span>
+          (as well as the element name and various attributes they surround) 
           are part of the syntactic content in an HTML document. </p>
         <p>Syntactic content usually is defined by a specification or specifications and
           includes both the defined, reserved keywords for the given protocol or
@@ -1006,14 +1007,32 @@
           additional equivalent means of representing characters inside a given
           resource. They also allow for the encoding of Unicode characters not
           represented in the character encoding scheme used by the document.</p>
+        <p>See also, Section 4.6 of [[!CHARMOD]].</p>
+        
+        <!-- examples taken from S4.6 charmod
+        
+		<aside class="example">
+		  <div class="example-header marker"></div>
+		  <p>Some examples of escapes and includes:</p>
+		  <ul>
+		  <li>HTML and XML define 'Numeric Character References' which allow both the escaping of syntax-significance 
+		  and the expression of arbitrary Unicode characters. Expressed as &amp;#x3C; or &amp;#60; the character '&lt;' will not 
+		  be parsed as a markup delimiter.</li>
+          <li>The programming language Java uses '"' to delimit strings. To express '"' within a string, one may escape it as '\"'.</li>
+          <li>XML defines 'CDATA sections' which allow escaping the syntax-significance of all characters between the CDATA 
+           section delimiters. CDATA sections prevent the expression of characters using numeric character references.</li>
+		  </ul>
+		</aside>
+		
+		
+		--->
+
         <p>For example, <span class="qchar">€</span> <span class="uname" translate="no">U+20AC
             EURO SIGN</span> can also be encoded in HTML as the hexadecimal
           entity <code>&amp;#x20ac;</code> or as the decimal entity <code>&amp;#8364;</code>.
           In a JavaScript or JSON file, it can appear as <code>\u20ac</code>
           while in a CSS stylesheet it can appear as <code>\20ac</code>. All of
-          these representations encode the same literal character value: <span
-
-            class="qchar">€</span>.</p>
+          these representations encode the same literal character value: <span class="qchar">€</span>.</p>
         <p>Character escapes are normally interpreted before a document is
           processed and strings within the format or protocol are matched.
           Returning to an example we used above: </p>
@@ -1455,9 +1474,19 @@
       </section>
       <section id="expandingCharacterEscapes">
         <h2>Expanding Character Escapes and Includes</h2>
-        <p>Character escapes, such as HTML's numeric character references (for example, <code>&amp;#x20AC;</code>)
-        or named entity references (<code>&amp;amp;</code>), and other included values that are intended
-        to form part of matched string values require expansion when matching strings.</p>
+        <p>Most document formats and protocols provide a means for 
+		encoding characters or including external data, including text, into a 
+		<a>resource</a>. This is discussed in detail in Section 4.6 of [[!CHARMOD]] 
+		as well as <a href="#characterEscapes">above</a>.</p>
+		
+		<p>When performing matching, it is important to know when to interpret character escapes so that
+		   a match succeeds (or fails) appropriately. Normally, escapes, references, and includes are processed
+		   or expanded before performing matching, since these syntaxes exist to allow difficult-to-encode
+		   sequences to be put into a document conveniently. </p>
+		  <p>When processing the syntax of a document format...</p>
+		  <p>When performing a match on syntactic content...</p>
+		  <p>When performing a match on natural language content...</p>
+		   
         <p class="issue">Edit me!</p>
       </section>
       <section id="handlingCaseFolding">
