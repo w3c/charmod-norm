@@ -283,12 +283,13 @@
           is a part of the syntactic content.</p>
         </aside>
         <p><dfn>Natural language content</dfn> refers to the language-bearing
-          content in a document and <b>not</b> to any of the surrounding syntactic content
-          or identifiers that form part of the document structure. You can think
+          content in a document and <b>not</b> to any of the surrounding or embedded 
+          syntactic content that form part of the document structure. You can think
           of it as the actual "content" of the document or the "message" in a
-          given protocol. Note that the natural language content can include
-          items such as the document title as well as prose content within the
-          document.</p>
+          given protocol. Note that syntactic content can contain natural
+          language content, such as when an [[HTML]] <code class="kw">img</code> element
+          has an <code class="kw">alt</code> attribute containing a description of
+          the image.</p>
         <p>A <dfn data-lt="resource|resources">resource</dfn> is a given
           document, file, or protocol "message" which includes both the <a>natural
             language content</a> as well as the <a href="#def_syntactic_content" class="termref">syntactic content</a>
