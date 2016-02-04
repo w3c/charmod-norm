@@ -278,17 +278,18 @@
             word <code class="kw" translate="no">encoding</code> has a defined
             meaning inside the XML document declaration: it is a reserved name.
             XML also allows a user to define elements and attributes for a given
-            document using a DTD. In a document that uses a DTD that defines an
+            document, for example, by using a DTD. In a document that uses a DTD that defines an
             element called <code class="kw">&lt;muffin&gt;</code>, <span class="qterm">muffin</span>
           is a part of the syntactic content.</p>
         </aside>
         <p><dfn>Natural language content</dfn> refers to the language-bearing
-          content in a document and <b>not</b> to any of the surrounding syntactic content
-          or identifiers that form part of the document structure. You can think
+          content in a document and <b>not</b> to any of the surrounding or embedded 
+          syntactic content that form part of the document structure. You can think
           of it as the actual "content" of the document or the "message" in a
-          given protocol. Note that the natural language content can include
-          items such as the document title as well as prose content within the
-          document.</p>
+          given protocol. Note that syntactic content can contain natural
+          language content, such as when an [[HTML]] <code class="kw">img</code> element
+          has an <code class="kw">alt</code> attribute containing a description of
+          the image.</p>
         <p>A <dfn data-lt="resource|resources">resource</dfn> is a given
           document, file, or protocol "message" which includes both the <a>natural
             language content</a> as well as the <a href="#def_syntactic_content" class="termref">syntactic content</a>
@@ -303,9 +304,11 @@
           type of characters that can appear in different places. For example,
           HTML defines the names of its elements and attributes, as well as
           enumerated attribute values, which defines the "vocabulary" of HTML
-          <a href="#def_syntactic_content" class="termref">syntactic content</a>. ECMAScript restricts the range of characters that can appear
-          at the start or in the body of an identifier or variable name (while
-          different rules apply to the values of, say, string literals).</p>
+          <a href="#def_syntactic_content" class="termref">syntactic content</a>. 
+		Another example would be ECMAScript, which restricts the range of 
+		characters that can appear at the start or in the body of an identifier 
+		or variable name. It applies different rules for other cases, such as to 
+		the values of string literals.</p>
         <p>A <dfn data-lt="grapheme|graphemes">grapheme</dfn> is a sequence of
           one or more Unicode characters in a visual representation of some text
           that a typical user would perceive as being a single unit (<q>character</q>).
