@@ -305,9 +305,18 @@
           HTML document that also has some CSS and a few <code class="kw" translate="no">script</code>
           tags with embedded JavaScript, the entire HTML document, considered as
           a file, is the resource.</p>
+          
+        <p>A <dfn data-lt="user value|user values">user value</dfn> is unreserved syntactic 
+        content in a <a>vocabularly</a> that is assigned by users, as distinct 
+        from reserved keywords in a given format
+        or protocol. For example, CSS class names are part of the syntax of a CSS
+        style sheet. They are not reserved keywords, predefined by any CSS specification.
+        They are subject to the syntactic rules of CSS. And they may (or may not)
+        consist of natural language tokens.</p>
+          
         <p>A <dfn id="def_vocabulary">vocabulary</dfn> provides the list of
           reserved names as well as the set of rules and specifications
-          controlling how user values (such as identifiers) can be assigned in a
+          controlling how <a>user values</a> (such as identifiers) can be assigned in a
           format or protocol. This can include restrictions on range, order, or
           type of characters that can appear in different places. For example,
           HTML defines the names of its elements and attributes, as well as
@@ -317,6 +326,7 @@
 		characters that can appear at the start or in the body of an identifier 
 		or variable name. It applies different rules for other cases, such as to 
 		the values of string literals.</p>
+		
         <p>A <dfn data-lt="grapheme|graphemes">grapheme</dfn> is a sequence of
           one or more Unicode characters in a visual representation of some text
           that a typical user would perceive as being a single unit (<q>character</q>).
