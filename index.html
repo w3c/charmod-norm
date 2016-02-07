@@ -308,7 +308,7 @@
           a file, is the resource.</p>
           
         <p>A <dfn data-lt="user value|user values">user value</dfn> is unreserved syntactic 
-        content in a <a>vocabularly</a> that is assigned by users, as distinct 
+        content in a <a>vocabulary</a> that is assigned by users, as distinct 
         from reserved keywords in a given format
         or protocol. For example, CSS class names are part of the syntax of a CSS
         style sheet. They are not reserved keywords, predefined by any CSS specification.
@@ -607,9 +607,14 @@
       </section>
       <section id="unicodeNormalization">
         <h3>Unicode Normalization</h3>
-        <p>Other kinds of variations can occur in Unicode text: some <a data-lt="grapheme">graphemes</a>
-          can be represented by several different Unicode code point sequences.
-          Consider the character &#x01FA; <span class="uname" translate="no"> U+01FA
+        <p>A different kind of variation can occur in Unicode text: sometimes
+          several different Unicode code point sequences can represent the same 
+		logical character.
+          When searching or matching text by comparing code points, variations 
+		in encoding could cause text values otherwise expected to match not to 
+		match. </p>
+		  <p>Consider the character &#x01FA;. One way to encode this character 
+		  is as <span class="uname" translate="no"> U+01FA
             LATIN LETTER CAPITAL A WITH RING ABOVE AND ACUTE</span>. Here are
           some of the different character sequences that an HTML document could
           use to represent this character:</p>
@@ -654,6 +659,23 @@
           that use different code point sequences, Unicode defines a means of
           making two semantically equivalent texts identical: the Unicode
           Normalization Forms [[!UAX15]].</p>
+		  <aside class="advisement">
+		  <div class="note-title marker"><span>Note Well</span></div>
+		  <p>Unicode Normalization does not guarantee that two 
+		  identical-appearing strings use the same sequence of code points.</p>
+		  <p>In fact, canonical normalization is not primarily about 
+		  appearance: it is about folding multiple ways of encoding 
+		  <q>the same thing</q>. Two <a>graphemes</a> can look the same, but not 
+		  represent <q>the same thing</q>. In that case, Unicode Normalization 
+		  does 
+		  not fold the characters.</p>
+		   <p>A famous example of this are the letters U+03A1 (&#x3a1;), U+0420 (&#x420;),
+		    and U+0050 (P). These letters look identical in most fonts and represent similar
+		    concepts in the Greek, Cyrillic, and Latin scripts respectively. However, normalization
+		    will not fold these characters together. Obviously, "confusable" 
+		    characters like this can present spoofing and other security risks.
+		    For more information, see [[UTR39]].		  
+		  </p></aside>
         <p><a data-lt="resource">Resources</a> are often susceptible to the
           effects of these variations because their specifications and
           implementations on the Web do not require Unicode Normalization of the
@@ -1823,7 +1845,8 @@
       <h2 id="Acknowledgements" class="informative">Acknowledgements</h2>
       <p>The W3C Internationalization Working Group and Interest Group, as well
         as others, provided many comments and suggestions. The Working Group
-        would like to thank: Mati Allouche, Ebrahim Byagowi, John Cowan, Martin Dürst, Behdad Esfahbod, John Klensin, 
+        would like to thank: Mati Allouche, Ebrahim Byagowi, John Cowan, Martin Dürst, Behdad Esfahbod, 
+	  Asmus Freitag, John Klensin, 
 	    Amir Sarabadani, and all of the CharMod
         contributors over the many years of this document's development. </p>
       <p>The previous version of this document was edited by:</p>
