@@ -88,10 +88,16 @@
 		    authors: [ "Ken Lunde 小林劍" ]
 		},
 		
-		"UTR29": {
-			title: "Unicode Text Segmentation",
+		"UAX29": {
+			title: "Unicode Standard Annex #29: Unicode Text Segmentation",
 			href: "http://www.unicode.org/reports/tr29/",
 			authors: [ "Mark Davis" ]
+		},
+		
+		"UTS39": {
+		    title: "Unicode Technical Standard #39: Unicode Security Mechanisms",
+		    href: "http://www.unicode.org/reports/tr39/",
+		    authors: [ "Mark Davis", "Michel Suignard" ]
 		},
 		
 		"UTR36": {
@@ -335,7 +341,7 @@
           sorting or text selection, so it is necessary to be able to compute
           the boundaries between each user-perceived character. Unicode defines
           the default mechanism for computing graphemes in <cite>Unicode
-            Standard Annex #29: Text Segmentation</cite> [[!UTR29]] and calls
+            Standard Annex #29: Text Segmentation</cite> [[!UAX29]] and calls
           this approximation a <dfn>grapheme cluster</dfn>. There are two types
           of default grapheme cluster defined. Unless otherwise noted, grapheme
           cluster in this document refers to an extended default grapheme
@@ -662,20 +668,9 @@
 		  <aside class="advisement">
 		  <div class="note-title marker"><span>Note Well</span></div>
 		  <p>Unicode Normalization does not guarantee that two 
-		  identical-appearing strings use the same sequence of code points.</p>
-		  <p>In fact, canonical normalization is not primarily about 
-		  appearance: it is about folding multiple ways of encoding 
-		  <q>the same thing</q>. Two <a>graphemes</a> can look the same, but not 
-		  represent <q>the same thing</q>. In that case, Unicode Normalization 
-		  does 
-		  not fold the characters.</p>
-		   <p>A famous example of this are the letters U+03A1 (&#x3a1;), U+0420 (&#x420;),
-		    and U+0050 (P). These letters look identical in most fonts and represent similar
-		    concepts in the Greek, Cyrillic, and Latin scripts respectively. However, normalization
-		    will not fold these characters together. Obviously, "confusable" 
-		    characters like this can present spoofing and other security risks.
-		    For more information, see [[UTR39]].		  
-		  </p></aside>
+		  identical-appearing strings that are in a given Unicode Normalization Form use the same sequence of code points.
+		  See <a href="#normalizationLimitations"></a> for more information.</p>
+		</aside>
         <p><a data-lt="resource">Resources</a> are often susceptible to the
           effects of these variations because their specifications and
           implementations on the Web do not require Unicode Normalization of the
@@ -1043,6 +1038,30 @@
               NFKD or NFKC), becomes an ASCII character sequence that looks
               like: <samp>81/2</samp>.</li>
           </ul>
+        </section>
+        <section id="normalizationLimitations">
+         <h4>Limitations of Normalization</h4>
+         <p>Applying a Unicode Normalization Form, even the more <q>destructive</q> Compatibility (K) forms, does not
+            guarantee that two identical-looking strings use, in fact, the same underlying Unicode code points. This is sometimes
+            surprising to software developers and others who expect that Unicode Normalization will eliminate all encoding variation.
+            Normalization is, at best, only part of a string matching solution.</p>
+   		  <p>In fact, canonical normalization is not primarily about 
+		  appearance: it is about folding multiple ways of encoding 
+		  the same logical character or grapheme cluster to use the same code point sequence. 
+		  Two (normalized) <a>graphemes</a> can still look exactly the same, but not 
+		  represent the same logical character.</p>
+		  <p>One example of this are the letters <code>U+03A1</code> (&#x3a1;), <code>U+0420</code> (&#x420;),
+		    and <code>U+0050</code> (P). These letters look identical in most fonts, but they are encoded separately as part of the
+		    alphabets used in the Greek, Cyrillic, and Latin scripts respectively. Unicode Normalization
+		    will not fold these characters together.</p>
+		  <p>Similar examples of identical appearance (called a <dfn>homoglyph</dfn>) can appear
+		    even within a single script. <q>Confusable</q> characters, regardless of script, can present spoofing 
+		    and other security risks. For more information on homoglyphs and confusability, see [[UTS39]].</p>
+		  <p>Finally, note that Unicode Normalization, even the <q>K</q> Compatibility forms,
+		    does not bring together characters that have the same intrinsic meaning or function,
+		    but which vary in appearance or usage. For example, <code>U+002E</code> (.) and <code>U+3002</code> (&#x3002;)
+		    both function as sentence ending punctuation, but the distinction is not removed by normalization.</p>
+
         </section>
       </section>
       <section id="characterEscapes">
