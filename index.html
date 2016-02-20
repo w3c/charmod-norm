@@ -462,13 +462,17 @@
       <p>The Web is primarily made up of document formats and protocols based on
         character data. These formats or protocols can be viewed as a set of
         text files (<a data-lt="resource">resources</a>) that include some form
-        of structural markup or syntactic content. Processing such syntactic content or document data requires
-        string-based operations such as matching, indexing, searching, sorting,
-        regular expression matching, and so forth. As a result, the Web is
-        sensitive to the different ways in which text might be represented in a
-        document. Failing to consider the different ways in which the same text
-        can be represented can confuse users or cause unexpected or frustrating
-        results.</p>
+        of structural markup or <a>syntactic content</a>. Processing such syntactic content or document data requires
+        string-based operations such as matching (including regular expressions), indexing, searching, sorting,
+        and so forth.</p>
+      <p>Users, particularly implementers, sometimes have naïve expectations regarding the matching or non-matching
+        of similar strings or of the efficacy of different transformations they might apply to text, particularly to
+        syntactic content, but including many types of text processing on the Web.</p>
+      <p>Because fundamentally the Web is sensitive to the different ways in which text might be represented in a
+        document, failing to consider the different ways in which the same text can be represented can confuse 
+        users or cause unexpected or frustrating results. In the sections below, this document examines the different
+        types of text variation that affect both user perception of text on the Web and the string processing on which
+        the Web relies.</p>
       <section id="definitionCaseFolding">
         <h3>Case Folding</h3>
         <p>Some scripts and writing systems make a distinction between UPPER,
@@ -1825,6 +1829,7 @@
           What about the character "A" followed by U+0300 (a combining accent
           grave)? What about writing systems, such as Devanagari, which use
           combining marks to suppress or express certain vowels?</p>
+		  <p class="issue">Issue #78: Point out that the presence or absence of Arabic/Hebrew short vowels can interefere with searching.</p>
       </section>
     </section>
     <section>
