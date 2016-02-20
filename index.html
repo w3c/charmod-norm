@@ -1683,10 +1683,15 @@
         <section id="non-normalizing-requirements">
           <h4> Non-Normalizing Specification Requirements </h4>
           <div class="requirement">
-            <p>[S][I] For vocabularies and values that are not restricted to
+            <p>[S][I] For vocabularies and values that are <em>not</em> restricted to
               Basic Latin (ASCII), case-insensitive matching MUST specify either
-              Unicode C+F or locale-sensitive string comparison. </p>
+              Unicode C+F string comparison or language-sensitive string comparison. </p>
           </div>
+          <aside class="note"><p>Language-sensitive string comparison is often referred to as being
+            <em>locale-sensitive</em>, since most programming
+            languages and operating environments access language-specific tailoring
+            using their respective locale-based APIs. For example, see the <code>java.text.Collator</code> class
+            in the Java programming language or <code>Intl.Collator</code> in JavaScript.</p></aside>
         </section>
       </section>
       <section id="handlingUnicodeControls">
