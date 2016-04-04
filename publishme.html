@@ -218,13 +218,121 @@ table.simple {
         display: none;
     }
 }
-</style><meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"><link href="https://www.w3.org/StyleSheets/TR/2016/W3C-WD" rel="stylesheet"></head>
-  <body class="h-entry"><div class="head">
+</style><meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"><link href="https://www.w3.org/StyleSheets/TR/2016/W3C-WD" rel="stylesheet"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--><script type="application/json" id="initialUserConfig">{
+  "useExperimentalStyles": true,
+  "specStatus": "WD",
+  "publishDate": "2016-04-07",
+  "previousPublishDate": "2015-11-19",
+  "previousMaturity": "WD",
+  "noRecTrack": true,
+  "shortName": "charmod-norm",
+  "copyrightStart": "2004",
+  "edDraftURI": "http://w3c.github.io/charmod-norm/",
+  "editors": [
+    {
+      "name": "Addison Phillips",
+      "company": "Invited Expert",
+      "w3cid": 33573
+    }
+  ],
+  "wg": "Internationalization Working Group",
+  "wgURI": "http://www.w3.org/International/core/",
+  "wgPublicList": "www-international",
+  "bugTracker": {
+    "new": "https://github.com/w3c/charmod-norm/issues",
+    "open": "https://github.com/w3c/charmod-norm/issues"
+  },
+  "otherLinks": [
+    {
+      "key": "Github",
+      "data": [
+        {
+          "value": "repository",
+          "href": "https://github.com/w3c/charmod-norm/"
+        }
+      ]
+    }
+  ],
+  "wgPatentURI": "http://www.w3.org/2004/01/pp-impl/32113/status",
+  "localBiblio": {
+    "UTS18": {
+      "title": "Unicode Technical Standard #18: Unicode Regular Expressions",
+      "href": "http://unicode.org/reports/tr18/",
+      "authors": [
+        "Mark Davis",
+        "Andy Heninger"
+      ]
+    },
+    "Encoding": {
+      "title": "Encoding",
+      "href": "http://www.w3.org/TR/encoding/",
+      "authors": [
+        "Anne van Kesteren",
+        "Joshua Bell",
+        "Addison Phillips"
+      ]
+    },
+    "UTS10": {
+      "title": "Unicode Technical Standard #10: Unicode Collation Algorithm",
+      "href": "http://www.unicode.org/reports/tr10/",
+      "authors": [
+        "Mark Davis",
+        "Ken Whistler",
+        "Markus Scherer"
+      ]
+    },
+    "UAX11": {
+      "title": "Unicode Standard Annex #11: East Asian Width",
+      "href": "http://www.unicode.org/reports/tr11/",
+      "authors": [
+        "Ken Lunde 小林劍"
+      ]
+    },
+    "UAX29": {
+      "title": "Unicode Standard Annex #29: Unicode Text Segmentation",
+      "href": "http://www.unicode.org/reports/tr29/",
+      "authors": [
+        "Mark Davis"
+      ]
+    },
+    "UTS39": {
+      "title": "Unicode Technical Standard #39: Unicode Security Mechanisms",
+      "href": "http://www.unicode.org/reports/tr39/",
+      "authors": [
+        "Mark Davis",
+        "Michel Suignard"
+      ]
+    },
+    "UTR36": {
+      "title": "Unicode Technical Report #36: Unicode Security Considerations",
+      "href": "http://www.unicode.org/reports/tr36/",
+      "authors": [
+        "Mark Davis",
+        "Michel Suignard"
+      ]
+    },
+    "UTR50": {
+      "title": "Unicode Technical Report #50: Unicode Vertical Text Layout",
+      "href": "http://www.unicode.org/reports/tr50/",
+      "authors": [
+        "Koji Ishii 石井宏治"
+      ]
+    },
+    "Nicol": {
+      "title": "The Multilingual World Wide Web, Chapter 2: The WWW As A Multilingual Application",
+      "href": "http://www.mind-to-mind.com/i18n/multilingual-www.html",
+      "authors": [
+        "Gavin Nicol"
+      ]
+    }
+  }
+}</script></head>
+  <body id="respecDocument" role="document" class="h-entry toc-sidebar"><div id="respecHeader" role="contentinfo" class="head">
   <p>
             <a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" height="48" width="72"></a>
   </p>
   <h1 class="title p-name" id="title" property="dcterms:title">Character Model for the World Wide Web: String Matching and Searching</h1>
-  <h2><abbr title="World Wide Web Consortium">W3C</abbr> Working Draft <time property="dcterms:issued" class="dt-published" datetime="2016-04-07">07 April 2016</time></h2>
+  <h2 id="w3c-working-draft-07-april-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Working Draft <time property="dcterms:issued" class="dt-published" datetime="2016-04-07">07 April 2016</time></h2>
   <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://www.w3.org/TR/2016/WD-charmod-norm-20160407/">http://www.w3.org/TR/2016/WD-charmod-norm-20160407/</a></dd>
@@ -263,25 +371,25 @@ table.simple {
       </p>
   <hr title="Separator for header">
 </div>
-    <section property="dc:abstract" class="introductory" id="abstract"><h2>Abstract</h2>
+    <section property="dc:abstract" class="introductory" id="abstract"><h2 resource="#h-abstract" id="h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2>
       <p>This document builds upon on <cite>Character Model for the World Wide
           Web 1.0: Fundamentals </cite>[<cite><a href="#bib-CHARMOD" class="bibref">CHARMOD</a></cite>] to provide authors of
         specifications, software developers, and content developers a common
         reference on string identity matching on the World Wide Web and thereby
         increase interoperability. </p>
-    </section><section id="sotd" class="introductory"><h2>Status of This Document</h2>
+    </section><section id="sotd" class="introductory"><h2 resource="#h-sotd" id="h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
         <p>
           <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at http://www.w3.org/TR/.</em>
         </p>
           
-      <div class="note"><div class="note-title marker"><span>Note</span></div><div class="">
+      <div class="note"><div id="h-note1" role="heading" aria-level="3" class="note-title marker"><span>Note</span></div><div class="">
         <p>This version of the document represents a significant change from the
           <a href="http://www.w3.org/TR/2012/WD-charmod-norm-20120501/">earlier
             editions</a>. Much of the content is changed and the recommendations
           are significantly altered. This fact is reflected in a change to the
           name of the document from "Character Model: Normalization".</p>
       </div></div>
-      <div class="note"><div class="note-title marker"><span>Note</span></div><div class="">
+      <div class="note"><div id="h-note2" role="heading" aria-level="3" class="note-title marker"><span>Note</span></div><div class="">
         <p data-lang="en" style="font-weight: bold; font-size: 120%">Sending
           comments on this document</p>
         <p data-lang="en">If you wish to make comments regarding this document,
@@ -330,12 +438,13 @@ table.simple {
             <p>This document is governed by the <a id="w3c_process_revision" href="http://www.w3.org/2015/Process-20150901/">1 September 2015 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
             </p>
           
-</section>
+</section><nav id="toc"><h2 resource="#table-of-contents" id="table-of-contents" class="introductory"><span property="xhv:role" resource="xhv:heading">Table of Contents</span></h2><ul role="directory" class="toc"><li class="tocline"><a class="tocxref" href="#intro"><span class="secno">1. </span>Introduction</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#goals"><span class="secno">1.1 </span>Goals and Scope</a></li><li class="tocline"><a class="tocxref" href="#structure"><span class="secno">1.2 </span>Structure of this Document</a></li><li class="tocline"><a class="tocxref" href="#background"><span class="secno">1.3 </span>Background</a></li><li class="tocline"><a class="tocxref" href="#terminology"><span class="secno">1.4 </span>Terminology and Notation</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#terminology-examples"><span class="secno">1.4.1 </span>Terminology Examples</a></li></ul></li><li class="tocline"><a class="tocxref" href="#conformance"><span class="secno">1.5 </span>Conformance</a></li></ul></li><li class="tocline"><a class="tocxref" href="#problemStatement"><span class="secno">2. </span>The String Matching Problem</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#definitionCaseFolding"><span class="secno">2.1 </span>Case Folding</a></li><li class="tocline"><a class="tocxref" href="#unicodeNormalization"><span class="secno">2.2 </span>Unicode Normalization</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#canonical_compatibility"><span class="secno">2.2.1 </span>Canonical vs. Compatibility Equivalence</a></li><li class="tocline"><a class="tocxref" href="#composition_decomposition"><span class="secno">2.2.2 </span>Composition vs. Decomposition</a></li><li class="tocline"><a class="tocxref" href="#normalization_forms"><span class="secno">2.2.3 </span>Unicode Normalization Forms</a></li><li class="tocline"><a class="tocxref" href="#normalizationLimitations"><span class="secno">2.2.4 </span>Limitations of Normalization</a></li></ul></li><li class="tocline"><a class="tocxref" href="#characterEscapes"><span class="secno">2.3 </span>Character Escapes</a></li><li class="tocline"><a class="tocxref" href="#unicodeControls"><span class="secno">2.4 </span>Unicode Controls and Invisible Markers</a></li><li class="tocline"><a class="tocxref" href="#legacyCharacterEncoding"><span class="secno">2.5 </span>Legacy Character Encodings</a></li><li class="tocline"><a class="tocxref" href="#otherEquivalences"><span class="secno">2.6 </span>Other Types of Equivalence</a></li></ul></li><li class="tocline"><a class="tocxref" href="#identityMatching"><span class="secno">3. </span>String Matching of Syntactic Content in Document Formats and Protocols</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#matchingAlgorithm"><span class="secno">3.1 </span>The Matching Algorithm</a></li><li class="tocline"><a class="tocxref" href="#convertingToCommonUnicodeForm"><span class="secno">3.2 </span>Converting to a Common Unicode Form</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#choice-of-normalization-form"><span class="secno">3.2.1 </span>Choice of Normalization Form</a></li><li class="tocline"><a class="tocxref" href="#content-reqs"><span class="secno">3.2.2 </span>Requirements for Resources</a></li><li class="tocline"><a class="tocxref" href="#non-normalizing"><span class="secno">3.2.3 </span> Non-Normalizing Specification Requirements </a></li><li class="tocline"><a class="tocxref" href="#normalizing-spec"><span class="secno">3.2.4 </span> Unicode Normalizing Specification Requirements </a></li></ul></li><li class="tocline"><a class="tocxref" href="#expandingCharacterEscapes"><span class="secno">3.3 </span>Expanding Character Escapes and Includes</a></li><li class="tocline"><a class="tocxref" href="#handlingCaseFolding"><span class="secno">3.4 </span>Handling Case Folding</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#formal-language"><span class="secno">3.4.1 </span>Requirements for Specifications</a></li><li class="tocline"><a class="tocxref" href="#non-normalizing-requirements"><span class="secno">3.4.2 </span> Non-Normalizing Specification Requirements </a></li></ul></li><li class="tocline"><a class="tocxref" href="#handlingUnicodeControls"><span class="secno">3.5 </span>Handling Unicode Controls and Invisible Markers</a></li></ul></li><li class="tocline"><a class="tocxref" href="#searching"><span class="secno">4. </span>String Searching in Natural Language Content</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#searchingConsiderations"><span class="secno">4.1 </span>Considerations for Matching Natural Language Content</a></li></ul></li><li class="tocline"><a class="tocxref" href="#changeLog"><span class="secno">5. </span>Changes Since the Last Published
+        Version</a></li><li class="tocline"><a class="tocxref" href="#Acknowledgements"><span class="secno">6. </span>Acknowledgements</a></li><li class="tocline"><a class="tocxref" href="#references"><span class="secno">A. </span>References</a><ul class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><span class="secno">A.1 </span>Normative references</a></li><li class="tocline"><a class="tocxref" href="#informative-references"><span class="secno">A.2 </span>Informative references</a></li></ul></li></ul></nav>
     
-    <section id="intro">
-      <h2>Introduction</h2>
-      <section id="goals">
-        <h3>Goals and Scope</h3>
+    <section property="bibo:hasPart" resource="#intro" typeof="bibo:Chapter" id="intro">
+      <!--OddPage--><h2 resource="#h-intro" id="h-intro"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>Introduction</span></h2>
+      <section property="bibo:hasPart" resource="#goals" typeof="bibo:Chapter" id="goals">
+        <h3 resource="#h-goals" id="h-goals"><span property="xhv:role" resource="xhv:heading"><span class="secno">1.1 </span>Goals and Scope</span></h3>
         <p>The goal of the Character Model for the World Wide Web is to
           facilitate use of the Web by all people, regardless of their language,
           script, writing system, and cultural conventions, in accordance with
@@ -343,7 +452,7 @@ table.simple {
               universal access</cite></a>. One basic prerequisite to achieve
           this goal is to be able to transmit and process the characters used
           around the world in a well-defined and well-understood way.</p>
-        <div class="note"><div class="note-title marker"><span>Note</span></div><p class="">This document builds on <cite>Character Model for the
+        <div class="note"><div id="h-note3" role="heading" aria-level="4" class="note-title marker"><span>Note</span></div><p class="">This document builds on <cite>Character Model for the
             World Wide Web: Fundamentals</cite> [<cite><a href="#bib-CHARMOD" class="bibref">CHARMOD</a></cite>]. Understanding the
           concepts in that document are important to being able to understand
           and apply this document successfully.</p></div>
@@ -373,8 +482,8 @@ table.simple {
           the World Wide Web. Working together, these three groups can build a
           globally accessible Web.</p>
       </section>
-      <section id="structure">
-        <h3>Structure of this Document</h3>
+      <section property="bibo:hasPart" resource="#structure" typeof="bibo:Chapter" id="structure">
+        <h3 resource="#h-structure" id="h-structure"><span property="xhv:role" resource="xhv:heading"><span class="secno">1.2 </span>Structure of this Document</span></h3>
         <p>This document defines two basic building blocks for the Web related
           to this problem. First, it defines rules and processes for String
           Identity Matching in document formats. These rules are designed for
@@ -401,13 +510,13 @@ table.simple {
           preserve the author's original sequences and how to search or find
           content in natural language text. </p>
       </section>
-      <section id="background">
-        <h3>Background</h3>
+      <section property="bibo:hasPart" resource="#background" typeof="bibo:Chapter" id="background">
+        <h3 resource="#h-background" id="h-background"><span property="xhv:role" resource="xhv:heading"><span class="secno">1.3 </span>Background</span></h3>
         <p>This section provides some historical background on the topics
           addressed in this specification.</p>
         <p>At the core of the character model is the Universal Character Set
           (UCS), defined jointly by the <cite>Unicode Standard</cite>
-          [<cite><a href="#bib-Unicode" class="bibref">Unicode</a></cite>] and ISO/IEC 10646 [<cite><a href="#bib-ISO10646" class="bibref">ISO10646</a></cite>]. In this document, <dfn data-dfn-type="dfn" data-dfn-for="">Unicode</dfn>
+          [<cite><a href="#bib-Unicode" class="bibref">Unicode</a></cite>] and ISO/IEC 10646 [<cite><a href="#bib-ISO10646" class="bibref">ISO10646</a></cite>]. In this document, <dfn id="dfn-unicode" data-dfn-type="dfn">Unicode</dfn>
           is used as a synonym for the Universal Character Set. A successful
           character model allows Web documents authored in the world's writing
           systems, scripts, and languages (and on different platforms) to be
@@ -418,8 +527,8 @@ table.simple {
           of important parts of this specification, see <cite>Requirements for
             String Identity Matching and String Indexing</cite> [<cite><a href="#bib-CHARREQ" class="bibref">CHARREQ</a></cite>].</p>
       </section>
-      <section id="terminology">
-        <h3>Terminology and Notation</h3>
+      <section property="bibo:hasPart" resource="#terminology" typeof="bibo:Chapter" id="terminology">
+        <h3 resource="#h-terminology" id="h-terminology"><span property="xhv:role" resource="xhv:heading"><span class="secno">1.4 </span>Terminology and Notation</span></h3>
         <p>This section contains terminology and notation specific to this
           document.</p>
         <p>The Web is built on text-based formats and protocols. In order to
@@ -435,17 +544,17 @@ table.simple {
         <p>Some characters that are used in the various examples might not
           appear as intended unless you have the appropriate font. Care has been
           taken to ensure that the examples nevertheless remain understandable.</p>
-        <p>A <dfn data-dfn-type="dfn" data-dfn-for="">legacy
+        <p>A <dfn id="dfn-legacy-character-encoding" data-dfn-type="dfn">legacy
             character encoding</dfn> is a character encoding not based on the
           Unicode character set.</p>
           
                    
-        <p>A <dfn data-dfn-type="dfn" data-dfn-for="">transcoder</dfn> is a process that converts 
+        <p>A <dfn id="dfn-transcoder" data-dfn-type="dfn">transcoder</dfn> is a process that converts 
 		text between two character encodings. Most commonly in this document it 
-		refers to a process that converts from a <a>legacy character encoding</a> 
+		refers to a process that converts from a <a data-link-type="dfn" class="internalDFN" href="#dfn-legacy-character-encoding">legacy character encoding</a> 
         to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode encoding form</a>, 
 		such as UTF-8.</p>
-        <p><dfn data-dfn-type="dfn" data-dfn-for="" id="def_syntactic_content">Syntactic content</dfn> is any text in a document format or
+        <p><dfn data-dfn-type="dfn" id="def_syntactic_content">Syntactic content</dfn> is any text in a document format or
           protocol that belongs to the structure of the format or protocol. This
           definition can include values that are not typically thought of as
           "markup", such as the name of a field in an HTTP header, as well as
@@ -468,7 +577,7 @@ table.simple {
             element called <code class="kw">&lt;muffin&gt;</code>, <span class="qterm">muffin</span>
           is a part of the syntactic content.</p>
         </aside>
-        <p><dfn data-dfn-type="dfn" data-dfn-for="">Natural language content</dfn> refers to the language-bearing
+        <p><dfn id="dfn-natural-language-content" data-dfn-type="dfn">Natural language content</dfn> refers to the language-bearing
           content in a document and <b>not</b> to any of the surrounding or embedded 
           syntactic content that form part of the document structure. You can think
           of it as the actual "content" of the document or the "message" in a
@@ -477,28 +586,28 @@ table.simple {
           has an <code class="kw">alt</code> attribute containing a description of
           the image.</p>
           
-        <div id="issue-1" class="issue"><div class="issue-title marker"><span>Issue 1</span></div><p class="">Issue #59: should we use the term 'resource' in this document
+        <div id="issue-1" class="issue"><div id="h-issue1" role="heading" aria-level="4" class="issue-title marker"><span>Issue 1</span></div><p class="">Issue #59: should we use the term 'resource' in this document
         using this definition, given the wider one in the more well know RFC3986 URI spec.</p></div>
           
-        <p>A <dfn data-dfn-type="dfn" data-dfn-for="">resource</dfn> is a given
-          document, file, or protocol "message" which includes both the <a>natural
+        <p>A <dfn id="dfn-resource" data-dfn-type="dfn">resource</dfn> is a given
+          document, file, or protocol "message" which includes both the <a data-link-type="dfn" class="internalDFN" href="#dfn-natural-language-content">natural
             language content</a> as well as the <a href="#def_syntactic_content" class="termref">syntactic content</a>
           such as identifiers surrounding or containing it. For example, in an
           HTML document that also has some CSS and a few <code class="kw" translate="no">script</code>
           tags with embedded JavaScript, the entire HTML document, considered as
           a file, is the resource.</p>
           
-        <p>A <dfn data-dfn-type="dfn" data-dfn-for="">user value</dfn> is unreserved syntactic 
-        content in a <a>vocabulary</a> that is assigned by users, as distinct 
+        <p>A <dfn id="dfn-user-value" data-dfn-type="dfn">user value</dfn> is unreserved syntactic 
+        content in a <a data-link-type="dfn" class="internalDFN" href="#def_vocabulary">vocabulary</a> that is assigned by users, as distinct 
         from reserved keywords in a given format
         or protocol. For example, CSS class names are part of the syntax of a CSS
         style sheet. They are not reserved keywords, predefined by any CSS specification.
         They are subject to the syntactic rules of CSS. And they may (or may not)
         consist of natural language tokens.</p>
           
-        <p>A <dfn data-dfn-type="dfn" data-dfn-for="" id="def_vocabulary">vocabulary</dfn> provides the list of
+        <p>A <dfn data-dfn-type="dfn" id="def_vocabulary">vocabulary</dfn> provides the list of
           reserved names as well as the set of rules and specifications
-          controlling how <a>user values</a> (such as identifiers) can be assigned in a
+          controlling how <a data-link-type="dfn" class="internalDFN" href="#dfn-user-value">user values</a> (such as identifiers) can be assigned in a
           format or protocol. This can include restrictions on range, order, or
           type of characters that can appear in different places. For example,
           HTML defines the names of its elements and attributes, as well as
@@ -509,7 +618,7 @@ table.simple {
 		or variable name. It applies different rules for other cases, such as to 
 		the values of string literals.</p>
 		
-        <p>A <dfn data-dfn-type="dfn" data-dfn-for="">grapheme</dfn> is a sequence of
+        <p>A <dfn id="dfn-grapheme" data-dfn-type="dfn">grapheme</dfn> is a sequence of
           one or more Unicode characters in a visual representation of some text
           that a typical user would perceive as being a single unit (<q>character</q>).
           Graphemes are important for a number of text operations such as
@@ -517,7 +626,7 @@ table.simple {
           the boundaries between each user-perceived character. Unicode defines
           the default mechanism for computing graphemes in <cite>Unicode
             Standard Annex #29: Text Segmentation</cite> [<cite><a href="#bib-UAX29" class="bibref">UAX29</a></cite>] and calls
-          this approximation a <dfn data-dfn-type="dfn" data-dfn-for="">grapheme cluster</dfn>. There are two types
+          this approximation a <dfn id="dfn-grapheme-cluster" data-dfn-type="dfn">grapheme cluster</dfn>. There are two types
           of default grapheme cluster defined. Unless otherwise noted, grapheme
           cluster in this document refers to an extended default grapheme
           cluster. (A discussion of grapheme clusters is also given in Section 2
@@ -538,8 +647,8 @@ table.simple {
             modifying vowel character. So the word contains seven Unicode
             characters, but only four graphemes.</p>
         </aside>
-        <section>
-        <h5>Terminology Examples</h5>
+        <section property="bibo:hasPart" resource="#terminology-examples" typeof="bibo:Chapter" id="terminology-examples">
+        <h4 resource="#h-terminology-examples" id="h-terminology-examples"><span property="xhv:role" resource="xhv:heading"><span class="secno">1.4.1 </span>Terminology Examples</span></h4>
         <p>This section illustrates some of the terminology defined above.</p>
           <div style="background-color:white;text-align: left; border-style: solid; border-width:3px; padding-left: 50px; padding-right: 50px; padding-top: 10px; width: 80%">
             <p> <span class="markup">&lt;<span class="vocabulary">html</span> <span class="vocabulary">lang</span>="en" <span class="vocabulary">dir</span>="<span class="vocabulary">ltr</span>"&gt;<br>
@@ -560,11 +669,11 @@ table.simple {
           <ul style="text-align:left">
           <li>Everything inside the black rectangle (that is, in this HTML file)
             is part of the resource.</li>
-          <li><a>Syntactic content</a> is shown in a <span class="markup">monospaced font</span>.</li>
-          <li><a>Natural language content</a> is shown in a <span class="shakespeare">bold
+          <li><a data-link-type="dfn" class="internalDFN" href="#def_syntactic_content">Syntactic content</a> is shown in a <span class="markup">monospaced font</span>.</li>
+          <li><a data-link-type="dfn" class="internalDFN" href="#dfn-natural-language-content">Natural language content</a> is shown in a <span class="shakespeare">bold
               blue font with a gray background</span>.</li>
           <li>User values are shown in <span class="userValue">italics</span>.</li>
-          <li><a>Vocabulary</a> is shown with <span class="vocabulary">red underlining</span>.</li>
+          <li><a data-link-type="dfn" class="internalDFN" href="#def_vocabulary">Vocabulary</a> is shown with <span class="vocabulary">red underlining</span>.</li>
           <li>All of the text above (all text in a text file) makes up a
             resource. It's possible that a given resource will contain no
             natural language content at all (consider an HTML document
@@ -578,7 +687,7 @@ table.simple {
           </ul>
         </section>
       </section>
-      <section id="conformance"><h2>Conformance</h2>
+      <section property="bibo:hasPart" resource="#conformance" typeof="bibo:Chapter" id="conformance"><h3 resource="#h-conformance" id="h-conformance"><span property="xhv:role" resource="xhv:heading"><span class="secno">1.5 </span>Conformance</span></h3>
 <p>
   As well as sections marked as non-normative, all authoring guidelines, diagrams, examples,
   and notes in this specification are non-normative. Everything else in this specification is
@@ -620,7 +729,7 @@ table.simple {
           conformance criteria preceded by [I].</p>
         <p>Content conforms to this document if it does not violate any
           conformance criteria preceded by [C].</p>
-        <div class="note"><div class="note-title marker"><span>Note</span></div><div class="">
+        <div class="note"><div id="h-note4" role="heading" aria-level="4" class="note-title marker"><span>Note</span></div><div class="">
           <p><span class="note-head">NOTE: </span>Requirements placed on
             specifications might indirectly cause requirements to be placed on
             implementations or content that claim to conform to those
@@ -632,12 +741,12 @@ table.simple {
           long as observable behavior is not affected.</p>
       </section>
     </section>
-    <section id="problemStatement">
-      <h2>The String Matching Problem</h2>
+    <section property="bibo:hasPart" resource="#problemStatement" typeof="bibo:Chapter" id="problemStatement">
+      <!--OddPage--><h2 resource="#h-problemstatement" id="h-problemstatement"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>The String Matching Problem</span></h2>
       <p>The Web is primarily made up of document formats and protocols based on
         character data. These formats or protocols can be viewed as a set of
-        text files (<a data-lt="resource">resources</a>) that include some form
-        of structural markup or <a>syntactic content</a>. Processing such syntactic content or document data requires
+        text files (<a data-link-type="dfn" class="internalDFN" href="#dfn-resource" data-lt="resource">resources</a>) that include some form
+        of structural markup or <a data-link-type="dfn" class="internalDFN" href="#def_syntactic_content">syntactic content</a>. Processing such syntactic content or document data requires
         string-based operations such as matching (including regular expressions), indexing, searching, sorting,
         and so forth.</p>
       <p>Users, particularly implementers, sometimes have naïve expectations regarding the matching or non-matching
@@ -648,8 +757,8 @@ table.simple {
         users or cause unexpected or frustrating results. In the sections below, this document examines the different
         types of text variation that affect both user perception of text on the Web and the string processing on which
         the Web relies.</p>
-      <section id="definitionCaseFolding">
-        <h3>Case Folding</h3>
+      <section property="bibo:hasPart" resource="#definitionCaseFolding" typeof="bibo:Chapter" id="definitionCaseFolding">
+        <h3 resource="#h-definitioncasefolding" id="h-definitioncasefolding"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.1 </span>Case Folding</span></h3>
         <p>Some scripts and writing systems make a distinction between UPPER,
           lower, and Title case characters. Most scripts, such as the Brahmic
           scripts of India, the Arabic script, and the non-Latin scripts used to
@@ -659,7 +768,7 @@ table.simple {
           as Greek, Armenian, and Cyrillic. </p>
         <p>Some document formats or protocols seek to aid interoperability or
           provide an aid to content authors by ignoring case variations in the
-          <a data-lt="vocabulary">vocabulary</a> they define or in user-defined values permitted by the
+          <a data-link-type="dfn" class="internalDFN" href="#def_vocabulary" data-lt="vocabulary">vocabulary</a> they define or in user-defined values permitted by the
           format or protocol. For example, this occurs when matching class names
           between an HTML document and its associated style sheet. Consider this
           HTML fragment: </p>
@@ -677,7 +786,7 @@ table.simple {
         <p>The <code class="kw" translate="no">SPAN</code> in the stylesheet
           matches the <code class="kw" translate="no">span</code> element in
           the document, even though one is uppercase and the other is not.</p>
-        <p><dfn data-dfn-type="dfn" data-dfn-for="">Case folding</dfn> is the process of making two texts identical
+        <p><dfn id="dfn-case-folding" data-dfn-type="dfn">Case folding</dfn> is the process of making two texts identical
           which differ in case but are otherwise "the same".</p>
         <p>Case folding might, at first, appear simple. However there are
           variations that need to be considered when treating the full range of
@@ -698,7 +807,7 @@ table.simple {
 		  Unicode character. These are called the <code class="kw">full</code> case fold mappings. 
 		  Together with the <code class="kw">common</code> case fold mappings, these provide the 
 		  default case fold mapping for all of Unicode. This case fold mapping is referred to in this 
-		  document as <dfn data-dfn-type="dfn" data-dfn-for="" id="dfn-UnicodeC+F">Unicode C+F</dfn>.
+		  document as <dfn data-dfn-type="dfn" id="dfn-UnicodeC+F">Unicode C+F</dfn>.
          </p>
 		  <p>Because some applications cannot allocate additional storage when 
 		  performing a case fold operation, Unicode provides a <code class="kw">simple</code> case 
@@ -706,7 +815,7 @@ table.simple {
 		  fewer code points to use a single code point for comparison purposes 
 		  instead. Unlike the full mapping, this mapping invariably alters the 
 		  content (and potentially the meaning) of the text. This <code class="kw">simple</code> case fold mapping, referred to in this document 
-		  as <dfn data-dfn-type="dfn" data-dfn-for="" id="UnicodeC+S">Unicode C+S</dfn>, is not appropriate for the Web. </p>
+		  as <dfn data-dfn-type="dfn" id="UnicodeC+S">Unicode C+S</dfn>, is not appropriate for the Web. </p>
 		  
 		  <aside class="example"><div class="example-title marker"><span>Example 4</span></div>
 		  <p>One well-known example of a 'full' case fold mapping is the character <span class="qchar">ß</span>
@@ -758,26 +867,26 @@ table.simple {
           when defining rules for matching user- or content-generated values,
           such as identifiers. In these situations, case-<em>in</em>sensitive
           matching might be desirable instead.</p>
-        <p>When defining a <a>vocabulary</a>, one important consideration is
+        <p>When defining a <a data-link-type="dfn" class="internalDFN" href="#def_vocabulary">vocabulary</a>, one important consideration is
           whether the values are restricted to the ASCII subset of Unicode or if
           the vocabulary permits the use of characters (such as accents on Latin
           letters or a broad range of Unicode including non-Latin scripts) that
           potentially have more complex case folding requirements.
         To address these different requirements, there are four types of casefold matching defined by this document for the purposes of
         string identity matching in document formats or protocols:
-        </p><p><dfn data-dfn-type="dfn" data-dfn-for="">Case sensitive matching</dfn>: code
+        </p><p><dfn id="dfn-case-sensitive-matching" data-dfn-type="dfn">Case sensitive matching</dfn>: code
           points are compared directly with no case folding.</p>
-        <p><dfn data-dfn-type="dfn" data-dfn-for="">ASCII case-insensitive matching</dfn>
+        <p><dfn id="dfn-ascii-case-insensitive-matching" data-dfn-type="dfn">ASCII case-insensitive matching</dfn>
           compares a sequence of code points as if all ASCII code points in the
           range 0x41 to 0x5A (A to Z) were mapped to the corresponding code
           points in the range 0x61 to 0x7A (a to z). When a vocabulary is itself
           constrained to ASCII, ASCII case-insensitive matching can be required.
         </p>
-        <p id="uci"><dfn data-dfn-type="dfn" data-dfn-for="">Unicode
+        <p id="uci"><dfn id="dfn-unicode-case-insensitive-matching" data-dfn-type="dfn">Unicode
             case-insensitive matching</dfn> compares a sequence of code points
           as if the Unicode C+F Unicode-defined language-independent default case
           folding form mentioned above had been applied to both input sequences.</p>
-        <p><dfn data-dfn-type="dfn" data-dfn-for="">Language-sensitive case-sensitive matching</dfn> is useful in
+        <p><dfn id="dfn-language-sensitive-case-sensitive-matching" data-dfn-type="dfn">Language-sensitive case-sensitive matching</dfn> is useful in
           the rare case where a document format or protocol contains information
           about the language of the syntactic content and where language-sensitive case
           folding might sensibly be applied. <span class="requirement">In these
@@ -786,8 +895,8 @@ table.simple {
           These case-fold mappings are defined in the <cite>Common Locale Data
             Repository</cite> [<cite><a href="#bib-UAX35" class="bibref">UAX35</a></cite>] project of the Unicode Consortium.</p>
       </section>
-      <section id="unicodeNormalization">
-        <h3>Unicode Normalization</h3>
+      <section property="bibo:hasPart" resource="#unicodeNormalization" typeof="bibo:Chapter" id="unicodeNormalization">
+        <h3 resource="#h-unicodenormalization" id="h-unicodenormalization"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.2 </span>Unicode Normalization</span></h3>
         <p>A different kind of variation can occur in Unicode text: sometimes
           several different Unicode code point sequences can represent the same 
 		logical character.
@@ -829,19 +938,19 @@ table.simple {
           making two semantically equivalent texts identical: the Unicode
           Normalization Forms [<cite><a href="#bib-UAX15" class="bibref">UAX15</a></cite>].</p>
 		  <aside class="advisement">
-		  <div class="note-title marker"><span>Note Well</span></div>
+		  <div id="h-note5" role="heading" aria-level="4" class="note-title marker"><span>Note Well</span></div>
 		  <p>Unicode Normalization does not guarantee that two 
 		  identical-appearing strings that are in a given Unicode Normalization Form use the same sequence of code points.
-		  See <a href="#normalizationLimitations"></a> for more information.</p>
+		  See <a class="sec-ref" href="#normalizationLimitations"><span class="secno">2.2.4</span> <span class="sec-title">Limitations of Normalization</span></a> for more information.</p>
 		</aside>
-        <p><a data-lt="resource">Resources</a> are often susceptible to the
+        <p><a data-link-type="dfn" class="internalDFN" href="#dfn-resource" data-lt="resource">Resources</a> are often susceptible to the
           effects of these variations because their specifications and
           implementations on the Web do not require Unicode Normalization of the
           text, nor do they take into consideration the string matching
           algorithms used when processing the syntactic content and natural language content later. For this
           reason, content developers need to ensure that they have provided a
           consistent representation in order to avoid problems later.</p>
-        <p>However, it can be difficult for users to assure that a given <a data-lt="resource">resource</a>
+        <p>However, it can be difficult for users to assure that a given <a data-link-type="dfn" class="internalDFN" href="#dfn-resource" data-lt="resource">resource</a>
           or set of resources uses a consistent textual representation because
           the differences are usually not visible when viewed as text. Tools and
           implementations thus need to consider the difficulties experienced by
@@ -852,11 +961,11 @@ table.simple {
           that spring from invisible differences in their source documents. For
           example, the <abbr title="World Wide Web Consortium">W3C</abbr> Validator warns when an HTML document is not fully in
           Unicode Normalization Form C.</p>
-        <section id="canonical_compatibility">
-          <h4>Canonical vs. Compatibility Equivalence</h4>
+        <section property="bibo:hasPart" resource="#canonical_compatibility" typeof="bibo:Chapter" id="canonical_compatibility">
+          <h4 resource="#h-canonical_compatibility" id="h-canonical_compatibility"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.2.1 </span>Canonical vs. Compatibility Equivalence</span></h4>
           <p>Unicode defines two types of equivalence between characters: <em>canonical
               equivalence</em> and <em>compatibility equivalence</em>.</p>
-          <p><dfn data-dfn-type="dfn" data-dfn-for="">Canonical equivalence</dfn> is a fundamental equivalency
+          <p><dfn id="dfn-canonical-equivalence" data-dfn-type="dfn">Canonical equivalence</dfn> is a fundamental equivalency
             between Unicode characters or sequences of Unicode characters that
             represent the same abstract character. When correctly displayed,
             these should always have the same visual appearance and behavior.
@@ -895,14 +1004,14 @@ table.simple {
             <li class="dropExampleItem"><span class="dropExample">가<span style="font-size:75%">
                   vs.</span>가</span> <em>Hangul.</em> The Hangul script is
               used to write the Korean language. This script is constructed
-              logically, with each syllable being a roughly-square <a>grapheme</a>
+              logically, with each syllable being a roughly-square <a data-link-type="dfn" class="internalDFN" href="#dfn-grapheme">grapheme</a>
               formed from specific sub-parts that represent consonants and
               vowels. These specific sub-parts, called <em>jamo</em>, are
               encoded in Unicode. So too are the precomposed syllables. Thus the
               syllable <span class="qchar">가</span>&nbsp; <span class="uname" translate="no">U+AC00</span> is canonically equivalent to its
               constituent <em>jamo</em> characters <span class="qchar">ᄀ</span>&nbsp;<span class="uname" translate="no">U+1100</span> and <span class="qchar">ᅡ</span>&nbsp;<span class="uname" translate="no">U+1161</span>.</li>
           </ul>
-          <p><dfn data-dfn-type="dfn" data-dfn-for="">Compatibility equivalence</dfn> is a weaker equivalence
+          <p><dfn id="dfn-compatibility-equivalence" data-dfn-type="dfn">Compatibility equivalence</dfn> is a weaker equivalence
             between characters or sequences of characters that represent the
             same abstract character, but may have a different visual appearance
             or behavior. Generally a compatibility decomposition removes
@@ -917,7 +1026,7 @@ table.simple {
             language.</p>
           <p>The following table illustrates various kinds of compatibility
             equivalence in Unicode:</p>
-              <table class="data">
+              <div class="overlarge"><table class="data">
                 <thead>
                   <tr>
                     <th colspan="5">Compatibility Equivalance</th>
@@ -1007,7 +1116,7 @@ table.simple {
                     <td style="text-align: center"> <span class="sampleCharacter">⻳</span></td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
           <p>In the above table, it is important to note that the characters
             illustrated are <em>actual Unicode codepoints</em>. They were
             encoded into Unicode for compatibility with various legacy character
@@ -1040,8 +1149,8 @@ table.simple {
             variations produced in the normal course of text layout and
             presentation are affected by Unicode Normalization. They are not.</p>
         </section>
-        <section id="composition_decomposition">
-          <h4>Composition vs. Decomposition</h4>
+        <section property="bibo:hasPart" resource="#composition_decomposition" typeof="bibo:Chapter" id="composition_decomposition">
+          <h4 resource="#h-composition_decomposition" id="h-composition_decomposition"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.2.2 </span>Composition vs. Decomposition</span></h4>
           <p>These two types of Unicode-defined equivalence are then grouped by
             another pair of variations: "decomposition" and "composition". In
             "decomposition", separable logical parts of a visual character are
@@ -1052,7 +1161,7 @@ table.simple {
             characters. Note that this does <strong>not</strong> mean that all
             of the combining marks have been removed from the resulting
             normalized text. </p>
-          <div class="note"><div class="note-title marker"><span>Note</span></div><div class="">
+          <div class="note"><div id="h-note6" role="heading" aria-level="5" class="note-title marker"><span>Note</span></div><div class="">
             <p>Roughly speaking, <abbr title="Normalization Form C">NFC</abbr>
               is defined such that each combining character sequence (a base
               character followed by one or more combining characters) is
@@ -1064,8 +1173,8 @@ table.simple {
               in canonical order.</p>
           </div></div>
         </section>
-        <section id="normalization_forms">
-          <h4>Unicode Normalization Forms</h4>
+        <section property="bibo:hasPart" resource="#normalization_forms" typeof="bibo:Chapter" id="normalization_forms">
+          <h4 resource="#h-normalization_forms" id="h-normalization_forms"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.2.3 </span>Unicode Normalization Forms</span></h4>
           <p>The Unicode Normalization Forms are named using letter codes, with
             'C' standing for Composition, 'D' for Decomposition, and 'K' for
             Compatibility decomposition. Having converted a resource to a
@@ -1075,7 +1184,7 @@ table.simple {
             Normalization form for the U+01FA example given earlier: </p>
           <figure id="fig-comparison-of-unicode-normalization-forms">
             <div>
-              <table class="data">
+              <div class="overlarge"><table class="data">
                 <thead>
                   <tr>
                     <th>Original Codepoints</th>
@@ -1147,7 +1256,7 @@ table.simple {
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                 </tbody>	
-               </table>
+               </table></div>
             </div>
             <figcaption>Fig. <span class="figno">1</span> <span class="fig-title">Comparison of Unicode Normalization Forms</span></figcaption> </figure>
           <p>Unicode Normalization reduces these (and other potential sequences
@@ -1178,8 +1287,8 @@ table.simple {
               like: <samp>81/2</samp>.</li>
           </ul>
         </section>
-        <section id="normalizationLimitations">
-         <h4>Limitations of Normalization</h4>
+        <section property="bibo:hasPart" resource="#normalizationLimitations" typeof="bibo:Chapter" id="normalizationLimitations">
+         <h4 resource="#h-normalizationlimitations" id="h-normalizationlimitations"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.2.4 </span>Limitations of Normalization</span></h4>
          <p>Applying a Unicode Normalization Form, even the more <q>destructive</q> Compatibility (K) forms, does not
             guarantee that two identical-looking strings use, in fact, the same underlying Unicode code points. This is sometimes
             surprising to software developers and others who expect that Unicode Normalization will eliminate all encoding variation.
@@ -1187,13 +1296,13 @@ table.simple {
    		  <p>In fact, canonical normalization is not primarily about 
 		  appearance: it is about folding multiple ways of encoding 
 		  the same logical character or grapheme cluster to use the same code point sequence. 
-		  Two (normalized) <a>graphemes</a> can still look exactly the same, but not 
+		  Two (normalized) <a data-link-type="dfn" class="internalDFN" href="#dfn-grapheme">graphemes</a> can still look exactly the same, but not 
 		  represent the same logical character.</p>
 		  <p>One example of this are the letters <code>U+03A1</code> (Ρ), <code>U+0420</code> (Р),
 		    and <code>U+0050</code> (P). These letters look identical in most fonts, but they are encoded separately as part of the
 		    alphabets used in the Greek, Cyrillic, and Latin scripts respectively. Unicode Normalization
 		    will not fold these characters together.</p>
-		  <p>Similar examples of identical appearance (called a <dfn data-dfn-type="dfn" data-dfn-for="">homoglyph</dfn>) can appear
+		  <p>Similar examples of identical appearance (called a <dfn id="dfn-homoglyph" data-dfn-type="dfn">homoglyph</dfn>) can appear
 		    even within a single script. <q>Confusable</q> characters, regardless of script, can present spoofing 
 		    and other security risks. For more information on homoglyphs and confusability, see [<cite><a href="#bib-UTS39" class="bibref">UTS39</a></cite>].</p>
 		  <p>Finally, note that Unicode Normalization, even the <q>K</q> Compatibility forms,
@@ -1203,8 +1312,8 @@ table.simple {
 
         </section>
       </section>
-      <section id="characterEscapes">
-        <h3>Character Escapes</h3>
+      <section property="bibo:hasPart" resource="#characterEscapes" typeof="bibo:Chapter" id="characterEscapes">
+        <h3 resource="#h-characterescapes" id="h-characterescapes"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.3 </span>Character Escapes</span></h3>
         <p>Most document formats or protocols provide an escaping mechanism to
           permit the inclusion of characters that are otherwise difficult to
           input, process, or encode. These escaping mechanisms provide an
@@ -1262,8 +1371,8 @@ table.simple {
           (and would also match the literal value <code>héllo</code> using the
           code point <span class="uname" translate="no">U+00E9</span>).</p>
       </section>
-      <section id="unicodeControls">
-        <h3>Unicode Controls and Invisible Markers</h3>
+      <section property="bibo:hasPart" resource="#unicodeControls" typeof="bibo:Chapter" id="unicodeControls">
+        <h3 resource="#h-unicodecontrols" id="h-unicodecontrols"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.4 </span>Unicode Controls and Invisible Markers</span></h3>
         <p>Unicode provides a number of invisble, special-purpose characters 
 		that help document authors control the appearance or performance of 
 		text. Because these characters are invisible, users are not always aware 
@@ -1324,14 +1433,14 @@ table.simple {
 		  fail (from the point of view of the user).</p>
 
       </section>
-      <section id="legacyCharacterEncoding">
-        <h3>Legacy Character Encodings</h3>
-        <p><a>Resources</a> can use different character encoding
-          schemes, including <a>legacy character encodings</a>, to serialize
+      <section property="bibo:hasPart" resource="#legacyCharacterEncoding" typeof="bibo:Chapter" id="legacyCharacterEncoding">
+        <h3 resource="#h-legacycharacterencoding" id="h-legacycharacterencoding"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.5 </span>Legacy Character Encodings</span></h3>
+        <p><a data-link-type="dfn" class="internalDFN" href="#dfn-resource">Resources</a> can use different character encoding
+          schemes, including <a data-link-type="dfn" class="internalDFN" href="#dfn-legacy-character-encoding">legacy character encodings</a>, to serialize
           document formats on the Web. Each character encoding scheme uses
           different byte values and sequences to represent a given subset of the
           Universal Character Set.</p>
-        <div class="note"><div class="note-title marker"><span>Note</span></div><div class="">
+        <div class="note"><div id="h-note7" role="heading" aria-level="4" class="note-title marker"><span>Note</span></div><div class="">
           <p>Choosing a Unicode character encoding, such as UTF-8, for all
             documents, formats, and protocols is strongly encouraged, since no
             additional utility is be gained from using a legacy character
@@ -1351,7 +1460,7 @@ table.simple {
           character encoding or a Unicode encoding such as UTF-8) and then
           unescaping any character escapes before proceeding to process the
           document. </p>
-        <div class="note"><div class="note-title marker"><span>Note</span></div><p class="">Even within a single legacy character encoding there can
+        <div class="note"><div id="h-note8" role="heading" aria-level="4" class="note-title marker"><span>Note</span></div><p class="">Even within a single legacy character encoding there can
           be variations in implementation. One famous example is the legacy
           Japanese encoding <code class="kw">Shift_JIS</code>. Different
           transcoder implementations faced choices about how to map specific
@@ -1368,8 +1477,8 @@ table.simple {
           applied to documents found on the Web or used to process data
           appearing in a particular document format or protocol.</p></div>
       </section>
-      <section id="otherEquivalences">
-         <h3>Other Types of Equivalence</h3>
+      <section property="bibo:hasPart" resource="#otherEquivalences" typeof="bibo:Chapter" id="otherEquivalences">
+         <h3 resource="#h-otherequivalences" id="h-otherequivalences"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.6 </span>Other Types of Equivalence</span></h3>
          <p>The preceding types of character equivalence are all based on 
 		 character properties assigned by Unicode or due to the mapping of 
 		 legacy character encodings to the Unicode character set. There also 
@@ -1384,16 +1493,16 @@ table.simple {
 		 implementations as an additional consideration.</p>
       </section>
     </section>
-    <section id="identityMatching">
-      <h2>String Matching of Syntactic Content in Document Formats and Protocols</h2>
+    <section property="bibo:hasPart" resource="#identityMatching" typeof="bibo:Chapter" id="identityMatching">
+      <!--OddPage--><h2 resource="#h-identitymatching" id="h-identitymatching"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>String Matching of Syntactic Content in Document Formats and Protocols</span></h2>
         <p>In the Web environment, where strings can be encoded in different 
 		encodings, using different character sequences, and with variations such 
 		as case, it's important to
           establish a consistent process for evaluating string identity.</p>
       <p>This chapter defines the implementation and requirements for string
         matching in <a href="#def_syntactic_content" class="termref">syntactic content</a>.</p>
-      <section id="matchingAlgorithm">
-        <h2>The Matching Algorithm</h2>
+      <section property="bibo:hasPart" resource="#matchingAlgorithm" typeof="bibo:Chapter" id="matchingAlgorithm">
+        <h3 resource="#h-matchingalgorithm" id="h-matchingalgorithm"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1 </span>The Matching Algorithm</span></h3>
         <p>This section defines the algorithm for matching strings. String
           identity matching <em title="MUST" class="rfc2119">MUST</em> be performed as if the following steps were
           followed: </p>
@@ -1402,7 +1511,7 @@ table.simple {
             compared [<cite><a href="#bib-Encoding" class="bibref">Encoding</a></cite>].</li>
           <li>
             <p>Expansion of all character escapes and includes.</p>
-            <div class="note"><div class="note-title marker"><span>Note</span></div><div class="">
+            <div class="note"><div id="h-note9" role="heading" aria-level="4" class="note-title marker"><span>Note</span></div><div class="">
               <p>The expansion of character escapes and includes is dependent on
                 context, that is, on which <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language is
                 considered to apply when the string matching operation is
@@ -1427,10 +1536,10 @@ table.simple {
             <ol>
               <li><em><a href="#case-sensitive">Case sensitive</a></em>: Go to
                 step 4.</li>
-              <li><em><a data-lt="ASCII case-insensitive">ASCII case folding</a></em>:
+              <li><em><a data-link-type="dfn" class="internalDFN" href="#dfn-ascii-case-insensitive-matching" data-lt="ASCII case-insensitive">ASCII case folding</a></em>:
                 map all code points in the range 0x41 to 0x5A (A to Z) to the
                 corresponding code points in the range 0x61 to 0x7A (a to z).</li>
-              <li><em><a data-lt="case folding">Unicode case folding</a></em>:
+              <li><em><a data-link-type="dfn" class="internalDFN" href="#dfn-case-folding" data-lt="case folding">Unicode case folding</a></em>:
                 map all code points to their Unicode C+F case fold equivalents.
                 Note that this can change the length of the string.</li>
             </ol>
@@ -1440,18 +1549,18 @@ table.simple {
             identity.</li>
         </ol>
       </section>
-      <section id="convertingToCommonUnicodeForm">
-        <h2>Converting to a Common Unicode Form</h2>
+      <section property="bibo:hasPart" resource="#convertingToCommonUnicodeForm" typeof="bibo:Chapter" id="convertingToCommonUnicodeForm">
+        <h3 resource="#h-convertingtocommonunicodeform" id="h-convertingtocommonunicodeform"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2 </span>Converting to a Common Unicode Form</span></h3>
 
-        <p>A <dfn data-dfn-type="dfn" data-dfn-for="">normalizing transcoder</dfn> is a <a>transcoder</a> that performs
-        a conversion from a <a>legacy character encoding</a> to Unicode <em>and</em> ensures that the result is in
+        <p>A <dfn id="dfn-normalizing-transcoder" data-dfn-type="dfn">normalizing transcoder</dfn> is a <a data-link-type="dfn" class="internalDFN" href="#dfn-transcoder">transcoder</a> that performs
+        a conversion from a <a data-link-type="dfn" class="internalDFN" href="#dfn-legacy-character-encoding">legacy character encoding</a> to Unicode <em>and</em> ensures that the result is in
         Unicode Normalization Form C. For most legacy character encodings, it
           is possible to construct a normalizing transcoder (by using any
           transcoder followed by a normalizer); it is not possible to do so if
-          the <a>legacy character encoding</a>'s <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a>
+          the <a data-link-type="dfn" class="internalDFN" href="#dfn-legacy-character-encoding">legacy character encoding</a>'s <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a>
           contains characters not represented in Unicode.</p>
 
-        <p>Previous versions of this document recommended the use of a <a>normalizing transcoder</a> when mapping from a 
+        <p>Previous versions of this document recommended the use of a <a data-link-type="dfn" class="internalDFN" href="#dfn-normalizing-transcoder">normalizing transcoder</a> when mapping from a 
         legacy character encoding to Unicode. Normalizing transcoders are expected to produce only character sequences in 
         Unicode Normalization Form C (<abbr title="Normalization Form C">NFC</abbr>), although the resulting character sequence might still be partially
         de-normalized (for example, if it begins with a combining mark).</p>
@@ -1471,8 +1580,8 @@ table.simple {
             and warn the user when a given resource is not in Unicode
             Normalization Form C.</p>
         </div>
-        <section>
-          <h4>Choice of Normalization Form</h4>
+        <section property="bibo:hasPart" resource="#choice-of-normalization-form" typeof="bibo:Chapter" id="choice-of-normalization-form">
+          <h4 resource="#h-choice-of-normalization-form" id="h-choice-of-normalization-form"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.1 </span>Choice of Normalization Form</span></h4>
           <p>Given that there are many character sequences that content authors
             or applications could choose when inputting or exchanging text, and
             that when providing text in a normalized form, there are different
@@ -1489,19 +1598,19 @@ table.simple {
             encoding), as well as data created by current software, is already
             in this form; <abbr title="Normalization Form C">NFC</abbr> also has a slight compactness advantage and is a
             better match to user expectations with respect to the character vs.
-            <a>grapheme</a> issue. This document therefore recommends, when
+            <a data-link-type="dfn" class="internalDFN" href="#dfn-grapheme">grapheme</a> issue. This document therefore recommends, when
             possible, that all content be stored and exchanged in Unicode
             Normalization Form C (<abbr title="Normalization Form C">NFC</abbr>).</p>
         </section>
-        <section id="content-reqs">
-          <h4>Requirements for Resources</h4>
+        <section property="bibo:hasPart" resource="#content-reqs" typeof="bibo:Chapter" id="content-reqs">
+          <h4 resource="#h-content-reqs" id="h-content-reqs"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.2 </span>Requirements for Resources</span></h4>
           <p>These requirements pertain to the authoring and creation of
             documents and are intended as guidelines for resource authors.</p>
           <div class="requirement">
             <p>[C] Resources <em title="SHOULD" class="rfc2119">SHOULD</em> be produced, stored, and exchanged in
               Unicode Normalization Form C (<abbr title="Normalization Form C">NFC</abbr>). </p>
           </div>
-          <div class="note"><div class="note-title marker"><span>Note</span></div><div class="">
+          <div class="note"><div id="h-note10" role="heading" aria-level="5" class="note-title marker"><span>Note</span></div><div class="">
             <p>In order to be processed correctly a resource must use a
               consistent sequence of code points to represent text. While
               content can be in any normalization form or may use a
@@ -1516,8 +1625,8 @@ table.simple {
               processing, storage, or exchange except with explicit permission
               from the user.</p>
           </div>
-          <div class="note"><div class="note-title marker"><span>Note</span></div><div class="">
-          <p>The [<cite><a href="#bib-Encoding" class="bibref">Encoding</a></cite>] specification includes a number of <a>transcoders</a> that do not produce
+          <div class="note"><div id="h-note11" role="heading" aria-level="5" class="note-title marker"><span>Note</span></div><div class="">
+          <p>The [<cite><a href="#bib-Encoding" class="bibref">Encoding</a></cite>] specification includes a number of <a data-link-type="dfn" class="internalDFN" href="#dfn-transcoder">transcoders</a> that do not produce
              Unicode text in a normalized form when converting to Unicode from a legacy character encoding.
              This is necessary to preserve round-trip behavior and other character distinctions. Indeed, many
              compatibility characters in Unicode exist solely for round-trip conversion from legacy encodings.
@@ -1560,15 +1669,15 @@ table.simple {
           normalization, content authors might occasionally rely on denormalized
           character sequences and a normalization step could negatively affect
           such content.</p>
-        <div class="note"><div class="note-title marker"><span>Note</span></div><div class="">
+        <div class="note"><div id="h-note12" role="heading" aria-level="4" class="note-title marker"><span>Note</span></div><div class="">
           <p>Requiring <abbr title="Normalization Form C">NFC</abbr> requires additional care on the part of the
             specification developer, as content on the Web generally is not in a
             known normalization state. Boundary and error conditions for
             denormalized content need to be carefully considered and well
             specified in these cases. </p>
         </div></div>
-        <section id="non-normalizing">
-          <h4> Non-Normalizing Specification Requirements </h4>
+        <section property="bibo:hasPart" resource="#non-normalizing" typeof="bibo:Chapter" id="non-normalizing">
+          <h4 resource="#h-non-normalizing" id="h-non-normalizing"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.3 </span> Non-Normalizing Specification Requirements </span></h4>
 
           <p>The following requirements pertain to any specification that
             specifies explicitly that normalization is not to be applied
@@ -1592,7 +1701,7 @@ table.simple {
               Unicode character encoding, as content might depend on the
               de-normalized representation. </p>
           </div>
-          <div id="issue-2" class="issue"><div class="issue-title marker"><span>Issue 2</span></div><p class=""> The following requirement was noted by Mati as
+          <div id="issue-2" class="issue"><div id="h-issue2" role="heading" aria-level="5" class="issue-title marker"><span>Issue 2</span></div><p class=""> The following requirement was noted by Mati as
             being problematic. It was not marked with mustard and needs further
             consideration. </p></div>
           <div class="requirement">
@@ -1602,7 +1711,7 @@ table.simple {
               is specified, code unit-by-code unit comparison of the sequences.
             </p>
           </div>
-          <div id="issue-3" class="issue"><div class="issue-title marker"><span>Issue 3</span></div><p class="">Following requirements added 2013-10-29. Needs
+          <div id="issue-3" class="issue"><div id="h-issue3" role="heading" aria-level="5" class="issue-title marker"><span>Issue 3</span></div><p class="">Following requirements added 2013-10-29. Needs
             discussion of regular expressions.</p></div>
           <div class="requirement">
             <p>[S][I] Specifications that define a regular expression syntax
@@ -1610,8 +1719,8 @@ table.simple {
               and <em title="SHOULD" class="rfc2119">SHOULD</em> provide Extended or Tailored (Levels 2 and 3) support.</p>
           </div>
         </section>
-        <section id="normalizing-spec">
-          <h4> Unicode Normalizing Specification Requirements </h4>
+        <section property="bibo:hasPart" resource="#normalizing-spec" typeof="bibo:Chapter" id="normalizing-spec">
+          <h4 resource="#h-normalizing-spec" id="h-normalizing-spec"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2.4 </span> Unicode Normalizing Specification Requirements </span></h4>
           <p>This section contains requirements for specifications of text-based formats and protocols that define
             Unicode Normalization as a requirement. New specifications <em title="SHOULD NOT" class="rfc2119">SHOULD NOT</em> require normalization
             unless special circumstances apply.</p>
@@ -1676,11 +1785,11 @@ table.simple {
           </div>
         </section>
       </section>
-      <section id="expandingCharacterEscapes">
-        <h2>Expanding Character Escapes and Includes</h2>
+      <section property="bibo:hasPart" resource="#expandingCharacterEscapes" typeof="bibo:Chapter" id="expandingCharacterEscapes">
+        <h3 resource="#h-expandingcharacterescapes" id="h-expandingcharacterescapes"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3 </span>Expanding Character Escapes and Includes</span></h3>
         <p>Most document formats and protocols provide a means for 
 		encoding characters or including external data, including text, into a 
-		<a>resource</a>. This is discussed in detail in Section 4.6 of [<cite><a href="#bib-CHARMOD" class="bibref">CHARMOD</a></cite>] 
+		<a data-link-type="dfn" class="internalDFN" href="#dfn-resource">resource</a>. This is discussed in detail in Section 4.6 of [<cite><a href="#bib-CHARMOD" class="bibref">CHARMOD</a></cite>] 
 		as well as <a href="#characterEscapes">above</a>.</p>
 		
 		<p>When performing matching, it is important to know when to interpret character escapes so that
@@ -1691,10 +1800,10 @@ table.simple {
 		  <p>When performing a match on syntactic content...</p>
 		  <p>When performing a match on natural language content...</p>
 		   
-        <div id="issue-4" class="issue"><div class="issue-title marker"><span>Issue 4</span></div><p class="">Edit me!</p></div>
+        <div id="issue-4" class="issue"><div id="h-issue4" role="heading" aria-level="4" class="issue-title marker"><span>Issue 4</span></div><p class="">Edit me!</p></div>
       </section>
-      <section id="handlingCaseFolding">
-        <h2>Handling Case Folding</h2>
+      <section property="bibo:hasPart" resource="#handlingCaseFolding" typeof="bibo:Chapter" id="handlingCaseFolding">
+        <h3 resource="#h-handlingcasefolding" id="h-handlingcasefolding"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4 </span>Handling Case Folding</span></h3>
         <p>As described <a href="#definitionCaseFolding">above</a>, one 
 		important consideration in string identity matching is whether the
           comparison is case sensitive or case insensitive.</p>
@@ -1708,7 +1817,7 @@ table.simple {
           the vocabulary of strings to be compared is limited to the Basic Latin
           (ASCII) subset of Unicode, ASCII case-insensitive matching <em title="MAY" class="rfc2119">MAY</em> be
           used.</p>
-        <p>If the vocabulary of strings to be compared is not limited, then <a>ASCII
+        <p>If the vocabulary of strings to be compared is not limited, then <a data-link-type="dfn" class="internalDFN" href="#dfn-ascii-case-insensitive-matching">ASCII
             case-insensitive</a> matching <em title="MUST NOT" class="rfc2119">MUST NOT</em> be used. <a href="#uci">Unicode
             case-insensitive</a> matching <em title="MUST" class="rfc2119">MUST</em> be applied, even if the
           vocabulary does not allow the full range of Unicode.</p>
@@ -1741,7 +1850,7 @@ table.simple {
         <p>Note that an ASCII-only vocabulary can exist inside a document format
           or protocol that allows a larger range of Unicode in identifiers or
           values.</p>
-        <div id="issue-5" class="issue"><div class="issue-title marker"><span>Issue 5</span></div><p class="">Insert example from CSS here.</p></div>
+        <div id="issue-5" class="issue"><div id="h-issue5" role="heading" aria-level="4" class="issue-title marker"><span>Issue 5</span></div><p class="">Insert example from CSS here.</p></div>
         <div class="requirement">
           <p>Case sensitive matching is <em title="RECOMMENDED" class="rfc2119">RECOMMENDED</em> as the default for any new
             protocol or format.</p>
@@ -1759,8 +1868,8 @@ table.simple {
             case-insensitive matching <em title="MUST NOT" class="rfc2119">MUST NOT</em> be required.</p>
         </div>
         <div class="requirement">
-          <p>[S][I] The <a>Unicode C+F</a> case-fold form is <em title="RECOMMENDED" class="rfc2119">RECOMMENDED</em> as the
-            case-insensitive matching for <a data-lt="vocabulary">vocabularies</a>.
+          <p>[S][I] The <a data-link-type="dfn" class="internalDFN" href="#dfn-UnicodeC+F">Unicode C+F</a> case-fold form is <em title="RECOMMENDED" class="rfc2119">RECOMMENDED</em> as the
+            case-insensitive matching for <a data-link-type="dfn" class="internalDFN" href="#def_vocabulary" data-lt="vocabulary">vocabularies</a>.
             The Unicode C+S form <em title="MUST NOT" class="rfc2119">MUST NOT</em> be used for string identity matching
             on the Web.</p>
         </div>
@@ -1773,8 +1882,8 @@ table.simple {
             case) to facilitate matching, even if case-insensitive matching is
             supported by the format or implementation. </p>
         </div>
-        <section id="formal-language">
-          <h4>Requirements for Specifications</h4>
+        <section property="bibo:hasPart" resource="#formal-language" typeof="bibo:Chapter" id="formal-language">
+          <h4 resource="#h-formal-language" id="h-formal-language"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.1 </span>Requirements for Specifications</span></h4>
           <p>These requirements pertain to specifications for document formats
             or programming/scripting languages and their implementations.</p>
           <div class="requirement">
@@ -1819,22 +1928,22 @@ table.simple {
               permit non-ASCII characters. </p>
           </div>
         </section>
-        <section id="non-normalizing-requirements">
-          <h4> Non-Normalizing Specification Requirements </h4>
+        <section property="bibo:hasPart" resource="#non-normalizing-requirements" typeof="bibo:Chapter" id="non-normalizing-requirements">
+          <h4 resource="#h-non-normalizing-requirements" id="h-non-normalizing-requirements"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4.2 </span> Non-Normalizing Specification Requirements </span></h4>
           <div class="requirement">
             <p>[S][I] For vocabularies and values that are <em>not</em> restricted to
               Basic Latin (ASCII), case-insensitive matching <em title="MUST" class="rfc2119">MUST</em> specify either
               Unicode C+F string comparison or language-sensitive string comparison. </p>
           </div>
-          <div class="note"><div class="note-title marker"><span>Note</span></div><aside class=""><p>Language-sensitive string comparison is often referred to as being
+          <div class="note"><div id="h-note13" role="heading" aria-level="5" class="note-title marker"><span>Note</span></div><aside class=""><p>Language-sensitive string comparison is often referred to as being
             <em>locale-sensitive</em>, since most programming
             languages and operating environments access language-specific tailoring
             using their respective locale-based APIs. For example, see the <code>java.text.Collator</code> class
             in the Java programming language or <code>Intl.Collator</code> in JavaScript.</p></aside></div>
         </section>
       </section>
-      <section id="handlingUnicodeControls">
-        <h2>Handling Unicode Controls and Invisible Markers</h2>
+      <section property="bibo:hasPart" resource="#handlingUnicodeControls" typeof="bibo:Chapter" id="handlingUnicodeControls">
+        <h3 resource="#h-handlingunicodecontrols" id="h-handlingunicodecontrols"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.5 </span>Handling Unicode Controls and Invisible Markers</span></h3>
         <div class="requirement">
           <p>Applications that do string matching <em title="SHOULD" class="rfc2119">SHOULD</em> ignore Unicode
             formatting controls such as variation selectors; grapheme or word
@@ -1842,8 +1951,8 @@ table.simple {
         </div>
       </section>
     </section>
-    <section id="searching">
-      <h2>String Searching in Natural Language Content</h2>
+    <section property="bibo:hasPart" resource="#searching" typeof="bibo:Chapter" id="searching">
+      <!--OddPage--><h2 resource="#h-searching" id="h-searching"><span property="xhv:role" resource="xhv:heading"><span class="secno">4. </span>String Searching in Natural Language Content</span></h2>
       <p>Many Web implementations and applications have a different sort of
         string matching requirement from the one described above: the need for
         users to search documents for particular words or phrases of text. This
@@ -1853,7 +1962,7 @@ table.simple {
         document format.</p>
       <p>There are several different kinds of string searching.</p>
       <p>When you are using a search engine, you are generally using a form of
-        full text search. <dfn data-dfn-type="dfn" data-dfn-for="">Full text search</dfn> generally breaks natural
+        full text search. <dfn id="dfn-full-text-search" data-dfn-type="dfn">Full text search</dfn> generally breaks natural
         language text into word segments and may apply complex processing to get
         at the semantic "root" values of words. For example, if the user
         searches for "run", you might want to find words like "running", "ran",
@@ -1867,9 +1976,9 @@ table.simple {
         such as the addition or removal of case sensitivity, or whether the
         feature supports different aspects of a regular expression language or
         "wildcards".</p>
-      <section id="searchingConsiderations">
-        <h2>Considerations for Matching Natural Language Content</h2>
-        <div id="issue-6" class="issue"><div class="issue-title marker"><span>Issue 6</span></div><p class="">This section was identified as a new area needing
+      <section property="bibo:hasPart" resource="#searchingConsiderations" typeof="bibo:Chapter" id="searchingConsiderations">
+        <h3 resource="#h-searchingconsiderations" id="h-searchingconsiderations"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.1 </span>Considerations for Matching Natural Language Content</span></h3>
+        <div id="issue-6" class="issue"><div id="h-issue6" role="heading" aria-level="4" class="issue-title marker"><span>Issue 6</span></div><p class="">This section was identified as a new area needing
           document as part of the overall rearchitecting of the document. The
           text here is incomplete and needs further development. Contributions
           from the community are invited.</p></div>
@@ -1898,7 +2007,7 @@ table.simple {
           "RE-RESUME", "re-résumé", and "RE-RÉSUMÉ".</p>
         <p>In the table below, the user's input (on the left) might be
           considered a match for the above items as follows:</p>
-        <table class="data">
+        <div class="overlarge"><table class="data">
           <tbody>
             <tr>
               <th scope="col">User Input</th>
@@ -1921,7 +2030,7 @@ table.simple {
               <td>"RE-RÉSUMÉ"</td>
             </tr>
           </tbody>
-        </table>
+        </table></div>
         <p>In addition to variations of case or the use of accents, Unicode also
           has an array of canonical equivalents or compatibility characters (as
           described in the sections above) that might impact string searching.</p>
@@ -1962,12 +2071,12 @@ table.simple {
           What about the character "A" followed by U+0300 (a combining accent
           grave)? What about writing systems, such as Devanagari, which use
           combining marks to suppress or express certain vowels?</p>
-		  <div id="issue-7" class="issue"><div class="issue-title marker"><span>Issue 7</span></div><p class="">Issue #78: Point out that the presence or absence of Arabic/Hebrew short vowels can interefere with searching.</p></div>
+		  <div id="issue-7" class="issue"><div id="h-issue7" role="heading" aria-level="4" class="issue-title marker"><span>Issue 7</span></div><p class="">Issue #78: Point out that the presence or absence of Arabic/Hebrew short vowels can interefere with searching.</p></div>
       </section>
     </section>
-    <section>
-      <h2 id="changeLog" class="informative">Changes Since the Last Published
-        Version</h2>
+    <section property="bibo:hasPart" resource="#changeLog" typeof="bibo:Chapter">
+      <!--OddPage--><h2 resource="#changeLog" id="changeLog" class="informative"><span property="xhv:role" resource="xhv:heading"><span class="secno">5. </span>Changes Since the Last Published
+        Version</span></h2>
       <p>The following changes have been made since the <a href="http://www.w3.org/TR/2014/WD-charmod-norm-20140715/Overview.html">Working
           Draft</a> of 2014-07-15: </p>
       <ul>
@@ -2003,8 +2112,8 @@ table.simple {
       <p>See the <a href="https://github.com/w3c/charmod-norm/commits/gh-pages">github
           commit log</a> for more details.</p>
     </section>
-    <section>
-      <h2 id="Acknowledgements" class="informative">Acknowledgements</h2>
+    <section property="bibo:hasPart" resource="#Acknowledgements" typeof="bibo:Chapter">
+      <!--OddPage--><h2 resource="#Acknowledgements" id="Acknowledgements" class="informative"><span property="xhv:role" resource="xhv:heading"><span class="secno">6. </span>Acknowledgements</span></h2>
       <p>The <abbr title="World Wide Web Consortium">W3C</abbr> Internationalization Working Group and Interest Group, as well
         as others, provided many comments and suggestions. The Working Group
         would like to thank: Mati Allouche, Ebrahim Byagowi, John Cowan, Martin Dürst, Behdad Esfahbod, 
@@ -2023,4 +2132,22 @@ table.simple {
     </section>
   
 
-</body></html>
+<section property="bibo:hasPart" resource="#references" typeof="bibo:Chapter" id="references" class="appendix"><!--OddPage--><h2 resource="#h-references" id="h-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">A. </span>References</span></h2><section property="bibo:hasPart" resource="#normative-references" typeof="bibo:Chapter" id="normative-references"><h3 resource="#h-normative-references" id="h-normative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.1 </span>Normative references</span></h3><dl resource="" class="bibliography"><dt id="bib-CHARMOD">[CHARMOD]</dt><dd>Martin Dürst; François Yergeau; Richard Ishida; Misha Wolf; Tex Texin et al. W3C. <a property="dc:requires" href="http://www.w3.org/TR/charmod/"><cite>Character Model for the World Wide Web 1.0: Fundamentals</cite></a>. 15 February 2005. W3C Recommendation. URL: <a property="dc:requires" href="http://www.w3.org/TR/charmod/">http://www.w3.org/TR/charmod/</a>
+</dd><dt id="bib-Encoding">[Encoding]</dt><dd>Anne van Kesteren; Joshua Bell; Addison Phillips. <a property="dc:requires" href="http://www.w3.org/TR/encoding/"><cite>Encoding</cite></a>. URL: <a property="dc:requires" href="http://www.w3.org/TR/encoding/">http://www.w3.org/TR/encoding/</a>
+</dd><dt id="bib-ISO10646">[ISO10646]</dt><dd><cite>Information Technology - Universal Multiple- Octet Coded CharacterSet (UCS) - Part 1: Architecture and Basic Multilingual Plane.</cite> ISO/IEC10646-1:1993. The current specification also takes into consideration the first five amendments to ISO/IEC 10646-1:1993. Useful &lt;a href="http://www.egt.ie/standards/iso10646/ucs-roadmap.html"&gt;roadmaps&lt;/a&gt;show which scripts sit at which numeric ranges.
+</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. IETF. <a property="dc:requires" href="https://tools.ietf.org/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a property="dc:requires" href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+</dd><dt id="bib-UAX15">[UAX15]</dt><dd>Mark Davis; Ken Whistler. Unicode Consortium. <a property="dc:requires" href="http://www.unicode.org/reports/tr15"><cite>Unicode Normalization Forms</cite></a>. 31 August 2012. Unicode Standard Annex #15. URL: <a property="dc:requires" href="http://www.unicode.org/reports/tr15">http://www.unicode.org/reports/tr15</a>
+</dd><dt id="bib-UAX29">[UAX29]</dt><dd>Mark Davis. <a property="dc:requires" href="http://www.unicode.org/reports/tr29/"><cite>Unicode Standard Annex #29: Unicode Text Segmentation</cite></a>. URL: <a property="dc:requires" href="http://www.unicode.org/reports/tr29/">http://www.unicode.org/reports/tr29/</a>
+</dd><dt id="bib-UTS18">[UTS18]</dt><dd>Mark Davis; Andy Heninger. <a property="dc:requires" href="http://unicode.org/reports/tr18/"><cite>Unicode Technical Standard #18: Unicode Regular Expressions</cite></a>. URL: <a property="dc:requires" href="http://unicode.org/reports/tr18/">http://unicode.org/reports/tr18/</a>
+</dd><dt id="bib-Unicode">[Unicode]</dt><dd>The Unicode Consortium. <a property="dc:requires" href="http://www.unicode.org/versions/latest/"><cite>The Unicode Standard</cite></a>. URL: <a property="dc:requires" href="http://www.unicode.org/versions/latest/">http://www.unicode.org/versions/latest/</a>
+</dd></dl></section><section property="bibo:hasPart" resource="#informative-references" typeof="bibo:Chapter" id="informative-references"><h3 resource="#h-informative-references" id="h-informative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.2 </span>Informative references</span></h3><dl resource="" class="bibliography"><dt id="bib-CHARREQ">[CHARREQ]</dt><dd>Martin Dürst. W3C. <a property="dc:references" href="http://www.w3.org/TR/charreq/"><cite>Requirements for String Identity Matching and String Indexing</cite></a>. 15 September 2009. W3C Note. URL: <a property="dc:references" href="http://www.w3.org/TR/charreq/">http://www.w3.org/TR/charreq/</a>
+</dd><dt id="bib-HTML">[HTML]</dt><dd>Ian Hickson. WHATWG. <a property="dc:references" href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Living Standard. URL: <a property="dc:references" href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
+</dd><dt id="bib-UAX11">[UAX11]</dt><dd>Ken Lunde 小林劍. <a property="dc:references" href="http://www.unicode.org/reports/tr11/"><cite>Unicode Standard Annex #11: East Asian Width</cite></a>. URL: <a property="dc:references" href="http://www.unicode.org/reports/tr11/">http://www.unicode.org/reports/tr11/</a>
+</dd><dt id="bib-UAX35">[UAX35]</dt><dd>Mark Davis; CLDR committee members. Unicode Consortium. <a property="dc:references" href="http://www.unicode.org/reports/tr35/tr35-31/tr35.html"><cite>Unicode Locale Data Markup Language (LDML)</cite></a>. 15 March 2013. Unicode Standard Annex #35. URL: <a property="dc:references" href="http://www.unicode.org/reports/tr35/tr35-31/tr35.html">http://www.unicode.org/reports/tr35/tr35-31/tr35.html</a>
+</dd><dt id="bib-UNICODE-XML">[UNICODE-XML]</dt><dd>Richard Ishida. W3C. <a property="dc:references" href="http://www.w3.org/TR/unicode-xml/"><cite>Unicode in XML and other Markup Languages</cite></a>. 24 January 2013. W3C Note. URL: <a property="dc:references" href="http://www.w3.org/TR/unicode-xml/">http://www.w3.org/TR/unicode-xml/</a>
+</dd><dt id="bib-UTR36">[UTR36]</dt><dd>Mark Davis; Michel Suignard. <a property="dc:references" href="http://www.unicode.org/reports/tr36/"><cite>Unicode Technical Report #36: Unicode Security Considerations</cite></a>. URL: <a property="dc:references" href="http://www.unicode.org/reports/tr36/">http://www.unicode.org/reports/tr36/</a>
+</dd><dt id="bib-UTR50">[UTR50]</dt><dd>Koji Ishii 石井宏治. <a property="dc:references" href="http://www.unicode.org/reports/tr50/"><cite>Unicode Technical Report #50: Unicode Vertical Text Layout</cite></a>. URL: <a property="dc:references" href="http://www.unicode.org/reports/tr50/">http://www.unicode.org/reports/tr50/</a>
+</dd><dt id="bib-UTS10">[UTS10]</dt><dd>Mark Davis; Ken Whistler; Markus Scherer. <a property="dc:references" href="http://www.unicode.org/reports/tr10/"><cite>Unicode Technical Standard #10: Unicode Collation Algorithm</cite></a>. URL: <a property="dc:references" href="http://www.unicode.org/reports/tr10/">http://www.unicode.org/reports/tr10/</a>
+</dd><dt id="bib-UTS39">[UTS39]</dt><dd>Mark Davis; Michel Suignard. <a property="dc:references" href="http://www.unicode.org/reports/tr39/"><cite>Unicode Technical Standard #39: Unicode Security Mechanisms</cite></a>. URL: <a property="dc:references" href="http://www.unicode.org/reports/tr39/">http://www.unicode.org/reports/tr39/</a>
+</dd><dt id="bib-XML10">[XML10]</dt><dd>Tim Bray; Jean Paoli; Michael Sperberg-McQueen; Eve Maler; François Yergeau et al. W3C. <a property="dc:references" href="http://www.w3.org/TR/xml"><cite>Extensible Markup Language (XML) 1.0 (Fifth Edition)</cite></a>. 26 November 2008. W3C Recommendation. URL: <a property="dc:references" href="http://www.w3.org/TR/xml">http://www.w3.org/TR/xml</a>
+</dd></dl></section></section><p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to Top">↑</abbr></a></p><script src="https://www.w3.org/scripts/TR/2016/fixup.js" defer="" async=""></script></body></html>
