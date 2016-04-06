@@ -1045,9 +1045,11 @@
         </section>
         <section id="normalizationLimitations">
          <h4>Limitations of Normalization</h4>
-         <p>Applying a Unicode Normalization Form, even the more <q>destructive</q> Compatibility (K) forms, does not
-            guarantee that two identical-looking strings use, in fact, the same underlying Unicode code points. This is sometimes
-            surprising to software developers and others who expect that Unicode Normalization will eliminate all encoding variation.
+         <p>Applying a Unicode Normalization Form does not
+            guarantee that two identical-looking normalized strings always use the same underlying Unicode code points. 
+		 This includes the more-destructive <code>KC</code> and <code>KD</code> forms. This is sometimes
+            surprising to software developers and others who expect that for strings, tokens, or 
+            identifiers to appear the same they must use the same underlying sequences.
             Normalization is, at best, only part of a string matching solution.</p>
    		  <p>In fact, canonical normalization is not primarily about 
 		  appearance: it is about folding multiple ways of encoding 
