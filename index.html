@@ -927,9 +927,10 @@
         </section>
         <section id="normalization_forms">
           <h4>Unicode Normalization Forms</h4>
-          <p>The Unicode Normalization Forms are named using letter codes, with
-            'C' standing for Composition, 'D' for Decomposition, and 'K' for
-            Compatibility decomposition. Having converted a resource to a
+          <p>There are four Unicode Normalization Forms. Each form is named using a letter code: 
+		  the letter 'C' stands for Composition; the letter 'D' for Decomposition; 
+		  and the
+            letter 'K' stands for Compatibility decomposition. Having converted a resource to a
             sequence of Unicode characters and unescaped any escape sequences,
             we can finally "normalize" the Unicode texts given in the example
             above. Here are the resulting sequences in each Unicode
@@ -1033,7 +1034,7 @@
               Normalization Forms. For example, UPPER, Title, and lowercase
               variations are a separate and distinct textual variation that must
               be separately handled when comparing text.</li>
-            <li>Normalization can remove meaning. For example, the character
+            <li>Compatibility normalization removes meaning. For example, the character
               sequence <span class="qterm"><samp>8½</samp></span> (including
               the character <span class="uname" translate="no">U+00BD VULGAR
                 FRACTION ONE HALF</span>), when normalized using one of the <span
@@ -1048,7 +1049,7 @@
          <p>Applying a Unicode Normalization Form does not
             guarantee that two identical-looking normalized strings always use the same underlying Unicode code points. 
 		 This includes the more-destructive <code>KC</code> and <code>KD</code> forms. This is sometimes
-            surprising to software developers and others who expect that for strings, tokens, or 
+            surprising to software developers and others who incorrectly expect that for strings, tokens, or 
             identifiers to appear the same they must use the same underlying sequences.
             Normalization is, at best, only part of a string matching solution.</p>
    		  <p>In fact, canonical normalization is not primarily about 
