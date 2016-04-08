@@ -702,8 +702,8 @@
             represent the same abstract character. When correctly displayed,
             these should always have the same visual appearance and behavior.
             Generally speaking, two canonically equivalent Unicode texts should
-            be considered to be identical as text. Canonical decomposition
-            removes these primary distinctions between two texts.</p>
+            be considered to be identical as text. Unicode defines a process called 
+            <em>canonical decomposition</em> that removes these primary distinctions between two texts.</p>
           <p>Examples of canonical equivalence defined by Unicode include:</p>
           <ul class="dropExampleList">
             <li class="dropExampleItem"><span class="dropExample">Ç<span style="font-size:75%">
@@ -760,17 +760,17 @@
                 class="uname" translate="no">U+1161</span>.</li>
           </ul>
           <p><dfn>Compatibility equivalence</dfn> is a weaker equivalence
-            between characters or sequences of characters that represent the
+            between Unicode characters or sequences of Unicode characters that represent the
             same abstract character, but may have a different visual appearance
-            or behavior. Generally a compatibility decomposition removes
+            or behavior. Generally the process called <em>compatibility decomposition</em> removes
             formatting variations, such as superscript, subscript, rotated,
             circled, and so forth, but other variations also occur. In many
             cases, characters with compatibility decompositions represent a
             distinction of a semantic nature; replacing the use of distinct
             characters with their compatibility decomposition can therefore
-            cause problems and texts that are equivalent after compatibility
-            decomposition often were not perceived as being identical beforehand
-            and usually should not be treated as equivalent by a formal
+            change the meaning of the text. Texts that are equivalent after 
+		  compatibility decomposition often were not perceived as being 
+		  identical beforehand and SHOULD NOT be treated as equivalent by a formal
             language.</p>
           <p>The following table illustrates various kinds of compatibility
             equivalence in Unicode:</p>
@@ -868,7 +868,8 @@
                 </tbody>
               </table>
           <p>In the above table, it is important to note that the characters
-            illustrated are <em>actual Unicode codepoints</em>. They were
+            illustrated are <em>actual Unicode codepoints</em>, not just presentational
+            variations due to context or style. Each character was
             encoded into Unicode for compatibility with various legacy character
             encodings. They should not be confused with the normal kinds of
             presentational processing used on their non-compatibility
@@ -1071,7 +1072,9 @@
 		    if somewhat less "identical-looking" spoofs such as l vs. 1 or O and 0.
 		  </p> 
 		  <p><q>Confusable</q> characters, regardless of script, can present spoofing 
-		    and other security risks. For more information on homographs and confusability, see [[UTS39]].</p>
+		    and other security risks. There are a variety of specifications and 
+		  standards that attempt to document or describe the issues of homographs and confusability. 
+		  One such as example is [[UTS39]].</p>
 		  <p>Finally, note that Unicode Normalization, even the <q>K</q> Compatibility forms,
 		    does not bring together characters that have the same intrinsic meaning or function,
 		    but which vary in appearance or usage. For example, <code>U+002E</code> (.) and <code>U+3002</code> (&#x3002;)
@@ -1752,23 +1755,46 @@
           document as part of the overall rearchitecting of the document. The
           text here is incomplete and needs further development. Contributions
           from the community are invited.</p>
-        <p>Searching content (one example is using the "find" command in your
-          browser) generates different user expectations and thus has different
+        <p>The preceeding sections of this document were concerned with string 
+		matching in formal languages, but there are other types of common text 
+		matching operations on the Web. </p>
+		  <p>Full natural language searching is a broad topic well beyond the 
+		  aspirations of this document. However, implementers often need to 
+		  provide simple "find text" algorithms and specification often try to 
+		  define APIs to support these needs. Find operations on text generates different user expectations and thus has different
           requirements from the need for absolute identity matching needed by
-          document formats and protocols. Searching text has different
-          contextual needs and often provides different features.</p>
+          document formats and protocols. This section describes the 
+		  requirements and considerations when designing a "find text" feature 
+		  or protocol. It is important to note that domain-specific requirements 
+		  may impose additional restrictions or alter the considerations 
+		  presented here.</p>
         <p>One description of Unicode string searching can be found in Section 8
           (Searching and Matching) of [[UTS10]].</p>
         <p>One of the primary considerations for string searching is that, quite
           often, the user's input is not identical to the way that the text is
-          encoded in the text being searched. Users generally expect matching to
+          encoded in the text being searched. This often happens because the 
+		text can vary in ways the user cannot predict or because the user's 
+		keyboard or input method does not provide ready access to the textual 
+		variations needed. In these cases, users generally expect matching to
           be more "promiscuous", particularly when they don't add additional
-          effort to their input. For example, they expect a term entered in
+          effort to their input. </p>
+		  <p>For example, a user might expect a term entered in
           lowercase to match uppercase equivalents. Conversely, when the user
           expends more effort on the input—by using the shift key to produce
           uppercase or by entering a letter with diacritics instead of just the
-          base letter—they expect their search results to match (only) their
+          base letter—they might expect their search results to match (only) their
           more-specific input.</p>
+		  <p>A different case is where the text can vary in multiple ways, but 
+		  the user can only type a single search term in. For example, the 
+		  Japanese language uses two different phonetic scripts, <em>hiragana</em> 
+		  and <em>katakana</em>. These scripts encode the same phonemes; thus 
+		  the user might expect that typing in a search term in <em>hiragana</em> 
+		  would find the exact same word spelled out in <em>katakana</em>. A 
+		  different example might be the presence or absence of short vowels in 
+		  the Arabic and Hebrew scripts. For most languages in these scripts, 
+		  the inclusion of the short vowels is entirely optional, but the 
+		  presence of vowels in text being searched might impede a match if the 
+		  user doesn't enter or know to enter them.</p>
         <p>This effect might vary depending on context as well. For example, a
           person using a physical keyboard may have direct access to accented
           letters, while a virtual or on-screen keyboard may require extra
