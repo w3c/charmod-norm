@@ -1232,7 +1232,7 @@
           converting from the document's character encoding (be it a legacy
           character encoding or a Unicode encoding such as UTF-8) and then
           unescaping any character escapes before proceeding to process the
-          document. </p>
+          document.</p>
         <p class="note">Even within a single legacy character encoding there can
           be variations in implementation. One famous example is the legacy
           Japanese encoding <code class="kw">Shift_JIS</code>. Different
@@ -1249,6 +1249,14 @@
           that transcoders inconsistent with the Encoding specification won't be
           applied to documents found on the Web or used to process data
           appearing in a particular document format or protocol.</p>
+        <p>One additional consideration in converting to Unicode is the existance of
+           legacy character encodings for bidirectional languages that use a
+           visual storage order. That is, unlike Unicode and other modern encodings,
+           the characters are stored in memory in the order that they are printed
+           on the screen from left-to-right (as with a line printer). When converting
+           these encodings to Unicode or when comparing text in these encodings, care
+           must be taken to place both the source and target text into logical order.
+           For more information, see Section 3.3.1 of [[!CHARMOD]]</p>
       </section>
       <section id="otherEquivalences">
          <h3>Other Types of Equivalence</h3>
@@ -1259,11 +1267,27 @@
 		 particularly in searching text, that are outside of the equivalences 
 		 defined by Unicode. For example, Japanese uses two syllabic scripts,
 		 <code>hiragana</code> and <code>katakana</code>. A 
-		 user searching a document may type in one script, but wish to find 
-		 equivalent text in the both scripts. These additional "text 
+		 user searching a document might type in text in one script, but wish to find 
+		 equivalent text in both scripts. These additional "text 
 		 normalizations" are sometimes application, natural language, or domain 
 		 specific and shouldn't be overlooked by specifications or 
 		 implementations as an additional consideration.</p>
+		 <p>Another similar example is called <dfn>digit shaping</dfn>. Some scripts,
+		 such as Arabic, have their own digit characters for the numbers from 0 to 9.
+		 In some Web applications, the familiar ASCII digits are replaced for display
+		 purposes with the local digit shapes. In other cases, the text actually might
+		 contain the Unicode characters for the local digits. Users attempting to search
+		 a document might expect that typing one form of digit will find the eqivalent
+		 digits.</p>
+		 <aside class="example">
+		 <p>Selected examples of different digit shapes, from zero to nine. In this case, Latin, Gujurati, Thai, and Arabic digits:</p>
+		 <ul>
+		 <li>0 1 2 3 4 5 6 7 8 9</li>
+		 <li lang="gu">&#x0ae6; &#x0ae7; &#x0ae8; &#x0ae9; &#x0aea; &#x0aeb; &#x0aec; &#x0aed; &#x0aee; &#x0aef;</li>
+		 <li lang="th">๐ ๑ ๒ ๓ ๔ ๕ ๖ ๗ ๘ ๙</li>
+		 <li lang="ar" dir="ltr">&#x202d;٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩&#x202c;</li>
+		 </ul>
+		 </aside>
       </section>
     </section>
     <section id="identityMatching">
