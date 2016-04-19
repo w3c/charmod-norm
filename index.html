@@ -1500,9 +1500,6 @@
               Unicode character encoding, as content might depend on the
               de-normalized representation. </p>
           </div>
-          <p class="issue"> The following requirement was noted by Mati as
-            being problematic. It was not marked with mustard and needs further
-            consideration. </p>
           <div class="requirement">
             <p>[S] Specifications MUST specify that string matching takes the
               form of "code point-by-code point" comparison of the Unicode
@@ -1510,8 +1507,12 @@
               is specified, code unit-by-code unit comparison of the sequences.
             </p>
           </div>
-          <p class="issue">Following requirements added 2013-10-29. Needs
-            discussion of regular expressions.</p>
+          <p>Regular expression syntaxes are sometimes useful in defining a format or protocol,
+          since they allow users to specify values that are only partially known or which
+          can vary. The definition or use of regular expression syntaxes or wildcards when 
+          considered over the range of Unicode encoding variations, and particularly when
+          considering character or grapheme boundaries brings with it additional considerations.</p>
+            
           <div class="requirement">
             <p>[S][I] Specifications that define a regular expression syntax
               MUST provide at least Basic Unicode Level 1 support per [[!UTS18]]
