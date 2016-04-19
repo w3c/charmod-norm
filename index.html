@@ -1056,32 +1056,34 @@
    		  <p>In fact, canonical normalization is not primarily about 
 		  appearance: it is about folding multiple ways of encoding 
 		  the same logical character or grapheme cluster to use the same code point sequence. 
-		  Two (normalized) <a>graphemes</a> can still look exactly the same, but not 
-		  represent the same logical character.</p>
+		  Two (normalized) <a>graphemes</a> can still look exactly the same or very similar, but not 
+		  represent the same logical character. The grapheme for two characters that look identical is
+		  called a <dfn>homograph</dfn>. Two characters that look similar or which can
+		  look similar under certain presentations (and which include homographs) are called
+		  <dfn>confusable</dfn> characters.</p>
 		  <p>One example of this are the letters <code>U+03A1</code> (&#x3a1;), <code>U+0420</code> (&#x420;),
-		    and <code>U+0050</code> (P). These letters look identical in most fonts, but they are encoded separately as part of the
+		    and <code>U+0050</code> (P). These letters look identical in most fonts (that is, they are homographs), 
+		    but they are encoded separately as part of the
 		    alphabets used in the Greek, Cyrillic, and Latin scripts respectively. Unicode Normalization
 		    will not fold these characters together.</p>
-		  <div class="issue" id="issue-88">
-		      <p>Needs more work. See issue 88.</p>
-		  </div>
-		  <p>Other examples of similar or identical appearance (called a <dfn>homograph</dfn>) can appear
+		  <p>Examples of identical or confusable appearance can appear
 		    even within a single script. Some examples of this include <code>U+08A1</code> &#x8a1;, the character sequences
 		    <code>U+17D2 U+178F</code> (&#x17d2;&#x179f;) and <code>U+17D2 U+178A</code> (&#x17d2;&#x178a;) in Khmer, 
 		    digraphs such as <code>U+0133</code> &#x133; (versus individual letters ij in sequence), as well as more familiar
 		    if somewhat less "identical-looking" spoofs such as l vs. 1 or O and 0.
 		  </p> 
-		  <p><q>Confusable</q> characters, regardless of script, can present spoofing 
+		  <p>Confusable characters, regardless of script, can present spoofing 
 		    and other security risks. There are a variety of specifications and 
 		  standards that attempt to document or describe the issues of homographs and confusability. 
 		  One such as example is [[UTS39]].</p>
-		  <p>Finally, note that Unicode Normalization, even the <q>K</q> Compatibility forms,
+		  <p>In addition to confusable characters, the opposite problem also exists: 
+		  Unicode Normalization, even the <q>KC/KD</q> Compatibility forms,
 		    does not bring together characters that have the same intrinsic meaning or function,
 		    but which vary in appearance or usage. For example, <code>U+002E</code> (.) and <code>U+3002</code> (&#x3002;)
 		    both function as sentence ending punctuation, but the distinction is not removed by normalization. 
-		  Note that some processes or protocols do remove these distinctions via 
-		  the addition of add-on steps to the normalization process. One example 
-		  of this is IDNA2003.</p>
+		  Note that some processes or protocols do remove or attempt to remove these distinctions via 
+		  the addition of add-on steps to the normalization process. One example of this is the internationalized
+		  domain name system.</p>
 
         </section>
       </section>
