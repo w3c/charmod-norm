@@ -1594,8 +1594,19 @@
 		
 		<p>When performing matching, it is important to know when to interpret character escapes so that
 		   a match succeeds (or fails) appropriately. Normally, escapes, references, and includes are processed
-		   or expanded before performing matching, since these syntaxes exist to allow difficult-to-encode
-		   sequences to be put into a document conveniently. </p>
+		   or expanded before performing matching (or match-sensitive processing), since these syntaxes exist to allow difficult-to-encode
+		   sequences to be put into a document conveniently, yet allowing the characters to behave as-if they were
+		   directly encoded as a codepoint sequence in the document in question.</p>
+		 <p>One area where this can be complicated is deciding how syntactic content and natural language content interact.
+		 For example, consider the following snippet of HTML:</p>
+		 <aside class="example">
+		 <pre>
+		    &lt;p id="&amp;#x300;"&gt;Combining mark for ID!&lt;p&gt;
+		 </pre>
+		 </aside>
+		 <p>Although technically the combining mark <code>U+0300</code> combines with the preceding quote mark,
+		   HTML does not consider the character (whether or not it is encoded as an entity) to form part of the
+		   HTML syntax.</p>
 		  <p>When processing the syntax of a document format...</p>
 		  <p>When performing a match on syntactic content...</p>
 		  <p>When performing a match on natural language content...</p>
