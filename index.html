@@ -485,23 +485,25 @@
         <p>Some document formats or protocols seek to aid interoperability or
           provide an aid to content authors by ignoring case variations in the
           <a data-lt="vocabulary">vocabulary</a> they define or in user-defined values permitted by the
-          format or protocol. For example, this occurs when matching class names
+          format or protocol. For example, this occurs when matching element 
+		names
           between an HTML document and its associated style sheet. Consider this
           HTML fragment: </p>
           <aside class="example">
         <pre>&lt;style type="text/css"&gt;
 
-  SPAN.h\e9llo {
+  SPAN.hello {
      text-decoration: underline;
   }
 &lt;/style&gt;
 
-&lt;span class="h&amp;#xe9;llo"&gt;Hello World!&lt;/span&gt;
+&lt;span class="hello"&gt;Hello World!&lt;/span&gt;
 </pre>
 </aside>
         <p>The <code class="kw" translate="no">SPAN</code> in the stylesheet
-          matches the <code class="kw" translate="no">span</code> element in
-          the document, even though one is uppercase and the other is not.</p>
+          matches the <code class="kw" translate="no">span</code> element in the 
+		document, even though the stylesheet uses uppercase and the HTML markup 
+		does not.</p>
         <p><dfn>Case folding</dfn> is the process of making two texts identical
           which differ in case but are otherwise "the same".</p>
         <p>Case folding might, at first, appear simple. However there are
