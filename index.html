@@ -477,7 +477,7 @@
         <h3>Case Folding</h3>
         <p>Some scripts and writing systems make a distinction between UPPER,
           lower, and Title case characters. Most scripts, such as the Brahmic
-          scripts of India, the Arabic script, and the non-Latin scripts used to
+          scripts of India, the Arabic script, and the  scripts used to
           write Chinese, Japanese, or Korean do not have a case distinction, but
           some important ones do. Examples of such scripts include the Latin
           script used in the majority of this document, as well as scripts such
@@ -521,8 +521,8 @@
 		Unicode's case fold mappings.
          </p>
 		  <p>In addition to the <code class="kw">common</code> case folding mappings, a few characters 
-		  have a case fold mapping that would normally require more than one 
-		  Unicode character. These are called the <code class="kw">full</code> case fold mappings. 
+		  have a case fold mapping that would normally map one 
+		  Unicode character to more than one during case folding. These are called the <code class="kw">full</code> case fold mappings. 
 		  Together with the <code class="kw">common</code> case fold mappings, these provide the 
 		  default case fold mapping for all of Unicode. This case fold mapping is referred to in this 
 		  document as <dfn id="dfn-UnicodeC+F">Unicode C+F</dfn>.
@@ -563,7 +563,7 @@
 		  </aside>
           
         <p>Note that case folding removes information from a string which cannot 
-		be recovered later. </p>
+		be recovered later. For example, two <span class="qchar">s</span> letters in German do not necessarily represent  <span class="qchar">&#xdf;</span> in unfolded text.</p>
         <p>Another aspect of case folding is that it can be language sensitive.
           Unicode defines default case mappings for each encoded character, but
           these are only defaults and are not appropriate in all cases. Some
@@ -585,7 +585,7 @@
         </aside>
         <p>Sometimes case can vary in a way that is not semantically meaningful
           or is not fully under the user's control. This is particularly true
-          when <a href="#searching">searching</a> a document, but also applies
+          when <a href="#searching">searching</a> a document, but may sometimes also apply
           when defining rules for matching user- or content-generated values,
           such as identifiers. In these situations, case-<em>in</em>sensitive
           matching might be desirable instead.</p>
@@ -616,6 +616,7 @@
             the expectations of that language SHOULD be specified and applied.</span>
           These case-fold mappings are defined in the <cite>Common Locale Data
             Repository</cite> [[UAX35]] project of the Unicode Consortium.</p>
+        <p>For advice on how to handle case folding see <a href="#handlingCaseFolding"></a>.</p>
       </section>
       <section id="unicodeNormalization">
         <h3>Unicode Normalization</h3>
@@ -1620,83 +1621,6 @@
         <p>As described <a href="#definitionCaseFolding">above</a>, one 
 		important consideration in string identity matching is whether the
           comparison is case sensitive or case insensitive.</p>
-        <div class="requirement">
-          <p>[S] <a href="#case-sensitive">Case sensitive</a> matching is
-            RECOMMENDED as the default for new protocols and formats.</p>
-        </div>
-        <p>However, cases exist in which case-insensitivity is desirable.</p>
-        <p>Where case-insensitive matching is desired, there are several
-          implementation choices that a formal language needs to consider. If
-          the vocabulary of strings to be compared is limited to the Basic Latin
-          (ASCII) subset of Unicode, ASCII case-insensitive matching MAY be
-          used.</p>
-        <p>If the vocabulary of strings to be compared is not limited, then <a>ASCII
-            case-insensitive</a> matching MUST NOT be used. <a href="#uci">Unicode
-            case-insensitive</a> matching MUST be applied, even if the
-          vocabulary does not allow the full range of Unicode.</p>
-        <p><a href="#uci">Unicode case-insensitive</a> matching can take several
-          forms. Unicode defines the "common" (C) casefoldings for characters
-          that always have 1:1 mappings of the character to its case folded form
-          and this covers the majority of characters that have a case folding. A
-          few characters in Unicode have a 1:many case folding. This 1:many
-          mapping is called the "full" (F) case fold mapping. For compatibility
-          with certain types of implementation, Unicode also defines a "simple"
-          (S) case fold that is always 1:1.</p>
-        <div class="requirement">
-          <p>Because the "simple" case-fold mapping removes information that can
-            be important to forming an identity match, the "Common plus Full"
-            (or "Unicode C+F") case fold mapping is RECOMMENDED for Unicode
-            case-insensitive matching.</p>
-        </div>
-        <p>A vocabulary is considered to be "ASCII-only" if and only if all
-          tokens and identifiers are defined by the specification directly and
-          these identifiers or tokens use only the Basic Latin subset of
-          Unicode. If user-defined identifiers are permitted, the full range of
-          Unicode characters (limited, as appropriate, for security or
-          interchange concerns, see [[UTR36]]) SHOULD be allowed and Unicode
-          case insensitivity used for identity matching.</p>
-        <div class="requirement">
-          <p>ASCII case-insensitive matching MUST only be applied to
-            vocabularies that are restricted to ASCII. Unicode
-            case-insensitivity MUST be used for all other vocabularies.</p>
-        </div>
-        <p>Note that an ASCII-only vocabulary can exist inside a document format
-          or protocol that allows a larger range of Unicode in identifiers or
-          values.</p>
-        <p class="issue">Insert example from CSS here.</p>
-        <div class="requirement">
-          <p>Case sensitive matching is RECOMMENDED as the default for any new
-            protocol or format.</p>
-        </div>
-        <p>Case-sensitive matching is the easiest to implement and introduces
-          the least potential for confusion, since it generally consists of a
-          comparison of the underlying Unicode code point sequence. Because it
-          is not affected by considerations such as language-specific case
-          mappings, it produces the least surprise for document authors that
-          have included words (such as the Turkish example above) in their
-          syntactic content.</p>
-        <div class="requirement">
-          <p>If the vocabulary is not restricted to ASCII or permits
-            user-defined values that use a broader range of Unicode, ASCII
-            case-insensitive matching MUST NOT be required.</p>
-        </div>
-        <div class="requirement">
-          <p>[S][I] The <a>Unicode C+F</a> case-fold form is RECOMMENDED as the
-            case-insensitive matching for <a data-lt="vocabulary">vocabularies</a>.
-            The Unicode C+S form MUST NOT be used for string identity matching
-            on the Web.</p>
-        </div>
-        <p>Language-sensitive case-sensitive matching in document formats and
-          protocols is NOT RECOMMENDED because language information can be hard
-          to obtain, verify, or manage and the resulting operations can produce
-          results that frustrate users.</p>
-        <div class="requirement">
-          <p>[C] Identifiers SHOULD use consistent case (upper, lower, mixed
-            case) to facilitate matching, even if case-insensitive matching is
-            supported by the format or implementation. </p>
-        </div>
-        <section id="formal-language">
-          <h4>Requirements for Specifications</h4>
           <p>These requirements pertain to specifications for document formats
             or programming/scripting languages and their implementations.</p>
           <div class="requirement">
@@ -1711,48 +1635,101 @@
               <li>ASCII case-insensitive</li>
             </ul>
           </div>
-          <div class="requirement">
-            <p>[S] Specifications SHOULD NOT specify case-insensitive comparison
-              of strings.</p>
-          </div>
-          <div class="requirement">
-            <p>[S] Specifications that specify case-insensitive comparison for
-              non-ASCII vocabularies SHOULD specify Unicode case-folding C+F.</p>
-          </div>
-          <p>In some limited cases, locale- or language-specific tailoring might
-            also be appropriate. However, such cases are generally linked to
+        <section id="sec_case_sensitive">
+          <h4>Case-sensitive matching</h4>
+        <div class="requirement">
+          <p>[S] <a href="#case-sensitive">Case-sensitive</a> matching is
+            RECOMMENDED as the default for new protocols and formats. Specifications SHOULD NOT specify case-insensitive comparison of strings.</p>
+        </div>
+        <p>Case-sensitive matching is the easiest to implement and introduces
+          the least potential for confusion, since it generally consists of a
+          comparison of the underlying Unicode code point sequence. Because it
+          is not affected by considerations such as language-specific case
+          mappings, it produces the least surprise for document authors that
+          have included words such as the Turkish example above in their
+          syntactic content.</p>
+        <p>However, cases exist in which case-insensitivity is desirable. Where case-insensitive matching is desired, there are several
+        implementation choices that a formal language needs to consider. </p>
+</section>
+        <section id="sec_ascii_cs">
+          <h4>ASCII case-sensitive matching</h4>
+         <div class="requirement">
+       <p>If
+          the vocabulary of strings to be compared is limited to the Basic Latin
+          (ASCII) subset of Unicode, and case sensitive is not an option, ASCII case-insensitive matching MAY be
+          used.</p>
+        </div>
+         <p>This requirement applies to formal languages whose keywords are all
+           ASCII and which do not allow user-defined names or identifiers. An
+           example of this is HTML, which defines the use of ASCII
+           case-insensitive comparison for element and attribute names defined
+           by the HTML specification.</p>
+         <div class="requirement">
+           <p>ASCII case-insensitive matching MUST only be applied to
+             vocabularies that are restricted to ASCII and do not permit
+            user-defined values that use a broader range of Unicode. <a href="#uci">Unicode
+            case-insensitive</a> matching MUST be used for all other vocabularies, even if the
+          vocabulary does not allow the full range of Unicode.</p>
+        </div>
+        <p>A vocabulary is considered to be "ASCII-only" if and only if all
+           tokens and identifiers are defined by the specification directly and
+           these identifiers or tokens use only the Basic Latin subset of
+           Unicode. If user-defined identifiers are permitted, the full range of
+           Unicode characters (limited, as appropriate, for security or
+           interchange concerns, see [[UTR36]]) should be allowed and Unicode
+           case insensitivity used for identity matching.</p>
+        <p>Note that an ASCII-only vocabulary can exist inside a document format
+          or protocol that allows a larger range of Unicode in identifiers or
+          values.</p>
+        <p class="issue">Insert example from CSS here.</p>
+        </section>
+                <section id="sec_unicode_cs">
+          <h4>Unicode case-sensitive matching</h4>
+
+        <div class="requirement">
+          <p>[S][I] The <a>Unicode C+F</a> case-fold form is RECOMMENDED as the
+            case-insensitive matching for <a data-lt="vocabulary">vocabularies</a>, if case-sensitive is not an option.
+            The Unicode C+S form MUST NOT be used for string identity matching
+            on the Web.</p>
+        </div>
+        <p><a href="#uci">Unicode case-insensitive</a> matching can take several
+          forms. Unicode defines the "common" (C) casefoldings for characters
+          that always have 1:1 mappings of the character to its case folded form
+          and this covers the majority of characters that have a case folding. A
+          few characters in Unicode have a 1:many case folding. This 1:many
+          mapping is called the "full" (F) case fold mapping. For compatibility
+          with certain types of implementation, Unicode also defines a "simple"
+          (S) case fold that is always 1:1. The &quot;simple&quot; case-fold mapping is not recommended because it removes information that can be important to forming an identity match.</p>
+        <div class="requirement">
+        <p>Language-sensitive case-sensitive matching in document formats and
+          protocols is NOT RECOMMENDED.</p>
+        </div>
+<p>This is because language information can be hard to obtain, verify, or manage and the resulting operations can produce results that frustrate users.</p>
+<div class="requirement">
+          <p>[C] Identifiers SHOULD use consistent case (upper, lower, mixed
+            case) to facilitate matching, even if case-insensitive matching is
+            supported by the format or implementation. </p>
+        </div>
+        </section>
+        
+        <section id="sec_language_tailoring">
+          <h4>Language-specific tailoring</h4>
+          <p>The appropriateness of locale- or language-specific tailoring is generally linked to
             natural language processing operations. Because they produce
             potentially different results from the generic case folding rules,
             these should be avoided in formal languages, where predictability is
             at a premium. </p>
           <div class="requirement">
-            <p>[S] Specifications MAY specify ASCII case-insensitive comparison
-              for portions of a format or protocol that are restricted to an
-              ASCII-only vocabulary.</p>
+            <p>[S][I] Locale- or language-specific tailoring is NOT RECOMMENDED for specifications and implementations that define string
+              matching as part of the definition of a format, protocol, or
+            formal language. </p>
           </div>
-          <p>This requirement applies to formal languages whose keywords are all
-            ASCII and which do not allow user-defined names or identifiers. An
-            example of this is HTML, which defines the use of ASCII
-            case-insensitive comparison for element and attribute names defined
-            by the HTML specification.</p>
-          <div class="requirement">
-            <p>[S][I] Specifications and implementations MUST NOT specify
-              ASCII-only case-insensitive matching for values or constructs that
-              permit non-ASCII characters. </p>
-          </div>
-        </section>
-        <section id="non-normalizing-requirements">
-          <h4> Non-Normalizing Specification Requirements </h4>
-          <div class="requirement">
-            <p>[S][I] For vocabularies and values that are <em>not</em> restricted to
-              Basic Latin (ASCII), case-insensitive matching MUST specify either
-              Unicode C+F string comparison or language-sensitive string comparison. </p>
-          </div>
-          <aside class="note"><p>Language-sensitive string comparison is often referred to as being
-            <em>locale-sensitive</em>, since most programming
-            languages and operating environments access language-specific tailoring
-            using their respective locale-based APIs. For example, see the <code>java.text.Collator</code> class
-            in the Java programming language or <code>Intl.Collator</code> in JavaScript.</p></aside>
+          <aside class="note">
+            <p>Language-sensitive string comparison is often referred to as being <em>locale-sensitive</em>, since most programming
+              languages and operating environments access language-specific tailoring
+              using their respective locale-based APIs. For example, see the <code>java.text.Collator</code> class
+              in the Java programming language or <code>Intl.Collator</code> in JavaScript.</p>
+          </aside>
         </section>
       </section>
       <section id="handlingUnicodeControls">
