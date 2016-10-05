@@ -111,6 +111,12 @@
 		    href: "http://www.unicode.org/reports/tr50/",
 		    authors: [ "Koji Ishii 石井宏治" ]
 		},
+
+		"UTR51": {
+		    title: "Unicode Technical Report #51: Unicode Emoji",
+		    href: "http://www.unicode.org/reports/tr51/",
+		    authors: [ "Mark Davis", "Peter Edberg" ]
+	    },
 		
 		"Nicol": {
 			title: "The Multilingual World Wide Web, Chapter 2: The WWW As A Multilingual Application",
@@ -1167,6 +1173,16 @@
 			  <span style="text-decoration:underline">U+200C</span> U+0647 U+0627</span>" 
 		  respectively, the only difference being the ZWNJ in the latter word.</p>
 		  </aside>
+
+		  <p>Another use for ZWJ is in the formation of complex emoji. For example, the <em>family</em>
+		  emoji (&#x1f46a; <span class="uname" translate="no">U+1F45A</span>) can also be formed by using
+		  ZWJ between emoji characters in the sequence <span class="uname" translate="no">U+1F468 U+200D U+1F469 U+200D U+1F466</span>.
+		  Altering or adding other emoji characters can alter the composition of the family. For example the sequence 
+		  <span class="uname" translate="no">&#x1f468;&#x200d;&#x1f469;&#x200d;&#x1f467;&#x200d;&#x1f467; 
+		  U+1F468 U+200D U+1F469 U+200D U+1F467 U+200D U+1F467</span> results in a composed
+		  emoji character for a "family: man, woman, girl, girl" on systems that support this kind of 
+		  composition. Many common emoji can <em>only</em> be formed using ZWJ sequences. For more information, see [[UTR51]].</p>
+
 		  <p>Variation selectors (<span class="uname">U+FE00</span> through 
 		  <span class="uname" translate="no">U+FE0F</span>) are 
         characters used to select an alternate appearance or glyph 
@@ -1241,7 +1257,7 @@
           sequences from the same input. The <cite>Encoding</cite> [[Encoding]]
           specification exists, in part, to ensure that Web implementations use
           interoperable and identical mappings. However, there is no guarantee
-          that transcoders inconsistent with the Encoding specification won't be
+          that transcoders consistent with the Encoding specification will be
           applied to documents found on the Web or used to process data
           appearing in a particular document format or protocol.</p>
         <p>One additional consideration in converting to Unicode is the existance of
@@ -1275,13 +1291,89 @@
 		 a document might expect that typing one form of digit will find the eqivalent
 		 digits.</p>
 		 <aside class="example">
-		 <p>Selected examples of different digit shapes, from zero to nine. In this case, Latin, Gujurati, Thai, and Arabic digits:</p>
-		 <ul>
-		 <li>0 1 2 3 4 5 6 7 8 9</li>
-		 <li lang="gu">&#x0ae6; &#x0ae7; &#x0ae8; &#x0ae9; &#x0aea; &#x0aeb; &#x0aec; &#x0aed; &#x0aee; &#x0aef;</li>
-		 <li lang="th">๐ ๑ ๒ ๓ ๔ ๕ ๖ ๗ ๘ ๙</li>
-		 <li lang="ar" dir="ltr">&#x202d;٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩&#x202c;</li>
-		 </ul>
+		 <p>Selected examples of different digit shapes, from zero to nine, in four scripts:</p>
+		 
+                 <table style="position:center;width:50%">
+                    <thead style="background:gray">
+			<tr>
+			    <th rowspan=2 style="vertical-align:top">Script</th>
+			    <th colspan=10 style="text-align:center">Digits</th>
+			</tr>
+			<tr>
+			    <th>0</th>
+			    <th>1</th>
+			    <th>2</th>
+			    <th>3</th>
+			    <th>4</th>
+			    <th>5</th>
+			    <th>6</th>
+			    <th>7</th>
+			    <th>8</th>
+			    <th>9</th>
+			</tr>
+                   </thead>
+		   <tbody>
+                       <tr>
+		   	    <td>Latin</td>
+			    <td>0</td>
+			    <td>1</td>
+			    <td>2</td>
+			    <td>3</td>
+			    <td>4</td>
+			    <td>5</td>
+			    <td>6</td>
+			    <td>7</td>
+			    <td>8</td>
+			    <td>9</td>
+			</tr>
+                       <tr>
+		   	    <td>Gujurati</td>
+			    <td>&#x0ae6;</td>
+			    <td>&#x0ae7;</td>
+			    <td>&#x0ae8;</td>
+			    <td>&#x0ae9;</td>
+			    <td>&#x0aea;</td>
+			    <td>&#x0aeb;</td>
+			    <td>&#x0aec;</td>
+			    <td>&#x0aed;</td>
+			    <td>&#x0aee;</td>
+			    <td>&#x0aef;</td>
+			</tr>
+                       <tr>
+		   	    <td>Thai</td>
+			    <td>&#x0e50;</td>
+			    <td>&#x0e51;</td>
+			    <td>&#x0e52;</td>
+			    <td>&#x0e53;</td>
+			    <td>&#x0e54;</td>
+			    <td>&#x0e55;</td>
+			    <td>&#x0e56;</td>
+			    <td>&#x0e57;</td>
+			    <td>&#x0e58;</td>
+			    <td>&#x0e59;</td>
+			</tr>
+			<tr>
+				<td>Arabic</td>
+				<td>&#x0660;</td>
+				<td>&#x0661;</td>
+				<td>&#x0662;</td>
+				<td>&#x0663;</td>
+				<td>&#x0664;</td>
+				<td>&#x0665;</td>
+				<td>&#x0666;</td>
+				<td>&#x0667;</td>
+				<td>&#x0668;</td>
+				<td>&#x0669;</td>
+			</tr>
+
+	           </tbody>
+
+
+
+	         </table>
+
+
+
 		 </aside>
       </section>
     </section>
@@ -1325,7 +1417,7 @@
             </div>
           </li>
           <li>Perform one of the following case foldings, as appropriate:
-            <ol>
+            <ol style="list-style-type:lower-latin">
               <li><em><a href="#case-sensitive">Case sensitive</a></em>: Go to
                 step 4.</li>
               <li><em><a data-lt="ASCII case-insensitive">ASCII case folding</a></em>:
