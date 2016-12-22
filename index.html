@@ -298,16 +298,15 @@
           has an <code class="kw">alt</code> attribute containing a description of
           the image.</p>
           
-        <p class="issue">Issue #59: should we use the term 'resource' in this document
-        using this definition, given the wider one in the more well know RFC3986 URI spec.</p>
-          
-        <p>A <dfn data-lt="resource|resources">resource</dfn> is a given
+        <p>A <dfn data-lt="resource|resources">resource</dfn>, in the context of this document,  is a given
           document, file, or protocol "message" which includes both the <a>natural
             language content</a> as well as the <a href="#def_syntactic_content" class="termref">syntactic content</a>
           such as identifiers surrounding or containing it. For example, in an
           HTML document that also has some CSS and a few <code class="kw" translate="no">script</code>
           tags with embedded JavaScript, the entire HTML document, considered as
-          a file, is the resource.</p>
+          a file, is a resource. This term is intentionally similar to the term 
+		'resource' as used in [[RFC3986]], although here the term is applied 
+		loosely. </p>
           
         <p>A <dfn data-lt="user value|user values">user value</dfn> is unreserved syntactic 
         content in a <a>vocabulary</a> that is assigned by users, as distinct 
@@ -1692,11 +1691,21 @@
 		 <p>Although technically the combining mark <code>U+0300</code> combines with the preceding quote mark,
 		   HTML does not consider the character (whether or not it is encoded as an entity) to form part of the
 		   HTML syntax.</p>
-		  <p>When processing the syntax of a document format...</p>
-		  <p>When performing a match on syntactic content...</p>
-		  <p>When performing a match on natural language content...</p>
-		   
-        <p class="issue">Edit me!</p>
+		  <p>When performing a matching operation on a resource, the general 
+		  rule is to expand escapes on the same &quot;level&quot; as the user is 
+		  interacting with. For example, when considering the above example, a 
+		  text editor being used to view or create the HTML source would show 
+		  the escape sequence <code>&amp;#x300;</code> as a string of characters 
+		  starting with an ampersand. A DOM browser, by contrast, would 
+		  show the character <code>U+0300</code> as the value of the attribute <code>id</code>.</p>
+		  <p>When processing the syntax of a document format, escapes should be 
+		  converted to the character sequence they represent before the 
+		  processing of the syntax, unless explicitly forbidden by the format's 
+		  processing rules. This allows resources to include characters of all 
+		  types into the resource's syntactic structures.</p>
+		  <p>In some cases, pre-processing escapes creates problems. 
+		  For example, expanding the sequence <code>&amp;lt;</code> before parsing an HTML 
+		  document would produce document errors.</p>
       </section>
       <section id="handlingCaseFolding">
         <h2>Handling Case Folding</h2>
@@ -1763,7 +1772,12 @@
         <p>Note that an ASCII-only vocabulary can exist inside a document format
           or protocol that allows a larger range of Unicode in identifiers or
           values.</p>
-        <p class="issue">Insert example from CSS here.</p>
+        <p class="exampleBox">For example [[CSS-SYNTAX-3]] defines the format of CSS 
+		style sheets in a way that allows the full range of Unicode to be used 
+		for identifiers and values. However, CSS specifications always define 
+		CSS keywords using a subset of the ASCII range. The vocabulary of CSS is 
+		thus ASCII-only, even though many style sheets contain identifiers or 
+		data values that are not ASCII.</p>
         </section>
                 <section id="sec_unicode_cs">
           <h4>Unicode case-sensitive matching</h4>
