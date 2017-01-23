@@ -12,7 +12,7 @@
           useExperimentalStyles: true,
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
           specStatus:				"ED",
-          publishDate:  			"2016-12-22",
+          publishDate:  			"2017-01-20",
           previousPublishDate:  	"2015-11-19",
           previousMaturity:  		"WD",
 
@@ -1070,10 +1070,9 @@
 		    digraphs such as <code>U+0133</code> &#x133; (versus individual letters ij in sequence), as well as more familiar
 		    if somewhat less "identical-looking" spoofs such as l vs. 1 or O and 0.
 		  </p> 
-		  <p>Confusable characters, regardless of script, can present spoofing 
-		    and other security risks. There are a variety of specifications and 
-		  standards that attempt to document or describe the issues of homographs and confusability. 
-		  One such as example is [[UTS39]].</p>
+		  <p>Characters that are identical or 'confusable' in appearance can present spoofing and other security risks. This can be
+		  true within a single script or for similar characters in separate scripts. For a 
+		  discussion and examples of homoglyphs and confusability, see  [[UTS39]].</p>
 		  <p>In addition to confusable characters, the opposite problem also exists: 
 		  Unicode Normalization, even the <q>KC/KD</q> Compatibility forms,
 		    does not bring together characters that have the same intrinsic meaning or function,
@@ -1214,6 +1213,27 @@
 		  underlying codepoints, variation in the encoding of the text due to 
 		  these markers can cause matches that ought to succeed to mysteriously 
 		  fail (from the point of view of the user).</p>
+
+      <section id="bidiControls">
+        <h4>Bidirectional Controls</h4>
+        <p class=issue>Needs more work. Borrowed from UTR9 here</p>
+        <p>When text is presented in horizontal lines, most scripts display characters from left-to-right. However, there are several 
+        scripts (such as Arabic or Hebrew) where the natural presentation of horizontal text is from right-to-left. If all of 
+        the text has a uniform horizontal direction, then the ordering of the display text is unambiguous.</p>
+
+        <p>However, because these right-to-left scripts use digits that are written from left-to-right, the text is actually bidirectional:
+        it is a mixture of right-to-left and left-to-right text. In addition to digits, embedded words from Latin or other left-to-right scripts 
+        are written from left-to-right, also producing a <em>bidirectional</em> text. Without a clear specification, ambiguities can arise
+        in determining the ordering of the displayed characters when the horizontal direction of the text is not uniform.
+        For more information, see [[UTR9]].</p>
+
+        <p>One of the ways that Unicode defines to address the ambiguity of text direction are a set of invisible control characters to
+        mark the start and end of directional runs. While bidirectional controls can have an affect on the appearance of the text
+        (since they help the Unicode Bidirectional Algorithm (UBA) with the presentation of text), they might have no effect on the
+        text if the text would naturally have fallen into bidirectional runs without the controls. These controls are, like the characters
+        mentioned above, invisible, but can have an effect on matching.
+        </p>
+      </section>
 
       </section>
       <section id="legacyCharacterEncoding">
@@ -1578,11 +1598,11 @@
           <p>The normalization form or lack of normalization for any given
             content has to be considered intentional in these cases.</p>
           <div class="requirement">
-            <p>[I] Implementations MUST NOT alter the normalization form of
-              content being exchanged, read, parsed, or processed except when
-              required to do so as a side-effect of transcoding the content to a
-              Unicode character encoding, as content might depend on the
-              de-normalized representation. </p>
+            <p>[I] Implementations MUST NOT alter the normalization form of syntactic or natural language 
+            content being exchanged, read, parsed, or processed except when required to do so as a 
+            side-effect of text transformation such as transcoding the content to a Unicode character encoding,
+            case mapping/folding, or other user-initiated change, as consumers or the content itself might depend on the
+            de-normalized representation. </p>
           </div>
           <div class="requirement">
             <p>[S] Specifications MUST specify that string matching takes the
