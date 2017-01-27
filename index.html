@@ -81,6 +81,12 @@
 			href: "http://www.unicode.org/reports/tr10/",
 			authors: [ "Mark Davis", "Ken Whistler", "Markus Scherer" ]
 		},
+
+        "UAX9": {
+            title: "Unicode Standard Annex #9: Unicode Bidirectional Algorithm",
+            href: "http://unicode.org/reports/tr9/",
+            authors: [ "Mark Davis", "Aharon Lahnin", "Andrew Glass" ]
+        },
 		
 		"UAX11": {
 		    title: "Unicode Standard Annex #11: East Asian Width",
@@ -1143,8 +1149,8 @@
           (and would also match the literal value <code>héllo</code> using the
           code point <span class="uname" translate="no">U+00E9</span>).</p>
       </section>
-      <section id="unicodeControls">
-        <h3>Unicode Controls and Invisible Markers</h3>
+      <section id="invisibleCharacters">
+        <h3>Invisible Unicode Characters That Affect Matching</h3>
         <p>Unicode provides a number of invisble, special-purpose characters 
 		that help document authors control the appearance or performance of 
 		text. Because these characters are invisible, users are not always aware 
@@ -1214,26 +1220,19 @@
 		  these markers can cause matches that ought to succeed to mysteriously 
 		  fail (from the point of view of the user).</p>
 
-      <section id="bidiControls">
-        <h4>Bidirectional Controls</h4>
-        <p class=issue>Needs more work. Borrowed from UTR9 here</p>
-        <p>When text is presented in horizontal lines, most scripts display characters from left-to-right. However, there are several 
-        scripts (such as Arabic or Hebrew) where the natural presentation of horizontal text is from right-to-left. If all of 
-        the text has a uniform horizontal direction, then the ordering of the display text is unambiguous.</p>
-
-        <p>However, because these right-to-left scripts use digits that are written from left-to-right, the text is actually bidirectional:
-        it is a mixture of right-to-left and left-to-right text. In addition to digits, embedded words from Latin or other left-to-right scripts 
-        are written from left-to-right, also producing a <em>bidirectional</em> text. Without a clear specification, ambiguities can arise
-        in determining the ordering of the displayed characters when the horizontal direction of the text is not uniform.
-        For more information, see [[UTR9]].</p>
+        <p>Some scripts, such as Arabic and Hebrew, are written prodominently from right-to-left. Text written in these scripts can also
+        include character sequences, such as numbers or quotes in another script, that are left-to-right. This intermixing of text direction
+        is called <em>bidirectional</em> text or <q>bidi</q> for short. The Unicode Bidirectional Algorithm
+        [[UAX9]] describes how such mixed-direction text is processed for display. For most text, the directional handling can be derived
+        from the text itself. However, there are many cases in which the algorithm needs additional information in order to present text
+        correctly. For more examples, see [[html-bidi]].</p>
 
         <p>One of the ways that Unicode defines to address the ambiguity of text direction are a set of invisible control characters to
         mark the start and end of directional runs. While bidirectional controls can have an affect on the appearance of the text
-        (since they help the Unicode Bidirectional Algorithm (UBA) with the presentation of text), they might have no effect on the
-        text if the text would naturally have fallen into bidirectional runs without the controls. These controls are, like the characters
-        mentioned above, invisible, but can have an effect on matching.
+        (since they help the Unicode Bidirectional Algorithm with the presentation of text), they might have no effect on the
+        text if the text would naturally have fallen into bidirectional runs without the controls. Because these controls are, like the characters
+        mentioned above, invisible, they can have an unintentional effect on matching.
         </p>
-      </section>
 
       </section>
       <section id="legacyCharacterEncoding">
