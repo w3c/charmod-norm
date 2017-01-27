@@ -1071,10 +1071,16 @@
 		    alphabets used in the Greek, Cyrillic, and Latin scripts respectively. Unicode Normalization
 		    will not fold these characters together.</p>
 		  <p>Examples of identical or confusable appearance can appear
-		    even within a single script. Some examples of this include <code>U+08A1</code> &#x8a1;, the character sequences
-		    <code>U+17D2 U+178F</code> (&#x17d2;&#x179f;) and <code>U+17D2 U+178A</code> (&#x17d2;&#x178a;) in Khmer, 
-		    digraphs such as <code>U+0133</code> &#x133; (versus individual letters ij in sequence), as well as more familiar
-		    if somewhat less "identical-looking" spoofs such as l vs. 1 or O and 0.
+		    even within a single script. Some examples of this include:
+		    <ul>
+		    <li><code>U+08A1 ARABIC LETTER BEH WITH HAMZA ABOVE</code> &#x8a1; which is similar to <code>U+0628 U+0654</code> &#x628;&#x654;
+		    (<code>ARABIC LETTER BEH</code> followed by <code>ARABIC HAMZA ABOVE</code>)</li>
+		    <li>Certain Khmer sequences involving <code>U+17D2 KHMER SIGN COENG</code> such as <code>U+17D2 U+178F</code>
+		    (&#x1780;&#x17d2;&#x178f;) and <code>U+17D2 U+178A</code> (&#x1780;&#x17d2;&#x178a;) (each shown here, for legibility, with the
+		    base character <code>U+1780 KHMER LETTER KA </code> &#x1780;)</li>
+		    <li>Digraphs such as <code>U+0133 LATIN SMALL LIGATURE IJ</code> &#x133; (versus individual letters ij in sequence)</li>
+		    <li>Other familiar if somewhat less "identical-looking" spoofs such as l vs. 1 or O and 0.</li>
+		    </ul>
 		  </p> 
 		  <p>Characters that are identical or 'confusable' in appearance can present spoofing and other security risks. This can be
 		  true within a single script or for similar characters in separate scripts. For a 
