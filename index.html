@@ -12,7 +12,7 @@
           useExperimentalStyles: true,
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
           specStatus:				"ED",
-          publishDate:  			"2017-01-20",
+          publishDate:  			"2017-01-27",
           previousPublishDate:  	"2015-11-19",
           previousMaturity:  		"WD",
 
@@ -123,6 +123,7 @@
 		    href: "http://www.unicode.org/reports/tr51/",
 		    authors: [ "Mark Davis", "Peter Edberg" ]
 	    },
+
 		
 		"Nicol": {
 			title: "The Multilingual World Wide Web, Chapter 2: The WWW As A Multilingual Application",
@@ -1157,27 +1158,27 @@
       </section>
       <section id="invisibleCharacters">
         <h3>Invisible Unicode Characters That Affect Matching</h3>
-        <p>Unicode provides a number of invisble, special-purpose characters 
+        <p>Unicode provides a number of invisble special-purpose characters 
 		that help document authors control the appearance or performance of 
 		text. Because these characters are invisible, users are not always aware 
 		of their presence or absence. As a result, these characters can 
 		interfere with string matching when they are part of the encoded 
-		character sequence but the expected matching text does not include them. 
+		character sequence but the expected matching text does not also include them. 
 		Some examples of these characters include:</p>
           <p>The Unicode control characters <span class="uname" translate="no">U+200D Zero Width Joiner</span> (also known 
         as <em>ZWJ</em>) and <span class="uname" translate="no">U+200C Zero Width Non-Joiner</span> (also known as 
 		  <em>ZWNJ</em>). 
 		Their original use was to control
-          ligature formation&mdash; either preventing the formation of undesirable ligatures or encouraging the formation
-          for desirable ones. However, their primary use today is control 
-		joining and shape selection in Arabic and Indic scripts. For example, ZWJ and ZWNJ are used in some Indic scripts to allow 
-		  authors to specify the shape that certain conjuncts take. See the 
+          ligature formation&mdash;either preventing the formation of undesirable ligatures or encouraging the formation
+          of desirable ones. However, their primary use today is to control 
+		  the joining and shape selection in the Arabic and various of the Indic scripts. For example, ZWJ and ZWNJ are used in some Indic scripts to allow 
+		  authors to control the shape that certain conjuncts take. See the 
 		  discussion in Chapter 12 of [[!Unicode]].</p>
 		  <aside class="example">
 		  <div class="example-title marker"></div>
 			  <p>The <span class="uname" translate="no">Zero Width Non-Joiner</span> is used in Persian to 
-		  prevent certain "normal" Arabic script joining. In these cases, the 
-		  character affects the meaning. For example, the word تنها ("alone") and the word تن‌ها&nbsp; ("bodies" 
+		  prevent certain "normal" Arabic script joining. In these cases, the presence or absence of the
+		  character <em>does</em> affect the meaning. For example, the word تنها ("alone") and the word تن‌ها&nbsp; ("bodies" 
 		  or "corpuses") are encoded as "<span class="uname">U+062A 
 		  U+0646 U+0647 U+0627</span>" and "<span class="uname">U+062A U+0646 
 			  <span style="text-decoration:underline">U+200C</span> U+0647 U+0627</span>" 
@@ -1217,16 +1218,11 @@
 		  For example, it might be used in a Thai language document to assist 
 		  with word-breaking. </p>
 		  <p>The <span class="uname" translate="no">U+00AD Soft Hyphen</span> can be used in text 
-		  to indidate a potential or preferred hyphenation position. It only 
+		  to indicate a potential or preferred hyphenation position. It only 
 		  becomes visible when the text is reflowed to wrap at that position.</p>
-		  <p>In almost all of these cases, users may not be aware of or cannot 
-		  be sure if a given document or text string has included or omitted one 
-		  of these characters. Because text matching depends on matching the 
-		  underlying codepoints, variation in the encoding of the text due to 
-		  these markers can cause matches that ought to succeed to mysteriously 
-		  fail (from the point of view of the user).</p>
 
-        <p>Some scripts, such as Arabic and Hebrew, are written prodominently from right-to-left. Text written in these scripts can also
+
+        <p>Finally, some scripts, such as Arabic and Hebrew, are written prodominently from right-to-left. Text written in these scripts can also
         include character sequences, such as numbers or quotes in another script, that are left-to-right. This intermixing of text direction
         is called <em>bidirectional</em> text or <q>bidi</q> for short. The Unicode Bidirectional Algorithm
         [[UAX9]] describes how such mixed-direction text is processed for display. For most text, the directional handling can be derived
@@ -1239,6 +1235,13 @@
         text if the text would naturally have fallen into bidirectional runs without the controls. Because these controls are, like the characters
         mentioned above, invisible, they can have an unintentional effect on matching.
         </p>
+
+	  <p>In almost all of these cases, users may not be aware of or cannot 
+	  be sure if a given document or text string has included or omitted one 
+	  of these characters. Because text matching depends on matching the 
+	  underlying codepoints, variation in the encoding of the text due to 
+	  these markers can cause matches that ought to succeed to mysteriously 
+	  fail (from the point of view of the user).</p>
 
       </section>
       <section id="legacyCharacterEncoding">
