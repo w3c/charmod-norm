@@ -1455,7 +1455,18 @@
                 Note that this can change the length of the string.</li>
             </ol>
           </li>
-          <li>Remove <a href="#unicodeControls">Unicode control characters</a></li>
+          <p class=issue>What to do about non-breaking space and other space characters? Is this the full
+            list? What about the Mongolian characters?</p>
+          <li>Remove all of the following <a href="#invisibleCharacters">invisible Unicode characters</a>:
+                <ul>
+                   <li>ZWJ, ZWNJ
+                   <li>Variation Selectors (FE00..FE0F)
+                   <li>COMBINING GRAPHEME JOINER 034F
+                   <li>SOFT HYPHEN 00AD
+                   <li>ZERO WIDTH SPACE 200B
+                   <li>Bidi controls
+                </ul>
+          </li>
           <li>Test the resulting sequences of code points bit-by-bit for
             identity.</li>
         </ol>
