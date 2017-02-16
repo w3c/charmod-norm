@@ -14,7 +14,7 @@ To follow the work, you can 'Watch' this repository using the control above, or 
 
 ###Contributing
 
-All contributors should read and agree with [CONTRIBUTING.md](https://github.com/w3c/hlreq/blob/gh-pages/CONTRIBUTING.md).
+All contributors should read and agree with [CONTRIBUTING.md](https://github.com/w3c/charmod-norm/blob/gh-pages/CONTRIBUTING.md).
 
 Editors should be familiar with and use the following:
 
