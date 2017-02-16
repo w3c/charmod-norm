@@ -7,14 +7,14 @@
 ###Feedback
 Please use the [GitHub issue list](https://github.com/w3c/charmod-norm/issues) to send feedback about this document.
 
+To make it easier to track comments, please raise separate issues or emails for each comment, and point to the section you are commenting on  using a URL for the dated version of the document.
+
 ###Following
 To follow the work, you can 'Watch' this repository using the control above, or subscribe to the [www-international](https://lists.w3.org/Archives/Public/www-international/) mailing list, which is notified once a day about changes to the repo. Please use github issues rather than the mailing list to send feedback.
 
 ###Contributing
 
 All contributors should read and agree with [CONTRIBUTING.md](https://github.com/w3c/hlreq/blob/gh-pages/CONTRIBUTING.md).
-
-To make it easier to track comments, please raise separate issues or emails for each comment, and point to the section you are commenting on  using a URL for the dated version of the document.
 
 Editors should be familiar with and use the following:
 
