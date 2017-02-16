@@ -1,27 +1,25 @@
-# charmod-norm
-Character Model for the World Wide Web: String Matching and Searching
+# Character Model for the World Wide Web: String Matching
 
-Please review the document at http://www.w3.org/TR/2015/WD-charmod-norm-20151119/.  Comments on the document should be raised using [github issues](https://github.com/w3c/charmod-norm/issues) for this repository.  If you need to use email, send to www-international@w3.org. 
+###Documents
+- [Editor's copy](https://w3c.github.io/charmod-norm/)
+- [WD](http://www.w3.org/TR/charmod-norm/)
+
+###Feedback
+Please use the [GitHub issue list](https://github.com/w3c/charmod-norm/issues) to send feedback about this document.
+
+###Following
+To follow the work, you can 'Watch' this repository using the control above, or subscribe to the [www-international](https://lists.w3.org/Archives/Public/www-international/) mailing list, which is notified once a day about changes to the repo. Please use github issues rather than the mailing list to send feedback.
+
+###Contributing
+
+All contributors should read and agree with [CONTRIBUTING.md](https://github.com/w3c/hlreq/blob/gh-pages/CONTRIBUTING.md).
 
 To make it easier to track comments, please raise separate issues or emails for each comment, and point to the section you are commenting on  using a URL for the dated version of the document.
 
-You can view the github version of the document at http://w3c.github.com/charmod-norm. We try to ensure that the TR version and the github version are kept very close.
+Editors should be familiar with and use the following:
 
-This document is being developed by the Internationalization Working Group.
+- [Github guidelines for working with i18n documents](http://w3c.github.io/i18n-activity/guidelines/github)
+- [Editorial guidelines for working with i18n documents](http://w3c.github.io/i18n-activity/guidelines/editing)
 
-
-##Last-minute Pre-publication edits##
-
-1. make the following changes to the respec file and push to github 
-
- 1. in the SOTD, change the link on "latest dated version in /TR" to point to the location of the document that is about to be published 
-
- 2. change the following to point to the same location
- ```<link rel="canonical" href="http://www.w3.org/TR/2015/WD-charmod-norm-XXXXXXX/"/>```
-
- 3. change previousPublishDate to reflect the date of the last publication 
-
-2. Remove the following from the snapshot of the file that will be published to TR. 
- ```<link rel="canonical" href="http://www.w3.org/TR/2015/WD-charmod-norm-XXXXXXXX/"/>``` 
-
-3. Edit this README file to point to the latest published version.
+###Links
+- [Working Group Home Page](http://w3c.github.io/i18n-activity/i18n-wg/)
