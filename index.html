@@ -1052,7 +1052,7 @@
         </section>
         </section>
         <section id="normalizationLimitations">
-         <h3>Confusable Characters and the Limitations of Normalization</h3>
+         <h3>Identical-Appearing Characters and the Limitations of Normalization</h3>
          <p>Many users are surprised to find that two identical-looking strings&mdash;including
          those that have had a specific Unicode normalization form applied&mdash;might not 
          in fact use the same underlying Unicode code points. This includes strings that have
@@ -1064,14 +1064,14 @@
 		  But two logically distinct characters or grapheme clusters can still look the same or very similar. 
 		  When the <a>graphemes</a> for two characters look identical (or very similar), they are
 		  called a <dfn>homograph</dfn>. When two logical characters look similar or can
-		  look similar under certain presentations (and which include homographs), they are called
-		  <dfn>confusable</dfn> characters.</p>
+		  look similar under certain presentations (and which include homographs), they are said to be
+		  <q><dfn>confusable</dfn></q>.</p>
 		  <p>One example of this are the letters <code>U+03A1</code> (&#x3a1;), <code>U+0420</code> (&#x420;),
 		    and <code>U+0050</code> (P). These letters look identical in most fonts (that is, they are homographs), 
 		    but they are encoded separately as part of the
 		    alphabets used in the Greek, Cyrillic, and Latin scripts respectively. Unicode Normalization
 		    will not fold these characters together.</p>
-		  <p>Examples of identical or confusable appearance can appear
+		  <p>Examples of identical or identical-seeming appearance can appear
 		    even within a single script. Some examples of this include:
 		    <ul>
 		    <li><code>U+08A1 ARABIC LETTER BEH WITH HAMZA ABOVE</code> &#x8a1; which is similar to <code>U+0628 U+0654</code> &#x628;&#x654;
@@ -1087,14 +1087,13 @@
 		  other security risks. This can be true within a single script or for similar characters in 
 		  separate scripts. For further discussion and examples of homoglyphs and confusability,
 		  one useful reference is [[UTS39]].</p>
-		  <p>In addition to confusable characters, the opposite problem also exists: 
-		  Unicode Normalization, even the <q>KC/KD</q> Compatibility forms,
-		    does not bring together characters that have the same intrinsic meaning or function,
-		    but which vary in appearance or usage. For example, <code>U+002E</code> (.) and <code>U+3002</code> (&#x3002;)
-		    both function as sentence ending punctuation, but the distinction is not removed by normalization. 
-		  Note that some processes or protocols do remove or attempt to remove these distinctions via 
-		  the addition of add-on steps to the normalization process. One example of this is the internationalized
-		  domain name system.</p>
+		  <p>In addition to identical or similar-appearing characters, the opposite problem also exists: 
+		  Unicode Normalization, even the <code>NFKC</code> and <code>NFKD</code> Compatibility forms,
+		    does not bring together characters that have the same intrinsic meaning or function
+		    but which vary in appearance or usage. For example, <code>U+002E</code> (.) 
+		    and <code>U+3002</code> (&#x3002;) both function as sentence ending punctuation, 
+		    but the distinction is not removed by normalization because the characters have a distinct identity.
+		  </p>
 
 
       </section>
