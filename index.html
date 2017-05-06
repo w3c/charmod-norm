@@ -1050,21 +1050,21 @@
               like: <samp>81/2</samp>.</li>
           </ul>
         </section>
+        </section>
         <section id="normalizationLimitations">
-         <h4>Limitations of Normalization</h4>
-         <p>Applying a Unicode Normalization Form does not
-            guarantee that two identical-looking normalized strings always use the same underlying Unicode code points. 
-		 This includes the more-destructive <code>KC</code> and <code>KD</code> forms. This is sometimes
-            surprising to software developers and others who incorrectly expect that for strings, tokens, or 
-            identifiers to appear the same they must use the same underlying sequences.
-            Normalization is, at best, only part of a string matching solution.</p>
-   		  <p>In fact, canonical normalization is not primarily about 
-		  appearance: it is about folding multiple ways of encoding 
+         <h3>Confusable Characters and the Limitations of Normalization</h3>
+         <p>Many users are surprised to find that two identical-looking strings&mdash;including
+         those that have had a specific Unicode normalization form applied&mdash;might not 
+         in fact use the same underlying Unicode code points. This includes strings that have
+         had the more-destructive <code>NFKC</code> and <code>NFKD</code> compatibility normalization
+         forms applied to them. Even when strings, tokens, or identifiers appear visually to be the same, 
+         they can be encoded differently.</p>
+   		  <p>The Unicode canonical normalization forms are concerned with folding multiple separate ways of encoding 
 		  the same logical character or grapheme cluster to use the same code point sequence. 
-		  Two (normalized) <a>graphemes</a> can still look exactly the same or very similar, but not 
-		  represent the same logical character. The grapheme for two characters that look identical is
-		  called a <dfn>homograph</dfn>. Two characters that look similar or which can
-		  look similar under certain presentations (and which include homographs) are called
+		  But two logically distinct characters or grapheme clusters can still look the same or very similar. 
+		  When the <a>graphemes</a> for two characters look identical (or very similar), they are
+		  called a <dfn>homograph</dfn>. When two logical characters look similar or can
+		  look similar under certain presentations (and which include homographs), they are called
 		  <dfn>confusable</dfn> characters.</p>
 		  <p>One example of this are the letters <code>U+03A1</code> (&#x3a1;), <code>U+0420</code> (&#x420;),
 		    and <code>U+0050</code> (P). These letters look identical in most fonts (that is, they are homographs), 
@@ -1083,9 +1083,10 @@
 		    <li>Other familiar if somewhat less "identical-looking" spoofs such as l vs. 1 or O and 0.</li>
 		    </ul>
 		  </p> 
-		  <p>Characters that are identical or 'confusable' in appearance can present spoofing and other security risks. This can be
-		  true within a single script or for similar characters in separate scripts. For a 
-		  discussion and examples of homoglyphs and confusability, see  [[UTS39]].</p>
+		  <p>Characters that are identical or <q>confusable</q> in appearance can present spoofing and 
+		  other security risks. This can be true within a single script or for similar characters in 
+		  separate scripts. For further discussion and examples of homoglyphs and confusability,
+		  one useful reference is [[UTS39]].</p>
 		  <p>In addition to confusable characters, the opposite problem also exists: 
 		  Unicode Normalization, even the <q>KC/KD</q> Compatibility forms,
 		    does not bring together characters that have the same intrinsic meaning or function,
@@ -1095,7 +1096,7 @@
 		  the addition of add-on steps to the normalization process. One example of this is the internationalized
 		  domain name system.</p>
 
-        </section>
+
       </section>
       <section id="characterEscapes">
         <h3>Character Escapes</h3>
@@ -1158,20 +1159,18 @@
       </section>
       <section id="invisibleCharacters">
         <h3>Invisible Unicode Characters That Affect Matching</h3>
-        <p>Unicode provides a number of invisble special-purpose characters 
+        <p>Unicode provides a number of special-purpose characters 
 		that help document authors control the appearance or performance of 
-		text. Because these characters are invisible, users are not always aware 
-		of their presence or absence. As a result, these characters can 
-		interfere with string matching when they are part of the encoded 
-		character sequence but the expected matching text does not also include them. 
-		Some examples of these characters include:</p>
+		text. Because many of these characters are invisible or do not have keyboard equivalents, users are not always aware 
+		of their presence or absence. As a result, these characters can interfere with string matching when they are part of the encoded 
+		character sequence but the expected matching text does not also include them. Some examples of these characters include:</p>
           <p>The Unicode control characters <span class="uname" translate="no">U+200D Zero Width Joiner</span> (also known 
         as <em>ZWJ</em>) and <span class="uname" translate="no">U+200C Zero Width Non-Joiner</span> (also known as 
 		  <em>ZWNJ</em>). 
-		Their original use was to control
-          ligature formation&mdash;either preventing the formation of undesirable ligatures or encouraging the formation
-          of desirable ones. However, their primary use today is to control 
-		  the joining and shape selection in the Arabic and various of the Indic scripts. For example, ZWJ and ZWNJ are used in some Indic scripts to allow 
+		While these characters can be used to control ligature formation&mdash;either preventing the formation of undesirable 
+		ligatures or encouraging the formation of desirable ones&mdash;their primary use is to control 
+		  the joining and shape selection in complex scripts such as the Arabic or various of the Indic scripts. 
+		  For example, ZWJ and ZWNJ are used in some Indic scripts to allow 
 		  authors to control the shape that certain conjuncts take. See the 
 		  discussion in Chapter 12 of [[!Unicode]].</p>
 		  <aside class="example">
@@ -1220,6 +1219,11 @@
 		  <p>The <span class="uname" translate="no">U+00AD Soft Hyphen</span> can be used in text 
 		  to indicate a potential or preferred hyphenation position. It only 
 		  becomes visible when the text is reflowed to wrap at that position.</p>
+		  <p>The <span class="uname" translate="no">U+2060 WORD JOINER</span>, sometimes called <em>WJ</em> is a zero-width
+		  non-breaking space character. Its purpose is to replace the functionality of the character <span class="uname" translate="no">
+		 U+FEFF ZERO WIDTH NO-BREAK SPACE</span> because that character also serves as the "Byte Order Mark" character (used as a Unicode
+		  signature in plain text files). The Word Joiner is used to separate words in languages that do not use explicit spacing. An example
+		  would be the Thai language.</p>
 
 
         <p>Finally, some scripts, such as Arabic and Hebrew, are written prodominently from right-to-left. Text written in these scripts can also
