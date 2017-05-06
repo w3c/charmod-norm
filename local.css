@@ -183,3 +183,10 @@ div.exampleBox {
 	font-family: "NoToFu", "Code2000", "Lucida Console", sans-serif;
 }
 
+p.quote {
+    background-color:#CCC;
+    margin-left: 2em;
+    padding-left: 2em;
+    border-left: 6px solid #888888;
+}
+

@@ -1158,7 +1158,7 @@
           code point <span class="uname" translate="no">U+00E9</span>).</p>
       </section>
       <section id="invisibleCharacters">
-        <h3>Invisible Unicode Characters That Affect Matching</h3>
+        <h3>Invisible Unicode Characters</h3>
         <p>Unicode provides a number of special-purpose characters 
 		that help document authors control the appearance or performance of 
 		text. Because many of these characters are invisible or do not have keyboard equivalents, users are not always aware 
@@ -1183,25 +1183,17 @@
 			  <span style="text-decoration:underline">U+200C</span> U+0647 U+0627</span>" 
 		  respectively, the only difference being the ZWNJ in the latter word.</p>
 		  </aside>
+		  <p>The ZWJ character is also used in forming certain emoji sequences, which is discussed in more
+		  detail <a href="#emojiSequences">below</a>.</p>
 
-		  <p>Another use for ZWJ is in the formation of complex emoji. For example, the <em>family</em>
-		  emoji (&#x1f46a; <span class="uname" translate="no">U+1F45A</span>) can also be formed by using
-		  ZWJ between emoji characters in the sequence <span class="uname" translate="no">U+1F468 U+200D U+1F469 U+200D U+1F466</span>.
-		  Altering or adding other emoji characters can alter the composition of the family. For example the sequence 
-		  <span class="uname" translate="no">&#x1f468;&#x200d;&#x1f469;&#x200d;&#x1f467;&#x200d;&#x1f467; 
-		  U+1F468 U+200D U+1F469 U+200D U+1F467 U+200D U+1F467</span> results in a composed
-		  emoji character for a "family: man, woman, girl, girl" on systems that support this kind of 
-		  composition. Many common emoji can <em>only</em> be formed using ZWJ sequences. For more information, see [[UTR51]].</p>
-
-		  <p>Variation selectors (<span class="uname">U+FE00</span> through 
+		  <p id="variationSelectors">Variation selectors (<span class="uname">U+FE00</span> through 
 		  <span class="uname" translate="no">U+FE0F</span>) are 
         characters used to select an alternate appearance or glyph 
         (see Character Model: Fundamentals [[CHARMOD]]). For example, they are used to select between black-and-white and color emoji. 
         These are also used in predefined ideographic variation sequences (<span class="qterm">IVS</span>). Many
         examples are given in the "Standardized Variants" portion of the Unicode Character Database (UCD).</p>
-		  <p>A few scripts also provide a way to encode visual variation selection: a prominent example of this are the Mongolian 
-		  script's free 
-        variation selectors (<span class="uname">U+180B</span> through 
+		  <p>A few scripts also provide a way to encode visual variation selection: a prominent example of this 
+		  are the Mongolian script's free variation selectors (<span class="uname">U+180B</span> through 
 		  <span class="uname" translate="no">U+180D</span>). </p>
 		  <p>The character <span class="uname" translate="no">U+034F Combining Grapheme Joiner</span>, 
 		  whose name is misleading (as it does not join graphemes or affect line 
@@ -1246,6 +1238,49 @@
 	  underlying codepoints, variation in the encoding of the text due to 
 	  these markers can cause matches that ought to succeed to mysteriously 
 	  fail (from the point of view of the user).</p>
+
+      </section>
+      <section id="emojiSequences">
+      <h3>Emoji Sequences</h3>   
+      <p>A newer feature of Unicode are the emoji characters. In [[UTR51]], Unicode describes these as:</p>   
+
+      <p class="quote">Emoji are pictographs (pictorial symbols) that are typically presented in a colorful cartoon 
+         form and used inline in text. They represent things such as faces, weather, vehicles and buildings, 
+         food and drink, animals and plants, or icons that represent emotions, feelings, or activities.</p>
+
+      <p>Emoji can be used with a variety of emoji modifiers, including <span class="uname">U+200D Zero Width
+         Joiner</span> (ZWJ), to form more complex emoji.</p>
+      
+      <p>For example, the <em>family</em>
+		  emoji (&#x1f46a; <span class="uname" translate="no">U+1F45A</span>) can also be formed by using
+		  ZWJ between emoji characters in the sequence <span class="uname" translate="no">U+1F468 U+200D U+1F469 U+200D U+1F466</span>.
+		  Altering or adding other emoji characters can alter the composition of the family. For example the sequence 
+		  <span class="uname" translate="no">&#x1f468;&#x200d;&#x1f469;&#x200d;&#x1f467;&#x200d;&#x1f467; 
+		  U+1F468 U+200D U+1F469 U+200D U+1F467 U+200D U+1F467</span> results in a composed
+		  emoji character for a "family: man, woman, girl, girl" on systems that support this kind of 
+		  composition. Many common emoji can <em>only</em> be formed using ZWJ sequences. For more 
+		  information, see [[UTR51]].</p>
+		  
+	  <p>Emoji characters can be followed by emoji modifier characters. These modifiers
+	     allow for the selection of skin tones for emoji that represent people. These characters
+	     are normally invisible modifiers that follow the base emoji that they modify.</p>
+	     
+	  <p>An emoji character can also be followed by a <a href="#variationSelectors">variation
+	     selector</a> to indicate text (black and white, indicated by 
+	     <span class="uname">U+FF0E Variation Selector 15</span>) or color 
+	     (indicated by <span class="uname">U+FF0F Variation Selector 16</span>) presentation
+	     of the base emoji.</p>
+	     
+	  <p>Each of these mechanisms can be used together, so quite complex sequences of characters
+	  can be used to form a single emoji grapheme or image. Even very similar emoji sequences might
+	  not use the same exact encoded sequence. Many of the modifiers and combinations mentioned above
+	  are generated by the end-user's keyboard (where they are presented as a single emoji "character"),
+	  so users may not be aware of the underlying encoding complexity. Emoji sequences are evolving rapidly,
+	  so there could be additional developments to either help or hinder matching of emoji in the near
+	  future. Currently Unicode normalization does not reorder these 
+	  sequences or insert or remove any of the modifiers. Users and implementers are therefore cautioned that 
+	  users who employ emoji characters in namespaces and other matching contexts might encounter
+	  unexpected character mismatches.</p>
 
       </section>
       <section id="legacyCharacterEncoding">
