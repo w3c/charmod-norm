@@ -19,7 +19,7 @@
           noRecTrack:           true,
           shortName:            "charmod-norm",
           copyrightStart: 		"2004",
-          edDraftURI:   		"http://w3c.github.io/charmod-norm/",
+          edDraftURI:   		"https://w3c.github.io/charmod-norm/",
 
           // lcEnd: "2009-08-05",
 
@@ -39,7 +39,7 @@
           
           // name of the WG
           wg:           "Internationalization Working Group",
-          wgURI:        "http://www.w3.org/International/core/",
+          wgURI:        "https://www.w3.org/International/core/",
           wgPublicList: "www-international",
           
 		  bugTracker: { new: "https://github.com/w3c/charmod-norm/issues", open: "https://github.com/w3c/charmod-norm/issues" } ,
@@ -1163,25 +1163,24 @@
 		text. Because many of these characters are invisible or do not have keyboard equivalents, users are not always aware 
 		of their presence or absence. As a result, these characters can interfere with string matching when they are part of the encoded 
 		character sequence but the expected matching text does not also include them. Some examples of these characters include:</p>
-          <p>The Unicode control characters <span class="uname" translate="no">U+200D Zero Width Joiner</span> (also known 
+          
+        <p>The Unicode control characters <span class="uname" translate="no">U+200D Zero Width Joiner</span> (also known 
         as <em>ZWJ</em>) and <span class="uname" translate="no">U+200C Zero Width Non-Joiner</span> (also known as 
 		  <em>ZWNJ</em>). 
 		While these characters can be used to control ligature formation&mdash;either preventing the formation of undesirable 
 		ligatures or encouraging the formation of desirable ones&mdash;their primary use is to control 
 		  the joining and shape selection in complex scripts such as the Arabic or various of the Indic scripts. 
-		  For example, ZWJ and ZWNJ are used in some Indic scripts to allow 
-		  authors to control the shape that certain conjuncts take. See the 
+		  Some Indic scripts use the ZWJ and ZWNJ characters to allow authors to control the shape that certain conjuncts take. See the 
 		  discussion in Chapter 12 of [[!Unicode]].</p>
-		  <aside class="example">
-		  <div class="example-title marker"></div>
-			  <p>The <span class="uname" translate="no">Zero Width Non-Joiner</span> is used in Persian to 
+		  
+		<p>The <span class="uname" translate="no">Zero Width Non-Joiner</span> is used in Persian to 
 		  prevent certain "normal" Arabic script joining. In these cases, the presence or absence of the
 		  character <em>does</em> affect the meaning. For example, the word تنها ("alone") and the word تن‌ها&nbsp; ("bodies" 
 		  or "corpuses") are encoded as "<span class="uname">U+062A 
 		  U+0646 U+0647 U+0627</span>" and "<span class="uname">U+062A U+0646 
 			  <span style="text-decoration:underline">U+200C</span> U+0647 U+0627</span>" 
 		  respectively, the only difference being the ZWNJ in the latter word.</p>
-		  </aside>
+
 		  <p>The ZWJ character is also used in forming certain emoji sequences, which is discussed in more
 		  detail <a href="#emojiSequences">below</a>.</p>
 
