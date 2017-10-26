@@ -181,6 +181,11 @@ div.exampleBox {
 	width: 80%;
 }
 
+.exampleChar {
+    font-size: 36pt;
+    font-family: serif;
+}
+
 .markup {
 	font-family: Lucida Console,NoToFu, monospace;
 }
