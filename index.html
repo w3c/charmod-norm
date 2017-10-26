@@ -526,6 +526,32 @@
 		calls these the <code class="kw">common</code> case fold mappings, as they are shared by 
 		Unicode's case fold mappings.
          </p>
+         
+         <aside class="example">
+         <p>Here are some examples of <code class="kw">common</code> case fold mappings:</p>
+         <table>
+           <tr>
+			   <td class="exampleChar">A</td>
+			   <td>&#x21d2;</td>
+			   <td class="exampleChar">a</td>
+			   <td><span class="uname">LATIN CAPITAL LETTER A</span> to <span class="uname">LATIN SMALL LETTER A</span></td>
+           </tr>
+           <tr>
+			   <td class="exampleChar">&#x398;</td>
+			   <td>&#x21d2;</td>
+			   <td class="exampleChar">&#x3b8;</td>
+			   <td><span class="uname">GREEK CAPITAL LETTER THETA</span> to <span class="uname">GREEK SMALL LETTER THETA</span></td>
+           </tr>
+           <tr>
+			   <td class="exampleChar">&#x414;</td>
+			   <td>&#x21d2;</td>
+			   <td class="exampleChar">&#x434;</td>
+			   <td><span class="uname">CYRILLIC CAPITAL LETTER DE</span> to <span class="uname">CYRILLIC SMALL LETTER DE</span></td>
+           </tr>
+         </table>
+         </aside>
+         
+         
 		  <p>In addition to the <code class="kw">common</code> case folding mappings, a few characters 
 		  have a case fold mapping that would normally map one 
 		  Unicode character to more than one during case folding. These are called the <code class="kw">full</code> case fold mappings. 
@@ -533,6 +559,23 @@
 		  default case fold mapping for all of Unicode. This case fold mapping is referred to in this 
 		  document as <dfn id="dfn-UnicodeC+F">Unicode C+F</dfn>.
          </p>
+         
+         <aside class="example">
+          <p>One well-known example of a 'full' case fold mapping is the character <span class="qchar">&#xdf;</span>
+		  <span class="uname" translate="no">U+00DF LATIN SMALL LETTER SHARP S</span>, a letter that is commonly
+		  used in the German language. The 'full' mapping of this character is to two ASCII letters 's'. (The upper case mapping is to "SS".)
+		  </p>
+         <table>
+           <tr>
+			   <td class="exampleChar">&#xdf;</td>
+			   <td>&#x21d2;</td>
+			   <td class="exampleChar">ss</td>
+			   <td><span class="uname">LATIN SMALL LETTER SHARP S</span> to <span class="uname">LATIN SMALL LETTER S</span> + <span class="uname">LATIN SMALL LETTER S</span></td>
+           </tr>
+		 </table>
+		  
+         </aside>
+         
 		  <p>Because some applications cannot allocate additional storage when 
 		  performing a case fold operation, Unicode provides a <code class="kw">simple</code> case 
 		  fold mapping that maps characters that would normally map to more or 
@@ -542,25 +585,22 @@
 		  as <dfn id="UnicodeC+S">Unicode C+S</dfn>, is not appropriate for the Web. </p>
 		  
 		  <aside class="example">
-		  <p>One well-known example of a 'full' case fold mapping is the character <span class="qchar">&#xdf;</span>
-		  <span class="uname" translate="no">U+00DF LATIN SMALL LETTER SHARP S</span>, a letter that is commonly
-		  used in the German language. The 'full' mapping of this character is to two ASCII letters 's'. 
-		  There is no 'simple' mapping for this letter. </p>
+
 		  <p>Other examples can be found in the Greek script, where several precomposed characters have multi-character
 		  case fold mappings. The table below shows one such example, the character <code>U+1F9B</code> (<span class="uname" translate="no">GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span>) and it's <code class="kw">full</code> and <code class="kw">simple</code> case fold mappings:</p>
 					
 		  <table style="width: 100%">
      
 		     <tr>
-		        <td class="bigtext">&#x1f9b;</td>
-		        <td><code>U+1F9B</code> <span class="uname">GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMINI</span></td>
-		     </tr>
-		     <tr>
-		        <td class="bigtext">&#x1f23;&#x03b9;</td>
+			    <td class="exampleChar">&#x1f9b;</td>
+			    <td>&#x21d2;</td>
+		        <td class="exampleChar">&#x1f23;&#x03b9;</td>
 		        <td><em>Full:</em> <code>U+1F23&nbsp;U+03B9</code> <span class="uname">GREEK SMALL LETTER ETA WITH DASIA AND VARIA</span> + <span class="uname">GREEK SMALL LETTER IOTA</span></td>
 		     </tr>
 		     <tr>
-		        <td class="bigtext">&#x1f93;</td>
+				<td class="exampleChar">&#x1f9b;</td>
+			    <td>&#x21d2;</td>
+		        <td class="exampleChar">&#x1f93;</td>
 		        <td><em>Simple:</em> <code>U+1F93</code> <span class="uname" translate="no">GREEK SMALL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span></td>
 		     </tr>
 		  </table>
@@ -576,6 +616,22 @@
           needs. One common example of this are Turkic languages written in the
           Latin script.</p>
         <aside class="example">
+		  <table>
+			  <tr>
+		     <td class="exampleChar">Ii</td>
+		     <td>&#x21d4;</td>
+		     <td class="exampleChar">iI</td>
+		     <td>Default mapping of upper and lowercase letter I: U+0049 U+0069 &#x21d4; U+0069 U+0049</td>
+		     </tr>
+		   <tr>
+			 <td class="exampleChar">Ii</td>
+		     <td>&#x21d4;</td>
+		     <td class="exampleChar">&#x131;&#x130;</td>
+		     <td>Turkic language mapping of upper and lowercase letter I: U+0049 U+0069 &#x21d4; U+0131 U+0130</td>
+		   </tr>
+		  </table>
+			
+			
           <p>The name of the second largest city in Turkey is "<code>Diyarbakır</code>", which
            contains both the dotted and dotless letters <span class="qchar">i</span>. When rendered into upper
             case, this word appears like this: <span class="qterm"><code>DİYARBAKIR</code></span>.
