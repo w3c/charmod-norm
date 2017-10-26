@@ -60,7 +60,7 @@
           // This is important for Rec-track documents, do not copy a patent URI from a random
           // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
           // Team Contact.
-          wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/32113/status",
+          wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/32113/status",
 		  
 
 		  localBiblio: {
@@ -468,9 +468,7 @@
     <section id="problemStatement">
       <h2>The String Matching Problem</h2>
       <p>The Web is primarily made up of document formats and protocols based on
-        character data. These formats or protocols can be viewed as a set of
-        text files (<a data-lt="resource">resources</a>) that include some form
-        of structural markup or <a>syntactic content</a>. Processing such syntactic content or document data requires
+        character data. These formats or protocols can be viewed as a set of <a>resources</a> consisting mainly of text files that include some form of structural markup or <a>syntactic content</a>. Processing such syntactic content or document data requires
         string-based operations such as matching (including regular expressions), indexing, searching, sorting,
         and so forth.</p>
       <p>Users, particularly implementers, sometimes have naïve expectations regarding the matching or non-matching
@@ -548,25 +546,24 @@
 		  <span class="uname" translate="no">U+00DF LATIN SMALL LETTER SHARP S</span>, a letter that is commonly
 		  used in the German language. The 'full' mapping of this character is to two ASCII letters 's'. 
 		  There is no 'simple' mapping for this letter. </p>
-		  <p>Other examples can 
-		  be found in the Greek script, where several precomposed characters have multi-character
-		  case fold mappings. For example, consider the character <code>U+1F9B</code> (<span class="uname" translate="no">GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND 
-					PROSGEGRAMMENI</span>). This character has both a <code class="kw">full</code> and <code class="kw">simple</code> mapping:</p>
-		  	<table style="width: 100%">
-				<tr>
-					<th>Source</th>
-					<th>Full</th>
-					<th>Simple</th>
-					<th>Comments</th>
-				</tr>
-				<tr>
-					<td>ᾛ <code class="kw">U+1F9B</code></td>
-					<td>ἣι <code class="kw">U+1F23&nbsp;U+03B9</code></td>
-					<td>ᾓ <code class="kw">U+1F93</code></td>
-					<td><span class="uname">GREEK SMALL LETTER ETA WITH DASIA AND VARIA</span> + <span class="uname">GREEK SMALL LETTER IOTA</span><br>
-					<em>versus</em> <span class="uname" translate="no">GREEK SMALL LETTER ETA WITH DASIA AND VARIA AND YPOGEGRAMMENI</span></td>
-				</tr>
-			  </table>
+		  <p>Other examples can be found in the Greek script, where several precomposed characters have multi-character
+		  case fold mappings. The table below shows one such example, the character <code>U+1F9B</code> (<span class="uname" translate="no">GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span>) and it's <code class="kw">full</code> and <code class="kw">simple</code> case fold mappings:</p>
+					
+		  <table style="width: 100%">
+     
+		     <tr>
+		        <td class="bigtext">&#x1f9b;</td>
+		        <td><code>U+1F9B</code> <span class="uname">GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMINI</span></td>
+		     </tr>
+		     <tr>
+		        <td class="bigtext">&#x1f23;&#x03b9;</td>
+		        <td><em>Full:</em> <code>U+1F23&nbsp;U+03B9</code> <span class="uname">GREEK SMALL LETTER ETA WITH DASIA AND VARIA</span> + <span class="uname">GREEK SMALL LETTER IOTA</span></td>
+		     </tr>
+		     <tr>
+		        <td class="bigtext">&#x1f93;</td>
+		        <td><em>Simple:</em> <code>U+1F93</code> <span class="uname" translate="no">GREEK SMALL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span></td>
+		     </tr>
+		  </table>
 
 		  </aside>
           
@@ -580,16 +577,9 @@
           Latin script.</p>
         <aside class="example">
           <p>The name of the second largest city in Turkey is "<code>Diyarbakır</code>", which
-           contains both the dotted and dotless
-            letters <span class="qchar">i</span>. When rendered into upper
+           contains both the dotted and dotless letters <span class="qchar">i</span>. When rendered into upper
             case, this word appears like this: <span class="qterm"><code>DİYARBAKIR</code></span>.
-            Notice that the ASCII letter <span class="qchar">i</span> maps to <span
-
-              class="uname" translate="no">U+0130 LATIN CAPITAL LETTER I WITH
-              DOT ABOVE</span>, while the letter <span class="qchar">ı</span> (<span
-
-              class="uname" translate="no">U+0131 LATIN SMALL LETTER DOTLESS I</span>)
-            maps to the ASCII uppercase <span class="qchar">I</span>. </p>
+            Notice that the ASCII letter <span class="qchar">i</span> maps to <span class="uname" translate="no">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>, while the letter <span class="qchar">ı</span> (<span class="uname" translate="no">U+0131 LATIN SMALL LETTER DOTLESS I</span>) maps to the ASCII uppercase <span class="qchar">I</span>. Similarly a lower case casefolding of I to i would change the meaning of the text in Turkish, even thought this is the expected mapping in other languages, such as English or German.</p>
         </aside>
         <p>Sometimes case can vary in a way that is not semantically meaningful
           or is not fully under the user's control. This is particularly true
@@ -686,7 +676,7 @@
 		  identical-appearing strings that are in a given Unicode Normalization Form use the same sequence of code points.
 		  See <a href="#normalizationLimitations"></a> for more information.</p>
 		</aside>
-        <p><a data-lt="resource">Resources</a> are often susceptible to the
+        <p><a data-lt="resource|resources">Resources</a> are often susceptible to the
           effects of these variations because their specifications and
           implementations on the Web do not require Unicode Normalization of the
           text, nor do they take into consideration the string matching
@@ -935,6 +925,7 @@
               contain any combining sequence that could be replaced with a
               precomposed character and if any remaining combining sequence is
               in canonical order.</p>
+            <p>Users are cautioned that the resulting character sequence can still contain combining marks: not all character sequences have a precomposed equivalent and some scripts depend on combining marks for encoding. There are even cases where a given base character and combining mark are not replaced with a precomposed character because the combination is "blocked" by another combining mark in the sequence. </p>
           </div>
         </section>
         <section id="normalization_forms">
@@ -946,7 +937,7 @@
             sequence of Unicode characters and unescaped any escape sequences,
             we can finally "normalize" the Unicode texts given in the example
             above. Here are the resulting sequences in each Unicode
-            Normalization form for the U+01FA example given earlier: </p>
+            Normalization form for the U+01FA example given earlier. Each different colored background is a different resulting code point sequence.  </p>
           <figure>
             <div>
               <table class="data">
@@ -961,7 +952,7 @@
                 </thead>
 <tbody>
                   <tr>
-                    <td class="b-clear">&#x01FA;<br>
+                    <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
                     <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
@@ -997,7 +988,7 @@
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">A&#x030A;&#x0301;<br>
+                    <td class="b2">A&#x030A;&#x0301;<br>
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                     <td class="b1">&#x01FA;<br>
                       <span class="tableSub">U+01FA</span></td>
@@ -1009,7 +1000,7 @@
                       <span class="tableSub">U+0041 U+030A U+0301</span></td>
                   </tr>
                   <tr>
-                    <td class="b-clear">&#xFF21;&#x030A;&#x0301;<br>
+                    <td class="b3">&#xFF21;&#x030A;&#x0301;<br>
                       <span class="tableSub">U+FF21 U+030A U+0301</span></td>
                     <td class="b3">&#xFF21;&#x030A;&#x0301;<br>
                       <span class="tableSub">U+FF21 U+030A U+0301</span></td>
@@ -1068,10 +1059,8 @@
    		  <p>The Unicode canonical normalization forms are concerned with folding multiple separate ways of encoding 
 		  the same logical character or grapheme cluster to use the same code point sequence. 
 		  But two logically distinct characters or grapheme clusters can still look the same or very similar. 
-		  When the <a>graphemes</a> for two characters look identical (or very similar), they are
-		  called a <dfn>homograph</dfn>. When two logical characters look similar or can
-		  look similar under certain presentations (and which include homographs), they are said to be
-		  <q><dfn>confusable</dfn></q>.</p>
+		  When a pair of <a>graphemes</a> look identical (or very similar), they are
+		  called <dfn data-lt="homograph|homographs">homographs</dfn>. When a pair of graphemes look similar or are <a>homographs</a> but actually represent logically different characters or character sequences, they are said to be <q><dfn>confusable</dfn></q>.</p>
 		  <p>One example of this are the letters <code>U+03A1</code> (&#x3a1;), <code>U+0420</code> (&#x420;),
 		    and <code>U+0050</code> (P). These letters look identical in most fonts (that is, they are homographs), 
 		    but they are encoded separately as part of the
@@ -1080,7 +1069,7 @@
 		  <p>Examples of identical or identical-seeming appearance can appear
 		    even within a single script. Some examples of this include:
 		    <ul>
-		    <li><code>U+08A1 ARABIC LETTER BEH WITH HAMZA ABOVE</code> &#x8a1; which is similar to <code>U+0628 U+0654</code> &#x628;&#x654;
+		    <li><code>U+08A1 ARABIC LETTER BEH WITH HAMZA ABOVE</code> &#x8a1; which is similar to the sequence <code>U+0628 U+0654</code> &#x628;&#x654;
 		    (<code>ARABIC LETTER BEH</code> followed by <code>ARABIC HAMZA ABOVE</code>)</li>
 		    <li>Certain Khmer sequences involving <code>U+17D2 KHMER SIGN COENG</code> such as <code>U+17D2 U+178F</code>
 		    (&#x1780;&#x17d2;&#x178f;) and <code>U+17D2 U+178A</code> (&#x1780;&#x17d2;&#x178a;) (each shown here, for legibility, with the

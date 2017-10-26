@@ -113,7 +113,7 @@ SPAN.h\e9llo {
 }
 
 span.tableSub {
-	font-size: 12px;
+	font-size: 10px;
 }
     
 span.dropExample {
@@ -135,21 +135,42 @@ li.dropExampleItem {
    margin-bottom: 1em;
 }
     
+table {
+    border-collapes: collapse;
+}
 
 td.b1 {
-	background-color:#4286f4;
+	background-color:#d7f9cf;
+	border: 2px solid black;
+	width: 20%;
+	text-align: center;
 }
 
 td.b2 {
-	background-color:#41f4d0;
+	background-color:#a1fcf9;
+	border: 2px solid black;
+	width: 20%;
+	text-align: center;
 }
 
 td.b3 {
-	background-color: #7741f4;
+	background-color: #fca1f7;
+	border: 2px solid black;
+	width: 20%;
+	text-align: center;
 }
 
 td.b-clear {
 	background-color: white;
+	border: 2px solid black;
+	width: 20%;
+	text-align: center;
+}
+
+td.bigtext {
+    font-size: 36pt;
+    text-align: center;
+    width: 20%;
 }
 
 div.exampleBox {
