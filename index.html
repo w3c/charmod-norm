@@ -368,10 +368,46 @@
 
               class="uname" translate="no">U+092F U+0942 U+0928 U+093F U+0915
               U+094B U+0921</span>). However, most users would identify this
-            word as containing four units of text—यू, नि, को, and ड. Each of the
+            word as containing four units of text. Each of the
             first three graphemes consists of two characters: a syllable and a
             modifying vowel character. So the word contains seven Unicode
-            characters, but only four graphemes.</p>
+            characters, but only four graphemes:
+            
+            <table>
+				<tr>
+					<td>Word</td>
+					<td colspan=7 class="bigtext">&#x92f;&#x942;&#x928;&#x93f;&#x915;&#x94b;&#x921;</td>
+				</tr>
+				<tr>
+					<td>Graphemes</td>
+					<td class="bigtext" colspan=2>&#x92f;&#x942;</td>
+					<td class="bigtext" colspan=2>&#x928;&#x93f;</td>
+					<td class="bigtext" colspan=2>&#x915;&#x94b;</td>
+					<td class="bigtext">&#x921;</td>
+				</tr>
+				<tr>
+					<td>Code Points</td>
+					<td class="bigtext">&#x92f;</td>
+					<td class="bigtext">&#x942;</td>
+					<td class="bigtext">&#x928;</td>
+					<td class="bigtext">&#x93f;</td>
+					<td class="bigtext">&#x915;</td>
+					<td class="bigtext">&#x94b;</td>
+					<td class="bigtext">&#x921;</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>U+092F</td>
+					<td>U+0942</td>
+					<td>U+0928</td>
+					<td>U+093f</td>
+					<td>U+0915</td>
+					<td>U+094b</td>
+					<td>U+0921</td>
+				</tr>
+            </table>
+            
+            </p>
         </aside>
         <section>
         <h5>Terminology Examples</h5>
@@ -1117,23 +1153,59 @@
 		  But two logically distinct characters or grapheme clusters can still look the same or very similar. 
 		  When a pair of <a>graphemes</a> look identical (or very similar), they are
 		  called <dfn data-lt="homograph|homographs">homographs</dfn>. When a pair of graphemes look similar or are <a>homographs</a> but actually represent logically different characters or character sequences, they are said to be <q><dfn>confusable</dfn></q>.</p>
-		  <p>One example of this are the letters <code>U+03A1</code> (&#x3a1;), <code>U+0420</code> (&#x420;),
-		    and <code>U+0050</code> (P). These letters look identical in most fonts (that is, they are homographs), 
-		    but they are encoded separately as part of the
-		    alphabets used in the Greek, Cyrillic, and Latin scripts respectively. Unicode Normalization
-		    will not fold these characters together.</p>
-		  <p>Examples of identical or identical-seeming appearance can appear
-		    even within a single script. Some examples of this include:
-		    <ul>
-		    <li><code>U+08A1 ARABIC LETTER BEH WITH HAMZA ABOVE</code> &#x8a1; which is similar to the sequence <code>U+0628 U+0654</code> &#x628;&#x654;
-		    (<code>ARABIC LETTER BEH</code> followed by <code>ARABIC HAMZA ABOVE</code>)</li>
-		    <li>Certain Khmer sequences involving <code>U+17D2 KHMER SIGN COENG</code> such as <code>U+17D2 U+178F</code>
-		    (&#x1780;&#x17d2;&#x178f;) and <code>U+17D2 U+178A</code> (&#x1780;&#x17d2;&#x178a;) (each shown here, for legibility, with the
-		    base character <code>U+1780 KHMER LETTER KA </code> &#x1780;)</li>
-		    <li>Digraphs such as <code>U+0133 LATIN SMALL LIGATURE IJ</code> &#x133; (versus individual letters ij in sequence)</li>
-		    <li>Other familiar if somewhat less "identical-looking" spoofs such as l vs. 1 or O and 0.</li>
-		    </ul>
+		  <aside class="example">
+		    <table>
+				<tr>
+					<td class="exampleChar">&#x3a1;</td>
+					<td><code>U+03A1 GREEK CAPITAL LETTER RHO</code></td>
+				</tr>
+				<tr>
+					<td class="exampleChar">&#x420;</td>
+					<td><code>U+0420 CYRILLIC CAPITAL LETTER ER</code></td>
+				</tr>
+				<tr>
+					<td class="exampleChar">P</td>
+					<td><code>U+0050 LATIN CAPITAL LETTER P</code></td>
+				</tr>
+		    </table>
+		  	<p>There are many cross-script examples, such as the characters shown above. These letters from the Greek, Cyrillic, and Latin scripts look identical in most fonts (that is, they are <a>homographs</a>), 
+		    but they are encoded separately, as they are logically distinct parts of their respective Greek, Cyrillic, or Latin alphabet. Unicode Normalization will not fold these characters together.</p>
+		  </aside>
+
+		  <p>Examples of identical or identical-seeming appearance can appear even within a single script. This can take the form of similarly shaped characters, such as "0" and "O" or "l" and "1". But other scripts or the use of different compatibility characters can present much less readily distinguished variations. In some cases, Unicode Normalization brings these together, but in many other cases it does not.
 		  </p> 
+		  <aside class="example" title="Examples of homographs within a single script">
+		  <p>Some examples include:</p>
+		  <table>
+		     <tr>
+		       <td class="exampleChar">&#x8a1;</td>
+		       <td class="exampleChar">&#x628;&#x654;</td>
+				 <td class="exampleChar">&nbsp;</td>
+		       <td><code>U+08A1 ARABIC LETTER BEH WITH HAMZA ABOVE</code> vs. <code>ARABIC LETTER BEH</code> followed by <code>ARABIC HAMZA ABOVE</code></td>
+		     </tr>
+		     <tr>
+				 <td class="exampleChar">&#x133;</td>
+				 <td class="exampleChar">ij</td>
+				 <td class="exampleChar">&nbsp;</td>
+				 <td><code>U+0133 LATIN SMALL LIGATURE IJ</code> vs. <code>LATIN SMALL LETTER I</code> + <code>LATIN SMALL LETTER J</code></td>
+		     </tr>
+		     <tr>
+				 <td class="exampleChar">&#x1780;&#x17d2;&#x178f;</td>
+				 <td class="exampleChar">&#x1780;&#x17d2;&#x178a;</td>
+				 <td class="exampleChar">&nbsp;</td>
+				 <td>Khmer sequences involving <code>U+17D2 KHMER SIGN COENG</code> such as <code>U+17D2 U+178F</code>
+		    and <code>U+17D2 U+178A</code> (each shown here, for legibility, with the
+		    base character <code>U+1780 KHMER LETTER KA </code> &#x1780;)</td>
+		     </tr>
+		     <!--
+		     <tr>
+				 <td class="exampleChar">&#x1c5;</td>
+				 <td class="exampleChar">Dz&#x30c;</td>
+				 <td class="exampleChar">&#x1f2;&#x30c;</td>
+				 <td><code>U+01C5 LATIN CAPITAL LETTER D WITH SMALL LETTER Z WITH CARON</code>, which can be composed in several ways (<code>U+0044 U+007A U+030C</code> or <code>U+01F2 U+030C</code>)</td>
+		     </tr>  -->
+		  </table>
+		  </aside>
 		  <p>Characters that are identical or <q>confusable</q> in appearance can present spoofing and 
 		  other security risks. This can be true within a single script or for similar characters in 
 		  separate scripts. For further discussion and examples of homoglyphs and confusability,
@@ -1400,91 +1472,88 @@
 		 specific and shouldn't be overlooked by specifications or 
 		 implementations as an additional consideration.</p>
 		 <p>Another similar example is called <dfn>digit shaping</dfn>. Some scripts,
-		 such as Arabic, have their own digit characters for the numbers from 0 to 9.
+		 such as Arabic or Thai, have their own digit characters for the numbers from 0 to 9.
 		 In some Web applications, the familiar ASCII digits are replaced for display
 		 purposes with the local digit shapes. In other cases, the text actually might
 		 contain the Unicode characters for the local digits. Users attempting to search
 		 a document might expect that typing one form of digit will find the eqivalent
 		 digits.</p>
-		 <aside class="example">
-		 <p>Selected examples of different digit shapes, from zero to nine, in four scripts:</p>
+		 <aside class="example" title="Examples of digit shapes in four scripts">
+		 <p>Here are some selected examples of different digit shapes, from zero to nine, in four scripts. Many scripts have equivalent sets of digits with distinct shapes.</p>
 		 
-                 <table style="position:center;width:50%">
-                    <thead style="background:gray">
+           <table style="position:center">
+            <thead>
 			<tr>
-			    <th rowspan=2 style="vertical-align:top">Script</th>
+			    <th rowspan=2 style="vertical-align:top; width:30%;">Script</th>
 			    <th colspan=10 style="text-align:center">Digits</th>
 			</tr>
 			<tr>
-			    <th>0</th>
-			    <th>1</th>
-			    <th>2</th>
-			    <th>3</th>
-			    <th>4</th>
-			    <th>5</th>
-			    <th>6</th>
-			    <th>7</th>
-			    <th>8</th>
-			    <th>9</th>
+			    <th class="exampleChar">0</th>
+			    <th class="exampleChar">1</th>
+			    <th class="exampleChar">2</th>
+			    <th class="exampleChar">3</th>
+			    <th class="exampleChar">4</th>
+			    <th class="exampleChar">5</th>
+			    <th class="exampleChar">6</th>
+			    <th class="exampleChar">7</th>
+			    <th class="exampleChar">8</th>
+			    <th class="exampleChar">9</th>
 			</tr>
                    </thead>
 		   <tbody>
                        <tr>
 		   	    <td>Latin</td>
-			    <td>0</td>
-			    <td>1</td>
-			    <td>2</td>
-			    <td>3</td>
-			    <td>4</td>
-			    <td>5</td>
-			    <td>6</td>
-			    <td>7</td>
-			    <td>8</td>
-			    <td>9</td>
+			    <td class="exampleChar">0</td>
+			    <td class="exampleChar">1</td>
+			    <td class="exampleChar">2</td>
+			    <td class="exampleChar">3</td>
+			    <td class="exampleChar">4</td>
+			    <td class="exampleChar">5</td>
+			    <td class="exampleChar">6</td>
+			    <td class="exampleChar">7</td>
+			    <td class="exampleChar">8</td>
+			    <td class="exampleChar">9</td>
 			</tr>
                        <tr>
 		   	    <td>Gujurati</td>
-			    <td>&#x0ae6;</td>
-			    <td>&#x0ae7;</td>
-			    <td>&#x0ae8;</td>
-			    <td>&#x0ae9;</td>
-			    <td>&#x0aea;</td>
-			    <td>&#x0aeb;</td>
-			    <td>&#x0aec;</td>
-			    <td>&#x0aed;</td>
-			    <td>&#x0aee;</td>
-			    <td>&#x0aef;</td>
+			    <td class="exampleChar">&#x0ae6;</td>
+			    <td class="exampleChar">&#x0ae7;</td>
+			    <td class="exampleChar">&#x0ae8;</td>
+			    <td class="exampleChar">&#x0ae9;</td>
+			    <td class="exampleChar">&#x0aea;</td>
+			    <td class="exampleChar">&#x0aeb;</td>
+			    <td class="exampleChar">&#x0aec;</td>
+			    <td class="exampleChar">&#x0aed;</td>
+			    <td class="exampleChar">&#x0aee;</td>
+			    <td class="exampleChar">&#x0aef;</td>
 			</tr>
                        <tr>
 		   	    <td>Thai</td>
-			    <td>&#x0e50;</td>
-			    <td>&#x0e51;</td>
-			    <td>&#x0e52;</td>
-			    <td>&#x0e53;</td>
-			    <td>&#x0e54;</td>
-			    <td>&#x0e55;</td>
-			    <td>&#x0e56;</td>
-			    <td>&#x0e57;</td>
-			    <td>&#x0e58;</td>
-			    <td>&#x0e59;</td>
+			    <td class="exampleChar">&#x0e50;</td>
+			    <td class="exampleChar">&#x0e51;</td>
+			    <td class="exampleChar">&#x0e52;</td>
+			    <td class="exampleChar">&#x0e53;</td>
+			    <td class="exampleChar">&#x0e54;</td>
+			    <td class="exampleChar">&#x0e55;</td>
+			    <td class="exampleChar">&#x0e56;</td>
+			    <td class="exampleChar">&#x0e57;</td>
+			    <td class="exampleChar">&#x0e58;</td>
+			    <td class="exampleChar">&#x0e59;</td>
 			</tr>
 			<tr>
 				<td>Arabic</td>
-				<td>&#x0660;</td>
-				<td>&#x0661;</td>
-				<td>&#x0662;</td>
-				<td>&#x0663;</td>
-				<td>&#x0664;</td>
-				<td>&#x0665;</td>
-				<td>&#x0666;</td>
-				<td>&#x0667;</td>
-				<td>&#x0668;</td>
-				<td>&#x0669;</td>
+				<td class="exampleChar">&#x0660;</td>
+				<td class="exampleChar">&#x0661;</td>
+				<td class="exampleChar">&#x0662;</td>
+				<td class="exampleChar">&#x0663;</td>
+				<td class="exampleChar">&#x0664;</td>
+				<td class="exampleChar">&#x0665;</td>
+				<td class="exampleChar">&#x0666;</td>
+				<td class="exampleChar">&#x0667;</td>
+				<td class="exampleChar">&#x0668;</td>
+				<td class="exampleChar">&#x0669;</td>
 			</tr>
-
 	           </tbody>
-
-
 
 	         </table>
 
