@@ -516,7 +516,7 @@
         types of text variation that affect both user perception of text on the Web and the string processing on which
         the Web relies.</p>
       <section id="definitionCaseFolding">
-        <h3>Case Folding</h3>
+        <h3>Case Mapping and Case Folding</h3>
         <p>Some scripts and writing systems make a distinction between UPPER,
           lower, and Title case characters. Most scripts, such as the Brahmic
           scripts of India, the Arabic script, and the  scripts used to
@@ -524,43 +524,44 @@
           some important ones do. Examples of such scripts include the Latin
           script used in the majority of this document, as well as scripts such
           as Greek, Armenian, and Cyrillic. </p>
-        <p>Some document formats or protocols seek to aid interoperability or
-          provide an aid to content authors by ignoring case variations in the
-          <a data-lt="vocabulary">vocabulary</a> they define or in user-defined values permitted by the
-          format or protocol. For example, this occurs when matching element 
-		names
-          between an HTML document and its associated style sheet. Consider this
-          HTML fragment: </p>
-          <aside class="example">
-        <pre>&lt;style type="text/css"&gt;
-
-  SPAN.hello {
-     text-decoration: underline;
-  }
-&lt;/style&gt;
-
-&lt;span class="hello"&gt;Hello World!&lt;/span&gt;
-</pre>
-</aside>
-        <p>The <code class="kw" translate="no">SPAN</code> in the stylesheet
-          matches the <code class="kw" translate="no">span</code> element in the 
-		document, even though the stylesheet uses uppercase and the HTML markup 
-		does not.</p>
-        <p><dfn>Case folding</dfn> is the process of making two texts identical
-          which differ in case but are otherwise "the same".</p>
-        <p>Case folding might, at first, appear simple. However there are
-          variations that need to be considered when treating the full range of
-          Unicode in diverse languages. For more information, 
-          <cite>[[!Unicode]]</cite> Chapter 5 (in v8.0, <a href="">Section 5.18</a>) 
-          discusses case mappings in detail.</p>
-          
-        <p>Unicode defines the default case fold mapping for each Unicode code point.
-         Since most scripts do not provide a case distinction, most Unicode code 
-		points do not require a case fold mapping. For those characters that 
-		have a case fold mapping, the majority have a simple, straight-forward 
-		mapping to a single matching (generally lowercase) code point. Unicode 
-		calls these the <code class="kw">common</code> case fold mappings, as they are shared by 
-		Unicode's case fold mappings.
+ 		
+		<p>For those scripts which have a case distinction, Unicode defines a <em>default</em> UPPER, lower, and Title case character mapping for each Unicode code point. These default mappings can be found in the Unicode Character Database (UCD). Case mapping, at first, appears simple. However there are variations that need to be considered when treating the full range of Unicode in diverse languages.</p>
+		
+		        
+       <aside class="note">
+       <p>For more information, <cite>[[!Unicode]]</cite> Chapter 5 (in v8.0, <a href="">Section 5.18</a>) discusses case mappings and case folding in detail. </p>
+       </aside>  
+		
+		<aside class="example">
+		<p>For example here is a specific character that has a mapping to all three case variations. These mappings are defined in the Unicode Character Database (UCD).</p>
+		<table>
+			<tr>
+				<th>Character</th>
+				<th>Uppercase</th>
+				<th>Lowercase</th>
+				<th>Titlecase</th>
+			</tr>
+			<tr>
+				<td class="exampleChar">&#x1c5;</td>
+				<td class="exampleChar">&#x1c4;</td>
+				<td class="exampleChar">&#x1c6;</td>
+				<td class="exampleChar">&#x1c5;</td>
+			</tr>
+			<tr>
+				<td>U+01C5</td>
+				<td>U+01C4</td>
+				<td>U+01C6</td>
+				<td>U+01C5</td>
+			</tr>
+		</table>
+		</aside>
+		
+		          
+       <p><dfn>Case folding</dfn> is the process of making two texts which differ only in case identical for comparison purposes. This is distinct from case mapping for display purposes. As with the default case mappings, Unicode defines default case fold mappings for each Unicode code point. Unicode defines two forms of case fold mapping, which we'll examine below.</p>
+       
+       <p>Since most scripts do not have a case distinction, as with case mappings, most Unicode code points do not require a case fold mapping. For those characters that 
+		have a case fold mapping, the majority have a simple, straight-forward mapping to a single matching (generally lowercase) code point. Unicode 
+		calls these the <code class="kw">common</code> case fold mappings, as they are shared by Unicode's case fold mappings.
          </p>
          
          <aside class="example">
@@ -588,18 +589,13 @@
          </aside>
          
          
-		  <p>In addition to the <code class="kw">common</code> case folding mappings, a few characters 
-		  have a case fold mapping that would normally map one 
-		  Unicode character to more than one during case folding. These are called the <code class="kw">full</code> case fold mappings. 
-		  Together with the <code class="kw">common</code> case fold mappings, these provide the 
-		  default case fold mapping for all of Unicode. This case fold mapping is referred to in this 
-		  document as <dfn id="dfn-UnicodeC+F">Unicode C+F</dfn>.
+		  <p>A few characters have a case fold mapping that map one Unicode code point to two or more code points during case folding. These are called the <code class="kw">full</code> case fold mappings. Together with the <code class="kw">common</code> case fold mappings, these provide the default case fold mapping for all of Unicode. This case fold mapping is referred to in this document as <dfn id="dfn-UnicodeC+F">Unicode C+F</dfn>.
          </p>
          
          <aside class="example">
-          <p>One well-known example of a 'full' case fold mapping is the character <span class="qchar">&#xdf;</span>
+          <p>One well-known example of a <code class="kw">full</code> case fold mapping is the character <span class="qchar">&#xdf;</span>
 		  <span class="uname" translate="no">U+00DF LATIN SMALL LETTER SHARP S</span>, a letter that is commonly
-		  used in the German language. The 'full' mapping of this character is to two ASCII letters 's'. (The upper case mapping is to "SS".)
+		  used in the German language. The <code class="kw">full</code> case fold mapping and the lower case mapping of this character is to two ASCII letters 's'. The upper case mapping is to "SS".
 		  </p>
          <table>
            <tr>
@@ -609,7 +605,6 @@
 			   <td><span class="uname">LATIN SMALL LETTER SHARP S</span> to <span class="uname">LATIN SMALL LETTER S</span> + <span class="uname">LATIN SMALL LETTER S</span></td>
            </tr>
 		 </table>
-		  
          </aside>
          
 		  <p>Because some applications cannot allocate additional storage when 
@@ -622,8 +617,7 @@
 		  
 		  <aside class="example">
 
-		  <p>Other examples can be found in the Greek script, where several precomposed characters have multi-character
-		  case fold mappings. The table below shows one such example, the character <code>U+1F9B</code> (<span class="uname" translate="no">GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span>) and it's <code class="kw">full</code> and <code class="kw">simple</code> case fold mappings:</p>
+		  <p>Examples of <code class=kw>full</code> versus <code class=kw>simple</code> case fold variations can be found in the Greek script, where several precomposed characters have multi-character case fold mappings. The table below shows one such example, the character <code>U+1F9B</code> (<span class="uname" translate="no">GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span>) and it's <code class="kw">full</code> and <code class="kw">simple</code> case fold mappings:</p>
 					
 		  <table style="width: 100%">
      
@@ -631,13 +625,13 @@
 			    <td class="exampleChar">&#x1f9b;</td>
 			    <td>&#x21d2;</td>
 		        <td class="exampleChar">&#x1f23;&#x03b9;</td>
-		        <td><em>Full:</em> <code>U+1F23&nbsp;U+03B9</code> <span class="uname">GREEK SMALL LETTER ETA WITH DASIA AND VARIA</span> + <span class="uname">GREEK SMALL LETTER IOTA</span></td>
+		        <td><code class=kw>full</code>: <code>U+1F23&nbsp;U+03B9</code> <span class="uname">GREEK SMALL LETTER ETA WITH DASIA AND VARIA</span> + <span class="uname">GREEK SMALL LETTER IOTA</span></td>
 		     </tr>
 		     <tr>
 				<td class="exampleChar">&#x1f9b;</td>
 			    <td>&#x21d2;</td>
 		        <td class="exampleChar">&#x1f93;</td>
-		        <td><em>Simple:</em> <code>U+1F93</code> <span class="uname" translate="no">GREEK SMALL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span></td>
+		        <td><code class=kw>simple</code>: <code>U+1F93</code> <span class="uname" translate="no">GREEK SMALL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span></td>
 		     </tr>
 		  </table>
 
@@ -645,8 +639,12 @@
           
         <p>Note that case folding removes information from a string which cannot 
 		be recovered later. For example, two <span class="qchar">s</span> letters in German do not necessarily represent  <span class="qchar">&#xdf;</span> in unfolded text.</p>
-        <p>Another aspect of case folding is that it can be language sensitive.
-          Unicode defines default case mappings for each encoded character, but
+		
+		<section id="caseMappingLanguageSensitivity">
+	    <h3>Language Sensitivity</h3>
+	    
+        <p>Another aspect of case mapping and case folding is that it can be language sensitive.
+          Unicode defines <em>default</em> case mappings and case fold mappings for each encoded character, but
           these are only defaults and are not appropriate in all cases. Some
           languages need case-folding to be tailored to meet specific linguistic
           needs. One common example of this are Turkic languages written in the
@@ -673,6 +671,37 @@
             case, this word appears like this: <span class="qterm"><code>DİYARBAKIR</code></span>.
             Notice that the ASCII letter <span class="qchar">i</span> maps to <span class="uname" translate="no">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>, while the letter <span class="qchar">ı</span> (<span class="uname" translate="no">U+0131 LATIN SMALL LETTER DOTLESS I</span>) maps to the ASCII uppercase <span class="qchar">I</span>. Similarly a lower case casefolding of I to i would change the meaning of the text in Turkish, even thought this is the expected mapping in other languages, such as English or German.</p>
         </aside>
+        
+        </section>
+        
+        <section id="caseFoldApplication">
+			<h3>Uses for Case Folding</h3>
+          <p>Some document formats or protocols seek to aid interoperability or
+          provide an aid to content authors by ignoring case variations in the
+          <a data-lt="vocabulary">vocabulary</a> they define or in user-defined values permitted by the
+          format or protocol.</p>
+          
+          
+          <aside class="example">
+			  
+		<p>One example where this occurs is when matching element names between an HTML document and its associated style sheet. Consider this HTML fragment: </p>
+<pre>&lt;style type="text/css"&gt;
+
+  SPAN.hello {
+     text-decoration: underline;
+  }
+&lt;/style&gt;
+
+&lt;span class="hello"&gt;Hello World!&lt;/span&gt;
+</pre>
+
+        <p>The <code class="kw" translate="no">SPAN</code> in the stylesheet
+          matches the <code class="kw" translate="no">span</code> element in the 
+		document, even though the stylesheet uses uppercase and the HTML markup 
+		does not.</p>
+</aside>
+        
+        
         <p>Sometimes case can vary in a way that is not semantically meaningful
           or is not fully under the user's control. This is particularly true
           when searching a document, but may sometimes also apply
@@ -707,6 +736,7 @@
           These case-fold mappings are defined in the <cite>Common Locale Data
             Repository</cite> [[UAX35]] project of the Unicode Consortium.</p>
         <p>For advice on how to handle case folding see <a href="#handlingCaseFolding"></a>.</p>
+   </section>
       </section>
       <section id="unicodeNormalization">
         <h3>Unicode Normalization</h3>
