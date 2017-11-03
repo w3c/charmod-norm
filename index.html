@@ -525,7 +525,7 @@
           script used in the majority of this document, as well as scripts such
           as Greek, Armenian, and Cyrillic. </p>
  		
-		<p>For those scripts which have a case distinction, Unicode defines a <em>default</em> UPPER, lower, and Title case character mapping for each Unicode code point. These default mappings can be found in the Unicode Character Database (UCD). Case mapping, at first, appears simple. However there are variations that need to be considered when treating the full range of Unicode in diverse languages.</p>
+		<p><dfn>Case mapping</dfn> is the process of transforming characters to a specific case, such as upper, lower, or titlecase. For those scripts that have a case distinction, Unicode defines a <em>default</em> UPPER, lower, and Title case character mapping for each Unicode code point. Case mapping, at first, appears simple. However there are variations that need to be considered when treating the full range of Unicode in diverse languages.</p>
 		
 		        
        <aside class="note">
@@ -557,7 +557,7 @@
 		</aside>
 		
 		          
-       <p><dfn>Case folding</dfn> is the process of making two texts which differ only in case identical for comparison purposes. This is distinct from case mapping for display purposes. As with the default case mappings, Unicode defines default case fold mappings for each Unicode code point. Unicode defines two forms of case fold mapping, which we'll examine below.</p>
+       <p><dfn>Case folding</dfn> is the process of making two texts which differ only in case identical for comparison purposes, that is, it is meant for the purpose of string matching. This is distinct from <a>case mapping</a>, which is primarily meant for display purposes. As with the default case mappings, Unicode defines default case fold mappings for each Unicode code point. Unicode defines two forms of case fold mapping, which we'll examine below.</p>
        
        <p>Since most scripts do not have a case distinction, as with case mappings, most Unicode code points do not require a case fold mapping. For those characters that 
 		have a case fold mapping, the majority have a simple, straight-forward mapping to a single matching (generally lowercase) code point. Unicode 
@@ -625,13 +625,13 @@
 			    <td class="exampleChar">&#x1f9b;</td>
 			    <td>&#x21d2;</td>
 		        <td class="exampleChar">&#x1f23;&#x03b9;</td>
-		        <td><code class=kw>full</code>: <code>U+1F23&nbsp;U+03B9</code> <span class="uname">GREEK SMALL LETTER ETA WITH DASIA AND VARIA</span> + <span class="uname">GREEK SMALL LETTER IOTA</span></td>
+		        <td><code class=kw>full</code> case fold: <code>U+1F23&nbsp;U+03B9</code> <span class="uname">GREEK SMALL LETTER ETA WITH DASIA AND VARIA</span> + <span class="uname">GREEK SMALL LETTER IOTA</span></td>
 		     </tr>
 		     <tr>
 				<td class="exampleChar">&#x1f9b;</td>
 			    <td>&#x21d2;</td>
 		        <td class="exampleChar">&#x1f93;</td>
-		        <td><code class=kw>simple</code>: <code>U+1F93</code> <span class="uname" translate="no">GREEK SMALL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span></td>
+		        <td><code class=kw>simple</code> case fold: <code>U+1F93</code> <span class="uname" translate="no">GREEK SMALL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span></td>
 		     </tr>
 		  </table>
 
@@ -652,24 +652,42 @@
         <aside class="example">
 		  <table>
 			  <tr>
-		     <td class="exampleChar">Ii</td>
-		     <td>&#x21d4;</td>
-		     <td class="exampleChar">iI</td>
-		     <td>Default mapping of upper and lowercase letter I: U+0049 U+0069 &#x21d4; U+0069 U+0049</td>
+				  <td colspan=4>Default</td>
+			  </tr>
+			  <tr>
+		     <td class="exampleChar">I</td>
+		     <td>&#x21d2;</td>
+		     <td class="exampleChar">i</td>
+		     <td>Lowercase mapping: U+0049 U+0069 &#x21d4; U+0069 U+0049</td>
 		     </tr>
+		     <tr>
+		     <td class="exampleChar">i</td>
+		     <td>&#x21d2;</td>
+		     <td class="exampleChar">I</td>
+		     <td>Uppercase Mapping: U+0049 U+0069 &#x21d4; U+0069 U+0049</td>
+		     </tr>
+		     <tr>
+				  <td colspan=4>Turkic languages</td>
+			  </tr>
+		   </tr>
+			 <td class="exampleChar">I</td>
+		     <td>&#x21d2;</td>
+		     <td class="exampleChar">&#x131;</td>
+		     <td>Turkic language mapping of upper and lowercase letter I: U+0069 &#x21d4; U+0131</td>
+		   </tr>
 		   <tr>
-			 <td class="exampleChar">Ii</td>
-		     <td>&#x21d4;</td>
-		     <td class="exampleChar">&#x131;&#x130;</td>
-		     <td>Turkic language mapping of upper and lowercase letter I: U+0049 U+0069 &#x21d4; U+0131 U+0130</td>
+			 <td class="exampleChar">i</td>
+		     <td>&#x21d2;</td>
+		     <td class="exampleChar">&#x130;</td>
+		     <td>Turkic language mapping of upper and lowercase letter I: U+0049 &#x21d4; U+0130</td>
 		   </tr>
 		  </table>
-			
 			
           <p>The name of the second largest city in Turkey is "<code>Diyarbakır</code>", which
            contains both the dotted and dotless letters <span class="qchar">i</span>. When rendered into upper
             case, this word appears like this: <span class="qterm"><code>DİYARBAKIR</code></span>.
             Notice that the ASCII letter <span class="qchar">i</span> maps to <span class="uname" translate="no">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>, while the letter <span class="qchar">ı</span> (<span class="uname" translate="no">U+0131 LATIN SMALL LETTER DOTLESS I</span>) maps to the ASCII uppercase <span class="qchar">I</span>. Similarly a lower case casefolding of I to i would change the meaning of the text in Turkish, even thought this is the expected mapping in other languages, such as English or German.</p>
+        
         </aside>
         
         </section>
