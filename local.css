@@ -113,17 +113,19 @@ SPAN.h\e9llo {
 }
 
 span.tableSub {
-	font-size: 10px;
+    font-family: monospace;
+	font-size: 11px;
 }
     
 span.dropExample {
     float: left;
     width: 6em;
+    clear: both;
     margin-left: -6em;
     text-align: center;
-    font-size: 200%;
-    font-family: sans-serif;
-    line-height: 80%;
+    font-size: 30pt;
+    font-family: serif;
+    line-height: 100%;
 }
     
 ul.dropExampleList {
@@ -131,7 +133,7 @@ ul.dropExampleList {
 }
     
 li.dropExampleItem {
-   padding-left: 6em;
+   padding-left: 12em;
    margin-bottom: 1em;
 }
     
