@@ -12,7 +12,7 @@
           useExperimentalStyles: true,
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
           specStatus:				"ED",
-          publishDate:  			"2017-10-25",
+          publishDate:  			"2017-11-08",
           previousPublishDate:  	"2015-11-19",
           previousMaturity:  		"WD",
 
@@ -533,22 +533,19 @@
        </aside>  
 		
 		<aside class="example">
-		<p>For example here is a specific character that has a mapping to all three case variations. These mappings are defined in the Unicode Character Database (UCD).</p>
+		<p>For example here is a character with mappings to all three case variations. These mappings are defined in the Unicode Character Database (UCD).</p>
 		<table>
 			<tr>
-				<th>Character</th>
 				<th>Uppercase</th>
 				<th>Lowercase</th>
 				<th>Titlecase</th>
 			</tr>
 			<tr>
-				<td class="exampleChar">&#x1c5;</td>
 				<td class="exampleChar">&#x1c4;</td>
 				<td class="exampleChar">&#x1c6;</td>
 				<td class="exampleChar">&#x1c5;</td>
 			</tr>
 			<tr>
-				<td>U+01C5</td>
 				<td>U+01C4</td>
 				<td>U+01C6</td>
 				<td>U+01C5</td>
@@ -589,7 +586,7 @@
          </aside>
          
          
-		  <p>A few characters have a case fold mapping that map one Unicode code point to two or more code points during case folding. These are called the <code class="kw">full</code> case fold mappings. Together with the <code class="kw">common</code> case fold mappings, these provide the default case fold mapping for all of Unicode. This case fold mapping is referred to in this document as <dfn id="dfn-UnicodeC+F">Unicode C+F</dfn>.
+		  <p>A few characters have a case fold mapping that map one Unicode code point to two or more code points during case folding. These are called the <code class="kw">full</code> case fold mappings. The <code class=kw>full</code> and <code class=kw>common</code> case fold mappings are used together to provide the default case fold mapping for all of Unicode. We refer to this form of case folding as <dfn>full casefolding</dfn> or <dfn>Unicode full</dfn> in this document.
          </p>
          
          <aside class="example">
@@ -607,13 +604,8 @@
 		 </table>
          </aside>
          
-		  <p>Because some applications cannot allocate additional storage when 
-		  performing a case fold operation, Unicode provides a <code class="kw">simple</code> case 
-		  fold mapping that maps characters that would normally map to more or 
-		  fewer code points to use a single code point for comparison purposes 
-		  instead. Unlike the full mapping, this mapping invariably alters the 
-		  content (and potentially the meaning) of the text. This <code class="kw">simple</code> case fold mapping, referred to in this document 
-		  as <dfn id="UnicodeC+S">Unicode C+S</dfn>, is not appropriate for the Web. </p>
+		  <p>Because some applications cannot allocate additional storage when performing a case fold operation, Unicode provides a <code class="kw">simple</code> case fold mapping that maps characters that would normally map to more or 
+		  fewer code points to use a single code point for comparison purposes instead. Unlike the full mapping, this mapping invariably alters the content (and potentially the meaning) of the text. As with <a>full casefolding</a>, the <dfn>simple casefolding</dfn> or <dfn>Unicode simple</dfn> casefold, is a combination of <code class=kw>simple</code> and <code class=kw>common</code> mappings so as to cover the full range of Unicode. <a>Unicode simple</a> is not appropriate for use on the Web. </p>
 		  
 		  <aside class="example">
 
@@ -648,47 +640,48 @@
           these are only defaults and are not appropriate in all cases. Some
           languages need case-folding to be tailored to meet specific linguistic
           needs. One common example of this are Turkic languages written in the
-          Latin script.</p>
+          Latin script:</p>
+          
         <aside class="example">
 		  <table>
 			  <tr>
-				  <td colspan=4>Default</td>
+				  <th colspan=4>Default Folding</th>
 			  </tr>
 			  <tr>
 		     <td class="exampleChar">I</td>
 		     <td>&#x21d2;</td>
 		     <td class="exampleChar">i</td>
-		     <td>Lowercase mapping: U+0049 U+0069 &#x21d4; U+0069 U+0049</td>
+		     <td>Default folding of letter I</td>
 		     </tr>
 		     <tr>
-		     <td class="exampleChar">i</td>
-		     <td>&#x21d2;</td>
-		     <td class="exampleChar">I</td>
-		     <td>Uppercase Mapping: U+0049 U+0069 &#x21d4; U+0069 U+0049</td>
-		     </tr>
-		     <tr>
-				  <td colspan=4>Turkic languages</td>
+				  <th colspan=4>Turkic Language Folding</th>
 			  </tr>
 		   </tr>
 			 <td class="exampleChar">I</td>
 		     <td>&#x21d2;</td>
 		     <td class="exampleChar">&#x131;</td>
-		     <td>Turkic language mapping of upper and lowercase letter I: U+0069 &#x21d4; U+0131</td>
+		     <td>Turkic language folding of dotless (ASCII) letter I</td>
 		   </tr>
 		   <tr>
-			 <td class="exampleChar">i</td>
+			 <td class="exampleChar">&#x130;</td>
 		     <td>&#x21d2;</td>
-		     <td class="exampleChar">&#x130;</td>
-		     <td>Turkic language mapping of upper and lowercase letter I: U+0049 &#x21d4; U+0130</td>
+		     <td class="exampleChar">i</td>
+		     <td>Turkic language folding of dotted letter I</td>
 		   </tr>
 		  </table>
+		  </aside>
 			
-          <p>The name of the second largest city in Turkey is "<code>Diyarbakır</code>", which
-           contains both the dotted and dotless letters <span class="qchar">i</span>. When rendered into upper
-            case, this word appears like this: <span class="qterm"><code>DİYARBAKIR</code></span>.
-            Notice that the ASCII letter <span class="qchar">i</span> maps to <span class="uname" translate="no">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>, while the letter <span class="qchar">ı</span> (<span class="uname" translate="no">U+0131 LATIN SMALL LETTER DOTLESS I</span>) maps to the ASCII uppercase <span class="qchar">I</span>. Similarly a lower case casefolding of I to i would change the meaning of the text in Turkish, even thought this is the expected mapping in other languages, such as English or German.</p>
-        
+          <p>While the example above (and this document in general) focuses on case folding for the purpose of matching, note that case mapping is also language-specific. The name of the second largest city in Turkey is "<code>Diyarbakır</code>", which
+           contains both the dotted and dotless letters <span class="qchar">i</span>. 
+            </p>
+            
+        <aside class="example">
+            <p><span class="exampleChar">Diyarbakır</span> &#x21d2; <code>text-transform: uppercase</code> &#x21d2; <span class="exampleChar">DİYARBAKIR</span></p>
+            <p>Notice that the ASCII letter <span class="qchar">i</span> maps to <span class="uname" translate="no">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>, while the letter <span class="qchar">ı</span> (<span class="uname" translate="no">U+0131 LATIN SMALL LETTER DOTLESS I</span>) maps to the ASCII uppercase <span class="qchar">I</span>. Failure to apply this localized case mapping would change the meaning of the text in Turkish, even thought this is the expected mapping in other languages, such as English or German.</p>
+            <p>This language-specific tailoring can also be applied to case folding. For example, if the uppercase text needed to be matched against some set of strings in a case-insensitive way:</p>
+            <p><span class="exampleChar">DİYARBAKIR</span> &#x21d2; <code>case fold</code> &#x21d2; <span class="exampleChar">diyarbak&#x131;r</span></p>
         </aside>
+
         
         </section>
         
@@ -743,8 +736,7 @@
         </p>
         <p id="uci"><dfn data-lt="Unicode case-insensitive">Unicode
             case-insensitive matching</dfn> compares a sequence of code points
-          as if the Unicode C+F Unicode-defined language-independent default case
-          folding form mentioned above had been applied to both input sequences.</p>
+          as if the <a>Unicode full</a> casefolding (see above) had been applied to both input sequences.</p>
         <p><dfn>Language-sensitive case-sensitive matching</dfn> is useful in
           the rare case where a document format or protocol contains information
           about the language of the syntactic content and where language-sensitive case
@@ -1279,23 +1271,16 @@
           
         <p class="note">For further discussion of character escapes, including guidelines for the definition of escaping mechanisms in specifications, see: Section 4.6 of [[!CHARMOD]].</p>
         
-        <!-- examples taken from S4.6 charmod
+        <div class="note">
+              <p>The expansion of character escapes and includes is dependent on context, that is, on which <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language is considered to apply when the string matching operation is performed. Consider a search for the string <span class="qterm">suçon</span> in an XML document containing <code>su&amp;#xE7;on</code> but not <code>suçon</code>. If the search is performed in a plain text editor, the context is <span class="new-term">plain text</span> (no <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language applies), the <code class="kw">&amp;#xE7;</code> character escape is not recognized, hence not expanded and the search fails. If the search is performed in an XML browser, the context is <code>XML</code>, the character escape (defined by XML) is expanded and the search succeeds. </p>
+              <p>An intermediate case would be an XML editor that <em>purposefully</em>
+                provides a view of an XML document with entity references left
+                unexpanded. In that case, a search over that pseudo-XML view
+                will deliberately <em>not</em> expand entities: in that
+                particular context, entity references are not considered
+                includes and need not be expanded</p>
+            </div>
         
-		<aside class="example">
-		  <div class="example-header marker"></div>
-		  <p>Some examples of escapes and includes:</p>
-		  <ul>
-		  <li>HTML and XML define 'Numeric Character References' which allow both the escaping of syntax-significance 
-		  and the expression of arbitrary Unicode characters. Expressed as &amp;#x3C; or &amp;#60; the character '&lt;' will not 
-		  be parsed as a markup delimiter.</li>
-          <li>The programming language Java uses '"' to delimit strings. To express '"' within a string, one may escape it as '\"'.</li>
-          <li>XML defines 'CDATA sections' which allow escaping the syntax-significance of all characters between the CDATA 
-           section delimiters. CDATA sections prevent the expression of characters using numeric character references.</li>
-		  </ul>
-		</aside>
-		
-		
-		-->
 
         <p>For example, <span class="qchar">€</span> <span class="uname" translate="no">U+20AC
             EURO SIGN</span> can also be encoded in HTML as the hexadecimal
@@ -1624,43 +1609,22 @@
           identity matching MUST be performed as if the following steps were
           followed: </p>
         <ol>
-          <li>Conversion to a common Unicode encoding form of the strings to be
-            compared [[Encoding]].</li>
+          <li>Convert the strings to be compared to a common Unicode encoding form [[Encoding]].</li>
           <li>
-            <p>Expansion of all character escapes and includes.</p>
-            <div class="note">
-              <p>The expansion of character escapes and includes is dependent on
-                context, that is, on which <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language is
-                considered to apply when the string matching operation is
-                performed. Consider a search for the string <span class="qterm">suçon</span>
-                in an XML document containing <code>su&amp;#xE7;on</code> but
-                not <code>suçon</code>. If the search is performed in a plain
-                text editor, the context is <span class="new-term">plain text</span>
-                (no <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language applies), the <code class="kw">&amp;#xE7;</code>
-                character escape is not recognized, hence not expanded and the
-                search fails. If the search is performed in an XML browser, the
-                context is <code>XML</code>, the character escape (defined by
-                XML) is expanded and the search succeeds. </p>
-              <p>An intermediate case would be an XML editor that <em>purposefully</em>
-                provides a view of an XML document with entity references left
-                unexpanded. In that case, a search over that pseudo-XML view
-                will deliberately <em>not</em> expand entities: in that
-                particular context, entity references are not considered
-                includes and need not be expanded</p>
-            </div>
-          </li>
-          <li>Perform one of the following case foldings, as appropriate:
+            <p>Expand all <a href="#characterEscapes">character escapes and includes</a>.</p>
+           </li>
+          <li>If Unicode normalization is desired, apply the appropriate normalization form to the text.</li>
+          <li>If case sensitivity is desired, proceed to the next step. Otherwise apply the appropriate case folding operation:
             <ol style="list-style-type:lower-latin">
-              <li><em><a href="#case-sensitive">Case sensitive</a></em>: Go to
-                step 4.</li>
+			  <li><em><a>Unicode full</a> case folding</em>:
+                map all code points to their <a>Unicode full</a> case fold equivalents.
+                Note that this can change the length of the string.</li>
               <li><em><a data-lt="ASCII case-insensitive">ASCII case folding</a></em>:
                 map all code points in the range 0x41 to 0x5A (A to Z) to the
                 corresponding code points in the range 0x61 to 0x7A (a to z).</li>
-              <li><em><a data-lt="case folding">Unicode case folding</a></em>:
-                map all code points to their Unicode C+F case fold equivalents.
-                Note that this can change the length of the string.</li>
             </ol>
           </li>
+<!-- removed after discussion at TPAC
           <p class=issue>What to do about non-breaking space and other space characters? Is this the full
             list? What about the Mongolian characters?</p>
           <li>Remove all of the following <a href="#invisibleCharacters">invisible Unicode characters</a>:
@@ -1673,16 +1637,19 @@
                    <li>Emoji modifiers
                 </ul>
           </li>
+-->
           <li>Test the resulting sequences of code points bit-by-bit for
             identity.</li>
         </ol>
-      </section>
+
       <section id="convertingToCommonUnicodeForm">
-        <h2>Converting to a Common Unicode Form</h2>
+        <h4>Converting to a Common Unicode Encoding Form</h4>
+        
+        <p>The first step in comparing text is to ensure that both use the same character encoding form. Applications or implementations need to convert any legacy encodings to a Unicode encoding or convert disparate Unicode encodings to the one they will use for comparison purposes.</p>
 
         <p>A <dfn>normalizing transcoder</dfn> is a <a>transcoder</a> that performs
         a conversion from a <a>legacy character encoding</a> to Unicode <em>and</em> ensures that the result is in
-        Unicode Normalization Form C. For most legacy character encodings, it
+        Unicode Normalization Form C (NFC). For most legacy character encodings, it
           is possible to construct a normalizing transcoder (by using any
           transcoder followed by a normalizer); it is not possible to do so if
           the <a>legacy character encoding</a>'s <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a>
@@ -1708,30 +1675,22 @@
             and warn the user when a given resource is not in Unicode
             Normalization Form C.</p>
         </div>
+        </section>
         <section>
           <h4>Choice of Normalization Form</h4>
           <p>Given that there are many character sequences that content authors
             or applications could choose when inputting or exchanging text, and
-            that when providing text in a normalized form, there are different
+            that when providing text in a normalized form, and that there are different
             options for the normalization form to be used, what form is most
             appropriate for content on the Web?</p>
-          <p>For use on the Web, it is important not to lose compatibility
-            distinctions, which are often important to the content (see Chapter
-            5 <span class="qterm">Characters with Compatibility Mappings</span>
-            in <cite>Unicode in XML and other Markup Languages</cite>
-            [[UNICODE-XML]] for a discussion). The NFKD and NFKC normalization
-            forms are therefore excluded.</p>
-          <p>Among the remaining two forms, NFC has the advantage that almost
-            all legacy data (if transcoded trivially, one-to-one, to a Unicode
-            encoding), as well as data created by current software, is already
-            in this form; NFC also has a slight compactness advantage and is a
-            better match to user expectations with respect to the character vs.
-            <a>grapheme</a> issue. This document therefore recommends, when
-            possible, that all content be stored and exchanged in Unicode
-            Normalization Form C (NFC).</p>
+          <p>In general, the use of Unicode normalization SHOULD be avoided unless there is a specific benefit to be realized to users of a specification or implementation. The encoding choices of end users might not be obvious to downstream consumers of the data and normalization can remove distinctions that the users applied intentionally.</p>
+          <p>That said, certain applications can realize a benefit by applying Unicode normalization as a part of string matching operations.</p>
+          <p>The canonical normalization forms (form NFC or form NFD) are intended to preserve the meaning and presentation of the text to which they are applied, although in practice this is not always the case. NFC has the advantage that almost         all legacy data (if transcoded trivially, one-to-one, to a Unicode encoding), as well as data created by current software or entered by users on most (but certainly not all) keyboards, is already in this form; NFC also has a slight compactness advantage and is a better match to user expectations with respect to the character vs. <a>grapheme</a> issue. For storage or interchange, if normalization is to be applied, form NFC is RECOMMENDED.</p>
+          <p>The compatibility normalization forms (form NFKC and form NFKD) lose compatibility distinctions that are usually important to the meaning of the content (see Chapter 5 <span class="qterm">Characters with Compatibility Mappings</span> in <cite>Unicode in XML and other Markup Languages</cite> [[UNICODE-XML]] for a discussion). These normalization forms do produce more promiscuous matching, which is usually undesirable in a string matching context, but can be useful in "find" operations or string searching. The NFKD and NFKC normalization forms SHOULD NOT be used for storage or interchange of text. String matching applications or specifications SHOULD avoid specifying these normalization forms unless there is a compelling reason.</p>
+        </section>
         </section>
         <section id="content-reqs">
-          <h4>Requirements for Resources</h4>
+          <h3>Requirements for Resources</h3>
           <p>These requirements pertain to the authoring and creation of
             documents and are intended as guidelines for resource authors.</p>
           <div class="requirement">
@@ -1967,7 +1926,7 @@
               forms used. These MUST be one of: </p>
             <ul>
               <li>Case-sensitive</li>
-              <li>Unicode case-insensitive using Unicode case-folding C+F</li>
+              <li>Unicode case-insensitive using <a>Unicode full</a> casefolding</li>
               <li>ASCII case-insensitive</li>
             </ul>
           </div>
@@ -2025,28 +1984,22 @@
 		data values that are not ASCII.</p>
         </section>
                 <section id="sec_unicode_cs">
-          <h4>Unicode case-sensitive matching</h4>
+          <h4>Unicode case-insensitive matching</h4>
 
         <div class="requirement">
-          <p>[S][I] The <a>Unicode C+F</a> case-fold form is RECOMMENDED as the
+          <p>[S][I] The <a>Unicode full</a> casefolding is RECOMMENDED as the
             case-insensitive matching for <a data-lt="vocabulary">vocabularies</a>, if case-sensitive is not an option.
-            The Unicode C+S form MUST NOT be used for string identity matching
+            The <a>Unicode simple</a> casefolding form MUST NOT be used for string identity matching
             on the Web.</p>
         </div>
-        <p><a href="#uci">Unicode case-insensitive</a> matching can take several
-          forms. Unicode defines the "common" (C) casefoldings for characters
-          that always have 1:1 mappings of the character to its case folded form
-          and this covers the majority of characters that have a case folding. A
-          few characters in Unicode have a 1:many case folding. This 1:many
-          mapping is called the "full" (F) case fold mapping. For compatibility
-          with certain types of implementation, Unicode also defines a "simple"
-          (S) case fold that is always 1:1. The &quot;simple&quot; case-fold mapping is not recommended because it removes information that can be important to forming an identity match.</p>
+        <p><a href="#uci">Unicode case-insensitive</a> matching can take <a href="#definitionCaseFolding">several
+          forms</a>. <a>Unicode full</a> casefold is RECOMMENDED for matching.</p>
         <div class="requirement">
-        <p>Language-sensitive case-sensitive matching in document formats and
-          protocols is NOT RECOMMENDED.</p>
+        <p>Language-sensitive case-insensitive matching in document formats and protocols is NOT RECOMMENDED, although authors and users should be warned of the limitations this implies for languages that depend on casefold matching to occur.</p>
         </div>
-<p>This is because language information can be hard to obtain, verify, or manage and the resulting operations can produce results that frustrate users.</p>
-<div class="requirement">
+        <p>This is because language information can be hard to obtain, verify, or manage and because the resulting operations can produce results that frustrate users or which fail for some users and succeed for others depending on the language configuration that they are using. Operations that are themselves language-specific can include language-specific case folding where appropriate.</p>
+        
+    <div class="requirement">
           <p>[C] Identifiers SHOULD use consistent case (upper, lower, mixed
             case) to facilitate matching, even if case-insensitive matching is
             supported by the format or implementation. </p>
