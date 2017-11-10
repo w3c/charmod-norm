@@ -1717,12 +1717,8 @@
       </section>
         <section id="normalizationChoice">
           <h4>Choice of Normalization Form</h4>
-          <p>Given that there are many character sequences that content authors
-            or applications could choose when inputting or exchanging text, and
-            that when providing text in a normalized form, and that there are different
-            options for the normalization form to be used, what form is most
-            appropriate for content on the Web?</p>
-          <p>In general, the use of Unicode normalization SHOULD be avoided unless there is a specific benefit to be realized to users of a specification or implementation. The encoding choices of end users might not be obvious to downstream consumers of the data and normalization can remove distinctions that the users applied intentionally.</p>
+          <p>Given that there are many different ways that content authors or applications could choose to represent the same semantic values when inputting or exchanging text, what form is most appropriate for representing or matching content on the Web?</p>
+          <p>In general, specifications and implementations should avoid applying Unicode normalization unless there is a specific benefit to be realized to users (or the user requests it). The encoding choices of end users might not be obvious to downstream consumers of the data and normalization can remove distinctions that the users applied intentionally.</p>
           <p>That said, certain applications can realize a benefit by applying Unicode normalization as a part of string matching operations.</p>
           <p>The canonical normalization forms (form NFC or form NFD) are intended to preserve the meaning and presentation of the text to which they are applied, although in practice this is not always the case. NFC has the advantage that almost         all legacy data (if transcoded trivially, one-to-one, to a Unicode encoding), as well as data created by current software or entered by users on most (but certainly not all) keyboards, is already in this form; NFC also has a slight compactness advantage and is a better match to user expectations with respect to the character vs. <a>grapheme</a> issue. For storage or interchange, if normalization is to be applied, form NFC is RECOMMENDED.</p>
           <p>The compatibility normalization forms (form NFKC and form NFKD) lose compatibility distinctions that are usually important to the meaning of the content (see Chapter 5 <span class="qterm">Characters with Compatibility Mappings</span> in <cite>Unicode in XML and other Markup Languages</cite> [[UNICODE-XML]] for a discussion). These normalization forms do produce more promiscuous matching, which is usually undesirable in a string matching context, but can be useful in "find" operations or string searching. The NFKD and NFKC normalization forms SHOULD NOT be used for storage or interchange of text. String matching applications or specifications SHOULD avoid specifying these normalization forms unless there is a compelling reason.</p>
@@ -1758,6 +1754,8 @@
        </section>
        <section id="sec_unicode_cs">
           <h4>Unicode case-insensitive matching</h4>
+          
+          <p>Vocabularies generally should allow for a wide range of Unicode characters, particularly for user-defined values, so as to enable use by the broadest range of languages and cultures without disadvantage. As a result, text operations such as case folding need to address the full range of Unicode and not just selected portions. When case-insensitive matching is desired, this means using <a href="#definitionCaseFolding">Unicode case folding</a>:</p>
 
         <div class="requirement">
           <p>[S][I] The <a>Unicode full</a> casefolding is RECOMMENDED as the case-insensitive matching for <a data-lt="vocabulary">vocabularies</a>.
@@ -1769,21 +1767,13 @@
         </section>
         <section id="sec_ascii_cs">
           <h4>ASCII case-insensitive matching</h4>
+
+         <p>A formal language whose <a>vocabulary</a> is limited to ASCII and which does not allow user-defined names or identifiers can specify <a>ASCII case-insensitive</a> matching. An example of this is HTML, which defines the use of ASCII case-insensitive comparison for element and attribute names defined by the HTML specification.</p>
+         
          <div class="requirement">
-       <p>If the vocabulary of strings to be compared is limited to the Basic Latin
-          (ASCII) subset of Unicode, and case sensitive is not an option, ASCII case-insensitive matching MAY be
-          used.</p>
+           <p>[S] For a vocabulary limited to the Basic Latin (ASCII) subset of Unicode, ASCII case-insensitive matching MAY be specified.</p>
         </div>
-         <p>A formal language whose keywords are all
-           ASCII and which does not allow user-defined names or identifiers can specify ASCII case insensitive matching. An
-           example of this is HTML, which defines the use of ASCII case-insensitive comparison for element and attribute names defined
-           by the HTML specification.</p>
-         <div class="requirement">
-           <p>ASCII case-insensitive matching MUST only be applied to
-             vocabularies that are restricted to ASCII and do not permit
-            user-defined values that use a broader range of Unicode.</p>
-        </div>
-        
+       
         <p>A vocabulary is considered to be "ASCII-only" if and only if all
            tokens and identifiers are defined by the specification directly and
            these identifiers or tokens use only the Basic Latin subset of
@@ -1914,21 +1904,23 @@
             denormalized content need to be carefully considered and well
             specified in these cases. </p>
         </div>
+        <section id="specRequirements">
+			<h3>Requirements for Specifications</h3>
+			<p>This section discusses the requirements that different types of specification ought to consider. Most new specifications should use the <a href="#non-normalizing">Requirements for Non-Normalizing Specifications</a>. Specifications that require Unicode normalization should use the <a href="#normalizing-spec">Requirements for Unicode Normalizing Specifications</a>.</p>
+
         <section id="non-normalizing">
           <h4>Requirements for Non-Normalizing Specifications</h4>
 
-          <p>The following requirements pertain to any specification that
-            specifies explicitly that normalization is not to be applied
-            automatically to content (which SHOULD include all new
-            specifications): </p>
+          <p>The following requirements pertain to any specification that specifies that normalization is not to be applied
+            automatically to content (which should include all new specifications): </p>
           <div class="requirement">
             <p>[S] Specifications that do not normalize MUST document or provide
               a health-warning if canonically equivalent but disjoint Unicode
-              character sequences represent a security issue. </p>
+              character sequences represent a security issue.</p>
           </div>
           <div class="requirement">
             <p>[S][I] Specifications and implementations MUST NOT assume that
-              content is in any particular normalization form. </p>
+              content is in any particular normalization form.</p>
           </div>
           <p>The normalization form or lack of normalization for any given
             content has to be considered intentional in these cases.</p>
@@ -2023,6 +2015,7 @@
               require that the final output of this mechanism be normalized. </p>
           </div>
         </section>
+      </section>
       </section>
  
 
