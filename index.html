@@ -261,11 +261,10 @@
           establish terminology that allows us to talk about the different kinds
           of text within a given format or protocol, as the requirements and
           details vary significantly. </p>
-        <p>Unicode code points are denoted as <code class="kw" translate="no">U+hhhh</code>,
-          where <code class="kw" translate="no">hhhh</code> is a sequence of at
+        <p>Unicode code points are denoted as <code class="kw" translate="no">U+<em>hhhh</em></code>,
+          where <code class="kw" translate="no"><em>hhhh</em></code> is a sequence of at
           least four, and at most six hexadecimal digits. For example, the
-          character <span class="qchar">€</span> <span class="uname" translate="no">EURO
-            SIGN</span> has the code point <span class="uname" translate="no">U+20AC</span>.</p>
+          character <span class="codepoint"><span lang="en">&#x20AC;</span> [<span class="uname">U+20AC EURO SIGN</span>]</span> has the code point <span class="uname" translate="no">U+20AC</span>.</p>
         <p>Some characters that are used in the various examples might not
           appear as intended unless you have the appropriate font. Care has been
           taken to ensure that the examples nevertheless remain understandable.</p>
@@ -363,15 +362,10 @@
           grapheme cluster. Note that the interaction between the language of
           string content and the end-user's preferences might be complex.</p>
         <aside class="example">
-          <p>The Hindi word for Unicode <q>यूनिकोड</q> is composed of a
-            sequence of seven Unicode characters from the Devanagari script (<span
-
-              class="uname" translate="no">U+092F U+0942 U+0928 U+093F U+0915
-              U+094B U+0921</span>). However, most users would identify this
-            word as containing four units of text. Each of the
-            first three graphemes consists of two characters: a syllable and a
-            modifying vowel character. So the word contains seven Unicode
-            characters, but only four graphemes:
+			<p>The Hindi word for Unicode <q>&#x92f;&#x942;&#x928;&#x93f;&#x915;&#x94b;&#x921;</q> is composed of seven Unicode characters from the Devanagari script.
+			</p>
+          <p>Most users would identify this word as containing four units of text. Each of the first three graphemes consists of two characters: a syllable and a
+            modifying vowel character. So the word contains seven Unicode characters, but only four graphemes:
             
             <table>
 				<tr>
@@ -609,7 +603,7 @@
 		  
 		  <aside class="example">
 
-		  <p>Examples of <code class=kw>full</code> versus <code class=kw>simple</code> case fold variations can be found in the Greek script, where several precomposed characters have multi-character case fold mappings. The table below shows one such example, the character <code>U+1F9B</code> (<span class="uname" translate="no">GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span>) and it's <code class="kw">full</code> and <code class="kw">simple</code> case fold mappings:</p>
+		  <p>Examples of <code class=kw>full</code> versus <code class=kw>simple</code> case fold variations can be found in the Greek script, where several precomposed characters have multi-character case fold mappings. The table below shows one such example, the character <span class="codepoint"><span lang="en">&#x1F9B;</span> [<span class="uname">U+1F9B GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span>]</span> and it's <code class="kw">full</code> and <code class="kw">simple</code> case fold mappings:</p>
 					
 		  <table style="width: 100%">
      
@@ -677,9 +671,9 @@
             
         <aside class="example">
             <p><span class="exampleChar">Diyarbakır</span> &#x21d2; <code>text-transform: uppercase</code> &#x21d2; <span class="exampleChar">DİYARBAKIR</span></p>
-            <p>Notice that the ASCII letter <span class="qchar">i</span> maps to <span class="uname" translate="no">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>, while the letter <span class="qchar">ı</span> (<span class="uname" translate="no">U+0131 LATIN SMALL LETTER DOTLESS I</span>) maps to the ASCII uppercase <span class="qchar">I</span>. Failure to apply this localized case mapping would change the meaning of the text in Turkish, even thought this is the expected mapping in other languages, such as English or German.</p>
+            <p>Notice that the ASCII letter <span class="codepoint"><span lang="en">&#x0069;</span> [<span class="uname">U+0069 LATIN SMALL LETTER I</span>]</span> maps to <span class="codepoint"><span lang="en">&#x0130;</span> [<span class="uname">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>]</span>, while the letter <span class="codepoint"><span lang="en">&#x0131;</span> [<span class="uname">U+0131 LATIN SMALL LETTER DOTLESS I</span>]</span> maps to the ASCII uppercase <span class="codepoint"><span lang="en">&#x0049;</span> [<span class="uname">U+0049 LATIN CAPITAL LETTER I</span>]</span>. Failure to apply this localized case mapping would change the meaning of the text in Turkish, even thought this is the expected mapping in other languages, such as English or German.</p>
             <p>This language-specific tailoring can also be applied to case folding. For example, if the uppercase text needed to be matched against some set of strings in a case-insensitive way:</p>
-            <p><span class="exampleChar">DİYARBAKIR</span> &#x21d2; <code>case fold</code> &#x21d2; <span class="exampleChar">diyarbak&#x131;r</span></p>
+            <p><span class="exampleChar">D&#x130;YARBAKIR</span> &#x21d2; <code>case fold</code> &#x21d2; <span class="exampleChar">diyarbak&#x131;r</span></p>
         </aside>
 
         
@@ -756,10 +750,9 @@
           When searching or matching text by comparing code points, variations 
 		in encoding could cause text values otherwise expected to match not to 
 		match. </p>
-		  <p>Consider the character &#x01FA;. One way to encode this character 
-		  is as <span class="uname" translate="no"> U+01FA
+		  <p>Consider the character <span class="codepoint"><span lang="en">&#x01FA;</span> [<span class="uname">U+01FA LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>]</span>. One way to encode this character is as <span class="uname" translate="no"> U+01FA
             LATIN LETTER CAPITAL A WITH RING ABOVE AND ACUTE</span>. Here are
-          some of the different character sequences that an HTML document could
+          some of the different character sequences that a document could
           use to represent this character:</p>
         <ul class="dropExampleList">
           <li class="dropExampleItem"><span class="dropExample">&#x01FA;</span> <span class="uname" translate="no">U+01FA</span>—A "precomposed" character.</li>
@@ -793,11 +786,8 @@
               ABOVE</span> and <span class="uname" translate="no">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
         </ul>
-        <p>Each of the above strings contains the same apparent 
-        <span class="quote">meaning</span> as <span class="qchar">Ǻ</span> (<span class="uname" translate="no">U+01FA
-              LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>), but each
-            one is encoded slightly differently. More variations are possible,
-            but are omitted for brevity.</p>
+        <p>Each of the above strings contains the same apparent <span class="quote">meaning</span> as <span class="codepoint"><span lang="en">&#x01FA;</span> [<span class="uname">U+01FA LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>]</span>, but each one is encoded slightly differently. More variations are possible, but are omitted for brevity.</p>
+        
         <p>Because applications need to find the semantic equivalence in texts
           that use different code point sequences, Unicode defines a means of
           making two semantically equivalent texts identical: the Unicode
@@ -808,14 +798,14 @@
 		  identical-appearing strings that are in a given Unicode Normalization Form use the same sequence of code points.
 		  See <a href="#normalizationLimitations"></a> for more information.</p>
 		</aside>
-        <p><a data-lt="resource|resources">Resources</a> are often susceptible to the
+        <p><a>Resources</a> are often susceptible to the
           effects of these variations because their specifications and
           implementations on the Web do not require Unicode Normalization of the
           text, nor do they take into consideration the string matching
           algorithms used when processing the syntactic content and natural language content later. For this
           reason, content developers need to ensure that they have provided a
           consistent representation in order to avoid problems later.</p>
-        <p>However, it can be difficult for users to assure that a given <a data-lt="resource">resource</a>
+        <p>However, it can be difficult for users to assure that a given <a>resource</a>
           or set of resources uses a consistent textual representation because
           the differences are usually not visible when viewed as text. Tools and
           implementations thus need to consider the difficulties experienced by
@@ -844,26 +834,12 @@
                 sequences.</em> Some characters can be composed from a base
               character followed by one or more combining characters. The same
               characters are sometimes also encoded as a distinct "precomposed"
-              character. In this example, the character <span class="qchar">Ç</span>
-              <span class="uname" translate="no">U+00C7</span> is canonically
-              equivalent to the base character <span class="qchar">C</span> <span
-
-                class="uname" translate="no">U+0043</span> followed by the
-              combining cedilla character <span class="qchar">̧</span> <span class="uname"
-
-                translate="no">U+0327</span>. Such equivalence can extend to
-              characters with multiple combining marks.</li>
+              character. In this example, the character <span class="codepoint"><span lang="en">&#x00C7;</span> [<span class="uname">U+00C7 LATIN CAPITAL LETTER C WITH CEDILLA</span>]</span> is canonically equivalent to the character sequence starting with the base character <span class="codepoint"><span lang="en">&#x0043;</span> [<span class="uname">U+0043 LATIN CAPITAL LETTER C</span>]</span> followed by <span class="codepoint"><span lang="en">&#x25CC;&#x0327;</span> [<span class="uname">U+0327 COMBINING CEDILLA​</span>]</span>. Such equivalence can extend to characters with multiple combining marks.</li>
             <li class="dropExampleItem"><span class="dropExample">q&#x0307;&#x0323;<span style="font-size:75%">
                   vs.</span>q&#x0323;&#x0307;</span> <em>Order of combining marks.</em> When
               a base character is modified by multiple combining marks, the
               order of the combining marks might not represent a distinct
-              character. Here the sequence <span class="qterm">q&#x0307;&#x0323;</span>(<span
-
-                class="uname" translate="no">U+0071 U+0323 U+0307</span>) and <span
-
-                class="qterm">q&#x0323;&#x0307;</span>(<span class="uname" translate="no">U+0071
-                U+0307 U+0323</span>) are equivalent, even though the combining
-              marks are in a different order. Note that this example is chosen
+              character. Here the sequence <span class="codepoint"><span lang="en">&#x0071;</span> [<span class="uname">U+0071 LATIN SMALL LETTER Q</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0307;</span> [<span class="uname">U+0307 COMBINING DOT ABOVE​</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0323;</span> [<span class="uname">U+0323 COMBINING DOT BELOW​</span>]</span> and <span class="codepoint"><span lang="en">&#x0071;</span> [<span class="uname">U+0071 LATIN SMALL LETTER Q</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0323;</span> [<span class="uname">U+0323 COMBINING DOT BELOW​</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0307;</span> [<span class="uname">U+0307 COMBINING DOT ABOVE​</span>]</span> are equivalent, even though the combining marks are in a different order. Note that this example is chosen
               carefully: the dot-above character and dot-below character are on
               opposite "sides" of the base character. The order of combining
               diacritics on the same side have a positional meaning.</li>
@@ -871,11 +847,9 @@
                   vs.</span>Ω</span> <em>Singleton mappings.</em> These result
               from the need to separately encode otherwise equivalent characters
               to support legacy character encodings. In this example, the Ohm
-              symbol <span class="qchar">Ω</span> <span class="uname" translate="no">U+2126</span>
+              symbol <span class="codepoint"><span lang="en">&#x03A9;</span> [<span class="uname">U+03A9 GREEK CAPITAL LETTER OMEGA</span>]</span>
               is canonically equivalent (and identical in appearance) to the
-              Greek letter Omega <span class="qchar">Ω</span> <span class="uname"
-
-                translate="no">U+03A9</span>.</li>
+              Greek letter Omega <span class="codepoint"><span lang="en">&#x03A9;</span> [<span class="uname">U+03A9 GREEK CAPITAL LETTER OMEGA</span>]</span>.</li>
             <li class="dropExampleItem"><span class="dropExample">가<span style="font-size:75%">
                   vs.</span>&#x1100;&#x1161;</span> <em>Hangul.</em> The Hangul script is
               used to write the Korean language. This script is constructed

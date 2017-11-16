@@ -218,3 +218,14 @@ p.quote {
     border-left: 6px solid #888888;
 }
 
+.uname {
+     font-size: 75%;
+     margin: 0 2px;
+     letter-spacing: 0.05em;
+}
+
+.codepoint [lang="en"] {
+     font-size: 140%;
+}
+
+
