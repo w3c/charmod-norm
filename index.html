@@ -261,11 +261,10 @@
           establish terminology that allows us to talk about the different kinds
           of text within a given format or protocol, as the requirements and
           details vary significantly. </p>
-        <p>Unicode code points are denoted as <code class="kw" translate="no">U+hhhh</code>,
-          where <code class="kw" translate="no">hhhh</code> is a sequence of at
+        <p>Unicode code points are denoted as <code class="kw" translate="no">U+<em>hhhh</em></code>,
+          where <code class="kw" translate="no"><em>hhhh</em></code> is a sequence of at
           least four, and at most six hexadecimal digits. For example, the
-          character <span class="qchar">€</span> <span class="uname" translate="no">EURO
-            SIGN</span> has the code point <span class="uname" translate="no">U+20AC</span>.</p>
+          character <span class="codepoint"><span lang="en">&#x20AC;</span> [<span class="uname">U+20AC EURO SIGN</span>]</span> has the code point <span class="uname" translate="no">U+20AC</span>.</p>
         <p>Some characters that are used in the various examples might not
           appear as intended unless you have the appropriate font. Care has been
           taken to ensure that the examples nevertheless remain understandable.</p>
@@ -363,15 +362,10 @@
           grapheme cluster. Note that the interaction between the language of
           string content and the end-user's preferences might be complex.</p>
         <aside class="example">
-          <p>The Hindi word for Unicode <q>यूनिकोड</q> is composed of a
-            sequence of seven Unicode characters from the Devanagari script (<span
-
-              class="uname" translate="no">U+092F U+0942 U+0928 U+093F U+0915
-              U+094B U+0921</span>). However, most users would identify this
-            word as containing four units of text. Each of the
-            first three graphemes consists of two characters: a syllable and a
-            modifying vowel character. So the word contains seven Unicode
-            characters, but only four graphemes:
+			<p>The Hindi word for Unicode <q>&#x92f;&#x942;&#x928;&#x93f;&#x915;&#x94b;&#x921;</q> is composed of seven Unicode characters from the Devanagari script.
+			</p>
+          <p>Most users would identify this word as containing four units of text. Each of the first three graphemes consists of two characters: a syllable and a
+            modifying vowel character. So the word contains seven Unicode characters, but only four graphemes:
             
             <table>
 				<tr>
@@ -609,7 +603,7 @@
 		  
 		  <aside class="example">
 
-		  <p>Examples of <code class=kw>full</code> versus <code class=kw>simple</code> case fold variations can be found in the Greek script, where several precomposed characters have multi-character case fold mappings. The table below shows one such example, the character <code>U+1F9B</code> (<span class="uname" translate="no">GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span>) and it's <code class="kw">full</code> and <code class="kw">simple</code> case fold mappings:</p>
+		  <p>Examples of <code class=kw>full</code> versus <code class=kw>simple</code> case fold variations can be found in the Greek script, where several precomposed characters have multi-character case fold mappings. The table below shows one such example, the character <span class="codepoint"><span lang="en">&#x1F9B;</span> [<span class="uname">U+1F9B GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span>]</span> and it's <code class="kw">full</code> and <code class="kw">simple</code> case fold mappings:</p>
 					
 		  <table style="width: 100%">
      
@@ -677,9 +671,9 @@
             
         <aside class="example">
             <p><span class="exampleChar">Diyarbakır</span> &#x21d2; <code>text-transform: uppercase</code> &#x21d2; <span class="exampleChar">DİYARBAKIR</span></p>
-            <p>Notice that the ASCII letter <span class="qchar">i</span> maps to <span class="uname" translate="no">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>, while the letter <span class="qchar">ı</span> (<span class="uname" translate="no">U+0131 LATIN SMALL LETTER DOTLESS I</span>) maps to the ASCII uppercase <span class="qchar">I</span>. Failure to apply this localized case mapping would change the meaning of the text in Turkish, even thought this is the expected mapping in other languages, such as English or German.</p>
+            <p>Notice that the ASCII letter <span class="codepoint"><span lang="en">&#x0069;</span> [<span class="uname">U+0069 LATIN SMALL LETTER I</span>]</span> maps to <span class="codepoint"><span lang="en">&#x0130;</span> [<span class="uname">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>]</span>, while the letter <span class="codepoint"><span lang="en">&#x0131;</span> [<span class="uname">U+0131 LATIN SMALL LETTER DOTLESS I</span>]</span> maps to the ASCII uppercase <span class="codepoint"><span lang="en">&#x0049;</span> [<span class="uname">U+0049 LATIN CAPITAL LETTER I</span>]</span>. Failure to apply this localized case mapping would change the meaning of the text in Turkish, even thought this is the expected mapping in other languages, such as English or German.</p>
             <p>This language-specific tailoring can also be applied to case folding. For example, if the uppercase text needed to be matched against some set of strings in a case-insensitive way:</p>
-            <p><span class="exampleChar">DİYARBAKIR</span> &#x21d2; <code>case fold</code> &#x21d2; <span class="exampleChar">diyarbak&#x131;r</span></p>
+            <p><span class="exampleChar">D&#x130;YARBAKIR</span> &#x21d2; <code>case fold</code> &#x21d2; <span class="exampleChar">diyarbak&#x131;r</span></p>
         </aside>
 
         
@@ -756,10 +750,9 @@
           When searching or matching text by comparing code points, variations 
 		in encoding could cause text values otherwise expected to match not to 
 		match. </p>
-		  <p>Consider the character &#x01FA;. One way to encode this character 
-		  is as <span class="uname" translate="no"> U+01FA
+		  <p>Consider the character <span class="codepoint"><span lang="en">&#x01FA;</span> [<span class="uname">U+01FA LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>]</span>. One way to encode this character is as <span class="uname" translate="no"> U+01FA
             LATIN LETTER CAPITAL A WITH RING ABOVE AND ACUTE</span>. Here are
-          some of the different character sequences that an HTML document could
+          some of the different character sequences that a document could
           use to represent this character:</p>
         <ul class="dropExampleList">
           <li class="dropExampleItem"><span class="dropExample">&#x01FA;</span> <span class="uname" translate="no">U+01FA</span>—A "precomposed" character.</li>
@@ -793,11 +786,8 @@
               ABOVE</span> and <span class="uname" translate="no">U+0301
               COMBINING ACUTE ACCENT</span>)</li>
         </ul>
-        <p>Each of the above strings contains the same apparent 
-        <span class="quote">meaning</span> as <span class="qchar">Ǻ</span> (<span class="uname" translate="no">U+01FA
-              LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>), but each
-            one is encoded slightly differently. More variations are possible,
-            but are omitted for brevity.</p>
+        <p>Each of the above strings contains the same apparent <span class="quote">meaning</span> as <span class="codepoint"><span lang="en">&#x01FA;</span> [<span class="uname">U+01FA LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>]</span>, but each one is encoded slightly differently. More variations are possible, but are omitted for brevity.</p>
+        
         <p>Because applications need to find the semantic equivalence in texts
           that use different code point sequences, Unicode defines a means of
           making two semantically equivalent texts identical: the Unicode
@@ -808,14 +798,14 @@
 		  identical-appearing strings that are in a given Unicode Normalization Form use the same sequence of code points.
 		  See <a href="#normalizationLimitations"></a> for more information.</p>
 		</aside>
-        <p><a data-lt="resource|resources">Resources</a> are often susceptible to the
+        <p><a>Resources</a> are often susceptible to the
           effects of these variations because their specifications and
           implementations on the Web do not require Unicode Normalization of the
           text, nor do they take into consideration the string matching
           algorithms used when processing the syntactic content and natural language content later. For this
           reason, content developers need to ensure that they have provided a
           consistent representation in order to avoid problems later.</p>
-        <p>However, it can be difficult for users to assure that a given <a data-lt="resource">resource</a>
+        <p>However, it can be difficult for users to assure that a given <a>resource</a>
           or set of resources uses a consistent textual representation because
           the differences are usually not visible when viewed as text. Tools and
           implementations thus need to consider the difficulties experienced by
@@ -844,26 +834,12 @@
                 sequences.</em> Some characters can be composed from a base
               character followed by one or more combining characters. The same
               characters are sometimes also encoded as a distinct "precomposed"
-              character. In this example, the character <span class="qchar">Ç</span>
-              <span class="uname" translate="no">U+00C7</span> is canonically
-              equivalent to the base character <span class="qchar">C</span> <span
-
-                class="uname" translate="no">U+0043</span> followed by the
-              combining cedilla character <span class="qchar">̧</span> <span class="uname"
-
-                translate="no">U+0327</span>. Such equivalence can extend to
-              characters with multiple combining marks.</li>
+              character. In this example, the character <span class="codepoint"><span lang="en">&#x00C7;</span> [<span class="uname">U+00C7 LATIN CAPITAL LETTER C WITH CEDILLA</span>]</span> is canonically equivalent to the character sequence starting with the base character <span class="codepoint"><span lang="en">&#x0043;</span> [<span class="uname">U+0043 LATIN CAPITAL LETTER C</span>]</span> followed by <span class="codepoint"><span lang="en">&#x25CC;&#x0327;</span> [<span class="uname">U+0327 COMBINING CEDILLA​</span>]</span>. Such equivalence can extend to characters with multiple combining marks.</li>
             <li class="dropExampleItem"><span class="dropExample">q&#x0307;&#x0323;<span style="font-size:75%">
                   vs.</span>q&#x0323;&#x0307;</span> <em>Order of combining marks.</em> When
               a base character is modified by multiple combining marks, the
               order of the combining marks might not represent a distinct
-              character. Here the sequence <span class="qterm">q&#x0307;&#x0323;</span>(<span
-
-                class="uname" translate="no">U+0071 U+0323 U+0307</span>) and <span
-
-                class="qterm">q&#x0323;&#x0307;</span>(<span class="uname" translate="no">U+0071
-                U+0307 U+0323</span>) are equivalent, even though the combining
-              marks are in a different order. Note that this example is chosen
+              character. Here the sequence <span class="codepoint"><span lang="en">&#x0071;</span> [<span class="uname">U+0071 LATIN SMALL LETTER Q</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0307;</span> [<span class="uname">U+0307 COMBINING DOT ABOVE​</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0323;</span> [<span class="uname">U+0323 COMBINING DOT BELOW​</span>]</span> and <span class="codepoint"><span lang="en">&#x0071;</span> [<span class="uname">U+0071 LATIN SMALL LETTER Q</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0323;</span> [<span class="uname">U+0323 COMBINING DOT BELOW​</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0307;</span> [<span class="uname">U+0307 COMBINING DOT ABOVE​</span>]</span> are equivalent, even though the combining marks are in a different order. Note that this example is chosen
               carefully: the dot-above character and dot-below character are on
               opposite "sides" of the base character. The order of combining
               diacritics on the same side have a positional meaning.</li>
@@ -871,11 +847,9 @@
                   vs.</span>Ω</span> <em>Singleton mappings.</em> These result
               from the need to separately encode otherwise equivalent characters
               to support legacy character encodings. In this example, the Ohm
-              symbol <span class="qchar">Ω</span> <span class="uname" translate="no">U+2126</span>
+              symbol <span class="codepoint"><span lang="en">&#x03A9;</span> [<span class="uname">U+03A9 GREEK CAPITAL LETTER OMEGA</span>]</span>
               is canonically equivalent (and identical in appearance) to the
-              Greek letter Omega <span class="qchar">Ω</span> <span class="uname"
-
-                translate="no">U+03A9</span>.</li>
+              Greek letter Omega <span class="codepoint"><span lang="en">&#x03A9;</span> [<span class="uname">U+03A9 GREEK CAPITAL LETTER OMEGA</span>]</span>.</li>
             <li class="dropExampleItem"><span class="dropExample">가<span style="font-size:75%">
                   vs.</span>&#x1100;&#x1161;</span> <em>Hangul.</em> The Hangul script is
               used to write the Korean language. This script is constructed
@@ -1611,10 +1585,10 @@
         <ol>
           <li>Convert the strings to be compared to a common Unicode encoding form [[Encoding]].</li>
           <li>
-            <p>Expand all <a href="#characterEscapes">character escapes and includes</a>.</p>
+            <p>Expand all <a href="#expandingCharacterEscapes">character escapes and includes</a>.</p>
            </li>
-          <li>If Unicode normalization is desired, apply the appropriate normalization form to the text.</li>
-          <li>If case sensitivity is desired, proceed to the next step. Otherwise apply the appropriate case folding operation:
+          <li>If Unicode normalization is <a href="#normalizationChoice">desired</a>, apply the appropriate normalization form to the text.</li>
+          <li>If case sensitivity is <a href="#handlingCaseFolding">desired</a>, proceed to the next step. Otherwise apply the appropriate case folding operation:
             <ol style="list-style-type:lower-latin">
 			  <li><em><a>Unicode full</a> case folding</em>:
                 map all code points to their <a>Unicode full</a> case fold equivalents.
@@ -1638,6 +1612,7 @@
                 </ul>
           </li>
 -->
+          <li>Perform any <a href="#additionalMatchTailoring">additional matching tailoring</a> specific to the specification.</li>
           <li>Test the resulting sequences of code points bit-by-bit for
             identity.</li>
         </ol>
@@ -1676,18 +1651,158 @@
             Normalization Form C.</p>
         </div>
         </section>
-        <section>
+        <section id="expandingCharacterEscapes">
+        <h4>Expanding Character Escapes and Includes</h4>
+        <p>Most document formats and protocols provide a means for 
+		encoding characters or including external data, including text, into a 
+		<a>resource</a>. This is discussed in detail in Section 4.6 of [[!CHARMOD]] 
+		as well as <a href="#characterEscapes">above</a>.</p>
+		
+		<p>When performing matching, it is important to know when to interpret character escapes so that
+		   a match succeeds (or fails) appropriately. Normally, escapes, references, and includes are processed
+		   or expanded before performing matching (or match-sensitive processing), since these syntaxes exist to allow difficult-to-encode
+		   sequences to be put into a document conveniently, yet allowing the characters to behave as-if they were
+		   directly encoded as a codepoint sequence in the document in question.</p>
+		 <p>One area where this can be complicated is deciding how syntactic content and natural language content interact.
+		 For example, consider the following snippet of HTML:</p>
+		 <aside class="example">
+		 <pre>
+		    &lt;p id="&amp;#x300;"&gt;Combining mark for ID!&lt;p&gt;
+		 </pre>
+		 </aside>
+		 <p>Although technically the combining mark <code>U+0300</code> combines with the preceding quote mark,
+		   HTML does not consider the character (whether or not it is encoded as an entity) to form part of the
+		   HTML syntax.</p>
+		  <p>When performing a matching operation on a resource, the general 
+		  rule is to expand escapes on the same &quot;level&quot; as the user is 
+		  interacting with. For example, when considering the above example, a 
+		  text editor being used to view or create the HTML source would show 
+		  the escape sequence <code>&amp;#x300;</code> as a string of characters 
+		  starting with an ampersand. A DOM browser, by contrast, would 
+		  show the character <code>U+0300</code> as the value of the attribute <code>id</code>.</p>
+		  <p>When processing the syntax of a document format, escapes should be 
+		  converted to the character sequence they represent before the 
+		  processing of the syntax, unless explicitly forbidden by the format's 
+		  processing rules. This allows resources to include characters of all 
+		  types into the resource's syntactic structures.</p>
+		  <p>In some cases, pre-processing escapes creates problems. 
+		  For example, expanding the sequence <code>&amp;lt;</code> before parsing an HTML 
+		  document would produce document errors.</p>
+      </section>
+        <section id="normalizationChoice">
           <h4>Choice of Normalization Form</h4>
-          <p>Given that there are many character sequences that content authors
-            or applications could choose when inputting or exchanging text, and
-            that when providing text in a normalized form, and that there are different
-            options for the normalization form to be used, what form is most
-            appropriate for content on the Web?</p>
-          <p>In general, the use of Unicode normalization SHOULD be avoided unless there is a specific benefit to be realized to users of a specification or implementation. The encoding choices of end users might not be obvious to downstream consumers of the data and normalization can remove distinctions that the users applied intentionally.</p>
+          <p>Given that there are many different ways that content authors or applications could choose to represent the same semantic values when inputting or exchanging text, what form is most appropriate for representing or matching content on the Web?</p>
+          <p>In general, specifications and implementations should avoid applying Unicode normalization unless there is a specific benefit to be realized to users (or the user requests it). The encoding choices of end users might not be obvious to downstream consumers of the data and normalization can remove distinctions that the users applied intentionally.</p>
           <p>That said, certain applications can realize a benefit by applying Unicode normalization as a part of string matching operations.</p>
           <p>The canonical normalization forms (form NFC or form NFD) are intended to preserve the meaning and presentation of the text to which they are applied, although in practice this is not always the case. NFC has the advantage that almost         all legacy data (if transcoded trivially, one-to-one, to a Unicode encoding), as well as data created by current software or entered by users on most (but certainly not all) keyboards, is already in this form; NFC also has a slight compactness advantage and is a better match to user expectations with respect to the character vs. <a>grapheme</a> issue. For storage or interchange, if normalization is to be applied, form NFC is RECOMMENDED.</p>
           <p>The compatibility normalization forms (form NFKC and form NFKD) lose compatibility distinctions that are usually important to the meaning of the content (see Chapter 5 <span class="qterm">Characters with Compatibility Mappings</span> in <cite>Unicode in XML and other Markup Languages</cite> [[UNICODE-XML]] for a discussion). These normalization forms do produce more promiscuous matching, which is usually undesirable in a string matching context, but can be useful in "find" operations or string searching. The NFKD and NFKC normalization forms SHOULD NOT be used for storage or interchange of text. String matching applications or specifications SHOULD avoid specifying these normalization forms unless there is a compelling reason.</p>
+          <div class="requirement">
+          <p>[C] Content authors SHOULD always encode text using consistent Unicode character sequences to facilitate matching, even if a Unicode normalization form is included in the matching performed by the format or implementation.</p>
+        </div>
         </section>
+        
+        <section id="handlingCaseFolding">
+        <h4>Choice of Case Folding</h4>
+        <p>One important consideration in string identity matching is whether the comparison is case sensitive or case insensitive.</p>
+        
+        <p>Specifications and implementations that define string matching as part of the definition of a format, protocol, or formal language (which might include operations such as parsing, matching, tokenizing, etc.) MUST define the criteria and matching forms used.</p>
+        
+        <div class="requirement">
+          <p>[C] Content authors SHOULD always spell identifiers using consistent upper, lower, and mixed case formatting to facilitate matching, even if case-insensitive matching is supported by the format or implementation. </p>
+        </div>
+        
+        <section id="sec_case_sensitive">
+          <h4>Case-sensitive matching</h4>
+        <div class="requirement">
+          <p>[S] <a href="#case-sensitive">Case-sensitive</a> matching is RECOMMENDED for new protocols and formats.</p>
+        </div>
+        <p>Case-sensitive matching is the easiest to implement and introduces
+          the least potential for confusion, since it generally consists of a
+          comparison of the underlying Unicode code point sequence. Because it
+          is not affected by considerations such as language-specific case
+          mappings, it produces the least surprise for document authors that
+          have included words, such as the Turkish examples above, in their
+          syntactic content.</p>
+        <p>However, cases exist in which case-insensitivity is desirable. Where case-insensitive matching is desired, there are several
+        implementation choices that a formal language needs to consider. </p>
+       </section>
+       <section id="sec_unicode_cs">
+          <h4>Unicode case-insensitive matching</h4>
+          
+          <p>Vocabularies generally should allow for a wide range of Unicode characters, particularly for user-defined values, so as to enable use by the broadest range of languages and cultures without disadvantage. As a result, text operations such as case folding need to address the full range of Unicode and not just selected portions. When case-insensitive matching is desired, this means using <a href="#definitionCaseFolding">Unicode case folding</a>:</p>
+
+        <div class="requirement">
+          <p>[S][I] The <a>Unicode full</a> casefolding is RECOMMENDED as the case-insensitive matching for <a data-lt="vocabulary">vocabularies</a>.
+            </p>
+        </div>
+        <p>The <a>Unicode simple</a> casefolding form is not appropriate for string identity matching on the Web.</p>
+
+
+        </section>
+        <section id="sec_ascii_cs">
+          <h4>ASCII case-insensitive matching</h4>
+
+         <p>A formal language whose <a>vocabulary</a> is limited to ASCII and which does not allow user-defined names or identifiers can specify <a>ASCII case-insensitive</a> matching. An example of this is HTML, which defines the use of ASCII case-insensitive comparison for element and attribute names defined by the HTML specification.</p>
+         
+         <div class="requirement">
+           <p>[S] For a vocabulary limited to the Basic Latin (ASCII) subset of Unicode, ASCII case-insensitive matching MAY be specified.</p>
+        </div>
+       
+        <p>A vocabulary is considered to be "ASCII-only" if and only if all
+           tokens and identifiers are defined by the specification directly and
+           these identifiers or tokens use only the Basic Latin subset of
+           Unicode. If user-defined identifiers are permitted, the full range of
+           Unicode characters (limited, as appropriate, for security or
+           interchange concerns, see [[UTR36]]) should be allowed and Unicode
+           case insensitivity used for identity matching.</p>
+        <p>Note that an ASCII-only vocabulary can exist inside a document format
+          or protocol that allows a larger range of Unicode in identifiers or
+          values.</p>
+        <p class="exampleBox">For example [[CSS-SYNTAX-3]] defines the format of CSS 
+		style sheets in a way that allows the full range of Unicode to be used 
+		for identifiers and values. However, CSS specifications always define 
+		CSS keywords using a subset of the ASCII range. The vocabulary of CSS is 
+		thus ASCII-only, even though many style sheets contain identifiers or 
+		data values that are not ASCII.</p>
+        </section>
+        
+        <section id="sec_language_tailoring">
+          <h4>Language-specific tailoring</h4>
+          <p>Locale- or language-specific tailoring is most appropriate when it is part of natural language processing operations. Because language-specific tailoring of case mapping or case folding produces different results from the generic case folding rules, these should be avoided in formal languages, where predictability is at a premium. </p>
+          <div class="requirement">
+            <p>[S][I] Locale- or language-specific tailoring is NOT RECOMMENDED for specifications and implementations that define string
+              matching as part of the definition of a format, protocol, or formal language.</p>
+          </div>
+          <aside class="note">
+            <p>Language-sensitive string comparison is often referred to as being <em>locale-sensitive</em>, since most programming
+              languages and operating environments access language-specific tailoring
+              using their respective locale-based APIs. For example, see the <code>java.text.Collator</code> class
+              in the Java programming language or <code>Intl.Collator</code> in JavaScript.</p>
+          </aside>
+        <div class="requirement">
+        <p>Language-sensitive case-insensitive matching in document formats and protocols is NOT RECOMMENDED, although authors and users should be warned of the limitations this implies for languages that depend on casefold matching to occur.</p>
+        </div>
+        <p>This is because language information can be hard to obtain, verify, or manage and because the resulting operations can produce results that frustrate users or which fail for some users and succeed for others depending on the language configuration that they are using. Operations that are themselves language-specific can include language-specific case folding where appropriate.</p>
+        </section>
+      </section>
+      
+      <section id="additionalMatchTailoring">
+      <h2>Additional Match Tailoring</h2>
+      <p>Some implementations might require additional tailoring to assist with matching. This might include removing certain <a href="#invisibleControls">Unicode controls or invisbile markers</a>, mapping together or removing characters that are part of the syntax, or performing a whitespace trim.</p>
+      <p>Specificiations need to clearly define any additional tailoring done as part of the matching process. Care should be taken not to interfere with the encoding of different languages. For example, a process that removes all combining characters based on Unicode character classes will not support languages that rely on combining marks and lead to user frustration. An example of this would be the various Indic scripts which use combining marks to encode or suppress vowels.</p>
+      </section>
+      
+<!-- Disappeared this pending removal
+      <section id="handlingUnicodeControls">
+        <h2>Handling Unicode Controls and Invisible Markers</h2>
+        <div class="requirement">
+          <p>Applications that do string matching SHOULD ignore Unicode
+            formatting controls such as variation selectors; grapheme or word
+            joiners; or other non-semantic controls.</p>
+        </div>
+      </section>
+---->
+    </section>
         </section>
         <section id="content-reqs">
           <h3>Requirements for Resources</h3>
@@ -1763,21 +1878,23 @@
             denormalized content need to be carefully considered and well
             specified in these cases. </p>
         </div>
-        <section id="non-normalizing">
-          <h4> Non-Normalizing Specification Requirements </h4>
+        <section id="specRequirements">
+			<h3>Requirements for Specifications</h3>
+			<p>This section discusses the requirements that different types of specification ought to consider. Most new specifications should use the <a href="#non-normalizing">Requirements for Non-Normalizing Specifications</a>. Specifications that require Unicode normalization should use the <a href="#normalizing-spec">Requirements for Unicode Normalizing Specifications</a>.</p>
 
-          <p>The following requirements pertain to any specification that
-            specifies explicitly that normalization is not to be applied
-            automatically to content (which SHOULD include all new
-            specifications): </p>
+        <section id="non-normalizing">
+          <h4>Requirements for Non-Normalizing Specifications</h4>
+
+          <p>The following requirements pertain to any specification that specifies that normalization is not to be applied
+            automatically to content (which should include all new specifications): </p>
           <div class="requirement">
             <p>[S] Specifications that do not normalize MUST document or provide
               a health-warning if canonically equivalent but disjoint Unicode
-              character sequences represent a security issue. </p>
+              character sequences represent a security issue.</p>
           </div>
           <div class="requirement">
             <p>[S][I] Specifications and implementations MUST NOT assume that
-              content is in any particular normalization form. </p>
+              content is in any particular normalization form.</p>
           </div>
           <p>The normalization form or lack of normalization for any given
             content has to be considered intentional in these cases.</p>
@@ -1808,7 +1925,7 @@
           </div>
         </section>
         <section id="normalizing-spec">
-          <h4> Unicode Normalizing Specification Requirements </h4>
+          <h4>Requirements for Unicode Normalizing Specifications</h4>
           <p>This section contains requirements for specifications of text-based formats and protocols that define
             Unicode Normalization as a requirement. New specifications SHOULD NOT require normalization
             unless special circumstances apply.</p>
@@ -1873,168 +1990,9 @@
           </div>
         </section>
       </section>
-      <section id="expandingCharacterEscapes">
-        <h2>Expanding Character Escapes and Includes</h2>
-        <p>Most document formats and protocols provide a means for 
-		encoding characters or including external data, including text, into a 
-		<a>resource</a>. This is discussed in detail in Section 4.6 of [[!CHARMOD]] 
-		as well as <a href="#characterEscapes">above</a>.</p>
-		
-		<p>When performing matching, it is important to know when to interpret character escapes so that
-		   a match succeeds (or fails) appropriately. Normally, escapes, references, and includes are processed
-		   or expanded before performing matching (or match-sensitive processing), since these syntaxes exist to allow difficult-to-encode
-		   sequences to be put into a document conveniently, yet allowing the characters to behave as-if they were
-		   directly encoded as a codepoint sequence in the document in question.</p>
-		 <p>One area where this can be complicated is deciding how syntactic content and natural language content interact.
-		 For example, consider the following snippet of HTML:</p>
-		 <aside class="example">
-		 <pre>
-		    &lt;p id="&amp;#x300;"&gt;Combining mark for ID!&lt;p&gt;
-		 </pre>
-		 </aside>
-		 <p>Although technically the combining mark <code>U+0300</code> combines with the preceding quote mark,
-		   HTML does not consider the character (whether or not it is encoded as an entity) to form part of the
-		   HTML syntax.</p>
-		  <p>When performing a matching operation on a resource, the general 
-		  rule is to expand escapes on the same &quot;level&quot; as the user is 
-		  interacting with. For example, when considering the above example, a 
-		  text editor being used to view or create the HTML source would show 
-		  the escape sequence <code>&amp;#x300;</code> as a string of characters 
-		  starting with an ampersand. A DOM browser, by contrast, would 
-		  show the character <code>U+0300</code> as the value of the attribute <code>id</code>.</p>
-		  <p>When processing the syntax of a document format, escapes should be 
-		  converted to the character sequence they represent before the 
-		  processing of the syntax, unless explicitly forbidden by the format's 
-		  processing rules. This allows resources to include characters of all 
-		  types into the resource's syntactic structures.</p>
-		  <p>In some cases, pre-processing escapes creates problems. 
-		  For example, expanding the sequence <code>&amp;lt;</code> before parsing an HTML 
-		  document would produce document errors.</p>
       </section>
-      <section id="handlingCaseFolding">
-        <h2>Handling Case Folding</h2>
-        <p>As described <a href="#definitionCaseFolding">above</a>, one 
-		important consideration in string identity matching is whether the
-          comparison is case sensitive or case insensitive.</p>
-          <p>These requirements pertain to specifications for document formats
-            or programming/scripting languages and their implementations.</p>
-          <div class="requirement">
-            <p>[S][I] Specifications and implementations that define string
-              matching as part of the definition of a format, protocol, or
-              formal language (which might include operations such as parsing,
-              matching, tokenizing, etc.) MUST define the criteria and matching
-              forms used. These MUST be one of: </p>
-            <ul>
-              <li>Case-sensitive</li>
-              <li>Unicode case-insensitive using <a>Unicode full</a> casefolding</li>
-              <li>ASCII case-insensitive</li>
-            </ul>
-          </div>
-        <section id="sec_case_sensitive">
-          <h4>Case-sensitive matching</h4>
-        <div class="requirement">
-          <p>[S] <a href="#case-sensitive">Case-sensitive</a> matching is
-            RECOMMENDED as the default for new protocols and formats. Specifications SHOULD NOT specify case-insensitive comparison of strings.</p>
-        </div>
-        <p>Case-sensitive matching is the easiest to implement and introduces
-          the least potential for confusion, since it generally consists of a
-          comparison of the underlying Unicode code point sequence. Because it
-          is not affected by considerations such as language-specific case
-          mappings, it produces the least surprise for document authors that
-          have included words such as the Turkish example above in their
-          syntactic content.</p>
-        <p>However, cases exist in which case-insensitivity is desirable. Where case-insensitive matching is desired, there are several
-        implementation choices that a formal language needs to consider. </p>
-</section>
-        <section id="sec_ascii_cs">
-          <h4>ASCII case-sensitive matching</h4>
-         <div class="requirement">
-       <p>If
-          the vocabulary of strings to be compared is limited to the Basic Latin
-          (ASCII) subset of Unicode, and case sensitive is not an option, ASCII case-insensitive matching MAY be
-          used.</p>
-        </div>
-         <p>This requirement applies to formal languages whose keywords are all
-           ASCII and which do not allow user-defined names or identifiers. An
-           example of this is HTML, which defines the use of ASCII
-           case-insensitive comparison for element and attribute names defined
-           by the HTML specification.</p>
-         <div class="requirement">
-           <p>ASCII case-insensitive matching MUST only be applied to
-             vocabularies that are restricted to ASCII and do not permit
-            user-defined values that use a broader range of Unicode. <a href="#uci">Unicode
-            case-insensitive</a> matching MUST be used for all other vocabularies, even if the
-          vocabulary does not allow the full range of Unicode.</p>
-        </div>
-        <p>A vocabulary is considered to be "ASCII-only" if and only if all
-           tokens and identifiers are defined by the specification directly and
-           these identifiers or tokens use only the Basic Latin subset of
-           Unicode. If user-defined identifiers are permitted, the full range of
-           Unicode characters (limited, as appropriate, for security or
-           interchange concerns, see [[UTR36]]) should be allowed and Unicode
-           case insensitivity used for identity matching.</p>
-        <p>Note that an ASCII-only vocabulary can exist inside a document format
-          or protocol that allows a larger range of Unicode in identifiers or
-          values.</p>
-        <p class="exampleBox">For example [[CSS-SYNTAX-3]] defines the format of CSS 
-		style sheets in a way that allows the full range of Unicode to be used 
-		for identifiers and values. However, CSS specifications always define 
-		CSS keywords using a subset of the ASCII range. The vocabulary of CSS is 
-		thus ASCII-only, even though many style sheets contain identifiers or 
-		data values that are not ASCII.</p>
-        </section>
-                <section id="sec_unicode_cs">
-          <h4>Unicode case-insensitive matching</h4>
+ 
 
-        <div class="requirement">
-          <p>[S][I] The <a>Unicode full</a> casefolding is RECOMMENDED as the
-            case-insensitive matching for <a data-lt="vocabulary">vocabularies</a>, if case-sensitive is not an option.
-            The <a>Unicode simple</a> casefolding form MUST NOT be used for string identity matching
-            on the Web.</p>
-        </div>
-        <p><a href="#uci">Unicode case-insensitive</a> matching can take <a href="#definitionCaseFolding">several
-          forms</a>. <a>Unicode full</a> casefold is RECOMMENDED for matching.</p>
-        <div class="requirement">
-        <p>Language-sensitive case-insensitive matching in document formats and protocols is NOT RECOMMENDED, although authors and users should be warned of the limitations this implies for languages that depend on casefold matching to occur.</p>
-        </div>
-        <p>This is because language information can be hard to obtain, verify, or manage and because the resulting operations can produce results that frustrate users or which fail for some users and succeed for others depending on the language configuration that they are using. Operations that are themselves language-specific can include language-specific case folding where appropriate.</p>
-        
-    <div class="requirement">
-          <p>[C] Identifiers SHOULD use consistent case (upper, lower, mixed
-            case) to facilitate matching, even if case-insensitive matching is
-            supported by the format or implementation. </p>
-        </div>
-        </section>
-        
-        <section id="sec_language_tailoring">
-          <h4>Language-specific tailoring</h4>
-          <p>The appropriateness of locale- or language-specific tailoring is generally linked to
-            natural language processing operations. Because they produce
-            potentially different results from the generic case folding rules,
-            these should be avoided in formal languages, where predictability is
-            at a premium. </p>
-          <div class="requirement">
-            <p>[S][I] Locale- or language-specific tailoring is NOT RECOMMENDED for specifications and implementations that define string
-              matching as part of the definition of a format, protocol, or
-            formal language. </p>
-          </div>
-          <aside class="note">
-            <p>Language-sensitive string comparison is often referred to as being <em>locale-sensitive</em>, since most programming
-              languages and operating environments access language-specific tailoring
-              using their respective locale-based APIs. For example, see the <code>java.text.Collator</code> class
-              in the Java programming language or <code>Intl.Collator</code> in JavaScript.</p>
-          </aside>
-        </section>
-      </section>
-      <section id="handlingUnicodeControls">
-        <h2>Handling Unicode Controls and Invisible Markers</h2>
-        <div class="requirement">
-          <p>Applications that do string matching SHOULD ignore Unicode
-            formatting controls such as variation selectors; grapheme or word
-            joiners; or other non-semantic controls.</p>
-        </div>
-      </section>
-    </section>
    
     <section>
       <h2 id="changeLog" class="informative">Changes Since the Last Published
