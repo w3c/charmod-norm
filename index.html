@@ -405,48 +405,27 @@
         </aside>
         <section>
         <h5>Terminology Examples</h5>
-        <p>This section illustrates some of the terminology defined above.</p>
-          <div style="background-color:white;text-align: left; border-style: solid; border-width:3px; padding-left: 50px; padding-right: 50px; padding-top: 10px; width: 80%">
-            <p> <span class="markup">&lt;<span class="vocabulary">html</span> <span class="vocabulary">lang</span>="en" <span class="vocabulary">dir</span>="<span class="vocabulary">ltr</span>"&gt;<br>
-                &lt;<span class="vocabulary">head</span>&gt;</span></p>
-            <p><span class="markup">&nbsp; &lt;<span class="vocabulary">meta</span> <span class="vocabulary">charset</span>="UTF-8"&gt;<br>
-                &nbsp;&nbsp;&lt;<span class="vocabulary">title</span>&gt;</span><span class="shakespeare">Shakespeare</span><span
-
-                class="markup">&lt;/<span class="vocabulary">title</span>&gt;<br>
-                &lt;/<span class="vocabulary">head</span>&gt;<br>
-                &lt;<span class="vocabulary">body</span>&gt;<br>
-                &nbsp;&nbsp;&lt;<span class="vocabulary">img</span> <span class="vocabulary">src</span>="<span class="userValue">shakespeare.jpg</span>"
-                <span class="vocabulary">alt</span>="<span class="userValue"><span class="shakespeare">William
-                    Shakespeare</span></span>" <span class="vocabulary">id</span>="<span class="userValue">shakespeare_image</span>"&gt;<br>
-                <br>
-                &nbsp;&nbsp;&lt;<span class="vocabulary">p</span>&gt;</span><span class="shakespeare">What<span
-
-                  class="markup">&amp;#x2019;</span>s in a name? That which we
-                call a rose by any other name would smell as sweet.</span><span
-
-                class="markup">&lt;/<span class="vocabulary">p</span>&gt;<br>
-                &lt;/<span class="vocabulary">body</span>&gt;<br>
-                &lt;/<span class="vocabulary">html</span>&gt;</span> </p>
+        <p>This section illustrates some of the terminology defined above. For illustration purposes we'll use the following small HTML file as an example (line numbers added for reference):</p>
+          <div style="background-color:white;text-align: left; border-style: solid; border-width:3px; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 10px; width: 80%">
+            <p class=syntaxExample><span class=lnum>1 </span> <span class="markup">&lt;<span class="vocabulary">html</span> <span class="vocabulary">lang</span>="<span class=userValue>en</span>" <span class="vocabulary">dir</span>="<span class="vocabulary">ltr</span>"&gt;</p>
+            <p class=syntaxExample><span class=lnum>2 </span>&lt;<span class="vocabulary">head</span>&gt;</span></p>
+            <p class=syntaxExample><span class=lnum>3 </span><span class="markup">&nbsp;&nbsp;&lt;<span class="vocabulary">meta</span> <span class="vocabulary">charset</span>="<span class=userValue>UTF-8</span>"&gt;</p>
+            <p class=syntaxExample><span class=lnum>4 </span><span class=markup>&nbsp;&nbsp;&lt;<span class="vocabulary">title</span>&gt;</span><span class="shakespeare">Shakespeare</span><span class="markup">&lt;/<span class="vocabulary">title</span>&gt;</p>
+            <p class=syntaxExample><span class=lnum>5 </span>&lt;/<span class="vocabulary">head</span>&gt;</p>
+            <p class=syntaxExample><span class=lnum>6 </span>&lt;<span class="vocabulary">body</span>&gt;</p>
+            <p class=syntaxExample><span class=lnum>7 </span><span class=markup>&nbsp;&nbsp;&lt;<span class="vocabulary">img</span> <span class="vocabulary">src</span>="<span class="userValue">shakespeare.jpg</span>" <span class="vocabulary">alt</span>="<span class="userValue"><span class="shakespeare">William Shakespeare</span></span>" <span class="vocabulary">id</span>="<span class="userValue">shakespeare_image</span>"&gt;</p>
+            <p class=syntaxExample><span class=lnum>8 </span><span class=markup>&nbsp;&nbsp;&lt;<span class="vocabulary">p</span>&gt;</span><span class="shakespeare">What<span class="markup">&amp;#x2019;</span>s in a name? That which we call a rose by any other name would smell as sweet.</span><span class="markup">&lt;/<span class="vocabulary">p</span>&gt;</p>
+            <p class=syntaxExample><span class=lnum>9 </span>&lt;/<span class="vocabulary">body</span>&gt;</p>
+            <p class=syntaxExample><span class=lnum>10 </span>&lt;/<span class="vocabulary">html</span>&gt;</span> </p>
           </div>
           <ul style="text-align:left">
-          <li>Everything inside the black rectangle (that is, in this HTML file)
-            is part of the resource.</li>
-          <li><a>Syntactic content</a> is shown in a <span class="markup">monospaced font</span>.</li>
-          <li><a>Natural language content</a> is shown in a <span class="shakespeare">bold
-              blue font with a gray background</span>.</li>
-          <li>User values are shown in <span class="userValue">italics</span>.</li>
-          <li><a>Vocabulary</a> is shown with <span class="vocabulary">red underlining</span>.</li>
-          <li>All of the text above (all text in a text file) makes up a
-            resource. It's possible that a given resource will contain no
-            natural language content at all (consider an HTML document
-            consisting of four empty <code>div</code> elements styled to be
-            orange rectangles). It's also possible that a resource will contain
-            <em>no</em> syntactic content and consist solely of natural language content:
-            for example, a plain text file with a soliloquy from <cite>Hamlet</cite>
-            in it. Notice too that the HTML entity <code>&amp;#x2019;</code>
-            appears in the natural language content and belongs to both the
-          natural language content and the syntactic content in this resource.</li>
+          <li>Everything inside the black rectangle (that is, in this HTML file) is part of the <a>resource</a>.</li>
+          <li><a>Syntactic content</a> in this case includes all of the HTML markup. There are only two strings that are <strong>not</strong> part of the syntactic content: the word <em>"Shakespeare"</em> on line 4 and the sentence <em>"What&#x2019;s in a name? That which we call a rose by any other name would smell as sweet."</em> on line 8. (The HTML entity <q><kbd>&amp;#x2019;</kbd></q> embedded in the sentence on line 8 <em>is</em> part of the syntactic content.)</li>
+          <li><a>Natural language content</a> is shown in a <span class="shakespeare">bold blue font with a gray background</span>. In addition to the non-syntactic content, the <kbd>alt</kbd> value on line 7 (<em><q>William Shakespeare</q></em>) contains natural language text.</li>
+          <li>User values are shown in <span class="userValue">italics</span>. In this case there are three user values on line 7: the values of the <kbd>src</kbd>, <kbd>alt</kbd>, and <kbd>id</kbd> attributes of the <kbd>img</kbd> tag. In addition, the value of the <kbd>lang</kbd> attribute on line 1 and the <kbd>charset</kbd> attribute on line 3 are user values.</li>
+          <li><a>Vocabulary</a> is shown with <span class="vocabulary">red underlining</span>. The vocabulary of an HTML document are the elements and attributes (as well as some of the attribute values, such as the value <kbd>ltr</kbd> for the attribute <kbd>dir</kbd> in the example above) defined in [[HTML5]].</li>
           </ul>
+          <p class=note>All of the text above (all text in a text file) makes up the resource. It's possible that a given resource will contain no natural language content at all (consider an HTML document consisting of four empty <code>div</code> elements styled to be orange rectangles). It's also possible that a resource will contain <em>no</em> syntactic content and consist solely of natural language content: for example, a plain text file with a soliloquy from <cite>Hamlet</cite> in it. Notice too that the HTML entity <code>&amp;#x2019;</code> appears in the natural language content and belongs to both the natural language content and the syntactic content in this resource.</p>
         </section>
       </section>
       <section id="conformance">
