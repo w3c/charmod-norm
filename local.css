@@ -195,6 +195,7 @@ div.exampleBox {
 .shakespeare {
   color: #03F;
   font-weight: bold;
+  font-family: serif;
   background-color: #EfEfEf;
 }
 
@@ -226,6 +227,18 @@ p.quote {
 
 .codepoint [lang="en"] {
      font-size: 140%;
+}
+
+.lnum {
+    font-size: 75%;
+    color: gray;
+    font-family: Lucida Console,NoToFu,monospace;
+}
+
+p.syntaxExample {
+    padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 
