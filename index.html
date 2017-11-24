@@ -1450,7 +1450,14 @@
 		 legacy character encodings to the Unicode character set. There also 
 		 exist certain types of "interesting equivalence" that may be useful, 
 		 particularly in searching text, that are outside of the equivalences 
-		 defined by Unicode. For example, Japanese uses two syllabic scripts,
+		 defined by Unicode.</p>
+		 
+		 <p class=note>These types of equivalence are called out here for completeness. Specifications for a <a>vocabulary</a> or which define a matching algorithm for use in a formal syntax should avoid trying to match or harmonize these types of equivalence. These types of equivalence are of more interest for applications that provide natural language text searching or "find" features. 
+		 </p>
+		 
+		 <p class=issue>The above note really wants to have a link to StringSearch, but we haven't even published a FPWD of that.</p>
+		 
+		 <p>For example, Japanese uses two syllabic scripts,
 		 <code>hiragana</code> and <code>katakana</code>. A 
 		 user searching a document might type in text in one script, but wish to find 
 		 equivalent text in both scripts. These additional "text 
