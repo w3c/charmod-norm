@@ -12,7 +12,7 @@
           useExperimentalStyles: true,
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
           specStatus:				"ED",
-          publishDate:  			"2017-11-08",
+          publishDate:  			"2017-11-24",
           previousPublishDate:  	"2015-11-19",
           previousMaturity:  		"WD",
 
@@ -320,7 +320,7 @@
 		'resource' as used in [[RFC3986]], although here the term is applied 
 		loosely. </p>
           
-        <p>A <dfn data-lt="user value|user values">user value</dfn> is unreserved syntactic 
+        <p>A <dfn data-lt="user-supplied value|user-supplied values">user-supplied value</dfn> is unreserved syntactic 
         content in a <a>vocabulary</a> that is assigned by users, as distinct 
         from reserved keywords in a given format
         or protocol. For example, CSS class names are part of the syntax of a CSS
@@ -330,7 +330,7 @@
           
         <p>A <dfn id="def_vocabulary">vocabulary</dfn> provides the list of
           reserved names as well as the set of rules and specifications
-          controlling how <a>user values</a> (such as identifiers) can be assigned in a
+          controlling how <a>user-supplied values</a> (such as identifiers) can be assigned in a
           format or protocol. This can include restrictions on range, order, or
           type of characters that can appear in different places. For example,
           HTML defines the names of its elements and attributes, as well as
@@ -422,7 +422,7 @@
           <li>Everything inside the black rectangle (that is, in this HTML file) is part of the <a>resource</a>.</li>
           <li><a>Syntactic content</a> in this case includes all of the HTML markup. There are only two strings that are <strong>not</strong> part of the syntactic content: the word <em>"Shakespeare"</em> on line 4 and the sentence <em>"What&#x2019;s in a name? That which we call a rose by any other name would smell as sweet."</em> on line 8. (The HTML entity <q><kbd>&amp;#x2019;</kbd></q> embedded in the sentence on line 8 <em>is</em> part of the syntactic content.)</li>
           <li><a>Natural language content</a> is shown in a <span class="shakespeare">bold blue font with a gray background</span>. In addition to the non-syntactic content, the <kbd>alt</kbd> value on line 7 (<em><q>William Shakespeare</q></em>) contains natural language text.</li>
-          <li>User values are shown in <span class="userValue">italics</span>. In this case there are three user values on line 7: the values of the <kbd>src</kbd>, <kbd>alt</kbd>, and <kbd>id</kbd> attributes of the <kbd>img</kbd> tag. In addition, the value of the <kbd>lang</kbd> attribute on line 1 and the <kbd>charset</kbd> attribute on line 3 are user values.</li>
+          <li>User-supplied values are shown in <span class="userValue">italics</span>. In this case there are three user-supplied values on line 7: the values of the <kbd>src</kbd>, <kbd>alt</kbd>, and <kbd>id</kbd> attributes of the <kbd>img</kbd> tag. In addition, the value of the <kbd>lang</kbd> attribute on line 1 and the <kbd>charset</kbd> attribute on line 3 are user-supplied values.</li>
           <li><a>Vocabulary</a> is shown with <span class="vocabulary">red underlining</span>. The vocabulary of an HTML document are the elements and attributes (as well as some of the attribute values, such as the value <kbd>ltr</kbd> for the attribute <kbd>dir</kbd> in the example above) defined in [[HTML5]].</li>
           </ul>
           <p class=note>All of the text above (all text in a text file) makes up the resource. It's possible that a given resource will contain no natural language content at all (consider an HTML document consisting of four empty <code>div</code> elements styled to be orange rectangles). It's also possible that a resource will contain <em>no</em> syntactic content and consist solely of natural language content: for example, a plain text file with a soliloquy from <cite>Hamlet</cite> in it. Notice too that the HTML entity <code>&amp;#x2019;</code> appears in the natural language content and belongs to both the natural language content and the syntactic content in this resource.</p>
