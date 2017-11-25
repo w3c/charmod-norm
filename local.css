@@ -112,11 +112,7 @@ SPAN.h\e9llo {
       text-decoration: underline; 
 }
 
-span.tableSub {
-    font-family: monospace;
-	font-size: 11px;
-}
-    
+  
 span.dropExample {
     float: left;
     width: 6em;
@@ -138,7 +134,7 @@ li.dropExampleItem {
 }
     
 table {
-    border-collapes: collapse;
+    border-collapse: collapse;
 }
 
 td.b1 {
@@ -163,9 +159,23 @@ td.b3 {
 }
 
 td.b-clear {
-	background-color: white;
-	border: 2px solid black;
+
+	border: 1px solid black;
 	width: 20%;
+	text-align: center;
+	font-size: 36pt;
+    font-family: serif;
+}
+
+.tableSub {
+    font-family: monospace;
+	font-size: 11px;
+	text-align: center;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.tableHead {
 	text-align: center;
 }
 
