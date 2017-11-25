@@ -1015,92 +1015,73 @@
         </section>
         <section id="normalization_forms">
           <h4>Unicode Normalization Forms</h4>
-          <p>There are four Unicode Normalization Forms. Each form is named using a letter code: 
-		  the letter 'C' stands for Composition; the letter 'D' for Decomposition; 
-		  and the
-            letter 'K' stands for Compatibility decomposition. Having converted a resource to a
-            sequence of Unicode characters and unescaped any escape sequences,
-            we can finally "normalize" the Unicode texts given in the example
-            above. Here are the resulting sequences in each Unicode
-            Normalization form for the U+01FA example given earlier. Each different colored background is a different resulting code point sequence.  </p>
-          <figure>
-            <div>
-              <table class="data">
-                <thead>
-                  <tr>
-                    <th>Original Codepoints</th>
-                    <th>NFC</th>
-                    <th>NFD</th>
-                    <th>NFKC</th>
-                    <th>NFKD</th>
-                  </tr>
-                </thead>
-<tbody>
-                  <tr>
-                    <td class="b1">&#x01FA;<br>
-                      <span class="tableSub">U+01FA</span></td>
-                    <td class="b1">&#x01FA;<br>
-                      <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">A&#x030A;&#x0301;<br>
-                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                    <td class="b1">&#x01FA;<br>
-                      <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">A&#x030A;&#x0301;<br>
-                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                  </tr>
-                  <tr>
-                    <td class="b-clear">&#x00C5;&#x0301;<br>
-                      <span class="tableSub">U+00C5 U+0301</span></td>
-                    <td class="b1">&#x01FA;<br>
-                      <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">A&#x030A;&#x0301;<br>
-                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                    <td class="b1">&#x01FA;<br>
-                      <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">A&#x030A;&#x0301;<br>
-                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                  </tr>
-                  <tr>
-                    <td class="b-clear">&#x212B;&#x0301;<br>
-                      <span class="tableSub">U+212B U+0301</span></td>
-                    <td class="b1">&#x01FA;<br>
-                      <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">A&#x030A;&#x0301;<br>
-                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                    <td class="b1">&#x01FA;<br>
-                      <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">A&#x030A;&#x0301;<br>
-                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                  </tr>
-                  <tr>
-                    <td class="b2">A&#x030A;&#x0301;<br>
-                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                    <td class="b1">&#x01FA;<br>
-                      <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">A&#x030A;&#x0301;<br>
-                      <span class="tableSub"> U+0041 U+030A U+0301</span></td>
-                    <td class="b1">&#x01FA;<br>
-                      <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">A&#x030A;&#x0301;<br>
-                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                  </tr>
-                  <tr>
-                    <td class="b3">&#xFF21;&#x030A;&#x0301;<br>
-                      <span class="tableSub">U+FF21 U+030A U+0301</span></td>
-                    <td class="b3">&#xFF21;&#x030A;&#x0301;<br>
-                      <span class="tableSub">U+FF21 U+030A U+0301</span></td>
-                    <td class="b3">&#xFF21;&#x030A;&#x0301;<br>
-                      <span class="tableSub"> U+FF21 U+030A U+0301</span></td>
-                    <td class="b1">&#x01FA;<br>
-                      <span class="tableSub">U+01FA</span></td>
-                    <td class="b2">A&#x030A;&#x0301;<br>
-                      <span class="tableSub">U+0041 U+030A U+0301</span></td>
-                  </tr>
-                </tbody>	
-               </table>
-            </div>
-            <figcaption>Comparison of Unicode Normalization Forms</figcaption> </figure>
-          <p>Unicode Normalization reduces these (and other potential sequences
+          <p>There are four Unicode Normalization Forms. Each form is named using a letter code: </p>
+          <ul>
+			  <li><strong>D</strong> (or NFD) stands for <em>canonical Decomposition</em>.</li>
+			  <li><strong>C</strong> (or NFC) stands for <em>Composition</em>, which is canonical decomposition followed by composition.</li>
+			  <li><strong>KD</strong> (or NFKD) stands for <em>Kompatibility decomposition</em> (K because the letter C is already used).</li>
+			  <li><strong>KC</strong> (or NFKC) stands for compatibility decomposition followed by composition.</li>
+          </ul>
+            
+          <aside class=example>
+			<p>Having converted a resource to a sequence of Unicode characters and unescaped any escape sequences, we can finally "normalize" the Unicode texts given in the example above. Here are the resulting sequences in each Unicode
+            Normalization form for the <span class=uname>U+01FA</span> example given earlier. Note that there are only three distinct code points sequences:</p>
+
+          <table style="borders:1px solid black; vertical-align:center; table-layout:fixed; text-align:center; column-width:200px;">
+			  <thead>
+				  <th class=tableHead>Original Codepoints</th>
+				  <th class=tableHead>NFC</th>
+				  <th class=tableHead>NFD</th>
+				  <th class=tableHead>NFKC</th>
+				  <th class=tableHead>NFKD</th>
+			  </thead>
+          <tr>
+			  <td class=b-clear>&#x01fa;</td>
+			  <td class=b-clear rowspan=9>&#x01fa;</td>
+			  <td class=b-clear rowspan=9>A&#x030A;&#x0301;</td>
+			  <td class=b-clear rowspan=11>&#x01fa;</td>
+			  <td class=b-clear rowspan=11>A&#x030A;&#x0301;</td>
+          </tr>
+          <tr>
+          	  <td class=tableSub>U+01FA</td>
+          </tr>
+          <tr>
+			  <td class=b-clear>&#x00C5;&#x0301;</td>
+          </tr>
+          </tr>
+          	  <td class=tableSub>U+00C5 U+0301</td>
+          <tr>
+          <tr>
+			  <td class=b-clear>&#x212B;&#x0301;</td>
+          </tr>
+          </tr>
+          	  <td class=tableSub>U+212B U+0301</td>
+          <tr>
+          <tr>
+			  <td class=b-clear>A&#x030A;&#x0301;</td>
+          </tr>
+          <tr>
+          	  <td class=tableSub>U+0041 U+030A U+0301</td>
+			  <td class=tableSub>U+01FA</td>
+			  <td class=tableSub>U+0041 U+030A U+0301</td>
+          </tr>
+          <tr>
+			  <td class=b-clear>&#xFF21;&#x030A;&#x0301;</td>
+			  <td class=b-clear>&#xFF21;&#x030A;&#x0301;</td>
+			  <td class=b-clear>&#xFF21;&#x030A;&#x0301;</td>
+          </tr>
+          <tr>
+			  <td class=tableSub>U+FF21 U+030A U+0301</td>
+			  <td class=tableSub>U+FF21 U+030A U+0301</td>
+			  <td class=tableSub>U+FF21 U+030A U+0301</td>
+			  <td class=tableSub>U+01FA</td>
+			  <td class=tableSub>U+0041 U+030A U+0301</td>
+          </tr>          
+
+          </table>
+          </aside>  
+            
+           <p>Unicode Normalization reduces these (and other potential sequences
             of escapes representing the same character) to just three possible
             variations. However, Unicode Normalization doesn't remove all
             textual distinctions and sometimes the application of Unicode
