@@ -1879,11 +1879,7 @@
               is specified, code unit-by-code unit comparison of the sequences.
             </p>
           </div>
-          <p>Regular expression syntaxes are sometimes useful in defining a format or protocol,
-          since they allow users to specify values that are only partially known or which
-          can vary. The definition or use of regular expression syntaxes or wildcards when 
-          considered over the range of Unicode encoding variations, and particularly when
-          considering character or grapheme boundaries brings with it additional considerations.</p>
+          <p>Regular expression syntaxes are sometimes useful in defining a format or protocol, since they allow users to specify values that are only partially known or which can vary in predictable ways. As seen in the various sections of this document, there is variation in the different ways that characters can be encoded in Unicode and this potentially interferes with how strings are specified or matched in expressions. For example, counting characters might need to depend on grapheme boundaries rather than the number of Unicode code points used; caseless matching might need to consider variations in case folding; or the Unicode normalization of the expression or text being processed might need to be considered.</p>
             
           <div class="requirement">
             <p>[S][I] Specifications that define a regular expression syntax
