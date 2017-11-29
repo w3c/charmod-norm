@@ -195,7 +195,7 @@ div.exampleBox {
 
 .exampleChar {
     font-size: 36pt;
-    font-family: serif;
+    font-family: "NoToFu", serif;
 }
 
 .markup {
@@ -236,7 +236,7 @@ p.quote {
 }
 
 .codepoint [lang="en"] {
-     font-size: 140%;
+     font-size: 120%;
 }
 
 div.terminologyExample {
