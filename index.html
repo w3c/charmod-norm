@@ -12,7 +12,7 @@
           useExperimentalStyles: true,
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
           specStatus:				"ED",
-          publishDate:  			"2017-11-24",
+          publishDate:  			"2017-11-29",
           previousPublishDate:  	"2015-11-19",
           previousMaturity:  		"WD",
 
@@ -829,21 +829,14 @@
               symbol <span class="codepoint"><span lang="en">&#x03A9;</span> [<span class="uname">U+03A9 GREEK CAPITAL LETTER OMEGA</span>]</span>
               is canonically equivalent (and identical in appearance) to the
               Greek letter Omega <span class="codepoint"><span lang="en">&#x03A9;</span> [<span class="uname">U+03A9 GREEK CAPITAL LETTER OMEGA</span>]</span>.</li>
-            <li class="dropExampleItem"><span class="dropExample">가<span style="font-size:75%">
+            <li class="dropExampleItem"><span class="dropExample">&#xac00;<span style="font-size:75%">
                   vs.</span>&#x1100;&#x1161;</span> <em>Hangul.</em> The Hangul script is
               used to write the Korean language. This script is constructed
               logically, with each syllable being a roughly-square <a>grapheme</a>
               formed from specific sub-parts that represent consonants and
               vowels. These specific sub-parts, called <em>jamo</em>, are
               encoded in Unicode. So too are the precomposed syllables. Thus the
-              syllable <span class="qchar">가</span>&nbsp; <span class="uname"
-
-                translate="no">U+AC00</span> is canonically equivalent to its
-              constituent <em>jamo</em> characters <span class="qchar">ᄀ</span>&nbsp;<span
-
-                class="uname" translate="no">U+1100</span> and <span class="qchar">ᅡ</span>&nbsp;<span
-
-                class="uname" translate="no">U+1161</span>.</li>
+              syllable <span class="codepoint"><span class="codepoint"><span lang="en">&#xAC00;</span> [<span class="uname">U+AC00 [Hangul Syllable, First]</span>]</span> is canonically equivalent to its constituent <em>jamo</em> characters <span class="codepoint"><span lang="en">&#x1100;</span> [<span class="uname">U+1100 HANGUL CHOSEONG KIYEOK</span>]</span> <span class="codepoint"><span lang="en">&#x1161;</span> [<span class="uname">U+1161 HANGUL JUNGSEONG A</span>]</span>.</li>
           </ul>
           <p><dfn>Compatibility equivalence</dfn> is a weaker equivalence
             between Unicode characters or sequences of Unicode characters that represent the
@@ -858,101 +851,153 @@
 		  compatibility decomposition often were not perceived as being 
 		  identical beforehand and SHOULD NOT be treated as equivalent by a formal
             language.</p>
-          <p>The following table illustrates various kinds of compatibility
-            equivalence in Unicode:</p>
-              <table class="data">
+            
+          <aside class=example>
+          <p>The following table illustrates various kinds of compatibility equivalence in Unicode:</p>
+              <table class=data>
                 <thead>
                   <tr>
-                    <th colspan="5">Compatibility Equivalance</th>
+                    <th>Compatibility Equivalance</th>
+                    <th style="text-align:center">Original</th>
+                    <th></th>
+                    <th style="text-align:center">Compatibility Mapping</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="long"><strong>Font variants</strong>—characters that have a
-                      specific visual appearance (generally associated with a
-                      specialized use, such as in mathematics).</td>
-                    <td style="text-align: center" colspan="2"> <span class="sampleCharacter">ℌ</span></td>
-                    <td style="text-align: center" colspan="2"> <span class="sampleCharacter">ℍ</span></td>
+                    <td rowspan=2><strong>Font variants</strong>—characters that have a specific visual appearance (generally associated with a specialized use, such as in mathematics).</td>
+                    <td style="text-align: center"><span class="exampleChar">&#x210c;</span></td>
+                    <td style="text-align: center" rowspan=2>&#x21d2;</td>
+                    <td style="text-align: center" rowspan=2><span class="exampleChar">H</td>
+                   </tr>
+                   <tr>
+                    <td style="text-align: center"><span class="exampleChar">&#x210d;</span></td>
                   </tr>
                   <tr>
-                    <td class="long"><strong>Breaking versus non-breaking</strong>—variations
-                      in breaking or joining rules, such as the difference
-                      between a <span class="qterm">normal</span> and a
-                      non-breaking space.</td>
-                    <td style="text-align: center" colspan="4"><span class="uname"
-
-                        translate="no">U+00A0 NON-BREAKING SPACE</span></td>
+                    <td><strong>Breaking versus non-breaking</strong>—variations in breaking or joining rules, such as the difference between a <span class="qterm">normal</span> and a non-breaking space.</td>
+                    <td style="text-align: center"><span class="uname" translate="no">U+00A0<br>NON-BREAKING SPACE</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="uname" translate="no">U+0020<br>SPACE</span></td>
                   </tr>
                   <tr>
-                    <td class="long"><strong>Presentation forms of Arabic</strong>—
-                      characters that encode the specific shapes&nbsp;(initial,
-                      medial, final, isolated) needed by visual legacy encodings
-                      of the Arabic script.</td>
-                    <td style="text-align: center"> <span class="sampleCharacter">ﻨ</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">ﻧ</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">ﻦ</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">ﻥ</span></td>
+                    <td rowspan=4><strong>Presentation forms of Arabic</strong>— characters that encode the specific shapes&nbsp;(initial, medial, final, isolated) needed by visual legacy encodings of the Arabic script.</td>
+                    <td style="text-align: center"><span class="exampleChar">&#xfee5;</span></td>
+                    <td style="text-align: center" rowspan=4>&#x21d2;</td>
+                    <td style="text-align: center" rowspan=4><span class="exampleChar">&#x646;</td>                   
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#xfee6;</span></td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#xfee7;</span></td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#xfee8;</span></td>
                   </tr>
                   <tr>
-                    <td class="long"><strong>Circled</strong>—numbers, letters, and other
-                      characters in a circled, bullet, or other presentational
-                      form; often used for lists, footnotes, and specialized
-                      presentation</td>
-                    <td style="text-align: center" colspan="1"> <span class="sampleCharacter">①</span></td>
-                    <td style="text-align: center" colspan="1"> <span class="sampleCharacter">&#x2469;</span></td>
-                    <td style="text-align: center" colspan="1"> <span class="sampleCharacter">&#x24b6;</span></td>
-                    <td style="text-align: center" colspan="1"> <span class="sampleCharacter">㊞</span></td>
+                    <td rowspan=4><strong>Circled</strong>—numbers, letters, and other characters in a circled, bullet, or other presentational form; often used for lists, footnotes, and specialized presentation</td>
+                    <td style="text-align: center"><span class="exampleChar">&#x2460;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">1</td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#x2469;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">10</td>
+                  </tr><tr>
+					<td style="text-align: center"><span class="exampleChar">&#x24b6;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">A</td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#x329e;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">&#x5370;</td>
                   </tr>
                   <tr>
-                    <td class="long"><strong>Width variation, size, rotated presentation
-                        forms</strong>—narrow vs. wide presentational forms of
-                      characters (such as those associated with legacy
-                      multibyte encodings), as well as "rotated" presentation
-                      forms necessary for vertical text.</td>
-                    <td style="text-align: center"><span class="sampleCharacter">ｶ</span></td>
-                    <td style="text-align: center"><span class="sampleCharacter">カ</span></td>
-                    <td style="text-align: center"><span class="sampleCharacter">︷</span></td>
-                    <td style="text-align: center"><span class="sampleCharacter">{</span></td>
+                    <td rowspan=4><strong>Width variation, size, rotated presentation forms</strong>—narrow vs. wide presentational forms of characters (such as those associated with legacy multibyte encodings), as well as "rotated" presentation forms necessary for vertical text.</td>
+                    <td style="text-align: center"><span class="exampleChar">&#xff76;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">&#x30ab;</td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#xfe37;</span></td>
+                    <td style="text-align: center" rowspan=2>&#x21d2;</td>
+                    <td style="text-align: center" rowspan=2><span class="exampleChar">{</td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#xff5b;</span></td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#xff21;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">A</td>
                   </tr>
                   <tr>
-                    <td class="long"><strong>Superscripts/subscripts</strong>—superscript or
-                      subscript letters, numbers, and symbols.</td>
-                    <td style="text-align: center"> <span class="sampleCharacter">⁹</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">₉</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">ª</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">₊</span></td>
+                    <td rowspan=4><strong>Superscripts/subscripts</strong>—superscript or subscript letters, numbers, and symbols.</td>
+                    <td style="text-align: center"><span class="exampleChar">&#x2079;</span></td>
+                    <td style="text-align: center" rowspan=2>&#x21d2;</td>
+                    <td style="text-align: center" rowspan=2><span class="exampleChar">9</td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#x2089;</span></td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#x00aa;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">a</td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#x208a;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">+</td>
                   </tr>
                   <tr>
-                    <td class="long"><strong><span class="quote">Squared</span> characters</strong>—East
-                      Asian (particularly kana) sequences encoded as a
-                      presentation form to fit in a single ideographic "cell" in
-                      text.</td>
-                    <td style="text-align: center"> <span class="sampleCharacter">㌀</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">㍐</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">&#x3250;</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">㎉</span></td>
+                    <td rowspan=4><strong><span class="quote">Squared</span> characters</strong>—East Asian (particularly kana) sequences encoded as a presentation form to fit in a single ideographic "cell" in text.</td>
+                    <td style="text-align: center"><span class="exampleChar">&#x3300;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">&#x30A2;&#x30D1;&#x30FC;&#x30C8;</td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#x3350;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">&#x30E6;&#x30A2;&#x30F3;</td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#x3250;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">PTE</td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#x3389;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">kcal</td>
                   </tr>
                   <tr>
-                    <td class="long"><strong>Fractions</strong>—precomposed vulgar fractions,
-                      often encoded for compatibility with font glyph sets.</td>
-                    <td style="text-align: center"> <span class="sampleCharacter">¼</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">½</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">⅟</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">&#x2189;</span></td>
+                    <td rowspan=4><strong>Fractions</strong>—precomposed vulgar fractions, often encoded for compatibility with font glyph sets.</td>
+                    <td style="text-align: center"><span class="exampleChar">&#xbc;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">1/4</td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#xbd;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">1/2</td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#x215f;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">1/</td>
+                  </tr><tr>
+                    <td style="text-align: center"><span class="exampleChar">&#x2189;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">0/3</td>
                   </tr>
                   <tr>
-                    <td class="long"><strong>Others</strong>—compatibility characters encoded
-                      for other reasons, generally for compatibility with legacy
-                      character encodings. Many of these characters are simply a
-                      sequence of characters encoded as a single presentational
-                      unit.</td>
-                    <td style="text-align: center"> <span class="sampleCharacter">ǆ</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">⑴</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">⒈</span></td>
-                    <td style="text-align: center"> <span class="sampleCharacter">⻳</span></td>
+                    <td rowspan=4><strong>Others</strong>—compatibility characters encoded for other reasons, generally for compatibility with legacy character encodings. Many of these characters are simply a sequence of characters encoded as a single presentational unit.</td>
+                    <td style="text-align: center"> <span class="exampleChar">&#x1c6;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">d&#x17e;</td>
+                  </tr><tr>
+                    <td style="text-align: center"> <span class="exampleChar">&#x2474;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">(1)</td>
+                  </tr><tr>
+                    <td style="text-align: center"> <span class="exampleChar">&#x2488;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">1.</td>
+                  </tr><tr>
+                    <td style="text-align: center"> <span class="exampleChar">&#x2ef3;</span></td>
+                    <td style="text-align: center">&#x21d2;</td>
+                    <td style="text-align: center"><span class="exampleChar">&#x9f9f;</td>
                   </tr>
                 </tbody>
               </table>
+          </aside>
           <p>In the above table, it is important to note that the characters
             illustrated are <em>actual Unicode codepoints</em>, not just presentational
             variations due to context or style. Each character was
@@ -960,19 +1005,7 @@
             encodings. They should not be confused with the normal kinds of
             presentational processing used on their non-compatibility
             counterparts.</p>
-          <p>For example, most Arabic-script text uses the characters in the
-            Arabic script block of Unicode (starting at <span class="uname" translate="no">U+0600</span>).
-            The actual glyphs used to display the text are selected using fonts
-            and text processing logic based on the position inside a word
-            (initial, medial, final, or isolated), in a process called
-            "shaping". In the table above, the four presentation forms of the
-            Arabic letter <span class="uname" translate="no">NOON</span> are
-            shown. The characters shown are compatibility characters in the <span
-
-              class="uname" translate="no">U+FE00</span> block, each of which
-            represents a specific "positional" shape and each of the four code
-            points shown have a compatibility decomposition to the <span class="quote">regular</span>
-            Arabic letter <span class="uname" translate="no">U+0646 NOON</span>.</p>
+          <p>For example, most Arabic-script text uses the characters in the Arabic script block of Unicode (starting at <span class="uname" translate="no">U+0600</span>). The actual glyphs used to display the text are selected using fonts and text processing logic based on the position inside a word (initial, medial, final, or isolated), in a process called "shaping". In the table above, the four presentation forms of the Arabic letter <span class="codepoint"><span lang="ar" dir="rtl">&#x0646;</span> [<span class="uname">U+0646 ARABIC LETTER NOON</span>]</span> are shown. The characters shown are compatibility characters in the <span class="uname" translate="no">U+FE00</span> block, each of which represents a specific "positional" shape and each of the four code points shown have a compatibility decomposition to the <span class="quote">regular</span> Arabic letter <span class="codepoint"><span lang="ar" dir=rtl>&#x0646;</span> [<span class="uname">U+0646 ARABIC LETTER NOON</span>]</span>.</p>
           <p>Similarly, the variations in half-width and full-width forms and rotated
             characters (for use in vertical text) are encoded as separate code
             points, mainly for compatibility with legacy character encodings. In 
@@ -1090,27 +1123,12 @@
           <ul>
             <li>Not all compatibility characters have a compatibility
               decomposition.</li>
-            <li>Some characters that look alike or have similar semantics are
-              actually distinct in Unicode and don't have canonical or
-              compatibility decompositions to link them together. For example, <span
-
-                class="qchar">。</span> <span class="uname" translate="no">U+3002
-                IDEOGRAPHIC FULL STOP</span> is used as a <span class="quote">period</span>
-              at the end of sentences in languages such as Chinese or Japanese.
-              However, it is not considered equivalent to the ASCII <span class="quote">period</span>
-              character <span class="uname" translate="no">U+002E FULL STOP</span>.</li>
+            <li>Some characters that look alike or have similar semantics are actually distinct in Unicode and don't have canonical or compatibility decompositions to link them together. For example, <span class="codepoint"><span lang="en">&#x3002;</span> [<span class="uname">U+3002 IDEOGRAPHIC FULL STOP</span>]</span> is used as a <span class="quote">period</span> at the end of sentences in languages such as Chinese or Japanese. However, it is not considered equivalent to the ASCII <span class="quote">period</span> character <span class="codepoint"><span lang="en">&#x002E;</span> [<span class="uname">U+002E FULL STOP</span>]</span>.</li>
             <li>Some character variations are not handled by the Unicode
               Normalization Forms. For example, UPPER, Title, and lowercase
               variations are a separate and distinct textual variation that must
               be separately handled when comparing text.</li>
-            <li>Compatibility normalization removes meaning. For example, the character
-              sequence <span class="qterm"><samp>8½</samp></span> (including
-              the character <span class="uname" translate="no">U+00BD VULGAR
-                FRACTION ONE HALF</span>), when normalized using one of the <span
-
-                class="quote">compatibility</span> normalization forms (that is,
-              NFKD or NFKC), becomes an ASCII character sequence that looks
-              like: <samp>81/2</samp>.</li>
+            <li>Compatibility normalization removes meaning. For example, the character sequence <span class="qterm"><samp>8&#xbd;</samp></span> (including the character <span class="codepoint"><span lang="en">&#x00BD;</span> [<span class="uname">U+00BD VULGAR FRACTION ONE HALF</span>]</span>), when normalized using one of the <span class="quote">compatibility</span> normalization forms (that is, <code>NFKD</code> or <code>NFKC</code>), becomes an ASCII character sequence: <samp>81/2</samp>.</li>
           </ul>
         </section>
         </section>
@@ -1337,12 +1355,9 @@
          form and used inline in text. They represent things such as faces, weather, vehicles and buildings, 
          food and drink, animals and plants, or icons that represent emotions, feelings, or activities.</p>
 
-      <p>Emoji can be used with a variety of emoji modifiers, including <span class="uname">U+200D Zero Width
-         Joiner</span> (ZWJ), to form more complex emoji.</p>
+      <p>Emoji can be used with a variety of emoji modifiers, including <span class="uname">U+200D ZERO WIDTH JOINER</span> or <dfn>ZWJ</dfn>, to form more complex emoji.</p>
       
-      <p>For example, the <em>family</em>
-		  emoji (&#x1f46a; <span class="uname" translate="no">U+1F45A</span>) can also be formed by using
-		  ZWJ between emoji characters in the sequence <span class="uname" translate="no">U+1F468 U+200D U+1F469 U+200D U+1F466</span>.
+      <p>For example, the emoji (<span class="codepoint"><span lang="en">&#x1F46A;</span> [<span class="uname">U+1F46A FAMILY</span>]</span>) can also be formed by using ZWJ between emoji characters in the sequence <span class="uname">U+1F468 <span style="text-decoration:underline">U+200D</span> U+1F469 <span style="text-decoration:underline">U+200D</span> U+1F466</span>.
 		  Altering or adding other emoji characters can alter the composition of the family. For example the sequence 
 		  <span class="uname" translate="no">&#x1f468;&#x200d;&#x1f469;&#x200d;&#x1f467;&#x200d;&#x1f467; 
 		  U+1F468 U+200D U+1F469 U+200D U+1F467 U+200D U+1F467</span> results in a composed
@@ -1350,17 +1365,17 @@
 		  composition. Many common emoji can <em>only</em> be formed using ZWJ sequences. For more 
 		  information, see [[UTR51]].</p>
 		  
-	  <p>Emoji characters can be followed by emoji modifier characters. These modifiers
-	     allow for the selection of skin tones for emoji that represent people. These characters
-	     are normally invisible modifiers that follow the base emoji that they modify.</p>
+	  <p>Emoji characters can be followed by emoji modifier characters. These modifiers allow for the selection of skin tones for emoji that represent people. These characters are normally invisible modifiers that follow the base emoji that they modify. For example: &#x1f468;&nbsp;&#x1f468;&#x1f3fb;&nbsp;&#x1f468;&#x1f3fc;&nbsp;&#x1f468;&#x1f3fd;&nbsp;&#x1f468;&#x1f3fe;&nbsp;&#x1f468;&#x1f3ff;</p>
 	     
 	  <p>An emoji character can also be followed by a <a href="#variationSelectors">variation
 	     selector</a> to indicate text (black and white, indicated by 
 	     <span class="uname">U+FF0E Variation Selector 15</span>) or color 
 	     (indicated by <span class="uname">U+FF0F Variation Selector 16</span>) presentation
 	     of the base emoji.</p>
-	     
-	  <p>Each of these mechanisms can be used together, so quite complex sequences of characters
+	  
+	  <p>Still another wrinkle in the use of emoji are flags. National flags can be composed using country codes derived from the [[BCP47]] registry, such as the sequence <span class="codepoint"><span lang="en">&#x1F1FF;</span> [<span class="uname">U+1F1FF REGIONAL INDICATOR SYMBOL LETTER Z</span>]</span> <span class="codepoint"><span lang="en">&#x1F1F2;</span> [<span class="uname">U+1F1F2 REGIONAL INDICATOR SYMBOL LETTER M</span>]</span>, which is the country code (<kbd>ZM</kbd>) for the country Zambia: &#x1f1ff;&#x1f1f2;. Other regional or special purpose flags can be composed using a flag emoji with various symbols or with regional indicator codes terminating in a cancel tag. For example, the flag of Scotland (🏴󠁧󠁢󠁳󠁣󠁴󠁿) can be composed like this: <span class="codepoint"><span lang="ang">&#x1F3F4;</span> [<span class="uname">U+1F3F4 WAVING BLACK FLAG</span>]</span> <span class="codepoint"><span lang="ang">&#xE0067;</span> [<span class="uname">U+E0067 TAG LATIN SMALL LETTER G</span>]</span> <span class="codepoint"><span lang="ang">&#xE0062;</span> [<span class="uname">U+E0062 TAG LATIN SMALL LETTER B</span>]</span> <span class="codepoint"><span lang="ang">&#xE0073;</span> [<span class="uname">U+E0073 TAG LATIN SMALL LETTER S</span>]</span> <span class="codepoint"><span lang="ang">&#xE0063;</span> [<span class="uname">U+E0063 TAG LATIN SMALL LETTER C</span>]</span> <span class="codepoint"><span lang="ang">&#xE0074;</span> [<span class="uname">U+E0074 TAG LATIN SMALL LETTER T</span>]</span> <span class="codepoint"><span lang="ang">&#xE007F;</span> [<span class="uname">U+E007F CANCEL TAG</span>]</span>.</p>
+	  
+ 	  <p>Each of these mechanisms can be used together, so quite complex sequences of characters
 	  can be used to form a single emoji grapheme or image. Even very similar emoji sequences might
 	  not use the same exact encoded sequence. Many of the modifiers and combinations mentioned above
 	  are generated by the end-user's keyboard (where they are presented as a single emoji "character"),
@@ -1386,8 +1401,7 @@
             encoding and the considerations in the rest of this section would be
             completely avoided.</p>
         </div>
-        <p>For example, <span class="qchar">€</span> (<span class="uname" translate="no">U+20AC
-            EURO SIGN</span>) is encoded as the byte sequence <code>0xE2.82.AC</code>
+        <p>For example, <span class="codepoint"><span lang="en">&#x20AC;</span> [<span class="uname">U+20AC EURO SIGN</span>]</span>) is encoded as the byte sequence <code>0xE2.82.AC</code>
           in the <code class="kw">UTF-8</code> character encoding. This same
           character is encoded as the byte sequence <code>0x80</code> in the
           legacy character encoding <code class="kw">windows-1252</code>.
@@ -1634,7 +1648,7 @@
 		 For example, consider the following snippet of HTML:</p>
 		 <aside class="example">
 		 <pre>
-		    &lt;p id="&amp;#x300;"&gt;Combining mark for ID!&lt;p&gt;
+&lt;p id="&amp;#x300;"&gt;Combining mark used as the value of 'id' attribute&lt;p&gt;
 		 </pre>
 		 </aside>
 		 <p>Although technically the combining mark <code>U+0300</code> combines with the preceding quote mark,
@@ -1646,7 +1660,7 @@
 		  text editor being used to view or create the HTML source would show 
 		  the escape sequence <code>&amp;#x300;</code> as a string of characters 
 		  starting with an ampersand. A DOM browser, by contrast, would 
-		  show the character <code>U+0300</code> as the value of the attribute <code>id</code>.</p>
+		  show the character <span class="codepoint"><span lang="en">&nbsp;&#x0300;</span> [<span class="uname">U+0300 COMBINING GRAVE ACCENT​</span>]</span> as the value of the attribute <code>id</code>.</p>
 		  <p>When processing the syntax of a document format, escapes should be 
 		  converted to the character sequence they represent before the 
 		  processing of the syntax, unless explicitly forbidden by the format's 
