@@ -278,14 +278,7 @@
 		refers to a process that converts from a <a>legacy character encoding</a> 
         to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode encoding form</a>, 
 		such as UTF-8.</p>
-        <p><dfn id="def_syntactic_content">Syntactic content</dfn> is any text in a document format or
-          protocol that belongs to the structure of the format or protocol. This
-          definition can include values that are not typically thought of as
-          "markup", such as the name of a field in an HTTP header, as well as
-          all of the characters that form the structure of a format or protocol.
-          For example, <span class="qchar">&lt;</span> and <span class="qchar">&gt;</span>
-          (as well as the element name and various attributes they surround) 
-          are part of the syntactic content in an HTML document. </p>
+        <p><dfn id="def_syntactic_content">Syntactic content</dfn> is any text in a document format or protocol that belongs to the structure of the format or protocol. This definition includes values that are typically thought of as "markup" but can also include other values, such as the name of a field in an HTTP header. Syntactic content consists of all of the characters that form the <em>structure</em> of a format or protocol. For example, <span class="qchar">&lt;</span> and <span class="qchar">&gt;</span> (as well as the element name and various attributes they surround) are part of the syntactic content in an HTML document.</p>
         <p>Syntactic content usually is defined by a specification or specifications and
           includes both the defined, reserved keywords for the given protocol or
           format as well as string tokens and identifiers that are defined by
@@ -342,7 +335,7 @@
 		the values of string literals.</p>
 		
         <p>A <dfn data-lt="grapheme|graphemes">grapheme</dfn> is a sequence of
-          one or more Unicode characters in a visual representation of some text
+          one or more characters in a visual representation of some text
           that a typical user would perceive as being a single unit (<q>character</q>).
           Graphemes are important for a number of text operations such as
           sorting or text selection, so it is necessary to be able to compute
@@ -1560,48 +1553,27 @@
         matching in <a href="#def_syntactic_content" class="termref">syntactic content</a>.</p>
       <section id="matchingAlgorithm">
         <h2>The Matching Algorithm</h2>
-        <p>This section defines the algorithm for matching strings. String
-          identity matching MUST be performed as if the following steps were
-          followed: </p>
+        <p>This section defines the algorithm for matching strings in a formal language or syntax. Specifications need to specify certain options called out below. Recommendations are provided for best practices in the sub-sections below.</p>
         <ol>
-          <li>Convert the strings to be compared to a common Unicode encoding form [[Encoding]].</li>
+          <li>Convert the strings to be compared to a sequence of Unicode code points. This might entail <a href="convertingToCommonUnicodeForm">transcoding</a> from a legacy character encoding.</li>
           <li>
             <p>Expand all <a href="#expandingCharacterEscapes">character escapes and includes</a>.</p>
            </li>
-          <li>If Unicode normalization is <a href="#normalizationChoice">desired</a>, apply the appropriate normalization form to the text.</li>
-          <li>If case sensitivity is <a href="#handlingCaseFolding">desired</a>, proceed to the next step. Otherwise apply the appropriate case folding operation:
+          <li>If Unicode normalization is <a href="#normalizationChoice">specified</a>, apply the appropriate normalization form to the text.</li>
+          <li>If case sensitivity is <a href="#handlingCaseFolding">specified</a>, proceed to the next step. Otherwise apply the appropriate case folding operation:
             <ol style="list-style-type:lower-latin">
-			  <li><em><a>Unicode full</a> case folding</em>:
-                map all code points to their <a>Unicode full</a> case fold equivalents.
-                Note that this can change the length of the string.</li>
-              <li><em><a data-lt="ASCII case-insensitive">ASCII case folding</a></em>:
-                map all code points in the range 0x41 to 0x5A (A to Z) to the
-                corresponding code points in the range 0x61 to 0x7A (a to z).</li>
+			  <li><em><a>Unicode full</a> case folding</em>: map all code points to their <a>Unicode full</a> case fold equivalents. Note that this can change the length of the string.</li>
+              <li><em><a data-lt="ASCII case-insensitive">ASCII case folding</a></em>: map all code points in the range U+0041 to U+005A (A to Z) to the corresponding code points in the range U+0061 to U+007A (a to z).</li>
             </ol>
           </li>
-<!-- removed after discussion at TPAC
-          <p class=issue>What to do about non-breaking space and other space characters? Is this the full
-            list? What about the Mongolian characters?</p>
-          <li>Remove all of the following <a href="#invisibleCharacters">invisible Unicode characters</a>:
-                <ul>
-                   <li>Variation Selectors (FE00..FE0F)
-                   <li>COMBINING GRAPHEME JOINER 034F
-                   <li>SOFT HYPHEN 00AD
-                   <li>ZERO WIDTH SPACE 200B
-                   <li>Bidi controls
-                   <li>Emoji modifiers
-                </ul>
-          </li>
--->
           <li>Perform any <a href="#additionalMatchTailoring">additional matching tailoring</a> specific to the specification.</li>
-          <li>Test the resulting sequences of code points bit-by-bit for
-            identity.</li>
+          <li>Compare the result sequences of code points for identity.</li>
         </ol>
 
       <section id="convertingToCommonUnicodeForm">
-        <h4>Converting to a Common Unicode Encoding Form</h4>
+        <h4>Converting to a Sequence of Unicode Code Points</h4>
         
-        <p>The first step in comparing text is to ensure that both use the same character encoding form. Applications or implementations need to convert any legacy encodings to a Unicode encoding or convert disparate Unicode encodings to the one they will use for comparison purposes.</p>
+        <p>The first step in comparing text is to ensure that both use the same character encoding form. Applications or implementations need to convert any text in a <a>legacy character encoding</a> to a Unicode encoding [[Encoding]] or convert disparate Unicode character encodings to the one they will use for comparison purposes.</p>
 
         <p>A <dfn>normalizing transcoder</dfn> is a <a>transcoder</a> that performs
         a conversion from a <a>legacy character encoding</a> to Unicode <em>and</em> ensures that the result is in
@@ -1654,13 +1626,7 @@
 		 <p>Although technically the combining mark <code>U+0300</code> combines with the preceding quote mark,
 		   HTML does not consider the character (whether or not it is encoded as an entity) to form part of the
 		   HTML syntax.</p>
-		  <p>When performing a matching operation on a resource, the general 
-		  rule is to expand escapes on the same &quot;level&quot; as the user is 
-		  interacting with. For example, when considering the above example, a 
-		  text editor being used to view or create the HTML source would show 
-		  the escape sequence <code>&amp;#x300;</code> as a string of characters 
-		  starting with an ampersand. A DOM browser, by contrast, would 
-		  show the character <span class="codepoint"><span lang="en">&nbsp;&#x0300;</span> [<span class="uname">U+0300 COMBINING GRAVE ACCENT​</span>]</span> as the value of the attribute <code>id</code>.</p>
+		  <p>When performing a matching operation on a resource, the general rule is to expand escapes on the same &quot;level&quot; as the user is  interacting with. For example, when considering the above example, a tool to view the source of the HTML would show the escape sequence <code>&amp;#x300;</code> as a string of characters starting with an ampersand. A JavaScript program, by contrast, operates on the browser's interpretation of the document and would match the character <span class="codepoint"><span lang="en">&nbsp;&#x0300;</span> [<span class="uname">U+0300 COMBINING GRAVE ACCENT​</span>]</span> as the value of the attribute <code>id</code>.</p>
 		  <p>When processing the syntax of a document format, escapes should be 
 		  converted to the character sequence they represent before the 
 		  processing of the syntax, unless explicitly forbidden by the format's 
@@ -1672,14 +1638,15 @@
       </section>
         <section id="normalizationChoice">
           <h4>Choice of Normalization Form</h4>
-          <p>Given that there are many different ways that content authors or applications could choose to represent the same semantic values when inputting or exchanging text, what form is most appropriate for representing or matching content on the Web?</p>
-          <p>In general, specifications and implementations should avoid applying Unicode normalization unless there is a specific benefit to be realized to users (or the user requests it). The encoding choices of end users might not be obvious to downstream consumers of the data and normalization can remove distinctions that the users applied intentionally.</p>
-          <p>That said, certain applications can realize a benefit by applying Unicode normalization as a part of string matching operations.</p>
-          <p>The canonical normalization forms (form NFC or form NFD) are intended to preserve the meaning and presentation of the text to which they are applied, although in practice this is not always the case. NFC has the advantage that almost         all legacy data (if transcoded trivially, one-to-one, to a Unicode encoding), as well as data created by current software or entered by users on most (but certainly not all) keyboards, is already in this form; NFC also has a slight compactness advantage and is a better match to user expectations with respect to the character vs. <a>grapheme</a> issue. For storage or interchange, if normalization is to be applied, form NFC is RECOMMENDED.</p>
-          <p>The compatibility normalization forms (form NFKC and form NFKD) lose compatibility distinctions that are usually important to the meaning of the content (see Chapter 5 <span class="qterm">Characters with Compatibility Mappings</span> in <cite>Unicode in XML and other Markup Languages</cite> [[UNICODE-XML]] for a discussion). These normalization forms do produce more promiscuous matching, which is usually undesirable in a string matching context, but can be useful in "find" operations or string searching. The NFKD and NFKC normalization forms SHOULD NOT be used for storage or interchange of text. String matching applications or specifications SHOULD avoid specifying these normalization forms unless there is a compelling reason.</p>
-          <div class="requirement">
-          <p>[C] Content authors SHOULD always encode text using consistent Unicode character sequences to facilitate matching, even if a Unicode normalization form is included in the matching performed by the format or implementation.</p>
-        </div>
+          <p><em>Specifications SHOULD avoid specifying Unicode normalization.</em></p>
+          <p><em>Implementations SHOULD NOT apply Unicode normalization unless the user requests it or it is required by a specification.</em>.</p>
+          <p><em>Content authors SHOULD use Unicode Normalization Form C (NFC) wherever possible for content.</em> Note that NFC is not always appropriate to the content or even available to content authors in some languages.</p>
+          <p><em>Content authors SHOULD always encode text using consistent Unicode character sequences to facilitate matching, even if a Unicode normalization form is included in the matching performed by the format or implementation.</em></p>
+          
+          <p>Note that NFC is not always appropriate or available to content authors. The encoding choices of end users might not be obvious to downstream consumers of the data and normalization can remove distinctions that the users applied intentionally. Given that there are many different ways that content authors or applications could choose to represent the same semantic values when inputting or exchanging text, if a specification needs to choose a normalization form, be aware of the following considerations:</p>
+
+          <p>The canonical normalization forms (form NFC or form NFD) are intended to preserve the meaning and presentation of the text to which they are applied. This is not always the case, which is one reason why normalization is not recommended. NFC has the advantage that almost all legacy data (if transcoded trivially, one-to-one, to a Unicode encoding), as well as data created by current software or entered by users on most (but not all) keyboards, is already in this form. NFC also has a slight compactness advantage and is a better match to user expectations with respect to the character vs. <a>grapheme</a> issue. For storage or interchange, if normalization is to be applied, form NFC is RECOMMENDED.</p>
+          <p>The compatibility normalization forms (form NFKC and form NFKD) change the structure and lose the meaning of the text in important ways. These normalization forms do produce more promiscuous matching, which is usually undesirable in a string matching context, but can be useful in "find" operations or string searching. The NFKD and NFKC normalization forms SHOULD NOT be used for storage or interchange of text. String matching applications or specifications SHOULD avoid specifying these normalization forms unless there is a compelling reason.</p>
         </section>
         
         <section id="handlingCaseFolding">
@@ -1761,15 +1728,16 @@
               in the Java programming language or <code>Intl.Collator</code> in JavaScript.</p>
           </aside>
         <div class="requirement">
-        <p>Language-sensitive case-insensitive matching in document formats and protocols is NOT RECOMMENDED, although authors and users should be warned of the limitations this implies for languages that depend on casefold matching to occur.</p>
+        <p>Language-sensitive case-insensitive matching in document formats and protocols is NOT RECOMMENDED.</p>
         </div>
         <p>This is because language information can be hard to obtain, verify, or manage and because the resulting operations can produce results that frustrate users or which fail for some users and succeed for others depending on the language configuration that they are using. Operations that are themselves language-specific can include language-specific case folding where appropriate.</p>
+        <p class=note>Although Unicode case folding is the preferred case-insensitive matching for document formats and protocols, content authors and users can be surprised by the results, since their expectations are generally consistent with the languages that they speak.</p>
         </section>
       </section>
       
       <section id="additionalMatchTailoring">
       <h2>Additional Match Tailoring</h2>
-      <p>Some implementations might require additional tailoring to assist with matching. This might include removing certain <a href="#invisibleControls">Unicode controls or invisbile markers</a>, mapping together or removing characters that are part of the syntax, or performing a whitespace trim.</p>
+      <p>Some implementations might require additional tailoring to assist with matching. This might include removing certain <a href="#invisibleCharacters">Unicode controls or invisbile markers</a>, mapping together or removing characters that are part of the syntax, or performing a whitespace trim.</p>
       <p>Specificiations need to clearly define any additional tailoring done as part of the matching process. Care should be taken not to interfere with the encoding of different languages. For example, a process that removes all combining characters based on Unicode character classes will not support languages that rely on combining marks and lead to user frustration. An example of this would be the various Indic scripts which use combining marks to encode or suppress vowels.</p>
       </section>
       
@@ -1790,8 +1758,7 @@
           <p>These requirements pertain to the authoring and creation of
             documents and are intended as guidelines for resource authors.</p>
           <div class="requirement">
-            <p>[C] Resources SHOULD be produced, stored, and exchanged in
-              Unicode Normalization Form C (NFC). </p>
+            <p>[C] Resources SHOULD be produced, serialized, and exchanged in Unicode Normalization Form C (NFC).</p>
           </div>
           <div class="note">
             <p>In order to be processed correctly a resource must use a
