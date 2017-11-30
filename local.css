@@ -195,7 +195,7 @@ div.exampleBox {
 
 .exampleChar {
     font-size: 36pt;
-    font-family: "NoToFu", serif;
+    font-family: "Palatino", "Times", "Times New Roman", "Verdana", "NoToFu", serif;
 }
 
 .markup {
