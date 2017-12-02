@@ -687,7 +687,7 @@
 		in encoding could cause text values otherwise expected to match not to 
 		match. </p>
 
-      <aside class=example>
+      <aside class=example id=aringExample title="Encoding Variations">
 		  <p>Consider the character <span class="codepoint"><span lang="en">&#x01FA;</span> [<span class="uname">U+01FA LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>]</span>. One way to encode this character is as <span class="uname" translate="no"> U+01FA LATIN LETTER CAPITAL A WITH RING ABOVE AND ACUTE</span>. Here are some of the different character sequences that a document could use to represent this character:</p>
           <table>
 			  <tr>
@@ -769,12 +769,7 @@
               opposite "sides" of the base character. The order of combining
               diacritics on the same side have a positional meaning.</li>
             <li class="dropExampleItem"><span class="dropExample">&#x2126;<span style="font-size:75%">
-                  vs.</span>Ω</span> <em>Singleton mappings.</em> These result
-              from the need to separately encode otherwise equivalent characters
-              to support legacy character encodings. In this example, the Ohm
-              symbol <span class="codepoint"><span lang="en">&#x03A9;</span> [<span class="uname">U+03A9 GREEK CAPITAL LETTER OMEGA</span>]</span>
-              is canonically equivalent (and identical in appearance) to the
-              Greek letter Omega <span class="codepoint"><span lang="en">&#x03A9;</span> [<span class="uname">U+03A9 GREEK CAPITAL LETTER OMEGA</span>]</span>.</li>
+                  vs.</span>&#x03a9;</span> <em>Singleton mappings.</em> These result from the need to separately encode otherwise equivalent characters to support legacy character encodings. In this example, the Ohm symbol <span class="codepoint"><span lang="en">&#x2126;</span> [<span class="uname">U+2126 OHM SYMBOL</span>]</span> is canonically equivalent (and identical in appearance) to the Greek letter Omega <span class="codepoint"><span lang="en">&#x03A9;</span> [<span class="uname">U+03A9 GREEK CAPITAL LETTER OMEGA</span>]</span>. (Another example of a singleton is <span class="codepoint"><span lang="en">&#x212B;</span> [<span class="uname">U+212B ANGSTROM SIGN</span>]</span> in the <a href="#aringExample">encoding variations example</a> above)</li>
             <li class="dropExampleItem"><span class="dropExample">&#xac00;<span style="font-size:75%">
                   vs.</span>&#x1100;&#x1161;</span> <em>Hangul.</em> The Hangul script is
               used to write the Korean language. This script is constructed
