@@ -12,7 +12,7 @@
           useExperimentalStyles: true,
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
           specStatus:				"ED",
-          publishDate:  			"2017-12-01",
+          publishDate:  			"2017-12-03",
           previousPublishDate:  	"2015-11-19",
           previousMaturity:  		"WD",
 
@@ -422,7 +422,7 @@
         </section>
       </section>
       <section id="conformance">
-        <p>This document describes best practices and requirements for other specifications, as well as recommendations for implementations and content authors. Best practices for specifications can be found in the Internationalization Working Group's document BP-I18N-SPECDEV.</p>
+        <p>This document describes best practices and requirements for other specifications, as well as recommendations for implementations and content authors. These best practices for specifications (and others) can also be found in the Internationalization Working Group's document <cite>[[!INTERNATIONAL-SPECS]]</cite>, which is intended to serve as a general reference for all Internationalization best practices in W3C specifications.</p>
         
         <p class=requirement>When a best practice or requirement appears in this document, it has been styled to like this paragraph. Recommendations for specifications and spec authors are preceded by <span class=qrec>[S]</span>. Recommendations for implementations and software developers are preceeded by <span class=qrec>[I]</span>. Recommendations for content and content authors are preceeded by <span class=qrec>[C]</span>.</p>
         <p>Specifications can claim conformance to this document if they:</p>
@@ -625,7 +625,7 @@
 			<h3>Uses for Case Folding</h3>
           <p>Some document formats or protocols seek to aid interoperability or
           provide an aid to content authors by ignoring case variations in the
-          <a data-lt="vocabulary">vocabulary</a> they define or in user-defined values permitted by the
+          <a data-lt="vocabulary">vocabulary</a> they define or in <a>user-supplied values</a> permitted by the
           format or protocol.</p>
           
           
@@ -672,8 +672,6 @@
         </p>
         <p id="uci"><dfn data-lt="Unicode case-insensitive">Unicode case-insensitive matching</dfn> compares a sequence of code points as if the <a>Unicode full</a> casefolding (see above) had been applied to both input sequences.</p>
         <p><dfn>Language-sensitive case-sensitive matching</dfn> is useful in the rare case where a document format or protocol contains information about the language of the syntactic content and where language-sensitive case folding might sensibly be applied. These case-fold mappings are defined in the <cite>Common Locale Data Repository</cite> [[UAX35]] project of the Unicode Consortium.</p>
-            
-        <p class="requirement"><span class=qrec>[S]</span> If language-sensitive case-sensitive matching is specified, Unicode case-fold mappings SHOULD be tailored to the language of the content.</p>
             
         <p>For advice on how to handle case folding see <a href="#handlingCaseFolding"></a>.</p>
    </section>
@@ -1390,114 +1388,10 @@
       </section>
       <section id="otherEquivalences">
          <h3>Other Types of Equivalence</h3>
-         <p>The preceding types of character equivalence are all based on 
-		 character properties assigned by Unicode or due to the mapping of 
-		 legacy character encodings to the Unicode character set. There also 
-		 exist certain types of "interesting equivalence" that may be useful, 
-		 particularly in searching text, that are outside of the equivalences 
-		 defined by Unicode.</p>
 		 
-		 <p class=note>These types of equivalence are called out here for completeness. Specifications for a <a>vocabulary</a> or which define a matching algorithm for use in a formal syntax should avoid trying to match or harmonize these types of equivalence. These types of equivalence are of more interest for applications that provide natural language text searching or "find" features. 
+		 <p class=note>There are additional kinds of equivalence or processing that are appropriate when performing natural language searching or "find" features. These are described in another part of the Character Model series of documents ([[STRING-SEARCH]]). Specifications for a <a>vocabulary</a> or which define a matching algorithm for use in a formal syntax SHOULD avoid trying to apply additional custom folding, mapping, or processing such as described in that document, since these interfere with producing consistent, predictable results. 
 		 </p>
 		 
-		 <p class=issue>The above note really wants to have a link to StringSearch, but we haven't even published a FPWD of that.</p>
-		 
-		 <p>For example, Japanese uses two syllabic scripts,
-		 <code>hiragana</code> and <code>katakana</code>. A 
-		 user searching a document might type in text in one script, but wish to find 
-		 equivalent text in both scripts. These additional "text 
-		 normalizations" are sometimes application, natural language, or domain 
-		 specific and shouldn't be overlooked by specifications or 
-		 implementations as an additional consideration.</p>
-		 <p>Another similar example is called <dfn>digit shaping</dfn>. Some scripts,
-		 such as Arabic or Thai, have their own digit characters for the numbers from 0 to 9.
-		 In some Web applications, the familiar ASCII digits are replaced for display
-		 purposes with the local digit shapes. In other cases, the text actually might
-		 contain the Unicode characters for the local digits. Users attempting to search
-		 a document might expect that typing one form of digit will find the eqivalent
-		 digits.</p>
-		 <aside class="example" title="Examples of digit shapes in four scripts">
-		 <p>Here are some selected examples of different digit shapes, from zero to nine, in four scripts. Many scripts have equivalent sets of digits with distinct shapes.</p>
-		 
-           <table style="position:center">
-            <thead>
-			<tr>
-			    <th rowspan=2 style="vertical-align:top; width:30%;">Script</th>
-			    <th colspan=10 style="text-align:center">Digits</th>
-			</tr>
-			<tr>
-			    <th class="exampleChar">0</th>
-			    <th class="exampleChar">1</th>
-			    <th class="exampleChar">2</th>
-			    <th class="exampleChar">3</th>
-			    <th class="exampleChar">4</th>
-			    <th class="exampleChar">5</th>
-			    <th class="exampleChar">6</th>
-			    <th class="exampleChar">7</th>
-			    <th class="exampleChar">8</th>
-			    <th class="exampleChar">9</th>
-			</tr>
-                   </thead>
-		   <tbody>
-                       <tr>
-		   	    <td>Latin</td>
-			    <td class="exampleChar">0</td>
-			    <td class="exampleChar">1</td>
-			    <td class="exampleChar">2</td>
-			    <td class="exampleChar">3</td>
-			    <td class="exampleChar">4</td>
-			    <td class="exampleChar">5</td>
-			    <td class="exampleChar">6</td>
-			    <td class="exampleChar">7</td>
-			    <td class="exampleChar">8</td>
-			    <td class="exampleChar">9</td>
-			</tr>
-                       <tr>
-		   	    <td>Gujurati</td>
-			    <td class="exampleChar">&#x0ae6;</td>
-			    <td class="exampleChar">&#x0ae7;</td>
-			    <td class="exampleChar">&#x0ae8;</td>
-			    <td class="exampleChar">&#x0ae9;</td>
-			    <td class="exampleChar">&#x0aea;</td>
-			    <td class="exampleChar">&#x0aeb;</td>
-			    <td class="exampleChar">&#x0aec;</td>
-			    <td class="exampleChar">&#x0aed;</td>
-			    <td class="exampleChar">&#x0aee;</td>
-			    <td class="exampleChar">&#x0aef;</td>
-			</tr>
-                       <tr>
-		   	    <td>Thai</td>
-			    <td class="exampleChar">&#x0e50;</td>
-			    <td class="exampleChar">&#x0e51;</td>
-			    <td class="exampleChar">&#x0e52;</td>
-			    <td class="exampleChar">&#x0e53;</td>
-			    <td class="exampleChar">&#x0e54;</td>
-			    <td class="exampleChar">&#x0e55;</td>
-			    <td class="exampleChar">&#x0e56;</td>
-			    <td class="exampleChar">&#x0e57;</td>
-			    <td class="exampleChar">&#x0e58;</td>
-			    <td class="exampleChar">&#x0e59;</td>
-			</tr>
-			<tr>
-				<td>Arabic</td>
-				<td class="exampleChar">&#x0660;</td>
-				<td class="exampleChar">&#x0661;</td>
-				<td class="exampleChar">&#x0662;</td>
-				<td class="exampleChar">&#x0663;</td>
-				<td class="exampleChar">&#x0664;</td>
-				<td class="exampleChar">&#x0665;</td>
-				<td class="exampleChar">&#x0666;</td>
-				<td class="exampleChar">&#x0667;</td>
-				<td class="exampleChar">&#x0668;</td>
-				<td class="exampleChar">&#x0669;</td>
-			</tr>
-	           </tbody>
-
-	         </table>
-
-
-
-		 </aside>
       </section>
     </section>
     <section id="identityMatching">
@@ -1668,12 +1562,11 @@
        <section id="sec_unicode_cs">
           <h4>Unicode case-insensitive matching</h4>
           
-          <p>Vocabularies generally should allow for a wide range of Unicode characters, particularly for <a>user-defined values</a>, so as to enable use by the broadest range of languages and cultures without disadvantage. As a result, text operations such as case folding need to address the full range of Unicode and not just selected portions. When case-insensitive matching is desired, this means using <a href="#definitionCaseFolding">Unicode case folding</a>:</p>
+          <p>Vocabularies generally should allow for a wide range of Unicode characters, particularly for <a>user-supplied values</a>, so as to enable use by the broadest range of languages and cultures without disadvantage. As a result, text operations such as case folding need to address the full range of Unicode and not just selected portions. When case-insensitive matching is desired, this means using <a href="#definitionCaseFolding">Unicode case folding</a>:</p>
 
           <p class=requirement><span class=qrec>[S]</span> Specifications SHOULD allow the full range of Unicode for user-defined values.</p>
           <p class=requirement><span class=qrec>[S]</span> Specifications that define case-insensitive matching in vocabularies that include more than the Basic Latin (ASCII) range of Unicode MUST specify <a href="#uci">Unicode full</a> casefold matching.</p>
           <p>The <a>Unicode simple</a> casefolding form is not appropriate for string identity matching on the Web.</p>
-
 
         </section>
         <section id="sec_ascii_cs">
@@ -1700,12 +1593,20 @@
         
         <section id="sec_language_tailoring">
           <h4>Language-specific tailoring</h4>
-          <p>Locale- or language-specific tailoring is most appropriate when it is part of natural language processing operations. Because language-specific tailoring of case mapping or case folding produces different results from the generic case folding rules, these should be avoided in formal languages, where predictability is at a premium. </p>
+          
+          <p>Locale- or language-specific tailoring is most appropriate when it is part of natural language processing operations. Because language-specific tailoring of case mapping or case folding produces different results from the generic case folding rules, these should be avoided in formal languages, where predictability is at a premium.</p>
+          
           <p class=requirement><span class=qrec>[S]</span> Specifications that define case-insensitive matching in vocabularies SHOULD NOT specify language-sensitive case-insensitive matching.</p>
+          
+          <p><span class=requirement><span class=qrec>[S]</span> If language-sensitive case-sensitive matching is specified, Unicode case-fold mappings SHOULD be tailored according to language and the source of the language used for each tailoring MUST be specified.</span> Two strings being matched can be in different languages and might appear in yet a third language context. Which language to use for case folding therefore depends on the application and user expectations.</p>
 
-        <p>This is because language information can be hard to obtain, verify, or manage and because the resulting operations can produce results that frustrate users or which fail for some users and succeed for others depending on the language configuration that they are using. Operations that are themselves language-specific can include language-specific case folding where appropriate.</p>
-        <p class=note>Although Unicode case folding is the preferred case-insensitive matching for document formats and protocols, content authors and users can be surprised by the results, since their expectations are generally consistent with the languages that they speak.</p>
-        <p class=note>Language-sensitive string comparison is often referred to as being <em>locale-sensitive</em>, since most programming languages and operating environments access language-specific tailoring using their respective locale-based APIs. For example, see the <code>java.text.Collator</code> class in the Java programming language or <code>Intl.Collator</code> in JavaScript.</p>
+          <p>Language specific tailoring is not recommended for formal languages because the language information can be hard to obtain, verify, or manage and because the resulting operations can produce results that frustrate users or which fail for some users and succeed for others depending on the language configuration that they are using or the configuration of the system where the match is performed.</p>
+          
+          <p><span class=requirement><span class=qrec>[S]</span> Operations that are language-specific SHOULD include language-specific case folding where appropriate.</span> For example, the CSS operation <code>text-transform</code> is language-sensitive when used to case map strings.</p>
+        
+          <p class=note>Although Unicode case folding is the preferred case-insensitive matching for document formats and protocols, content authors and users of languages that have mappings different from the default can still be surprised by the results, since their expectations are generally consistent with the languages that they speak.</p>
+        
+          <p class=note>Language-sensitive string comparison is often referred to as being <em>locale-sensitive</em>, since most programming languages and operating environments access language-specific tailoring using their respective locale-based APIs. For example, see the <code>java.text.Collator</code> class in the Java programming language or <code>Intl.Collator</code> in JavaScript.</p>
 
         </section>
       </section>
