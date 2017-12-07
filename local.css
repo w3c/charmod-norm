@@ -94,15 +94,26 @@ samp, kbd {
 
 
 
-div.requirement { 
-    counter-increment: requirement;
+.requirement { 
+/*    counter-increment: requirement; */
     background-color:#FFC;
+    font-style: italic;
+    font-weight: bold;
 }
 
-div.requirement p:before {
-	content: "C" counter(requirement) " \00A0";
+.requirement p:before {
+/*	content: "C" counter(requirement) " \00A0";  */
 	font-family:Tahoma, Geneva, NoToFu, sans-serif;
 	font-weight: bold;
+	font-size: smaller;
+	text-transform: capitalize;
+	color: #63F;
+}
+
+span.qrec {
+	font-family:Tahoma, Geneva, NoToFu, sans-serif;
+	font-weight: bold;
+	font-style: normal;
 	font-size: smaller;
 	text-transform: capitalize;
 	color: #63F;
