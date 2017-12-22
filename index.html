@@ -12,7 +12,7 @@
           useExperimentalStyles: true,
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
           specStatus:				"ED",
-          publishDate:  			"2017-12-06",
+          publishDate:  			"2017-12-22",
           previousPublishDate:  	"2015-11-19",
           previousMaturity:  		"WD",
 
@@ -135,6 +135,13 @@
 			href: "https://w3c.github.io/string-search/",
 			authors: [ "Addison Phillips" ]
 		},
+		
+		"ASCII": {
+		    title: "ISO/IEC 646:1991, Information technology -- ISO 7-bit coded character set for information interchange",
+		    href:  "http://www.ecma-international.org/publications/standards/Ecma-006.htm",
+		    isoNumber: "ISO/IEC 646:1991",
+		    note:  "This standard defines an International Reference Version (IRV) which corresponds exactly to what is widely known as ASCII or US-ASCII. ISO/IEC 646 was based on the earlier standard ECMA-6. ECMA has maintained its standard up to date with respect to ISO/IEC 646 and makes an electronic copy available at http://www.ecma-international.org/publications/standards/Ecma-006.htm "
+	    },
 	
 	}
 		  
@@ -177,17 +184,11 @@
       <h2>Introduction</h2>
       <section id="goals">
         <h3>Goals and Scope</h3>
-        <p>The goal of the Character Model for the World Wide Web is to
-          facilitate use of the Web by all people, regardless of their language,
-          script, writing system, and cultural conventions, in accordance with
-          the <a href="http://www.w3.org/Consortium/mission"><cite>W3C goal of
-              universal access</cite></a>. One basic prerequisite to achieve
-          this goal is to be able to transmit and process the characters used
-          around the world in a well-defined and well-understood way.</p>
-        <p class="note">This document builds on <cite>Character Model for the
-            World Wide Web: Fundamentals</cite> [[!CHARMOD]]. Understanding the
-          concepts in that document are important to being able to understand
-          and apply this document successfully.</p>
+        
+        <p>The goal of the Character Model for the World Wide Web is to facilitate use of the Web by all people, regardless of their language, script, writing system, or cultural conventions, in accordance with the <a href="http://www.w3.org/Consortium/mission"><cite>W3C goal of universal access</cite></a>. One basic prerequisite to achieve this goal is to be able to transmit and process the characters used around the world in a well-defined and well-understood way.</p>
+        
+        <p class="note">This document builds on <cite>Character Model for the World Wide Web: Fundamentals</cite> [[!CHARMOD]]. Understanding the concepts in that document are important to being able to understand nd apply this document successfully.</p>
+        
         <p>This part of the Character Model for the World Wide Web covers string 
 		matching—the process by which a specification or implementation defines 
 		whether two string values are the same or different from one another. It 
@@ -253,23 +254,22 @@
       </section>
       <section id="terminology">
         <h3>Terminology and Notation</h3>
-        <p>This section contains terminology and notation specific to this
-          document.</p>
+        
+        <p>This section contains terminology and notation specific to this document.</p>
+        
         <p>The Web is built on text-based formats and protocols. In order to
           describe string matching or searching effectively, it is necessary to
           establish terminology that allows us to talk about the different kinds
           of text within a given format or protocol, as the requirements and
           details vary significantly. </p>
-        <p>Unicode code points are denoted as <code class="kw" translate="no">U+<em>hhhh</em></code>,
-          where <code class="kw" translate="no"><em>hhhh</em></code> is a sequence of at
-          least four, and at most six hexadecimal digits. For example, the
-          character <span class="codepoint"><span lang="en">&#x20AC;</span> [<span class="uname">U+20AC EURO SIGN</span>]</span> has the code point <span class="uname" translate="no">U+20AC</span>.</p>
-        <p>Some characters that are used in the various examples might not
-          appear as intended unless you have the appropriate font. Care has been
-          taken to ensure that the examples nevertheless remain understandable.</p>
-        <p>A <dfn data-lt="legacy character encoding|legacy character encodings">legacy
-            character encoding</dfn> is a character encoding not based on the
-          Unicode character set.</p>
+          
+        <p>A <dfn data-lt="Unicode code point|Unicode code points|code point|code points">Unicode code point</dfn> (or "code point") refers to the numeric value assigned to each Unicode character. Unicode code points range from 0 to 0x10FFFF<sub>16</sub>. (See Section 4.1 in [[!CHARMOD]] for a deeper discussion of character encoding terminology.)</p>
+          
+        <p>Unicode code points are denoted as <code class="kw" translate="no">U+<em>hhhh</em></code>, where <code class="kw" translate="no"><em>hhhh</em></code> is a sequence of at least four, and at most six hexadecimal digits. For example, the character <span class="codepoint"><span lang="en">&#x20AC;</span> [<span class="uname">U+20AC EURO SIGN</span>]</span> has the code point <span class="uname" translate="no">U+20AC</span>.</p>
+          
+        <p>Some characters used in this document's examples might not appear as intended on your specific device or display. Usually this is due to lack of a script-specific font installed locally or due to other limitations of your specific rendering system. This document uses a Webfont to provide fallback glyphs for many of the non-Latin characters, but your device might not support displaying the font. To the degree possible, the editors have tried to ensure that the examples nevertheless remain understandable.</p>
+          
+        <p>A <dfn data-lt="legacy character encoding|legacy character encodings">legacy character encoding</dfn> is a character encoding not based on the Unicode character set.</p>
           
                    
         <p>A <dfn data-lt="transcoder|transcoders">transcoder</dfn> is a process that converts 
@@ -420,10 +420,14 @@
           <p class=note>All of the text above (all text in a text file) makes up the resource. It's possible that a given resource will contain no natural language content at all (consider an HTML document consisting of four empty <code>div</code> elements styled to be orange rectangles). It's also possible that a resource will contain <em>no</em> syntactic content and consist solely of natural language content: for example, a plain text file with a soliloquy from <cite>Hamlet</cite> in it. Notice too that the HTML entity <code>&amp;#x2019;</code> appears in the natural language content and belongs to both the natural language content and the syntactic content in this resource.</p>
         </section>
       </section>
+      
       <section id="conformance">
-        <p>This document describes best practices and requirements for other specifications, as well as recommendations for implementations and content authors. These best practices for specifications (and others) can also be found in the Internationalization Working Group's document <cite>[[!INTERNATIONAL-SPECS]]</cite>, which is intended to serve as a general reference for all Internationalization best practices in W3C specifications.</p>
+        <p>This document describes best practices for the authors of other specifications, as well as recommendations for implementations and content authors. These best practices can also be found in the Internationalization Working Group's document <cite>[[!INTERNATIONAL-SPECS]]</cite>, which is intended to serve as a general reference for all Internationalization best practices in W3C specifications.</p>
         
-        <p class=requirement>When a best practice or requirement appears in this document, it has been styled to like this paragraph. Recommendations for specifications and spec authors are preceded by <span class=qrec>[S]</span>. Recommendations for implementations and software developers are preceeded by <span class=qrec>[I]</span>. Recommendations for content and content authors are preceeded by <span class=qrec>[C]</span>.</p>
+        <p class=requirement>When a best practice or recommendation appears in this document, it has been styled to like this paragraph. Recommendations for specifications and spec authors are preceded by <span class=qrec>[S]</span>. Recommendations for implementations and software developers are preceeded by <span class=qrec>[I]</span>. Recommendations for content and content authors are preceeded by <span class=qrec>[C]</span>.</p>
+        
+        <p>Best practices in this document use [[!RFC2119]] keywords in order to clarify the Internationalization Working Group's intentions regarding a specific recommendation. Following the recommendations in this document can help avoid issues during the W3C's "wide review" process, during implementation, or in the content that authors produce. This document is not, itself, normative and can be revised from time to time.</p>
+        
         <p>Specifications can claim conformance to this document if they:</p>
         <ol type="1">
           <li>do not violate any conformance criteria preceded by <span class=qrec>[S]</span> where the imperative is MUST or MUST NOT</li>
@@ -436,6 +440,7 @@
         <p>Where this specification contains a procedural description, it is to be understood as a way to specify the desired external behavior. Implementations MAY use other means of achieving the same results, as long as observable behavior is not affected.</p>
       </section>
     </section>
+    
     <section id="problemStatement">
       <h2>The String Matching Problem</h2>
       <p>The Web is primarily made up of document formats and protocols based on
@@ -544,7 +549,7 @@
 		  
 		  <aside class="example">
 
-		  <p>Examples of <code class=kw>full</code> versus <code class=kw>simple</code> case fold variations can be found in the Greek script, where several precomposed characters have multi-character case fold mappings. The table below shows one such example, the character <span class="codepoint"><span lang="en">&#x1F9B;</span> [<span class="uname">U+1F9B GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span>]</span> and it's <code class="kw">full</code> and <code class="kw">simple</code> case fold mappings:</p>
+		  <p>Examples of <code class=kw>full</code> versus <code class=kw>simple</code> case fold variations can be found in the Greek script, where several precomposed characters have multi-character case fold mappings. The table below shows one such example, the character <span class="codepoint"><span lang="en">&#x1F9B;</span> [<span class="uname">U+1F9B GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span>]</span> and its <code class="kw">full</code> and <code class="kw">simple</code> case fold mappings:</p>
 					
 		  <table style="width: 100%">
      
@@ -612,7 +617,7 @@
             
         <aside class="example">
             <p><span class="exampleChar">Diyarbakır</span> &#x21d2; <code>text-transform: uppercase</code> &#x21d2; <span class="exampleChar">DİYARBAKIR</span></p>
-            <p>Notice that the ASCII letter <span class="codepoint"><span lang="en">&#x0069;</span> [<span class="uname">U+0069 LATIN SMALL LETTER I</span>]</span> maps to <span class="codepoint"><span lang="en">&#x0130;</span> [<span class="uname">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>]</span>, while the letter <span class="codepoint"><span lang="en">&#x0131;</span> [<span class="uname">U+0131 LATIN SMALL LETTER DOTLESS I</span>]</span> maps to the ASCII uppercase <span class="codepoint"><span lang="en">&#x0049;</span> [<span class="uname">U+0049 LATIN CAPITAL LETTER I</span>]</span>. Failure to apply this localized case mapping would change the meaning of the text in Turkish, even thought this is the expected mapping in other languages, such as English or German.</p>
+            <p>Notice that the ASCII letter <span class="codepoint"><span lang="en">&#x0069;</span> [<span class="uname">U+0069 LATIN SMALL LETTER I</span>]</span> maps to <span class="codepoint"><span lang="en">&#x0130;</span> [<span class="uname">U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE</span>]</span>, while the letter <span class="codepoint"><span lang="en">&#x0131;</span> [<span class="uname">U+0131 LATIN SMALL LETTER DOTLESS I</span>]</span> maps to the ASCII uppercase <span class="codepoint"><span lang="en">&#x0049;</span> [<span class="uname">U+0049 LATIN CAPITAL LETTER I</span>]</span>. Failure to apply this localized case mapping would change the meaning of the text in Turkish, even though this is the expected mapping in other languages, such as English or German.</p>
             <p>This language-specific tailoring can also be applied to case folding. For example, if the uppercase text needed to be matched against some set of strings in a case-insensitive way:</p>
             <p><span class="exampleChar">D&#x130;YARBAKIR</span> &#x21d2; <code>case fold</code> &#x21d2; <span class="exampleChar">diyarbak&#x131;r</span></p>
         </aside>
@@ -621,12 +626,9 @@
         </section>
         
         <section id="caseFoldApplication">
-			<h3>Uses for Case Folding</h3>
-          <p>Some document formats or protocols seek to aid interoperability or
-          provide an aid to content authors by ignoring case variations in the
-          <a data-lt="vocabulary">vocabulary</a> they define or in <a>user-supplied values</a> permitted by the
-          format or protocol.</p>
-          
+	    <h3>Uses for Case Folding</h3>
+	    
+          <p>Some document formats or protocols seek to aid interoperability or provide an aid to content authors by ignoring case variations in the <a data-lt="vocabulary">vocabulary</a> they define or in <a>user-supplied values</a> permitted by the format or protocol.</p>
           
           <aside class="example">
 			  
@@ -654,15 +656,11 @@
           when defining rules for matching user- or content-generated values,
           such as identifiers. In these situations, case-<em>in</em>sensitive
           matching might be desirable instead.</p>
-        <p>When defining a <a>vocabulary</a>, one important consideration is
-          whether the values are restricted to the ASCII subset of Unicode or if
-          the vocabulary permits the use of characters (such as accents on Latin
-          letters or a broad range of Unicode including non-Latin scripts) that
-          potentially have more complex case folding requirements.
-        To address these different requirements, there are four types of casefold matching defined by this document for the purposes of
-        string identity matching in document formats or protocols:
-        <p id="case-sensitive"><dfn data-lt="case-sensitive">Case sensitive matching</dfn>: code
-          points are compared directly with no case folding.</p>
+          
+        <p>When defining a <a>vocabulary</a>, one important consideration is whether the values are restricted to the ASCII [[ASCII]] subset of Unicode or if the vocabulary permits the use of characters (such as accents on Latin letters or a broad range of Unicode including non-Latin scripts) that potentially have more complex case folding requirements. To address these different requirements, there are four types of casefold matching defined by this document for the purposes of string identity matching in document formats or protocols:</p>
+        
+        <p id="case-sensitive"><dfn data-lt="case-sensitive">Case sensitive matching</dfn>: code points are compared directly with no case folding.</p>
+        
         <p id="aci"><dfn data-lt="ASCII case-insensitive">ASCII case-insensitive matching</dfn>
           compares a sequence of code points as if all ASCII code points in the
           range 0x41 to 0x5A (A to Z) were mapped to the corresponding code
@@ -677,12 +675,8 @@
       </section>
       <section id="unicodeNormalization">
         <h3>Unicode Normalization</h3>
-        <p>A different kind of variation can occur in Unicode text: sometimes
-          several different Unicode code point sequences can represent the same 
-		logical character.
-          When searching or matching text by comparing code points, variations 
-		in encoding could cause text values otherwise expected to match not to 
-		match. </p>
+        
+        <p>A different kind of variation can occur in Unicode text: sometimes several different <a>Unicode code point</a> sequences can be used to represent the same abstract character. When searching or matching text by comparing code points, these variations in encoding cause text values not to match that users expect to be the same. </p>
 
       <aside class=example id=aringExample title="Encoding Variations">
 		  <p>Consider the character <span class="codepoint"><span lang="en">&#x01FA;</span> [<span class="uname">U+01FA LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>]</span>. One way to encode this character is as <span class="uname" translate="no"> U+01FA LATIN LETTER CAPITAL A WITH RING ABOVE AND ACUTE</span>. Here are some of the different character sequences that a document could use to represent this character:</p>
@@ -981,7 +975,7 @@
               contain any combining sequence that could be replaced with a
               precomposed character and if any remaining combining sequence is
               in canonical order.</p>
-            <p>Users are cautioned that the resulting character sequence can still contain combining marks: not all character sequences have a precomposed equivalent and some scripts depend on combining marks for encoding. There are even cases where a given base character and combining mark are not replaced with a precomposed character because the combination is "blocked" by another combining mark in the sequence. </p>
+            <p>Users are cautioned that the resulting character sequence can still contain combining marks: not all character sequences have a precomposed equivalent and some scripts depend on combining marks for encoding. There are even cases where a given base character and combining mark is not replaced with a precomposed character because the combination is "blocked" by another combining mark in the sequence. </p>
           </div>
         </section>
         <section id="normalization_forms">
@@ -1074,15 +1068,13 @@
          <h3>Identical-Appearing Characters and the Limitations of Normalization</h3>
          <p>Many users are surprised to find that two identical-looking strings&mdash;including
          those that have had a specific Unicode normalization form applied&mdash;might not 
-         in fact use the same underlying Unicode code points. This includes strings that have
+         in fact use the same underlying <a>Unicode code points</a>. This includes strings that have
          had the more-destructive <code>NFKC</code> and <code>NFKD</code> compatibility normalization
          forms applied to them. Even when strings, tokens, or identifiers appear visually to be the same, 
          they can be encoded differently.</p>
-   		  <p>The Unicode canonical normalization forms are concerned with folding multiple separate ways of encoding 
-		  the same logical character or grapheme cluster to use the same code point sequence. 
-		  But two logically distinct characters or grapheme clusters can still look the same or very similar. 
-		  When a pair of <a>graphemes</a> look identical (or very similar), they are
-		  called <dfn data-lt="homograph|homographs">homographs</dfn>. When a pair of graphemes look similar or are <a>homographs</a> but actually represent logically different characters or character sequences, they are said to be <q><dfn>confusable</dfn></q>.</p>
+         
+   		  <p>The Unicode canonical normalization forms are concerned with folding the multiple different code point sequences that can be used for a given abstract character or grapheme cluster to use the same code point sequence. However, logically distinct characters or grapheme clusters can still look the same or very similar. When a pair of <a>graphemes</a> look identical (or very similar), they are called <dfn data-lt="homograph|homographs">homographs</dfn>. When a pair of graphemes look similar or are <a>homographs</a> but actually represent logically different characters or character sequences, they are said to be <q><dfn>confusable</dfn></q>.</p>
+   		  
 		  <aside class="example">
 		    <table>
 				<tr>
@@ -1367,7 +1359,7 @@
           that transcoders consistent with the Encoding specification will be
           applied to documents found on the Web or used to process data
           appearing in a particular document format or protocol.</p>
-        <p>One additional consideration in converting to Unicode is the existance of
+        <p>One additional consideration in converting to Unicode is the existence of
            legacy character encodings of bidirectional scripts (such as Hebrew and Arabic) that use a
            visual storage order. That is, unlike Unicode and other modern encodings,
            the characters are stored in memory in the order that they are printed
@@ -1532,9 +1524,9 @@
 
           <p class=requirement><span class=qrec>[S]</span> <a href="#case-sensitive">Case-sensitive</a> matching is RECOMMENDED for matching syntactic content, including user-defined values.</p>
 
-          <p>Vocabularies usually puts a premium on predictability for content authors and users. Case-sensitive matching is the easiest to implement and introduces the least potential for confusion, since it generally consists of a comparison of the underlying Unicode code point sequence. Because it is not affected by considerations such as language-specific case mappings, it produces the least surprise for document authors that have included words, such as the <a href="#caseMappingLanguageSensitivity">Turkish examples</a> above, in their syntactic content.</p>
+          <p>Vocabularies usually put a premium on predictability for content authors and users. Case-sensitive matching is the easiest to implement and introduces the least potential for confusion, since it generally consists of a comparison of the underlying Unicode code point sequence. Because it is not affected by considerations such as language-specific case mappings, it produces the least surprise for document authors that have included words, such as the <a href="#caseMappingLanguageSensitivity">Turkish examples</a> above, in their syntactic content.</p>
         
-          <p>Case insensitivity is usually be reserved for processing <a>natural language content</a>, such as running a feature for searching text. However, cases exist in which case-insensitivity is desirable. When case-insensitive matching is necessary, there are several implementation choices that a formal language needs to consider. </p>
+          <p>Case insensitivity is usually reserved for processing <a>natural language content</a>, such as running a feature for searching text. However, cases exist in which case-insensitivity is desirable. When case-insensitive matching is necessary, there are several implementation choices that a formal language needs to consider. </p>
        </section>
        <section id="sec_unicode_cs">
           <h4>Unicode case-insensitive matching</h4>
@@ -1591,7 +1583,7 @@
       
       <p>Some specifications might wish to include additional tailoring to assist with matching in a given vocabulary. Examples of this might include removing additional textual differences described in <a href="problemStatement">Section 2</a>, mapping together or removing characters that are part of the syntax, or performing a whitespace trim.</p>
       
-      <p>Any additional tailoring needs to avoid interfering with the way that different languages are represented in Unicode. For example, a process that attempts to remove accents from letters by decomposing the text and then removing all of the combining characters will break languages that rely on combining marks (such as the Devanagari text in <a href="#graphemeExample">Example 2</a>. (Such a process would also fail to remove all of the potential accents and probably do harm to the meaning and representation of the text.)</p>
+      <p>Any additional tailoring needs to avoid interfering with the way that different languages are represented in Unicode. For example, a process that attempts to remove accents from letters by decomposing the text and then removing all of the combining characters will break languages that rely on combining marks. An example of this would be as the Devanagari text in <a href="#graphemeExample">Example 2</a>. (Such a process would also fail to remove all of the potential accents and probably do harm to the meaning and representation of the text.)</p>
       </section>
       
     </section>
