@@ -97,7 +97,7 @@ samp, kbd {
 .requirement { 
 /*    counter-increment: requirement; */
     background-color:#FFC;
-    font-style: italic;
+    font-family:"Gill Sans", Tahoma, Geneva, Helvetica, NoToFu, sans-serif;
     font-weight: bold;
 }
 
