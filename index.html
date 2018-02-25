@@ -11,8 +11,8 @@
       var respecConfig = {
           useExperimentalStyles: true,
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
-          specStatus:				"ED",
-          publishDate:  			"2018-01-02",
+          specStatus:				"WD",
+          publishDate:  			"2018-02-25",
           previousPublishDate:  	"2015-11-19",
           previousMaturity:  		"WD",
 
@@ -1325,7 +1325,7 @@
           different byte values and sequences to represent a given subset of the
           Universal Character Set.</p>
         <div class="note">
-          <p>Choosing a Unicode character encoding, such as UTF-8, for all documents, formats, and protocols is strongly encouraged, since no additional utility is be gained from using a legacy character encoding and the considerations in the rest of this section would be completely avoided.</p>
+          <p><strong>Choosing a Unicode character encoding, such as UTF-8, for all documents, formats, and protocols is a strongly encouraged <a href="#convertingToCommonUnicodeForm">recommendation</a></strong>, since there is no additional utility to be gained from using a legacy character encoding and the considerations in the rest of this section would be completely avoided.</p>
         </div>
         <p>For example, <span class="codepoint"><span lang="en">&#x20AC;</span> [<span class="uname">U+20AC EURO SIGN</span>]</span>) is encoded as the byte sequence <code>0xE2.82.AC</code>
           in the <code class="kw">UTF-8</code> character encoding. This same
