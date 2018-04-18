@@ -356,8 +356,7 @@
         <aside class="example" id=graphemeExample>
 			<p>The Hindi word for Unicode <q>&#x92f;&#x942;&#x928;&#x93f;&#x915;&#x94b;&#x921;</q> is composed of seven Unicode characters from the Devanagari script.
 			</p>
-          <p>Most users would identify this word as containing four units of text. Each of the first three graphemes consists of two characters: a syllable and a
-            modifying vowel character. So the word contains seven Unicode characters, but only four graphemes:
+          <p>Most users would identify this word as containing four units of text. Each of the first three graphemes consists of two characters: a syllable and a modifying vowel character. So the word contains seven Unicode characters, but only four graphemes:</p>
             
             <table>
 				<tr>
@@ -392,23 +391,21 @@
 					<td style="text-align:center">U+0921</td>
 				</tr>
             </table>
-            
-            </p>
         </aside>
         <section>
         <h5>Terminology Examples</h5>
         <p>This section illustrates some of the terminology defined above. For illustration purposes we'll use the following small HTML file as an example (line numbers added for reference):</p>
           <div class=terminologyExample>
-            <p class=syntaxExample><span class=lnum>1 </span> <span class="markup">&lt;<span class="vocabulary">html</span> <span class="vocabulary">lang</span>="<span class=userValue>en</span>" <span class="vocabulary">dir</span>="<span class="vocabulary">ltr</span>"&gt;</p>
-            <p class=syntaxExample><span class=lnum>2 </span>&lt;<span class="vocabulary">head</span>&gt;</span></p>
-            <p class=syntaxExample><span class=lnum>3 </span><span class="markup">&nbsp;&nbsp;&lt;<span class="vocabulary">meta</span> <span class="vocabulary">charset</span>="<span class=userValue>UTF-8</span>"&gt;</p>
-            <p class=syntaxExample><span class=lnum>4 </span><span class=markup>&nbsp;&nbsp;&lt;<span class="vocabulary">title</span>&gt;</span><span class="shakespeare">Shakespeare</span><span class="markup">&lt;/<span class="vocabulary">title</span>&gt;</p>
+            <p class=syntaxExample><span class=lnum>1 </span> <span class="markup">&lt;<span class="vocabulary">html</span> <span class="vocabulary">lang</span>="<span class=userValue>en</span>" <span class="vocabulary">dir</span>="<span class="vocabulary">ltr</span>"&gt;</span></p>
+            <p class=syntaxExample><span class=lnum>2 </span><span class="markup">&lt;<span class="vocabulary">head</span>&gt;</span></p>
+            <p class=syntaxExample><span class=lnum>3 </span><span class="markup">&nbsp;&nbsp;&lt;<span class="vocabulary">meta</span> <span class="vocabulary">charset</span>="<span class=userValue>UTF-8</span>"&gt;</span></p>
+            <p class=syntaxExample><span class=lnum>4 </span><span class=markup>&nbsp;&nbsp;&lt;<span class="vocabulary">title</span>&gt;</span><span class="shakespeare">Shakespeare</span><span class="markup">&lt;/<span class="vocabulary">title</span>&gt;</span></p>
             <p class=syntaxExample><span class=lnum>5 </span>&lt;/<span class="vocabulary">head</span>&gt;</p>
             <p class=syntaxExample><span class=lnum>6 </span>&lt;<span class="vocabulary">body</span>&gt;</p>
-            <p class=syntaxExample><span class=lnum>7 </span><span class=markup>&nbsp;&nbsp;&lt;<span class="vocabulary">img</span> <span class="vocabulary">src</span>="<span class="userValue">shakespeare.jpg</span>" <span class="vocabulary">alt</span>="<span class="userValue"><span class="shakespeare">William Shakespeare</span></span>" <span class="vocabulary">id</span>="<span class="userValue">shakespeare_image</span>"&gt;</p>
-            <p class=syntaxExample><span class=lnum>8 </span><span class=markup>&nbsp;&nbsp;&lt;<span class="vocabulary">p</span>&gt;</span><span class="shakespeare">What<span class="markup">&amp;#x2019;</span>s in a name? That which we call a rose by any other name would smell as sweet.</span><span class="markup">&lt;/<span class="vocabulary">p</span>&gt;</p>
+            <p class=syntaxExample><span class=lnum>7 </span><span class=markup>&nbsp;&nbsp;&lt;<span class="vocabulary">img</span> <span class="vocabulary">src</span>="<span class="userValue">shakespeare.jpg</span>" <span class="vocabulary">alt</span>="<span class="userValue"><span class="shakespeare">William Shakespeare</span></span>" <span class="vocabulary">id</span>="<span class="userValue">shakespeare_image</span>"&gt;</span></p>
+            <p class=syntaxExample><span class=lnum>8 </span><span class=markup>&nbsp;&nbsp;&lt;<span class="vocabulary">p</span>&gt;</span><span class="shakespeare">What<span class="markup">&amp;#x2019;</span>s in a name? That which we call a rose by any other name would smell as sweet.</span><span class="markup">&lt;/<span class="vocabulary">p</span>&gt;</span></p>
             <p class=syntaxExample><span class=lnum>9 </span>&lt;/<span class="vocabulary">body</span>&gt;</p>
-            <p class=syntaxExample><span class=lnum>10 </span>&lt;/<span class="vocabulary">html</span>&gt;</span> </p>
+            <p class=syntaxExample><span class=lnum>10 </span><span class=markup>&lt;/<span class="vocabulary">html</span>&gt;</span> </p>
           </div>
           <ul style="text-align:left">
           <li>Everything inside the black rectangle (that is, in this HTML file) is part of the <a>resource</a>.</li>
@@ -595,8 +592,8 @@
 		     </tr>
 		     <tr>
 				  <th colspan=4>Turkic Language Folding</th>
-			  </tr>
-		   </tr>
+             </tr>
+           <tr>
 			 <td class="exampleChar">I</td>
 		     <td>&#x21d2;</td>
 		     <td class="exampleChar">&#x131;</td>
@@ -768,7 +765,7 @@
               formed from specific sub-parts that represent consonants and
               vowels. These specific sub-parts, called <em>jamo</em>, are
               encoded in Unicode. So too are the precomposed syllables. Thus the
-              syllable <span class="codepoint"><span class="codepoint"><span lang="en">&#xAC00;</span> [<span class="uname">U+AC00 [Hangul Syllable, First]</span>]</span> is canonically equivalent to its constituent <em>jamo</em> characters <span class="codepoint"><span lang="en">&#x1100;</span> [<span class="uname">U+1100 HANGUL CHOSEONG KIYEOK</span>]</span> <span class="codepoint"><span lang="en">&#x1161;</span> [<span class="uname">U+1161 HANGUL JUNGSEONG A</span>]</span>.</li>
+              syllable <span class="codepoint"><span lang="en">&#xAC00;</span> [<span class="uname">U+AC00 [Hangul Syllable, First]</span>]</span> is canonically equivalent to its constituent <em>jamo</em> characters <span class="codepoint"><span lang="en">&#x1100;</span> [<span class="uname">U+1100 HANGUL CHOSEONG KIYEOK</span>]</span> <span class="codepoint"><span lang="en">&#x1161;</span> [<span class="uname">U+1161 HANGUL JUNGSEONG A</span>]</span>.</li>
           </ul>
           <p><dfn>Compatibility equivalence</dfn> is a weaker equivalence
             between Unicode characters or sequences of Unicode characters that represent the
@@ -992,20 +989,22 @@
 			<p>Having converted a resource to a sequence of Unicode characters and unescaped any escape sequences, we can finally "normalize" the Unicode texts given in the example above. Here are the resulting sequences in each Unicode
             Normalization form for the <span class=uname>U+01FA</span> example given earlier. Note that there are only three distinct code points sequences:</p>
 
-          <table style="borders:1px solid black; vertical-align:center; table-layout:fixed; text-align:center; column-width:200px;">
+          <table style="border:1px solid black; vertical-align:center; table-layout:fixed; text-align:center; column-width:200px;">
 			  <thead>
+				 <tr>
 				  <th class=tableHead>Original Codepoints</th>
 				  <th class=tableHead>NFC</th>
 				  <th class=tableHead>NFD</th>
 				  <th class=tableHead>NFKC</th>
 				  <th class=tableHead>NFKD</th>
+				 </tr>
 			  </thead>
           <tr>
 			  <td class=b-clear>&#x01fa;</td>
+			  <td class=b-clear rowspan=7>&#x01fa;</td>
+			  <td class=b-clear rowspan=7>A&#x030A;&#x0301;</td>
 			  <td class=b-clear rowspan=9>&#x01fa;</td>
 			  <td class=b-clear rowspan=9>A&#x030A;&#x0301;</td>
-			  <td class=b-clear rowspan=11>&#x01fa;</td>
-			  <td class=b-clear rowspan=11>A&#x030A;&#x0301;</td>
           </tr>
           <tr>
           	  <td class=tableSub>U+01FA</td>
@@ -1013,15 +1012,17 @@
           <tr>
 			  <td class=b-clear>&#x00C5;&#x0301;</td>
           </tr>
-          </tr>
-          	  <td class=tableSub>U+00C5 U+0301</td>
           <tr>
+          	  <td class=tableSub>U+00C5 U+0301</td>
+          </tr>
+
           <tr>
 			  <td class=b-clear>&#x212B;&#x0301;</td>
           </tr>
-          </tr>
-          	  <td class=tableSub>U+212B U+0301</td>
+
           <tr>
+          	  <td class=tableSub>U+212B U+0301</td>
+          </tr>
           <tr>
 			  <td class=b-clear>A&#x030A;&#x0301;</td>
           </tr>
@@ -1614,7 +1615,6 @@
 
         </section>
       </section>
-    </section>
    
     <section>
       <h2 id="changeLog" class="informative">Changes Since the Last Published Version</h2>
