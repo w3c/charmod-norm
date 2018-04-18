@@ -1384,7 +1384,7 @@
         <h2>The Matching Algorithm</h2>
         <p>This section defines the algorithm for matching strings in a formal language or syntax. Specifications need to specify certain options called out below. Recommendations are provided for best practices in the sub-sections below.</p>
         <ol>
-          <li>Convert the strings to be compared to a sequence of Unicode code points. This might entail <a href="convertingToCommonUnicodeForm">transcoding</a> from a legacy character encoding.</li>
+          <li>Convert the strings to be compared to a sequence of Unicode code points. This might entail <a href="#convertingToCommonUnicodeForm">transcoding</a> from a legacy character encoding.</li>
           <li>
             <p>Expand all <a href="#expandingCharacterEscapes">character escapes and includes</a>.</p>
            </li>
@@ -1589,7 +1589,7 @@
       
       <p class=requirement><span class=qrec>[S]</span> Specificiations MUST clearly define any additional tailoring done as part of the matching process.</p>
       
-      <p>Some specifications might wish to include additional tailoring to assist with matching in a given vocabulary. Examples of this might include removing additional textual differences described in <a href="problemStatement">Section 2</a>, mapping together or removing characters that are part of the syntax, or performing a whitespace trim.</p>
+      <p>Some specifications might wish to include additional tailoring to assist with matching in a given vocabulary. Examples of this might include removing additional textual differences described in <a href="#problemStatement">Section 2</a>, mapping together or removing characters that are part of the syntax, or performing a whitespace trim.</p>
       
       <p>Any additional tailoring needs to avoid interfering with the way that different languages are represented in Unicode. For example, a process that attempts to remove accents from letters by decomposing the text and then removing all of the combining characters will break languages that rely on combining marks. An example of this would be as the Devanagari text in <a href="#graphemeExample">Example 2</a>. (Such a process would also fail to remove all of the potential accents and probably do harm to the meaning and representation of the text.)</p>
       </section>
