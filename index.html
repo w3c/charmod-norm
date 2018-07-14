@@ -748,13 +748,7 @@
               characters are sometimes also encoded as a distinct "precomposed"
               character. In this example, the character <span class="codepoint"><span lang="en">&#x00C7;</span> [<span class="uname">U+00C7 LATIN CAPITAL LETTER C WITH CEDILLA</span>]</span> is canonically equivalent to the character sequence starting with the base character <span class="codepoint"><span lang="en">&#x0043;</span> [<span class="uname">U+0043 LATIN CAPITAL LETTER C</span>]</span> followed by <span class="codepoint"><span lang="en">&#x25CC;&#x0327;</span> [<span class="uname">U+0327 COMBINING CEDILLA​</span>]</span>. Such equivalence can extend to characters with multiple combining marks.</li>
             <li class="dropExampleItem"><span class="dropExample">q&#x0307;&#x0323;<span style="font-size:75%">
-                  vs.</span>q&#x0323;&#x0307;</span> <em>Order of combining marks.</em> When
-              a base character is modified by multiple combining marks, the
-              order of the combining marks might not represent a distinct
-              character. Here the sequence <span class="codepoint"><span lang="en">&#x0071;</span> [<span class="uname">U+0071 LATIN SMALL LETTER Q</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0307;</span> [<span class="uname">U+0307 COMBINING DOT ABOVE​</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0323;</span> [<span class="uname">U+0323 COMBINING DOT BELOW​</span>]</span> and <span class="codepoint"><span lang="en">&#x0071;</span> [<span class="uname">U+0071 LATIN SMALL LETTER Q</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0323;</span> [<span class="uname">U+0323 COMBINING DOT BELOW​</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0307;</span> [<span class="uname">U+0307 COMBINING DOT ABOVE​</span>]</span> are equivalent, even though the combining marks are in a different order. Note that this example is chosen
-              carefully: the dot-above character and dot-below character are on
-              opposite "sides" of the base character. The order of combining
-              diacritics on the same side have a positional meaning.</li>
+                  vs.</span>q&#x0323;&#x0307;</span> <em>Order of combining marks.</em> When a base character is modified by multiple combining marks, the order of the combining marks might not represent a distinct character. Here the sequence <span class="codepoint"><span lang="en">&#x0071;</span> [<span class="uname">U+0071 LATIN SMALL LETTER Q</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0307;</span> [<span class="uname">U+0307 COMBINING DOT ABOVE​</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0323;</span> [<span class="uname">U+0323 COMBINING DOT BELOW​</span>]</span> and <span class="codepoint"><span lang="en">&#x0071;</span> [<span class="uname">U+0071 LATIN SMALL LETTER Q</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0323;</span> [<span class="uname">U+0323 COMBINING DOT BELOW​</span>]</span> <span class="codepoint"><span lang="en">&nbsp;&#x0307;</span> [<span class="uname">U+0307 COMBINING DOT ABOVE​</span>]</span> are equivalent, even though the combining marks are in a different order. Note that this example is chosen carefully: the dot-above character and dot-below character are on opposite "sides" of the base character. The order of combining diacritics on the same side often has a positional meaning (although there are cases where the order doesn't matter to the presentation).</li>
             <li class="dropExampleItem"><span class="dropExample">&#x2126;<span style="font-size:75%">
                   vs.</span>&#x03a9;</span> <em>Singleton mappings.</em> These result from the need to separately encode otherwise equivalent characters to support legacy character encodings. In this example, the Ohm symbol <span class="codepoint"><span lang="en">&#x2126;</span> [<span class="uname">U+2126 OHM SYMBOL</span>]</span> is canonically equivalent (and identical in appearance) to the Greek letter Omega <span class="codepoint"><span lang="en">&#x03A9;</span> [<span class="uname">U+03A9 GREEK CAPITAL LETTER OMEGA</span>]</span>. (Another example of a singleton is <span class="codepoint"><span lang="en">&#x212B;</span> [<span class="uname">U+212B ANGSTROM SIGN</span>]</span> in the <a href="#aringExample">encoding variations example</a> above)</li>
             <li class="dropExampleItem"><span class="dropExample">&#xac00;<span style="font-size:75%">
@@ -985,8 +979,7 @@
           </ul>
             
           <aside class=example>
-			<p>Having converted a resource to a sequence of Unicode characters and unescaped any escape sequences, we can finally "normalize" the Unicode texts given in the example above. Here are the resulting sequences in each Unicode
-            Normalization form for the <span class=uname>U+01FA</span> example given earlier. Note that there are only three distinct code points sequences:</p>
+			<p>Having converted a resource to a sequence of Unicode characters and unescaped any escape sequences, we can finally "normalize" the Unicode texts given in the <a href="#aringExample">example</a> above. Here are the resulting sequences in each Unicode Normalization form for the <span class=uname>U+01FA</span> example given earlier. Note that there are only three distinct code point sequences between the various normalized forms (<span class=uname>U+01FA</span>, <span class=uname>U+0041 U+030A U+0301</span>, and <span class=uname>U+FF21 U+030A U+0301</span>):</p>
 
           <table style="border:1px solid black; vertical-align:center; table-layout:fixed; text-align:center; column-width:200px;">
 			  <thead>
@@ -1012,7 +1005,7 @@
 			  <td class=b-clear>&#x00C5;&#x0301;</td>
           </tr>
           <tr>
-          	  <td class=tableSub>U+00C5 U+0301</td>
+          	  <td class=tableSub>U+00C5<br>U+0301</td>
           </tr>
 
           <tr>
@@ -1020,15 +1013,15 @@
           </tr>
 
           <tr>
-          	  <td class=tableSub>U+212B U+0301</td>
+          	  <td class=tableSub>U+212B<br>U+0301</td>
           </tr>
           <tr>
 			  <td class=b-clear>A&#x030A;&#x0301;</td>
           </tr>
           <tr>
-          	  <td class=tableSub>U+0041 U+030A U+0301</td>
+          	  <td class=tableSub>U+0041<br>U+030A<br>U+0301</td>
 			  <td class=tableSub>U+01FA</td>
-			  <td class=tableSub>U+0041 U+030A U+0301</td>
+			  <td class=tableSub>U+0041<br>U+030A<br>U+0301</td>
           </tr>
           <tr>
 			  <td class=b-clear>&#xFF21;&#x030A;&#x0301;</td>
@@ -1036,11 +1029,11 @@
 			  <td class=b-clear>&#xFF21;&#x030A;&#x0301;</td>
           </tr>
           <tr>
-			  <td class=tableSub>U+FF21 U+030A U+0301</td>
-			  <td class=tableSub>U+FF21 U+030A U+0301</td>
-			  <td class=tableSub>U+FF21 U+030A U+0301</td>
+			  <td class=tableSub>U+FF21<br>U+030A<br>U+0301</td>
+			  <td class=tableSub>U+FF21<br>U+030A<br>U+0301</td>
+			  <td class=tableSub>U+FF21<br>U+030A<br>U+0301</td>
 			  <td class=tableSub>U+01FA</td>
-			  <td class=tableSub>U+0041 U+030A U+0301</td>
+			  <td class=tableSub>U+0041<br>U+030A<br>U+0301</td>
           </tr>          
 
           </table>
@@ -1097,7 +1090,7 @@
 		  <p>Examples of identical or identical-seeming appearance can appear even within a single script. This can take the form of similarly shaped characters, such as "0" and "O" or "l" and "1". But other scripts or the use of different compatibility characters can present much less readily distinguished variations. In some cases, Unicode Normalization brings these together, but in many other cases it does not.
 		  </p> 
 		  <aside class="example" title="Examples of homographs within a single script">
-		  <p>Some examples include:</p>
+		  <p>Some character sequences that can sometimes appear very similar (or identical) in a single script include:</p>
 		  <table>
 		     <tr>
 		       <td class="exampleChar">&#x8a1;</td>
@@ -1144,7 +1137,7 @@
           resource. They also allow for the encoding of Unicode characters not
           represented in the character encoding scheme used by the document.</p>
           
-        <p class="note">For further discussion of character escapes, including guidelines for the definition of escaping mechanisms in specifications, see: Section 4.6 of [[!CHARMOD]].</p>
+        <p class="note">For further discussion of character escapes, including guidelines for the definition of escaping mechanisms in specifications, see: <a href="https://www.w3.org/TR/charmod/#sec-Escaping">Section 4.6</a> of [[!CHARMOD]].</p>
         
         <div class="note">
               <p>The expansion of character escapes and includes is dependent on context, that is, on which <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language is considered to apply when the string matching operation is performed. Consider a search for the string <span class="qterm">suçon</span> in an XML document containing <code>su&amp;#xE7;on</code> but not <code>suçon</code>. If the search is performed in a plain text editor, the context is <span class="new-term">plain text</span> (no <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language applies), the <code class="kw">&amp;#xE7;</code> character escape is not recognized, hence not expanded and the search fails. If the search is performed in an XML browser, the context is <code>XML</code>, the character escape (defined by XML) is expanded and the search succeeds. </p>
@@ -1224,8 +1217,7 @@
 		  are the Mongolian script's free variation selectors (<span class="uname">U+180B</span> through 
 		  <span class="uname" translate="no">U+180D</span>). </p>
 		  <p>The character <span class="uname" translate="no">U+034F Combining Grapheme Joiner</span>, 
-		  whose name is misleading (as it does not join graphemes or affect line 
-		  breaking), is used to separate characters that might otherwise be 
+		  whose name is misleading (as it does not join graphemes), is used to separate characters that might otherwise be 
 		  considered a grapheme for the purposes of sorting or to provide a 
 		  means of maintaing certain textual distinctions when applying Unicode 
 		  normalization to text. </p>

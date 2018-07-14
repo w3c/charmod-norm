@@ -2,7 +2,8 @@
   font-family: NoToFu;
   font-style: normal;
   font-weight: 400;
-  src: url('font.woff2') format('woff2');
+/* src: url('font.woff2') format('woff2'); */
+  src: url('W3CCharmodNormSubset-Regular.woff2') format('woff2');
 }
 
 body {
