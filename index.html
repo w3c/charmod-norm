@@ -1143,7 +1143,7 @@
           resource. They also allow for the encoding of Unicode characters not
           represented in the character encoding scheme used by the document.</p>
           
-        <p class="note">For further discussion of character escapes, including guidelines for the definition of escaping mechanisms in specifications, see: Section 4.6 of [[!CHARMOD]].</p>
+        <p class="note">For further discussion of character escapes, including guidelines for the definition of escaping mechanisms in specifications, see: <a href="https://www.w3.org/TR/charmod/#sec-Escaping">Section 4.6</a> of [[!CHARMOD]].</p>
         
         <div class="note">
               <p>The expansion of character escapes and includes is dependent on context, that is, on which <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language is considered to apply when the string matching operation is performed. Consider a search for the string <span class="qterm">suçon</span> in an XML document containing <code>su&amp;#xE7;on</code> but not <code>suçon</code>. If the search is performed in a plain text editor, the context is <span class="new-term">plain text</span> (no <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language applies), the <code class="kw">&amp;#xE7;</code> character escape is not recognized, hence not expanded and the search fails. If the search is performed in an XML browser, the context is <code>XML</code>, the character escape (defined by XML) is expanded and the search succeeds. </p>
