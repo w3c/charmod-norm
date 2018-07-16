@@ -1224,12 +1224,7 @@
 		  <p>The <span class="uname" translate="no">U+00AD Soft Hyphen</span> can be used in text 
 		  to indicate a potential or preferred hyphenation position. It only 
 		  becomes visible when the text is reflowed to wrap at that position.</p>
-		  <p>The <span class="uname" translate="no">U+2060 WORD JOINER</span>, sometimes called <em>WJ</em> is a zero-width
-		  non-breaking space character. Its purpose is to replace the functionality of the character <span class="uname" translate="no">
-		 U+FEFF ZERO WIDTH NO-BREAK SPACE</span> because that character also serves as the "Byte Order Mark" character (used as a Unicode
-		  signature in plain text files). The Word Joiner is used to separate words in languages that do not use explicit spacing. An example
-		  would be the Thai language.</p>
-
+		  <p>The <span class="uname" translate="no">U+2060 WORD JOINER</span>, sometimes called <em>WJ</em> is a zero-width non-breaking space character. Its purpose is to replace the functionality of the character <span class="uname" translate="no">U+FEFF ZERO WIDTH NO-BREAK SPACE</span> because that character also serves as the "Byte Order Mark" character (used as a Unicode signature in plain text files). The Word Joiner is used to indicate where there is no line break opportunity between two characters (in fact, it should be ignored except for purposes of line-breaking).</p>
 
         <p>Finally, most scripts, when written horizontally, proceed from left-to-right. However, some scripts, such as Arabic and Hebrew, are written predominently from right-to-left. Texts can be written in a mix of these scripts or include character sequences, such as numbers or quotes in another script, that run in the opposite direction to other parts of the text. This intermixing of text direction is called <em>bidirectional</em> text or <q>bidi</q> for short. The Unicode Bidirectional Algorithm [[UAX9]] describes how such mixed-direction text is processed for display. For most text, the directional handling can be derived from the text itself. However, there are many cases in which the algorithm needs additional information in order to present text correctly. For more examples, see [[html-bidi]].</p>
 
