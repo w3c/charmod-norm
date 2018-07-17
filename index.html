@@ -796,15 +796,15 @@
                   </tr>
                   <tr>
                     <td rowspan=4><strong>Presentation forms of Arabic</strong>— characters that encode the specific shapes&nbsp;(initial, medial, final, isolated) needed by visual legacy encodings of the Arabic script.</td>
-                    <td style="text-align: center"><span class="exampleChar">&#xfee5;</span><br><span class=uname>U+FEE5</span></td>
+                    <td style="text-align: center"><span class="exampleChar">&#xfee9;</span><br><span class=uname>U+FEE9</span></td>
                     <td style="text-align: center" rowspan=4>&#x21d2;</td>
-                    <td style="text-align: center" rowspan=4><span class="exampleChar">&#x646;</span><br><span class=uname>U+0646</span></td>                   
+                    <td style="text-align: center" rowspan=4><span class="exampleChar">&#x647;</span><br><span class=uname>U+0647</span></td>                   
                   </tr><tr>
-                    <td style="text-align: center"><span class="exampleChar">&#xfee6;</span><br><span class=uname>U+FEE6</span></td>
+                    <td style="text-align: center"><span class="exampleChar">&#xfeea;</span><br><span class=uname>U+FEEA</span></td>
                   </tr><tr>
-                    <td style="text-align: center"><span class="exampleChar">&#xfee7;</span><br><span class=uname>U+FEE7</span></td>
+                    <td style="text-align: center"><span class="exampleChar">&#xfeeb;</span><br><span class=uname>U+FEEB</span></td>
                   </tr><tr>
-                    <td style="text-align: center"><span class="exampleChar">&#xfee8;</span><br><span class=uname>U+FEE8</span></td>
+                    <td style="text-align: center"><span class="exampleChar">&#xfeec;</span><br><span class=uname>U+FEEC</span></td>
                   </tr>
                   <tr>
                     <td rowspan=4><strong>Circled</strong>—numbers, letters, and other characters in a circled, bullet, or other presentational form; often used for lists, footnotes, and specialized presentation</td>
@@ -920,7 +920,11 @@
             encodings. They should not be confused with the normal kinds of
             presentational processing used on their non-compatibility
             counterparts.</p>
-          <p>For example, most Arabic-script text uses the characters in the Arabic script block of Unicode (starting at <span class="uname" translate="no">U+0600</span>). The actual glyphs used to display the text are selected using fonts and text processing logic based on the position inside a word (initial, medial, final, or isolated), in a process called "shaping". In the table above, the four presentation forms of the Arabic letter <span class="codepoint"><span lang="ar" dir="rtl">&#x0646;</span> [<span class="uname">U+0646 ARABIC LETTER NOON</span>]</span> are shown. The characters shown are compatibility characters in the <span class="uname" translate="no">U+FE00</span> block, each of which represents a specific "positional" shape and each of the four code points shown have a compatibility decomposition to the <span class="quote">regular</span> Arabic letter <span class="codepoint"><span lang="ar" dir=rtl>&#x0646;</span> [<span class="uname">U+0646 ARABIC LETTER NOON</span>]</span>.</p>
+          <p>For example, most Arabic-script text uses the characters in the Arabic script block of Unicode (starting at <span class="uname" translate="no">U+0600</span>). The actual glyphs used to display the text are selected using fonts and text processing logic based on the position inside a word (initial, medial, final, or isolated), in a process called "shaping". In the table above, the four presentation forms of the Arabic letter <span class="codepoint"><span lang="ar" dir="rtl">&#x0647;</span> [<span class="uname">U+0646 ARABIC LETTER HEH</span>]</span> are shown. The characters shown are compatibility characters in the <span class="uname" translate="no">U+FE00</span> block, each of which represents a specific "positional" shape and each of the four code points shown have a compatibility decomposition to the <span class="quote">regular</span> Arabic letter <span class="codepoint"><span lang="ar" dir=rtl>&#x0647;</span> [<span class="uname">U+0647 ARABIC LETTER HEH</span>]</span>. Today these compatibility forms mainly are used to show the composed form in isolation on the page (to illustrate the shapes of the character without joining to another character in a word). Otherwise a string containing a sequence of letters 'heh' is just encoded as a series of <span class=uname translate=no>U+0647</span> code points, with the rendering system and font supplying the appropriate shapes.
+          <aside class=example>
+			  <p>Example of a sequence of <span class=uname translate=no>U+0647 ARABIC LETTER HEH</span>. The different letter shapes are provided by the rendering system. Note that Arabic is read from right-to-left, so the "initial" shape is on the right side of the string.</p>
+			 <p dir=rtl><span class=exampleChar>&#x647;&#x647;&#x647;&nbsp;&#x647;</span></p>
+          </aside>
           <p>Similarly, the variations in half-width and full-width forms and rotated
             characters (for use in vertical text) are encoded as separate code
             points, mainly for compatibility with legacy character encodings. In 
