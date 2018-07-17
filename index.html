@@ -1221,10 +1221,10 @@
 		  indicate word boundaries in text where spaces do not otherwise appear. 
 		  For example, it might be used in a Thai language document to assist 
 		  with word-breaking. </p>
-		  <p>The <span class="uname" translate="no">U+00AD Soft Hyphen</span> can be used in text 
-		  to indicate a potential or preferred hyphenation position. It only 
+		  <p>The <span class="uname" translate="no">U+00AD Soft Hyphen</span> can be used in text to indicate a potential or preferred hyphenation position. It only 
 		  becomes visible when the text is reflowed to wrap at that position.</p>
-		  <p>The <span class="uname" translate="no">U+2060 WORD JOINER</span>, sometimes called <em>WJ</em> is a zero-width non-breaking space character. Its purpose is to replace the functionality of the character <span class="uname" translate="no">U+FEFF ZERO WIDTH NO-BREAK SPACE</span> because that character also serves as the "Byte Order Mark" character (used as a Unicode signature in plain text files). The Word Joiner is used to indicate where there is no line break opportunity between two characters (in fact, it should be ignored except for purposes of line-breaking).</p>
+		  
+		  <p>The <span class="uname" translate="no">U+2060 WORD JOINER</span>, sometimes called <em>WJ</em>, is a zero-width non-breaking space character. Its purpose is to prevent line breaks between two characters. Except for purposes of line-breaking, it should be ignored. It serves as a replacement for the character <span class="uname" translate="no">U+FEFF ZERO WIDTH NO-BREAK SPACE</span> because <span class=uname translate=no>U+FEFF</span> also serves as the "Byte Order Mark" (BOM) character. A byte order mark is used at the start of some plain text files to signal that the file is in a Unicode character encoding. </p>
 
         <p>Finally, most scripts, when written horizontally, proceed from left-to-right. However, some scripts, such as Arabic and Hebrew, are written predominently from right-to-left. Texts can be written in a mix of these scripts or include character sequences, such as numbers or quotes in another script, that run in the opposite direction to other parts of the text. This intermixing of text direction is called <em>bidirectional</em> text or <q>bidi</q> for short. The Unicode Bidirectional Algorithm [[UAX9]] describes how such mixed-direction text is processed for display. For most text, the directional handling can be derived from the text itself. However, there are many cases in which the algorithm needs additional information in order to present text correctly. For more examples, see [[html-bidi]].</p>
 
@@ -1606,7 +1606,7 @@
          John Klensin, 
          Peter Saint-Andre, 
          Amir Sarabadani,
-         @Richard57,  <!-- placeholder -->
+         Richard Wordingham,
        and all of the CharMod contributors over the twenty (!!) years of this document's development. </p>
       <p>The previous version of this document was edited by:</p>
       <ul>
