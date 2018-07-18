@@ -210,6 +210,14 @@ div.exampleBox {
     font-family: "Palatino", "Times", "Times New Roman", "Verdana", "NoToFu", serif;
 }
 
+.bidiExample {
+    font-size: 60pt;
+    font-family: "Naskh", "Palatino", "Times", "Times New Roman", "Verdana", "NoToFu", serif;
+    text-align: center;
+    margin: 15px 15px 15px 15px;
+    padding: 2px;
+}
+
 .markup {
 	font-family: Lucida Console,NoToFu, monospace;
 }
