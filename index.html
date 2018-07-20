@@ -1352,30 +1352,91 @@
     </section>
     <section id="identityMatching">
       <h2>String Matching of Syntactic Content in Document Formats and Protocols</h2>
-        <p>In the Web environment, where strings can be encoded in different 
-		encodings, using different character sequences, and with variations such 
-		as case, it's important to
-          establish a consistent process for evaluating string identity.</p>
-      <p>This chapter defines the implementation and requirements for string
-        matching in <a href="#def_syntactic_content" class="termref">syntactic content</a>.</p>
-      <section id="matchingAlgorithm">
-        <h2>The Matching Algorithm</h2>
-        <p>This section defines the algorithm for matching strings in a formal language or syntax. Specifications need to specify certain options called out below. Recommendations are provided for best practices in the sub-sections below.</p>
+      
+      <p>In the Web environment, where strings can use different character encodings, use different character sequences within those encodings, and have other variations (such as case) described in this document, it's important to establish a consistent process for evaluating string identity.</p>
+        
+      <p>This chapter defines the requirements for specifying and implementing string matching in <a href="#def_syntactic_content" class="termref">syntactic content</a>.</p>
+      
+      <section id="choosingMatchingAlgorithm">
+        <h2>Choosing a Matching Algorithm</h2>
+        
+        <p>The basic decision for choosing a matching algorithm to use for a given specification is the level of text normalization (which includes both case sensitivity and Unicode normalization) to apply to the strings being matched. Historically on the Web most specifications have opted for case-sensitive matching without Unicode normalization and this is the RECOMMENDED form of matching for all new specifications. However, there are cases where case-insensitivity and normalization are useful.</p>
+        
+        <p>A specificiation can choose to be case-insensitive if the benefit to users of the format or protocol in question outweighs the cost and complexity of the implementation. Because both case folding and normalization can affect the values being compared, including the presentation and, in some cases, the meaning of the text and because these operations are relatively expensive, choosing case-insensitivity is generally discouraged.</p>
+        
+        <p>A special case of case-insensitivity are vocabularies limited to the ASCII/Basic Latin (<span class=uname>U+0000</span>-><span class=uname>U+007F</span>) range. These specifications can choose to be case-insensitive only over that range of characters. This greatly simplifies the implementation of matching. However, this form of matching is not appropriate for specifications that allow a larger range of Unicode in identifiers or syntax, since it is difficult for users to understand the behavior of the matching and it is a disadvantage to users of non-ASCII scripts and languages.</p>        
+        
+        <section id="matchingAlgorithm">
+        <h3>The Matching Algorithm</h3>
+        
+        <p>The matching algorithm describes the series of steps needed to compare two strings.</p>
+        
         <ol>
           <li>Convert the strings to be compared to a sequence of Unicode code points. This might entail <a href="#convertingToCommonUnicodeForm">transcoding</a> from a legacy character encoding.</li>
-          <li>
-            <p>Expand all <a href="#expandingCharacterEscapes">character escapes and includes</a>.</p>
-           </li>
-          <li>If Unicode normalization is <a href="#normalizationChoice">specified</a>, apply the appropriate normalization form to the text.</li>
-          <li>If case sensitivity is <a href="#handlingCaseFolding">specified</a>, proceed to the next step. Otherwise apply the appropriate case folding operation:
-            <ol style="list-style-type:lower-latin">
-			  <li><em><a>Unicode full</a> case folding</em>: map all code points to their <a>Unicode full</a> case fold equivalents. Note that this can change the length of the string.</li>
-              <li><em><a data-lt="ASCII case-insensitive">ASCII case folding</a></em>: map all code points in the range U+0041 to U+005A (A to Z) to the corresponding code points in the range U+0061 to U+007A (a to z).</li>
-            </ol>
-          </li>
+          <li>Expand all <a href="#expandingCharacterEscapes">character escapes and includes</a>.</li>
+          <li>Perform the <a href="#performNorm">appropriate normalization step</a>.</li>
           <li>Perform any <a href="#additionalMatchTailoring">additional matching tailoring</a> specific to the specification.</li>
           <li>Compare the resulting sequences of code points for identity.</li>
         </ol>
+        
+        </section>
+        <p></p>
+        
+
+      <section id="performNorm">
+        <h4>Performing the Appropriate Normalization Step</h4>
+        
+        <p>The right text normalization for a given specification depends on the need to match items in the format or protocol's vocabulary. There are four choices for text normalization:</p>
+        <ol>
+			<li><em>Case Insensitive.</em> No case folding or Unicode normalization is applied. This is the RECOMMENDED form of text normalization.</li>
+			<li><em>ASCII Case Folding.</em> Characters in the ASCII (Basic Latin, U+0000 to U+007F) range are case folded. No Unicode normalization is applied. This option is only applicable to vocabularies that are themselves limited to the ASCII range (or where matching only occurs on the ASCII tokens).</li>
+			<li><em>Canonical Case Sensitive.</em> The canonically equivalent text is case folded using Unicode C+F rules.</li>
+			<li><em>Compatibility Case Sensitive.</em> The compatibility equivalent text is case folded using Unicode C+F rules.</li>
+        </ol>
+        
+        <section id="caseSensitiveNormalizationStep">
+			<h5>Case Sensitive Normalization Step</h5>
+			
+			<p></p>
+        </section>
+        
+        <section id="ASCIIFoldNormalizationStep">
+			<h5>ASCII Case Insensitive Normalization Step</h5>
+			
+			<p>For each string, perform the following steps:</p>
+			<ol>
+				<li>...</li>
+			</ol>
+        </section>
+        
+        <section id="CanonicalFoldNormalizationStep">
+			<h5>Canonical Case Insensitive Normalization Step</h5>
+			
+			<p>Specifications that need case-insensitivity for vocabularies that allow non-ASCII characters (which should include most new vocabularies) SHOULD specify this step. Because case folding does not preserve the normalization of text and because case folding without considering the Unicode normalization form produces side effects for some of these characters, case-insensitive comparison includes the use of the <kbd>NFD</kbd> Unicode Normalization form. Normalization is required both before and after the case fold step because case folding can change the normalization of the text. The steps (which are consistent with [[Unicode]] requirement <kbd>D145</kbd>) are:</p>
+			
+			<ol>
+				<li>Perform Unicode normalization of the string to form NFD.</li>
+				<li>Perform Unicode Full case fold mapping of the resulting string.</li>
+				<li>Perform Unicode normalization of the resulting string to form NFD.</li>
+				<li>Return the result.</li>
+			</ol>
+        </section>
+        
+        <section id="CompatibilityFoldNormalizationStep">
+			<h5>Compatibility Case Insensitive Normalization Step</h5>
+			
+			<p>Specifications that need to promiscuously match Unicode compatibility equivalents will use this normalization step. Because the compatibility normalization forms (<kbd>NFKC</kbd> and <kbd>NFKD</kbd>) change the meaning, appearance, and processing of the text, this step SHOULD NOT be used for most applications on the Web. Because case folding does not preserve the normalization of text and because case folding without considering the Unicode normalization form produces side effects for some of these characters, this form of case-insensitive comparison includes multiple uses of Unicode normalization, including both the <kbd>NFKD</kbd> form and the <kbd>NFD</kbd> form. The steps (which are consistent with [[Unicode]] requirement <kbd>D146</kbd>) are:</p>
+			
+			<ol>
+				<li>Perform Unicode normalization of the string to form NFD. This eliminates canonical variations in the encoding of the string.</li>
+				<li>Perform Unicode Full case fold mapping of the resulting string.</li>
+				<li>Perform Unicode normalization of the resulting string to form NFKD.</li>
+				<li>Perform Unicode Full case fold mapping of the resulting string. This eliminates artifacts produces by the compatibility mapping.</li>
+				<li>Perform Unicode normalization of the resulting string to form NFKD. This eliminates remaining artifacts produced by the case fold.</li>
+				<li>Return the result.</li>
+			</ol>
+        </section>
+      </section>
         
 
       <section id="convertingToCommonUnicodeForm">
