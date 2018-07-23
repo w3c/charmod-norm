@@ -1408,17 +1408,18 @@
 			<aside class=example>
 				<p>Examples of strings that match each other in ASCII Case Fold but not in default:</p>
 <pre>
-	hello
-	Hello
-	HELLO
-	hElLo
+hello
+Hello
+HELLO
+hElLo
 </pre>
 				
 				<p>Examples of strings that do not match each other in ASCII Case Fold (or any of the strings just above):</p>
 <pre>
-	hello
-	h&#xe9;llo
-	HELL&#xd6;
+H&#xc9;LLO
+h&#xe9;llo
+HELL&#xd6;
+HE&#x141;&#x141;O
 </pre>
 			</aside>
 			
@@ -1432,12 +1433,12 @@
         <section id="CanonicalFoldNormalizationStep">
 			<h5>Unicode Case Fold Normalization Step</h5>
 			
-			<p>Specifications that have vocabularies that allow non-ASCII characters (which should include most new vocabularies) and which require case insensitive SHOULD specify this step. Note that case insensitivity is not recommended.</p>
+			<p>Specifications that have vocabularies that allow non-ASCII characters (which should include most new vocabularies) and which do not want to be sensitive to case distinctions SHOULD specify this step. This is not recommended.</p>
 			
-			<p>Because case folding both does not preserve and is affected by the normalization of the text and because case folding without considering the Unicode normalization form produces side effects for some characters, this type of case insensitivity requires the use of the <kbd>NFD</kbd> Unicode Normalization form, both before and after case folding. This is consistent with [[Unicode]] requirement <kbd>D145</kbd>).</p>
+			<p>Case folding is affected by the input code point sequence. It can also, by itself, produce a denormalized code point sequence. As a result, this normalization step includes Unicode normalization both before and after case folding. This step is consistent with [[Unicode]] requirement <kbd>D145</kbd>.</p>
 			
 			<aside class=note>
-				<p>NOTE WELL: This normalization step uses the canonical decomposition form (NFD) of Unicode normalization. This is because the strings are being prepared for comparison and are not intended for display or other processing. This should not be taken as an endorsement of the exchange or storage of the NFD form (other than for comparison purposes): generally the NFC form is preferred.</p>
+				<p>This normalization step uses the "canonical decomposition" (NFD) form of Unicode normalization. This is because the strings are being prepared for comparison and are not intended for display or other processing. This should not be taken as an endorsement of the exchange or storage of the NFD form (other than for comparison purposes). For display and interchange, Form NFC is preferred.</p>
 			</aside>
 			
 			<p>For each string, perform the following steps: </p>
@@ -1453,13 +1454,13 @@
         <section id="CompatibilityFoldNormalizationStep">
 			<h5>Unicode Compatibility Case Fold Normalization Step</h5>
 			
-			<p>Specifications that need to match Unicode compatibility equivalents will use this normalization step. Because the compatibility normalization forms (<kbd>NFKC</kbd> and <kbd>NFKD</kbd>) change the meaning, appearance, and processing of the text, this step SHOULD NOT be used for most applications on the Web.</p>
+			<p>Specifications that have vocabularies that allow non-ASCII characters and which need to match Unicode compatibility equivalents might use this normalization step. Because the compatibility normalization forms (<kbd>NFKC</kbd> and <kbd>NFKD</kbd>) change the meaning, appearance, and processing of the text, this step SHOULD NOT be used for most applications on the Web.</p>
 			
 			<aside class=note>
-				<p>NOTE WELL: Unicode compatibility decomposition removes meaning from the text it is applied to. That means that this normalization step produces the most promiscuous matches. Some developers and specification authors find this level of normalization attractive because it appears to bring together many strings that are logically similar, but this level of normalization has limited utility in actual practice and has side effects that confuse users. This normalization step is presented for completeness, but it is not generally appropriate for use on the Web.</p>
+				<p>Unicode compatibility decomposition removes meaning from the text that it is applied to. That means that this normalization step produces the most promiscuous matches. Some developers and specification authors find this level of normalization attractive because it appears to bring together many strings that are logically similar, but this level of normalization has limited utility in actual practice and has side effects that confuse users. This normalization step is presented for completeness, but it is not generally appropriate for use on the Web.</p>
 			</aside>
 			
-			<p>Because case folding both does not preserve and is affected by the normalization of the text and because case folding without considering the Unicode normalization form produces side effects for some characters, this type of case insensitivity includes multiple uses of Unicode normalization, including both the <kbd>NFKD</kbd> form (which supplies the compatibility mapping) and the <kbd>NFD</kbd> form. This is consistent with [[Unicode]] requirement <kbd>D146</kbd>)</p>
+			<p>Case folding is affected by the input code point sequence. It can also produce a denormalized code point sequence. As a result, this normalization step includes multiple uses of Unicode normalization, including both the <kbd>NFKD</kbd> form (which supplies the compatibility mapping) and the <kbd>NFD</kbd> form. This step is consistent with [[Unicode]] requirement <kbd>D146</kbd>.</p>
 			
 			<p>For each string, perform the following steps:</p>
 			
@@ -1482,25 +1483,28 @@
             <p class=requirement><span id="practice-useUTF-8"><span class=qrec>[C]</span> Content authors SHOULD enter and store resources in a Unicode character encoding (generally UTF-8 on the Web).</span></p>
         </div>
         
+        <p>The first step in comparing text is to ensure that both use the same digital representation. This means that implementations need to convert any text in a <a>legacy character encoding</a> to a sequence of Unicode code points. Normally this is done by applying a <a>transcoder</a> to convert the data to a consistent Unicode encoding form (such as UTF-8 or UTF-16). This allows bitwise comparison of the strings in order to determine string equality.</p> 
+        
         <div class=practice>
             <p class=requirement><span id="practice-normalizingTranscoder" class=practiceLab><span class=qrec>[C]</span> Content authors SHOULD choose a <a>normalizing transcoder</a> when converting legacy encoded text or resources to Unicode unless the mapping of specific characters interferes with the meaning.</span></p>
         </div>
         
+        <p>A <dfn>normalizing transcoder</dfn> is a <a>transcoder</a> that performs a conversion from a <a>legacy character encoding</a> to Unicode <em>and</em> ensures that the result is in Unicode Normalization Form C (NFC). For most legacy character encodings, it is possible to construct a normalizing transcoder (by using any transcoder followed by a normalizer); it is not possible to do so if the <a>legacy character encoding</a>'s <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a> contains characters not represented in Unicode. While normalizing transcoders only produce character sequences that are in NFC, the converted character sequence might not be <a>include normalized</a> (for example, if it begins with a combining mark).</p>
+        
+        <p>Because document formats on the Web often interact with or are processed using additional, external resources (for example, a CSS style sheet being applied to an HTML document), the consistent representation of text becomes important when matching values between documents that use different character encodings. Use of a normalizing transcoder helps ensure interoperability by making legacy encoded documents match the normally expected Unicode character sequence for most languages.</p>
+        
+        <p>Most transcoders used on the Web produce NFC as their output, but several do not. This is usually to allow the transcoder to be round-trip compatible with the source legacy character encoding, to preserve other character distinctions, or to be consistent with other transcoders in use in user-agents. This means that the Encoding specification [[!Encoding]] and various other important transcoding implementations include a number of non-normalizing transcoders. Indeed, most compatibility characters in Unicode exist solely for round-trip conversion from legacy encodings and a number of these have singleton canonical mappings in NFC. You saw an example of this <a href="#unicodeNormalization">earlier in the document</a> with <span class="codepoint"><span lang="en">&#x212B;</span> [<span class="uname">U+212B ANGSTROM SIGN</span>]</span>.</p> 
+        
+                
+        <p>Bear in mind that most transcoders produce NFC output and that even those transcoders that do not produce NFC for all characters produce NFC for the preponderence of characters. In particular, there are no commonly-used transcoders that produce decomposed forms where precomposed forms exist or which produce a different combining character sequence from the normalized sequence (and this is true for <em>all</em> of the transcoders in [[!Encoding]]).</p>
+               
         <div class=practice>
 			<p class=requirement><span id="practice-allowUnicode" class=practiceLab><span class=qrec>[S]</span> Specifications MUST allow a Unicode character encoding.</span></p>
 			<p class=requirement><span id="practice-defaultEncoding" class=practiceLab><span class=qrec>[S]</span> Specifications MUST specify a default character encoding and SHOULD specify UTF-8 as the default encoding.</span></p>
 			<p class=requirement><span id="practice-disallowLegacy" class=practiceLab><span class=qrec>[S]</span> Specifications SHOULD disallow encodings other than UTF-8.</span></p>
         </div>
-       
-        <p>The first step in comparing text is to ensure that both use the same digital representation. This means that implementations need to convert any text in a <a>legacy character encoding</a> to a sequence of Unicode code points. Normally this is done by applying a <a>transcoder</a> to convert the data to a consistent Unicode encoding form (such as UTF-8 or UTF-16). This allows bitwise comparison of the strings in order to determine string equality.</p>
- 
-        <p>A <dfn>normalizing transcoder</dfn> is a <a>transcoder</a> that performs a conversion from a <a>legacy character encoding</a> to Unicode <em>and</em> ensures that the result is in Unicode Normalization Form C (NFC). For most legacy character encodings, it is possible to construct a normalizing transcoder (by using any transcoder followed by a normalizer); it is not possible to do so if the <a>legacy character encoding</a>'s <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a> contains characters not represented in Unicode. While normalizing transcoders only produce character sequences that are in NFC, the converted character sequence might not be <a>include normalized</a> (for example, if it begins with a combining mark).</p>
-        
-        <p>Because document formats on the Web often interact with or are processed using additional, external resources (for example, a CSS style sheet being applied to an HTML document), the consistent representation of text becomes important when matching values between documents that use different character encodings. Use of a normalizing transcoder helps ensure interoperability by making legacy encoded documents match the normally expected Unicode character sequence for most languages.</p>
-        
-        <p>Most transcoders used on the Web produce NFC as their output, but several do not. This is usually to allow the transcoder to be round-trip compatible with the source legacy character encoding, to preserve other character distinctions, or to be consistent with other transcoders in use in user-agents. This means that the Encoding specification [[!Encoding]] and various other important transcoding implementations include a number of non-normalizing transcoders. Indeed, most compatibility characters in Unicode exist solely for round-trip conversion from legacy encodings and a number of these have singleton canonical mappings in NFC. You saw an example of this <a href="#unicodeNormalization">earlier in the document</a> with <span class="codepoint"><span lang="en">&#x212B;</span> [<span class="uname">U+212B ANGSTROM SIGN</span>]</span>.</p>
-        
-        <p>Bear in mind that most transcoders produce NFC output and that even those transcoders that do not produce NFC for all characters produce NFC for the preponderence of characters. In particular, there are no commonly-used transcoders that produce decomposed forms where precomposed forms exist or which produce a different combining character sequence from the normalized sequence (and this is true for <em>all</em> of the transcoders in [[!Encoding]]).</p>
+
+        <p><a>Legacy character encodings</a> have generally outlived their usefulness on the Web. New specifications need to support Unicode encodings from the beginning, default to a Unicode encoding (generally UTF-8), and, if at all possible, disallow any other encodings to be used. This not only promotes interoperability, but reduces the range of pointless variation in character and data representation.</p>
         
         </section>
         
@@ -1529,20 +1533,17 @@
 		  <p>In some cases, pre-processing escapes creates problems. For example, expanding the sequence <code>&amp;lt;</code> before parsing an HTML document would produce document errors.</p>
       </section>
         <section id="normalizationChoice">
-          <h4>Choice of Normalization Form</h4>
+          <h4>Additional Considerations for Normalization</h4>
           
-          <p>A specific Unicode normalization form is not always appropriate or available to content authors and the text encoding choices of users might not be obvious to downstream consumers of the data. As shown in this document, there are many different ways that content authors or applications could choose to represent the same semantic values when inputting or exchanging text. Normalization can remove distinctions that the users applied intentionally. Therefore:</p>
-
+          <p>A specific Unicode normalization form is not always appropriate or available to content authors and the text encoding choices of users might not be obvious to downstream consumers of the data. As shown in this document, there are many different ways that content authors or applications could choose to represent the same semantic values when inputting or exchanging text. Normalization can remove distinctions that the users applied intentionally. Therefore, the <a href="#matchingAlgorithm">matching algorithm</a> specifies the use of Unicode normalization when performing case-fold matching of strings&mdash;and then only internally to the algorithm. Imposing normalization on content can represent a barrier to users and implementers. Thus:</p>
       
-          <p class=requirement><span class=qrec>[S]</span> Specifications SHOULD NOT specify the Unicode normalization in string matching for vocabularies.</p>
+          <p class=requirement><span class=qrec>[S]</span> Specifications SHOULD NOT specify a Unicode normalization form for encoding, storage, or interchange of a given vocabulary.</p>
           
-          <p class=requirement><span class=qrec>[I]</span> Implementations MUST NOT alter the normalization form of syntactic or natural language content being exchanged, read, parsed, or processed except when required to do so as a side-effect of text transformation such as transcoding the content to a Unicode character encoding, case mapping or folding, or other user-initiated change, as consumers or the content itself might depend on the de-normalized representation. </p>
+          <p class=requirement><span class=qrec>[I]</span> Implementations MUST NOT alter the normalization form of syntactic or natural language content being exchanged, read, parsed, or processed except when required to do so as a side-effect of text transformation such as transcoding the content to a Unicode character encoding, case folding, or other user-initiated change, as consumers or the content itself might depend on the de-normalized representation. </p>
           
           <p class=requirement><span class=qrec>[I]</span> Authoring tools SHOULD provide a means of normalizing resources and warn the user when a given resource is not in Unicode Normalization Form C.</p>
           
-          <p class=requirement><span class=qrec>[S]</span> Specifications of text-based formats and protocols that as part of their syntax definition require the text be in a normalized form MUST define string matching in terms of normalized string comparison and MUST define the normalized form to be NFC.</p>
-          
-          <p class=note>A specification that defines comparison of text in a normalized format needs to address the requirements in <a href="#normalizing-spec"></a>.</p>
+          <p class=note>A specification that requires storage and interchange of text in a specific normalization form needs to address the requirements in <a href="#normalizing-spec"></a>.</p>
        
           <p>Specifications are generally discouraged from requiring formats or protocols to store or exchange data in a normalized form unless there are specific, clear reasons why the additional requirement is necessary. As many document formats on the Web do not require normalization, content authors might occasionally rely on denormalized character sequences. A normalization step could negatively affect such content.</p>
           
@@ -1570,19 +1571,19 @@
           
           <p>Some recommended base characters include <span class="codepoint"><span lang="en">&#x25CC;</span> [<span class="uname">U+25CC DOTTED CIRCLE</span>]</span> (when the base character needs to be visible) or <span class="codepoint"><span lang="en">&#x00A0;</span> [<span class="uname">U+00A0 NO-BREAK SPACE</span>]</span> (when the base character should be invisible).</p>
           
-          <p>Since content authors do not always following these guidelines:</p>
+          <p>Since content authors do not always follow these guidelines:</p>
           
           <p><span class=requirement><span class=qrec>[S]</span> Specifications of vocabularies MUST define the boundaries between syntactic content and character data as well as entity boundaries (if the language has any include mechanism).</span> These need to include any boundary that may create conflicts when processing or matching content when instances of the language are processed, while allowing for character escapes designed to express arbitrary characters.</p>
           
         <section id="normalizing-spec">
 			
-          <h4>Considerations When Requiring Normalization</h4>
+          <h4>Requirements When Specifying Normalization in Document Formats</h4>
           
-          <p>When a specification requires Unicode normalization for storage, transmission, or string matching, some additional considerations need to be addressed by the specification authors as well as by implementers of that specification:</p>
+          <p>When a specification requires Unicode normalization for storage, transmission, or processing, some additional considerations need to be addressed by the specification authors as well as by implementers of that specification:</p>
           
           <p class=requirement><span class=qrec>[S]</span> Where operations can produce denormalized output from normalized text input, specifications MUST define whether the resulting output is required to be normalized or not. Specifications MAY state that performing normalization is optional for some operations; in this case the default SHOULD be that normalization is performed, and an explicit option SHOULD be used to switch normalization off.</p>
           
-          <p><span class=requirement><span class=qrec>[S]</span> Specifications that require normalization MUST NOT make the implementation of normalization optional.</span> Interoperability of matching cannot be achieved if some implementations normalize while others do not.</p>
+          <p><span class=requirement><span class=qrec>[S]</span> Specifications that require normalization MUST NOT make the implementation of normalization optional.</span> Interoperability cannot be achieved if some implementations normalize while others do not.</p>
           
           <p>An implementation that is required to perform normalization needs to consider these requirements:</p>
 
@@ -1596,11 +1597,11 @@
         </section>
         
         <section id="handlingCaseFolding">
-        <h4>Choice of Case Folding</h4>
+        <h4>Additional Considerations for Case Folding</h4>
         
         <p>One important consideration in string identity matching is whether the comparison is case sensitive or case insensitive.</p>
         
-        <p class=requirement><span class=qrec>[C]</span> Content authors SHOULD always spell identifiers using consistent upper, lower, and mixed case formatting to facilitate matching, even if case-insensitive matching is supported by the format or implementation.</p>
+        <p class=requirement><span class=qrec>[C]</span> Content authors SHOULD always spell identifiers using consistent upper, lower, and mixed case formatting to facilitate matching, even if case folded matching is supported by the format or implementation.</p>
         
         <section id="sec_case_sensitive">
           <h4>Case-sensitive matching</h4>
