@@ -1388,20 +1388,39 @@
         
         <p>The right text normalization for a given specification depends on the need to match items in the format or protocol's vocabulary. There are four choices for text normalization:</p>
         <ol>
-			<li><em>Case Sensitive.</em> Comparison of text without the application of case folding or Unicode normalization. This is the RECOMMENDED form of text normalization.</li>
-			<li><em>ASCII Case Insensitive.</em> Comparison of text with the characters in the ASCII (Basic Latin, <span class=uname>U+0000</span> to <span class=uname>U+007F</span>) range case folded. No Unicode normalization is applied. This option is only applicable to vocabularies that are themselves limited to the ASCII range (or where matching only occurs on the ASCII tokens).</li>
-			<li><em>Canonical Case Insensitive.</em> Comparison of text that is both case folded and had Unicode canonical normalization applied.</li>
-			<li><em>Compatibility Case Insensitive.</em> Comparison of text that is both case folded and had Unicode compatibility normalization applied.</li>
+			<li><em>Default.</em> Comparison of text without the application of case folding or Unicode normalization. This is the RECOMMENDED form of text normalization.</li>
+			<li><em>ASCII Case Fold.</em> Comparison of text with the characters in the ASCII (Basic Latin, <span class=uname>U+0000</span> to <span class=uname>U+007F</span>) range case folded. No Unicode normalization is applied. This option is only appropriate for vocabularies that are themselves limited to the ASCII range (or where matching only occurs on the ASCII tokens).</li>
+			<li><em>Unicode Case Fold.</em> Comparison of text that is both case folded and had Unicode canonical normalization applied.</li>
+			<li><em>Unicode Compatibility Case Fold.</em> Comparison of text that is both case folded and had Unicode compatibility normalization applied.</li>
         </ol>
         
         <section id="caseSensitiveNormalizationStep">
-			<h5>Case Sensitive Normalization Step</h5>
+			<h5>Default Normalization Step</h5>
 			
-			<p>Case sensitive normalization applies no additional processing to the strings being compared. This means that content authors must be aware of and ensure that they use consistent case and consistent character sequences to encode affected text.</p>
+			<p>The default normalization step doesn't apply Unicode normalization nor does it perform case folding. This means that it is sensitive to differences in case and to the code points in the source strings being compared. Content authors need to be aware of and ensure that they use consistent case and consistent character sequences to encode affected text if they expect different tokens to match.</p>
         </section>
         
         <section id="ASCIIFoldNormalizationStep">
-			<h5>ASCII Case Insensitive Normalization Step</h5>
+			<h5>ASCII Case Fold Normalization Step</h5>
+			
+			<p>The ASCII Case Fold normalization step performs case folding only of the ASCII range.</p>
+			
+			<aside class=example>
+				<p>Examples of strings that match each other in ASCII Case Fold but not in default:</p>
+<pre>
+	hello
+	Hello
+	HELLO
+	hElLo
+</pre>
+				
+				<p>Examples of strings that do not match each other in ASCII Case Fold (or any of the strings just above):</p>
+<pre>
+	hello
+	h&#xe9;llo
+	HELL&#xd6;
+</pre>
+			</aside>
 			
 			<p>For each string, perform the following steps:</p>
 			<ol>
@@ -1411,11 +1430,15 @@
         </section>
         
         <section id="CanonicalFoldNormalizationStep">
-			<h5>Canonical Case Insensitive Normalization Step</h5>
+			<h5>Unicode Case Fold Normalization Step</h5>
 			
 			<p>Specifications that have vocabularies that allow non-ASCII characters (which should include most new vocabularies) and which require case insensitive SHOULD specify this step. Note that case insensitivity is not recommended.</p>
 			
 			<p>Because case folding both does not preserve and is affected by the normalization of the text and because case folding without considering the Unicode normalization form produces side effects for some characters, this type of case insensitivity requires the use of the <kbd>NFD</kbd> Unicode Normalization form, both before and after case folding. This is consistent with [[Unicode]] requirement <kbd>D145</kbd>).</p>
+			
+			<aside class=note>
+				<p>NOTE WELL: This normalization step uses the canonical decomposition form (NFD) of Unicode normalization. This is because the strings are being prepared for comparison and are not intended for display or other processing. This should not be taken as an endorsement of the exchange or storage of the NFD form (other than for comparison purposes): generally the NFC form is preferred.</p>
+			</aside>
 			
 			<p>For each string, perform the following steps: </p>
 			
@@ -1428,9 +1451,13 @@
         </section>
         
         <section id="CompatibilityFoldNormalizationStep">
-			<h5>Compatibility Case Insensitive Normalization Step</h5>
+			<h5>Unicode Compatibility Case Fold Normalization Step</h5>
 			
 			<p>Specifications that need to match Unicode compatibility equivalents will use this normalization step. Because the compatibility normalization forms (<kbd>NFKC</kbd> and <kbd>NFKD</kbd>) change the meaning, appearance, and processing of the text, this step SHOULD NOT be used for most applications on the Web.</p>
+			
+			<aside class=note>
+				<p>NOTE WELL: Unicode compatibility decomposition removes meaning from the text it is applied to. That means that this normalization step produces the most promiscuous matches. Some developers and specification authors find this level of normalization attractive because it appears to bring together many strings that are logically similar, but this level of normalization has limited utility in actual practice and has side effects that confuse users. This normalization step is presented for completeness, but it is not generally appropriate for use on the Web.</p>
+			</aside>
 			
 			<p>Because case folding both does not preserve and is affected by the normalization of the text and because case folding without considering the Unicode normalization form produces side effects for some characters, this type of case insensitivity includes multiple uses of Unicode normalization, including both the <kbd>NFKD</kbd> form (which supplies the compatibility mapping) and the <kbd>NFD</kbd> form. This is consistent with [[Unicode]] requirement <kbd>D146</kbd>)</p>
 			
@@ -1635,7 +1662,7 @@
       <section id="additionalMatchTailoring">
       <h2>Additional Match Tailoring</h2>
       
-      <p class=requirement><span class=qrec>[S]</span> Specificiations MUST clearly define any additional tailoring done as part of the matching process.</p>
+      <p class=requirement><span class=qrec>[S]</span> Specifications MUST clearly define any additional tailoring done as part of the matching process.</p>
       
       <p>Some specifications might wish to include additional tailoring to assist with matching in a given vocabulary. Examples of this might include removing additional textual differences described in <a href="#problemStatement">Section 2</a>, mapping together or removing characters that are part of the syntax, or performing a whitespace trim.</p>
       
