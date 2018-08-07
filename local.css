@@ -286,4 +286,12 @@ p.syntaxExample {
     hyphens: none;
 }
 
+table.ncfExample td {
+    text-align: center;
+}
+
+table.ncfExample th {
+    text-align: center;
+}
+
 
