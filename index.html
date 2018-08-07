@@ -1125,6 +1125,48 @@
 
 
       </section>
+              
+      <section id="normalizationAndCasefold">
+		<h3>Interaction of Normalization and Case Folding</h3>
+		<p>One additional complication is that case folding or case mapping can affect the normalization of the string the casing operation is applied to. If the goal is to compare two strings in a case-insensitive manner, the results of a case fold operation have to be renormalized or the resulting case-folded strings might not match.</p>
+		<p>The Unicode canonical normalization forms and case folding, when used together, are closed: once a string has been case folded and then had NFC or NFD applied to it, further applications of the same case folding and Unicode normalization form do not result in a different string.</p>
+		<aside class=example>
+			<table class="ncfExample">
+				<tr>
+					<th>Original</th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>Normalized</th>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x1fb7;</td>
+					<td class=exampleChar>&#x03b1;&#x0342;&#x03b9;</td>
+					<td>&#x2260;</td>
+                    <td class=exampleChar>&#x1fb6;&#x3b9;</td>
+				</tr>
+					<td><code>U+1FB7</code></td>
+					<td><code>U+03B1 U+0342 U+03B9</code></td>
+					<td></td>
+					<td><code>U+1FB6 U+03B9</code> (NFC)</td>
+			    </tr>
+				<tr>
+					<td class=exampleChar>&#x1ff2;</td>
+					<td class=exampleChar>&#x1f7c;&#x03b9;</td>
+					<td>&#x2260;</td>
+                    <td class=exampleChar>&#x03c9;&#x300;&#x3b9;</td>
+                </tr>
+                <tr>
+					<td><code>U+1FF2</code></td>
+					<td><code>U+1F7C U+03B9</code></td>
+					<td></td>
+					<td><code>U+03C9 U+0300 U+03B9</code> (NFD)</td>
+				</tr>
+			</table>
+		</aside>
+		
+		<p>The same is not true of the Unicode compatibility normalization forms (NFKC and NFKD). Additional work needs to be applied to ensure that the expected text equivalences are created when performing both case folding and Unicode compatibility normalization.</p>
+      </section>
+      
       <section id="characterEscapes">
         <h3>Character Escapes and Includes</h3>
         <p>Most document formats or protocols provide an escaping mechanism to
@@ -1377,10 +1419,14 @@
       <section id="performNorm">
         <h4>Performing the Appropriate Normalization Step</h4>
         
-        <p>The right text normalization for a given specification depends on the need to match items in the format or protocol's vocabulary. There are four choices for text normalization:</p>
+        <aside class=note>
+			<p>In this section, the term <em>normalization</em> is given its "usual" (non-Unicode) meaning: the application of various steps that remove variation from data. Unicode normalization forms are referred to explicitly to try to avoid confusion.</p>
+        </aside>
+        
+        <p>The right text normalization for a given specification depends on requirements in the format or protocol's vocabulary. There are four choices for text normalization:</p>
         <ol>
-			<li><strong>Default.</strong> This is a "no-op" normalization step: comparison of text without the application of case folding or Unicode normalization. This is the RECOMMENDED normalization step.</li>
-			<li><strong>ASCII Case Fold.</strong> Comparison of text with the characters in the ASCII (Basic Latin, <span class=uname>U+0000</span> to <span class=uname>U+007F</span>) range case folded. No Unicode normalization is applied. This step is only appropriate for vocabularies that are themselves limited to the ASCII range (or where matching only occurs on the ASCII tokens).</li>
+			<li><strong>Default.</strong> This normalization step has no effect on the text and, as a result, is sensitive to both case and Unicode normalization form differences. This is the RECOMMENDED normalization step.</li>
+			<li><strong>ASCII Case Fold.</strong> Comparison of text with the characters in the ASCII (Basic Latin, <span class=uname>U+0000</span> to <span class=uname>U+007F</span>) range case folded. No Unicode normalization form is applied. This step is only appropriate for vocabularies that are themselves limited to the ASCII range (or where matching only occurs on the ASCII tokens).</li>
 			<li><strong>Unicode Canonical Case Fold.</strong> Comparison of text that is both case folded and had Unicode canonical normalization applied. This step is appropriate when case-insensitivity is desired for vocabularies that allow non-ASCII characters.</li>
 			<li><strong>Unicode Compatibility Case Fold.</strong> Comparison of text that is both case folded and had Unicode compatibility normalization applied.</li>
         </ol>
@@ -1428,16 +1474,12 @@ HE&#x141;&#x141;O
 			
 			<p>Case folding is affected by the input code point sequence. It can also, by itself, produce a denormalized code point sequence. As a result, this normalization step includes Unicode normalization both before and after case folding. This step is consistent with [[Unicode]] requirement <kbd>D145</kbd>.</p>
 			
-			<aside class=note>
-				<p>This normalization step uses the "canonical decomposition" (NFD) form of Unicode normalization. This is because the strings are being prepared for comparison and are not intended for display or other processing. This should not be taken as an endorsement of the exchange or storage of the NFD form (other than for comparison purposes). For display and interchange, Form NFC is preferred.</p>
-			</aside>
-			
 			<p>For each string, perform the following steps: </p>
 			
 			<ol>
 				<li>Perform Unicode normalization of the string to form NFD. This eliminates canonical variations in the encoding of the string.</li>
 				<li>Perform <a>Unicode Full</a> case fold mapping of the resulting string.</li>
-				<li>Perform Unicode normalization of the resulting string to form NFD.</li>
+				<li>Perform Unicode normalization of the resulting string to form NFC.</li>
 				<li>Return the result.</li>
 			</ol>
         </section>
