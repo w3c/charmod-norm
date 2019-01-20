@@ -207,7 +207,7 @@ div.exampleBox {
 
 .exampleChar {
     font-size: 36pt;
-    font-family: "Palatino", "Times", "Times New Roman", "Verdana", "NoToFu", serif;
+    font-family: "NoToFu", "Palatino", "Times", "Times New Roman", "Verdana", serif;
 }
 
 .bidiExample {
