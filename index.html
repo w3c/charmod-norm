@@ -11,7 +11,7 @@
       var respecConfig = {
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
           specStatus:				"ED",
-          publishDate:  			"2018-07-27",
+          publishDate:  			"2019-01-19",
           previousPublishDate:  	"2015-11-19",
           previousMaturity:  		"WD",
 
@@ -26,7 +26,7 @@
           // only "name" is required
           editors:  [
               { name: "Addison Phillips", 
-                company: "Invited Expert",
+                company: "Amazon.com",
 				w3cid: 33573 },
           ],
 
@@ -268,7 +268,7 @@
           
         <p>Some characters used in this document's examples might not appear as intended on your specific device or display. Usually this is due to lack of a script-specific font installed locally or due to other limitations of your specific rendering system. This document uses a Webfont to provide fallback glyphs for many of the non-Latin characters, but your device might not support displaying the font. To the degree possible, the editors have tried to ensure that the examples nevertheless remain understandable.</p>
           
-        <p>A <dfn data-lt="legacy character encoding|legacy character encodings">legacy character encoding</dfn> is a character encoding not based on the Unicode character set.</p>
+        <p>A <dfn data-lt="legacy character encoding|legacy character encodings">legacy character encoding</dfn> is a character encoding form that does not encode the full repertoire of characters in the Unicode character set.</p>
           
                    
         <p>A <dfn data-lt="transcoder|transcoders">transcoder</dfn> is a process that converts 
@@ -311,13 +311,7 @@
 		'resource' as used in [[RFC3986]], although here the term is applied 
 		loosely. </p>
           
-        <p>A <dfn data-lt="user-supplied value|user-supplied values">user-supplied value</dfn> is unreserved syntactic 
-        content in a <a>vocabulary</a> that is assigned by users, as distinct 
-        from reserved keywords in a given format
-        or protocol. For example, CSS class names are part of the syntax of a CSS
-        style sheet. They are not reserved keywords, predefined by any CSS specification.
-        They are subject to the syntactic rules of CSS. And they may (or may not)
-        consist of natural language tokens.</p>
+        <p>A <dfn data-lt="user-supplied value|user-supplied values">user-supplied value</dfn> is unreserved syntactic content in a <a>vocabulary</a> that is assigned by users, as distinct from reserved keywords in a given format or protocol. For example, CSS class names are part of the syntax of a CSS style sheet. They are not reserved keywords, predefined by any CSS specification, but they are still are subject to the syntactic rules of CSS. Users generally expect that keywords they define can be representative of words or concepts in their given natural language, subject to the limitations of those rules.</p>
           
         <p>A <dfn id="def_vocabulary">vocabulary</dfn> provides the list of
           reserved names as well as the set of rules and specifications
@@ -345,7 +339,7 @@
           cluster in this document refers to an extended default grapheme
           cluster. (A discussion of grapheme clusters is also given in Section 2
            of the <cite>Unicode Standard</cite>, [[!Unicode]]. Cf. near the end of
-           <a href="http://www.unicode.org/versions/Unicode8.0.0/ch02.pdf">Section 2.11</a>
+           <a href="http://www.unicode.org/versions/latest/ch02.pdf">Section 2.11</a>
            in version 8.0 of The Unicode Standard)</p>
         <p>Because different natural languages have different needs, grapheme clusters
           can also sometimes require tailoring. For example, a Slovak user might
@@ -420,7 +414,7 @@
       <section id="conformance">
         <p>This document describes best practices for the authors of other specifications, as well as recommendations for implementations and content authors. These best practices can also be found in the Internationalization Working Group's document <cite>[[!INTERNATIONAL-SPECS]]</cite>, which is intended to serve as a general reference for all Internationalization best practices in W3C specifications.</p>
         
-        <p class=requirement>When a best practice or recommendation appears in this document, it has been styled to like this paragraph. Recommendations for specifications and spec authors are preceded by <span class=qrec>[S]</span>. Recommendations for implementations and software developers are preceeded by <span class=qrec>[I]</span>. Recommendations for content and content authors are preceeded by <span class=qrec>[C]</span>.</p>
+        <p class=requirement>When a best practice or recommendation appears in this document, it has been styled like this paragraph. Recommendations for specifications and spec authors are preceded by <span class=qrec>[S]</span>. Recommendations for implementations and software developers are preceeded by <span class=qrec>[I]</span>. Recommendations for content and content authors are preceeded by <span class=qrec>[C]</span>.</p>
         
         <p>Best practices in this document use [[!RFC2119]] keywords in order to clarify the Internationalization Working Group's intentions regarding a specific recommendation. Following the recommendations in this document can help avoid issues during the W3C's "wide review" process, during implementation, or in the content that authors produce. This document is not, itself, normative and can be revised from time to time.</p>
         
@@ -453,23 +447,17 @@
         the Web relies.</p>
       <section id="definitionCaseFolding">
         <h3>Case Mapping and Case Folding</h3>
-        <p>Some scripts and writing systems make a distinction between UPPER,
-          lower, and Title case characters. Most scripts, such as the Brahmic
-          scripts of India, the Arabic script, and the  scripts used to
-          write Chinese, Japanese, or Korean do not have a case distinction, but
-          some important ones do. Examples of such scripts include the Latin
-          script used in the majority of this document, as well as scripts such
-          as Greek, Armenian, and Cyrillic. </p>
+        <p>Some scripts and writing systems make a distinction between UPPER, lower, and Title case characters. Most scripts, including the Brahmic scripts of India, the Arabic script, and the  scripts used to write Chinese, Japanese, or Korean, do not have a case distinction, but some important ones do. Examples of such scripts include the Latin script used in the majority of this document, as well as scripts such as Greek, Armenian, and Cyrillic. </p>
  		
-		<p><dfn>Case mapping</dfn> is the process of transforming characters to a specific case, such as upper, lower, or titlecase. For those scripts that have a case distinction, Unicode defines a <em>default</em> UPPER, lower, and Title case character mapping for each Unicode code point. Case mapping, at first, appears simple. However there are variations that need to be considered when treating the full range of Unicode in diverse languages.</p>
+		<p><dfn>Case mapping</dfn> is the process of transforming characters to a specific case, such as UPPER, lower, or Titlecase. For those scripts that have a case distinction, Unicode defines a <em>default</em> UPPER, lower, and Titlecase character mapping for each Unicode code point. Case mapping, at first, appears simple. However there are variations that need to be considered when treating the full range of Unicode in diverse languages.</p>
 		
 		        
        <aside class="note">
-       <p>For more information, <cite>[[!Unicode]]</cite> Chapter 5 (in v8.0, <a href="">Section 5.18</a>) discusses case mappings and case folding in detail. </p>
+       <p>For more information, see <cite>[[!Unicode]]</cite> <a href="http://www.unicode.org/versions/latest/ch05.pdf">Chapter 5</a> in the section titled <em>Case Mappings</em>) for a detailed discussion of case mapping and case folding. </p>
        </aside>  
 		
 		<aside class="example">
-		<p>For example here is a character with mappings to all three case variations. These mappings are defined in the Unicode Character Database (UCD).</p>
+		<p>For example here is a character with mappings to all three case variations. These mappings are defined in the <a href="http://www.unicode.org/Public/UCD/latest/ucd/">Unicode Character Database</a> (UCD).</p>
 		<table>
 			<tr>
 				<th>Uppercase</th>
@@ -490,15 +478,15 @@
 		</aside>
 		
 		          
-       <p><dfn>Case folding</dfn> is the process of making two texts which differ only in case identical for comparison purposes, that is, it is meant for the purpose of string matching. This is distinct from <a>case mapping</a>, which is primarily meant for display purposes. As with the default case mappings, Unicode defines default case fold mappings for each Unicode code point. Unicode defines two forms of case fold mapping, which we'll examine below.</p>
+       <p><dfn>Case folding</dfn> is the process of making two texts which differ only in case identical for comparison purposes, that is, it is meant for the purpose of string matching. This is distinct from <a>case mapping</a>, which is primarily meant for display purposes. As with the default case mappings, Unicode defines default case fold mappings ("case folding") for each Unicode code point. Unicode defines two forms of case folding, which we'll examine below.</p>
        
-       <p>Since most scripts do not have a case distinction, as with case mappings, most Unicode code points do not require a case fold mapping. For those characters that 
-		have a case fold mapping, the majority have a simple, straight-forward mapping to a single matching (generally lowercase) code point. Unicode 
-		calls these the <code class="kw">common</code> case fold mappings, as they are shared by Unicode's case fold mappings.
+       <p>Since most scripts do not have a case distinction, as with case mappings, most Unicode code points do not require a case folding. For those code points that 
+		have a case folding, the majority have a simple, straight-forward mapping to another single matching (generally lowercase) code point. Unicode 
+		calls this set of foldings <code class="kw">common</code>, since both types of case folding defined by Unicode includes these.
          </p>
          
          <aside class="example">
-         <p>Here are some examples of <code class="kw">common</code> case fold mappings:</p>
+         <p>Here are some examples of <code class="kw">common</code> case foldings:</p>
          <table>
            <tr>
 			   <td class="exampleChar">A</td>
@@ -522,13 +510,12 @@
          </aside>
          
          
-		  <p>A few characters have a case fold mapping that map one Unicode code point to two or more code points during case folding. These are called the <code class="kw">full</code> case fold mappings. The <code class=kw>full</code> and <code class=kw>common</code> case fold mappings are used together to provide the default case fold mapping for all of Unicode. We refer to this form of case folding as <dfn>full casefolding</dfn> or <dfn>Unicode full</dfn> in this document.
+		  <p>A few characters have a case folding that map one Unicode code point to two or more code points. This set of case foldings are called the <code class="kw">full</code> case foldings. The <code class=kw>full</code> and <code class=kw>common</code> case foldings are used together to provide the default case folding for all of Unicode. We refer to this form of case folding as <dfn>full casefolding</dfn> or <dfn>Unicode full</dfn> in this document.
          </p>
          
          <aside class="example">
           <p>One well-known example of a <code class="kw">full</code> case fold mapping is the character <span class="qchar">&#xdf;</span>
-		  <span class="uname" translate="no">U+00DF LATIN SMALL LETTER SHARP S</span>, a letter that is commonly
-		  used in the German language. The <code class="kw">full</code> case fold mapping and the lower case mapping of this character is to two ASCII letters 's'. The upper case mapping is to "SS".
+		  <span class="uname" translate="no">U+00DF LATIN SMALL LETTER SHARP S</span>, a letter that is commonly used in the German language. The <code class="kw">full</code> case folding and the lower case mapping of this character is to two ASCII letters 's'. The upper case mapping is to "SS".
 		  </p>
          <table>
            <tr>
@@ -540,12 +527,11 @@
 		 </table>
          </aside>
          
-		  <p>Because some applications cannot allocate additional storage when performing a case fold operation, Unicode provides a <code class="kw">simple</code> case fold mapping that maps characters that would normally map to more or 
-		  fewer code points to use a single code point for comparison purposes instead. Unlike the full mapping, this mapping invariably alters the content (and potentially the meaning) of the text. As with <a>full casefolding</a>, the <dfn>simple casefolding</dfn> or <dfn>Unicode simple</dfn> casefold, is a combination of <code class=kw>simple</code> and <code class=kw>common</code> mappings so as to cover the full range of Unicode. <a>Unicode simple</a> is not appropriate for use on the Web. </p>
+		  <p>Because some applications cannot allocate additional storage when performing a case fold operation, Unicode provides a <code class="kw">simple</code> case folding that maps a code point that would normally fold to more or fewer code points to use a single code point for comparison purposes instead. Unlike the full folding, this folding invariably alters the content (and potentially the meaning) of the text. As with <a>full casefolding</a>, the <dfn>simple casefolding</dfn> or <dfn>Unicode simple</dfn> casefold, is a combination of <code class=kw>simple</code> and <code class=kw>common</code> mappings so as to cover the full range of Unicode. <a>Unicode simple</a> is not appropriate for use on the Web. </p>
 		  
 		  <aside class="example">
 
-		  <p>Examples of <code class=kw>full</code> versus <code class=kw>simple</code> case fold variations can be found in the Greek script, where several precomposed characters have multi-character case fold mappings. The table below shows one such example, the character <span class="codepoint"><span lang="en">&#x1F9B;</span> [<span class="uname">U+1F9B GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span>]</span> and its <code class="kw">full</code> and <code class="kw">simple</code> case fold mappings:</p>
+		  <p>Examples of <code class=kw>full</code> versus <code class=kw>simple</code> case fold variations can be found in the Greek script, where several precomposed characters have multi-character case foldings. The table below shows one such example, the character <span class="codepoint"><span lang="en">&#x1F9B;</span> [<span class="uname">U+1F9B GREEK CAPITAL LETTER ETA WITH DASIA AND VARIA AND PROSGEGRAMMENI</span>]</span> and its <code class="kw">full</code> and <code class="kw">simple</code> case foldings:</p>
 					
 		  <table style="width: 100%">
      
@@ -565,17 +551,16 @@
 
 		  </aside>
           
-        <p>Note that case folding removes information from a string which cannot 
-		be recovered later. For example, two <span class="qchar">s</span> letters in German do not necessarily represent  <span class="qchar">&#xdf;</span> in unfolded text.</p>
+        <p>Note that case folding removes information from a string which cannot be recovered later. For example, two <span class="qchar">s</span> letters in German do not necessarily represent  <span class="qchar">&#xdf;</span> in unfolded text.</p>
 		
 		<section id="caseMappingLanguageSensitivity">
 	    <h3>Language Sensitivity</h3>
 	    
         <p>Another aspect of case mapping and case folding is that it can be language sensitive.
-          Unicode defines <em>default</em> case mappings and case fold mappings for each encoded character, but
+          Unicode defines <em>default</em> case mappings and case foldings for each encoded character, but
           these are only defaults and are not appropriate in all cases. Some
-          languages need case-folding to be tailored to meet specific linguistic
-          needs. One common example of this are Turkic languages written in the
+          languages need case mapping to be tailored to meet specific linguistic
+          needs. One example of this are Turkic languages written in the
           Latin script:</p>
           
         <aside class="example">
@@ -664,7 +649,7 @@
           constrained to ASCII, ASCII case-insensitive matching can be required.
         </p>
         <p id="uci"><dfn data-lt="Unicode case-insensitive">Unicode case-insensitive matching</dfn> compares a sequence of code points as if the <a>Unicode full</a> casefolding (see above) had been applied to both input sequences.</p>
-        <p><dfn>Language-sensitive case-sensitive matching</dfn> is useful in the rare case where a document format or protocol contains information about the language of the syntactic content and where language-sensitive case folding might sensibly be applied. These case-fold mappings are defined in the <cite>Common Locale Data Repository</cite> [[UAX35]] project of the Unicode Consortium.</p>
+        <p><dfn>Language-sensitive case-sensitive matching</dfn> is useful in the rare case where a document format or protocol contains information about the language of the syntactic content and where language-sensitive case folding might sensibly be applied. These case foldings are defined in the <cite>Common Locale Data Repository</cite> [[UAX35]] project of the Unicode Consortium.</p>
             
         <p>For advice on how to handle case folding see <a href="#handlingCaseFolding"></a>.</p>
    </section>
@@ -942,26 +927,9 @@
         </section>
         <section id="composition_decomposition">
           <h4>Composition vs. Decomposition</h4>
-          <p>These two types of Unicode-defined equivalence are then grouped by
-            another pair of variations: "decomposition" and "composition". In
-            "decomposition", separable logical parts of a visual character are
-            broken out into a sequence of base characters and combining marks
-            and the resulting code points are put into a fixed, canonical order.
-            In "composition", the decomposition is performed and then any
-            combining marks are recombined, if possible, with their base
-            characters. Note that this does <strong>not</strong> mean that all
-            of the combining marks have been removed from the resulting
-            normalized text. </p>
+          <p>These two types of Unicode-defined equivalence are then grouped by another pair of variations: "decomposition" and "composition". In "decomposition", separable logical parts of a visual character are broken out into a sequence of base characters and combining marks and the resulting code points are put into a fixed, canonical order. In "composition", the decomposition is performed and then combining marks are recombined to the extent possible with their base characters. Note that this does <strong>not</strong> mean that all of the combining marks have been removed from the resulting normalized text. </p>
           <div class="note">
-            <p>Roughly speaking, <abbr title="Normalization Form C">NFC</abbr>
-              is defined such that each combining character sequence (a base
-              character followed by one or more combining characters) is
-              replaced, as far as possible, by a canonically equivalent
-              precomposed character. Text in a Unicode character encoding form
-              (such as UTF-8 or UTF-16) is said to be in NFC if it doesn't
-              contain any combining sequence that could be replaced with a
-              precomposed character and if any remaining combining sequence is
-              in canonical order.</p>
+            <p>Roughly speaking, <abbr title="Normalization Form C">NFC</abbr> is defined such that each combining character sequence (a base character followed by one or more combining characters) is replaced, as far as possible, by a canonically equivalent precomposed character.</p>
             <p>Users are cautioned that the resulting character sequence can still contain combining marks: not all character sequences have a precomposed equivalent and some scripts depend on combining marks for encoding. There are even cases where a given base character and combining mark is not replaced with a precomposed character because the combination is "blocked" by another combining mark in the sequence. </p>
           </div>
         </section>
@@ -1164,7 +1132,33 @@
 			</table>
 		</aside>
 		
-		<p>The same is not true of the Unicode compatibility normalization forms (NFKC and NFKD). Additional work needs to be applied to ensure that the expected text equivalences are created when performing both case folding and Unicode compatibility normalization.</p>
+		<p>When comparing strings while ignoring compatibility variations between characters, an additional level of normalization has to be applied because the compatibility decomposition step can result in characters that need to be case folded and then normalized.</p>
+		
+		<aside class=example>
+			<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th></th>
+					<th>NFKD</th>
+					<th></th>
+					<th>Folded</th>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x3392;</td>
+					<td>=></td>
+					<td class=exampleChar>MHz</td>
+					<td>=></td>
+					<td class=exampleChar>mhz</td>
+				</tr>
+				<tr>
+					<td><code>U+3392</code></td>
+					<td></td>
+					<td><code>U+004D U+0048 U+007A</code></td>
+					<td></td>
+					<td><code>U+006D U+0068 U+007A</code></td>
+				</tr>
+			</table>
+		</aside>
       </section>
       
       <section id="characterEscapes">
@@ -1478,7 +1472,7 @@ HE&#x141;&#x141;O
 			
 			<ol>
 				<li>Perform Unicode normalization of the string to form NFD. This eliminates canonical variations in the encoding of the string.</li>
-				<li>Perform <a>Unicode Full</a> case fold mapping of the resulting string.</li>
+				<li>Perform <a>Unicode Full</a> case folding of the resulting string.</li>
 				<li>Perform Unicode normalization of the resulting string to form NFC.</li>
 				<li>Return the result.</li>
 			</ol>
@@ -1499,10 +1493,10 @@ HE&#x141;&#x141;O
 			
 			<ol>
 				<li>Perform Unicode normalization of the string to form NFD. This eliminates canonical variations in the encoding of the string.</li>
-				<li>Perform <a>Unicode Full</a> case fold mapping of the resulting string.</li>
+				<li>Perform <a>Unicode Full</a> case folding of the resulting string.</li>
 				<li>Perform Unicode normalization of the resulting string to form NFKD.</li>
-				<li>Perform <a>Unicode Full</a> case fold mapping of the resulting string. This eliminates artifacts produced by the compatibility mapping.</li>
-				<li>Perform Unicode normalization of the resulting string to form NFKD. This eliminates remaining artifacts produced by the case fold.</li>
+				<li>Perform <a>Unicode Full</a> case folding of the resulting string. This eliminates artifacts produced by the compatibility mapping.</li>
+				<li>Perform Unicode normalization of the resulting string to form NFKC. This eliminates remaining artifacts produced by the case fold.</li>
 				<li>Return the result.</li>
 			</ol>
         </section>
@@ -1676,7 +1670,7 @@ HE&#x141;&#x141;O
           
           <p class=requirement><span class=qrec>[S]</span> Specifications that define case-insensitive matching in vocabularies SHOULD NOT specify language-sensitive case-insensitive matching.</p>
           
-          <p class=requirement><span class=qrec>[S]</span> If language-sensitive case-sensitive matching is specified, Unicode case-fold mappings SHOULD be tailored according to language and the source of the language used for each tailoring MUST be specified.</p> 
+          <p class=requirement><span class=qrec>[S]</span> If language-sensitive case-sensitive matching is specified, Unicode case mappings SHOULD be tailored according to language and the source of the language used for each tailoring MUST be specified.</p> 
           
           <p>Two strings being matched can be in different languages and might appear in yet a third language context. Which language to use for case folding therefore depends on the application and user expectations.</p>
 
