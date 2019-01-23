@@ -6,6 +6,13 @@
   src: url('W3CCharmodNormSubset-Regular.woff2') format('woff2');
 }
 
+@font-face {
+   font-family: Khmer;
+   font-style: normal;
+   font-weight: 400;
+   src: url('NotoSansKhmer-Regular.woff') format('woff');
+}
+
 body {
 	counter-reset: requirement;
 }
@@ -207,7 +214,7 @@ div.exampleBox {
 
 .exampleChar {
     font-size: 36pt;
-    font-family: "NoToFu", "Palatino", "Times", "Times New Roman", "Verdana", serif;
+    font-family: "Khmer", "NoToFu", "Palatino", "Times", "Times New Roman", "Verdana", serif;
 }
 
 .bidiExample {
