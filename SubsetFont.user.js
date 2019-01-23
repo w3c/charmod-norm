@@ -7,14 +7,14 @@
 // @grant       none
 // ==/UserScript==
 
-// author = addison@lab126.com
+// author = addison@amazon.com
 
 var text = document.body.innerHTML;
 
 var charsToGet = [];
 var request = '';
 
-var re = new RegExp("[\u0100-\uffff]", 'g');
+var re = new RegExp("([\u0100-\ud7ff\ue000-\uffff]|[\ud800-\udbff][\udc00-\udfff])", 'g');
 
 var unique = 0;
 
@@ -23,13 +23,14 @@ while ((m = re.exec(text)) !== null) {
   var item = m[0];
   if (charsToGet.length === 0 || charsToGet.indexOf(item) < 0) {
     charsToGet.push(item);
-    request = request + item;
     unique++;
   }
 }
+charsToGet.sort();
 
-
-//alert(re.test(text) + ' ' + re + ' ' + text.substring(0,100));
+for (var i = 0; i < charsToGet.length; i++) {
+	request = request + charsToGet[i];
+}
 
 var mypanel = document.getElementsByClassName('subsetFont')[0];
   
@@ -40,12 +41,14 @@ mypanel.innerHTML = '';
   
 mypanel.setAttribute('id', 'subsetFont');
 mypanel.setAttribute('class', "subsetFont");
-mypanel.style.position = 'fixed';
-mypanel.style.bottom   = 0;
-mypanel.style.right    = 0;
-mypanel.style.overflow = 'auto';
-mypanel.style.inset    = '0 0 0 10px';
-mypanel.style.zIndex   = '1001'; // make it appear in front of most things
+mypanel.style.position   = 'fixed';
+mypanel.style.bottom     = 0;
+mypanel.style.right      = 0;
+mypanel.style.background = 'white';
+mypanel.style.border     = '1px solid black';
+mypanel.style.overflow   = 'auto';
+mypanel.style.inset      = '0 0 0 10px';
+mypanel.style.zIndex     = '1001'; // make it appear in front of most things
 
 var pre = document.createElement('pre');
 pre.appendChild(document.createTextNode('count: ' + unique));
