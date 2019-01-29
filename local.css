@@ -7,6 +7,33 @@
 }
 
 @font-face {
+    font-family: 'noto_devanagari';
+    src: url('notosansdevanagari-bold-webfont.woff2') format('woff2'),
+         url('notosansdevanagari-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'noto_regular';
+    src: url('notosans-regular-webfont.woff2') format('woff2'),
+         url('notosans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'noto_symbols';
+    src: url('notosanssymbols-regular-webfont.woff2') format('woff2'),
+         url('notosanssymbols-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
    font-family: Khmer;
    font-style: normal;
    font-weight: 400;
@@ -183,7 +210,7 @@ td.b-clear {
 	width: 20%;
 	text-align: center;
 	font-size: 36pt;
-    font-family: serif;
+    font-family: "Khmer", "noto_devanagari", "noto_symbols", "noto_regular", "NoToFu", "Palatino", "Times", "Times New Roman", "Verdana", sans-serif;
 }
 
 .tableSub {
@@ -201,6 +228,7 @@ td.b-clear {
 td.bigtext {
     font-size: 36pt;
     text-align: center;
+    font-family: "Khmer", "noto_devanagari", "noto_symbols", "noto_regular", "NoToFu", "Palatino", "Times", "Times New Roman", "Verdana", sans-serif;
     width: 20%;
 }
 
@@ -214,19 +242,19 @@ div.exampleBox {
 
 .exampleChar {
     font-size: 36pt;
-    font-family: "Khmer", "NoToFu", "Palatino", "Times", "Times New Roman", "Verdana", serif;
+    font-family: "Khmer", "noto_devanagari", "noto_symbols", "noto_regular", "NoToFu", "Palatino", "Times", "Times New Roman", "Verdana", sans-serif;
 }
 
 .bidiExample {
     font-size: 60pt;
-    font-family: "Naskh", "Palatino", "Times", "Times New Roman", "Verdana", "NoToFu", serif;
+    font-family: "Naskh", "Palatino", "Times", "Times New Roman", "Verdana",  "noto_arabic", "noto_devanagari", "noto_symbols", "noto_regular", "NoToFu", serif;
     text-align: center;
     margin: 15px 15px 15px 15px;
     padding: 2px;
 }
 
 .markup {
-	font-family: Lucida Console,NoToFu, monospace;
+	font-family: Lucida Console, "noto_devanagari", "noto_symbols", "noto_regular", NoToFu, monospace;
 }
 
 .shakespeare {
@@ -246,7 +274,7 @@ div.exampleBox {
 }
 
 .sampleCharacter {
-	font-family: "NoToFu", "Code2000", "Lucida Console", sans-serif;
+	font-family:  "noto_devanagari", "noto_symbols", "noto_regular", "NoToFu", "Code2000", "Lucida Console", sans-serif;
 }
 
 p.quote {
@@ -283,7 +311,7 @@ div.terminologyExample {
     margin-left: -15px;
     font-size: 75%;
     color: gray;
-    font-family: Lucida Console,NoToFu,monospace;
+    font-family: "Lucida Console", "noto_devanagari", "noto_symbols", "noto_regular", NoToFu,monospace;
 }
 
 p.syntaxExample {
