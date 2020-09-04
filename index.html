@@ -195,7 +195,7 @@
         
         <p>The goal of the Character Model for the World Wide Web is to facilitate use of the Web by all people, regardless of their language, script, writing system, or cultural conventions, in accordance with the <a href="http://www.w3.org/Consortium/mission"><cite>W3C goal of universal access</cite></a>. One basic prerequisite to achieve this goal is to be able to transmit and process the characters used around the world in a well-defined and well-understood way.</p>
         
-        <p class="note">This document builds on <cite>Character Model for the World Wide Web: Fundamentals</cite> [[!CHARMOD]]. Understanding the concepts in that document are important to being able to understand nd apply this document successfully.</p>
+        <p class="note">This document builds on <cite>Character Model for the World Wide Web: Fundamentals</cite> [[!CHARMOD]]. Understanding the concepts in that document are important to being able to understand and apply this document successfully.</p>
         
         <p>This part of the Character Model for the World Wide Web covers string 
 		matching—the process by which a specification or implementation defines 
@@ -669,7 +669,7 @@
         <p>A different kind of variation can occur in Unicode text: sometimes several different <a>Unicode code point</a> sequences can be used to represent the same abstract character. When searching or matching text by comparing code points, these variations in encoding cause text values not to match that users expect to be the same. </p>
 
       <aside class=example id=aringExample title="Encoding Variations">
-		  <p>Consider the character <span class="codepoint"><span lang="en">&#x01FA;</span> [<span class="uname">U+01FA LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>]</span>. One way to encode this character is as <span class="uname" translate="no"> U+01FA LATIN LETTER CAPITAL A WITH RING ABOVE AND ACUTE</span>. Here are some of the different character sequences that a document could use to represent this character:</p>
+		  <p>Consider the character <span class="codepoint"><span lang="en">&#x01FA;</span> [<span class="uname">U+01FA LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>]</span>. One way to encode this character is as <span class="uname" translate="no"> U+01FA LATIN CAPITAL LETTER A WITH RING ABOVE AND ACUTE</span>. Here are some of the different character sequences that a document could use to represent this character:</p>
           <table>
 			  <tr>
                  <td class=exampleChar style="width:10%">&#x01FA;</td>
@@ -890,7 +890,7 @@
                     <td rowspan=4><strong>Others</strong>—compatibility characters encoded for other reasons, generally for compatibility with legacy character encodings. Many of these characters are simply a sequence of characters encoded as a single presentational unit.</td>
                     <td style="text-align: center"> <span class="exampleChar">&#x1c6;</span><br><span class=uname>U+01C6</span></td>
                     <td style="text-align: center">&#x21d2;</td>
-                    <td style="text-align: center"><span class="exampleChar">d&#x17e;</span><br><span class=uname>U+017E</span></td>
+                    <td style="text-align: center"><span class="exampleChar">d&#x17e;</span><br><span class=uname>U+0064 U+017E</span></td>
                   </tr><tr>
                     <td style="text-align: center"> <span class="exampleChar">&#x2474;</span><br><span class=uname>U+2474</span></td>
                     <td style="text-align: center">&#x21d2;</td>
@@ -1263,7 +1263,7 @@
 		  <p>The character <span class="uname" translate="no">U+034F Combining Grapheme Joiner</span>, 
 		  whose name is misleading (as it does not join graphemes), is used to separate characters that might otherwise be 
 		  considered a grapheme for the purposes of sorting or to provide a 
-		  means of maintaing certain textual distinctions when applying Unicode 
+		  means of maintaining certain textual distinctions when applying Unicode 
 		  normalization to text. </p>
 		  <p>Whitespace variations can also affect the interpretation and 
 		  matching of text. For example, the various non-breaking space 
@@ -1315,8 +1315,8 @@
 	     
 	  <p>An emoji character can also be followed by a <a href="#variationSelectors">variation
 	     selector</a> to indicate text (black and white, indicated by 
-	     <span class="uname">U+FF0E Variation Selector 15</span>) or color 
-	     (indicated by <span class="uname">U+FF0F Variation Selector 16</span>) presentation
+	     <span class="uname">U+FE0E Variation Selector 15</span>) or color 
+	     (indicated by <span class="uname">U+FE0F Variation Selector 16</span>) presentation
 	     of the base emoji.</p>
 	  
 	  <p>Still another wrinkle in the use of emoji are flags. National flags can be composed using country codes derived from the [[BCP47]] registry, such as the sequence <span class="codepoint"><span lang="en">&#x1F1FF;</span> [<span class="uname">U+1F1FF REGIONAL INDICATOR SYMBOL LETTER Z</span>]</span> <span class="codepoint"><span lang="en">&#x1F1F2;</span> [<span class="uname">U+1F1F2 REGIONAL INDICATOR SYMBOL LETTER M</span>]</span>, which is the country code (<kbd>ZM</kbd>) for the country Zambia: &#x1f1ff;&#x1f1f2;. Other regional or special purpose flags can be composed using a flag emoji with various symbols or with regional indicator codes terminating in a cancel tag. For example, the flag of Scotland (🏴󠁧󠁢󠁳󠁣󠁴󠁿) can be composed like this: </p>
@@ -1343,7 +1343,7 @@
         <div class="note">
           <p><strong>Choosing a Unicode character encoding, such as UTF-8, for all documents, formats, and protocols is a strongly encouraged <a href="#convertingToCommonUnicodeForm">recommendation</a></strong>, since there is no additional utility to be gained from using a legacy character encoding and the considerations in the rest of this section would be completely avoided.</p>
         </div>
-        <p>For example, <span class="codepoint"><span lang="en">&#x20AC;</span> [<span class="uname">U+20AC EURO SIGN</span>]</span>) is encoded as the byte sequence <code>0xE2.82.AC</code>
+        <p>For example, <span class="codepoint"><span lang="en">&#x20AC;</span> [<span class="uname">U+20AC EURO SIGN</span>]</span> is encoded as the byte sequence <code>0xE2.82.AC</code>
           in the <code class="kw">UTF-8</code> character encoding. This same
           character is encoded as the byte sequence <code>0x80</code> in the
           legacy character encoding <code class="kw">windows-1252</code>.
@@ -1534,7 +1534,7 @@ HE&#x141;&#x141;O
         <p>Most transcoders used on the Web produce NFC as their output, but several do not. This is usually to allow the transcoder to be round-trip compatible with the source legacy character encoding, to preserve other character distinctions, or to be consistent with other transcoders in use in user-agents. This means that the Encoding specification [[!Encoding]] and various other important transcoding implementations include a number of non-normalizing transcoders. Indeed, most compatibility characters in Unicode exist solely for round-trip conversion from legacy encodings and a number of these have singleton canonical mappings in NFC. You saw an example of this <a href="#unicodeNormalization">earlier in the document</a> with <span class="codepoint"><span lang="en">&#x212B;</span> [<span class="uname">U+212B ANGSTROM SIGN</span>]</span>.</p> 
         
                 
-        <p>Bear in mind that most transcoders produce NFC output and that even those transcoders that do not produce NFC for all characters produce NFC for the preponderence of characters. In particular, there are no commonly-used transcoders that produce decomposed forms where precomposed forms exist or which produce a different combining character sequence from the normalized sequence (and this is true for <em>all</em> of the transcoders in [[!Encoding]]).</p>
+        <p>Bear in mind that most transcoders produce NFC output and that even those transcoders that do not produce NFC for all characters produce NFC for the preponderance of characters. In particular, there are no commonly-used transcoders that produce decomposed forms where precomposed forms exist or which produce a different combining character sequence from the normalized sequence (and this is true for <em>all</em> of the transcoders in [[!Encoding]]).</p>
                
         <div class=practice>
 			<p class=requirement><span id="practice-allowUnicode" class=practiceLab><span class=qrec>[S]</span> Specifications MUST allow a Unicode character encoding.</span></p>
