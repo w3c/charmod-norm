@@ -1395,6 +1395,22 @@
         
       <p>This chapter defines the requirements for specifying and implementing string matching in <a href="#def_syntactic_content" class="termref">syntactic content</a>.</p>
       
+      <section id="specifying-content-restrictions">
+		  <h2>Specifying Content Restrictions</h2>
+		  
+		  <p>One of the ways in which string matching can be made more effective and consistent is by applying restrictions to the content that is to be matched. Document formats and protocols often do this by defining a namespace or set of rules for what is legal in a given context.</p>
+		  
+		  <p>There are two broad classes that strings or identifier types fall into: those that are meant to be seen, read, or interacted with by humans (and thus might be expected to contain natural language text); and those that are application or protocol internal and not intended for human interaction.</p>
+		  
+		  <p class="requirement"><span class="qrec">[S]</span> When identifiers are supposed to be meaningful to actual users, specifications SHOULD allow the full range of Unicode, in order to ensure that user in all languages can use the resulting document format or protocol with equal access.</p>
+		  
+		  <p>Often these identifiers can be assigned or edited by the end user or presented to the user for selection. Examples of user-facing identifiers include SSIDs, device names, or user-defined settings. Identifiers of this sort are more complex to match due to the issues described in this document, but provide the best experience for human interaction.</p>
+		  
+		  <p class="requirement"><span class="qrec">[S]</span> When identifiers are never shown to users and are always used for matching or processing within an application or protocol, specifications SHOULD limit the content to a printable subset of ASCII. ASCII case-insensitivity is RECOMMENDED.</p>
+		  
+		  <p>These sorts of "application internal" identifiers are often human-readable and contain words (generally in English). This is an affordance for developers who have to work with or debug the contents of a document format or protocol. However, any such fields or values should always be wrapped with a localizable display name when shown to users and not expected to form any part of an end-user interaction.</p>
+      </section>
+      
       <section id="choosingMatchingAlgorithm">
         <h2>Choosing a Matching Algorithm</h2>
         
