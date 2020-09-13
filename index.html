@@ -1404,17 +1404,19 @@
       <section id="specifying-content-restrictions">
 		  <h2>Specifying Content Restrictions</h2>
 		  
-		  <p>One of the ways in which string matching can be made more effective and consistent is by applying restrictions to the content that is to be matched. When building a <a>vocabulary</a> and especially when defining <a>user-supplied values</a> within that vocabulary, specifications for document formats and protocols often define a namespace or set of rules for what is legal in a given context. This usually includes length and content restrictions.</p>
+		  <p>One of the ways in which string matching can be made more effective and consistent is by applying restrictions to the content that is to be matched. The definition of a <a>vocabulary</a>, especially one that permits <a>user-supplied values</a> within that vocabulary, necessarily includes the rules for what makes a "valid identifier". This usually includes length and content restrictions. Some best practices for defining these restrictions include the following:</p>
 		  
-		  <p class="requirement"><span class="qrec">[S]</span> Specifications SHOULD NOT allow the <code>C0</code> (<span class=uname>U+0000</span> to <span class=uname>U+001F</span>) and <code>C1</code> (<span class=uname>U+0080</span> to <span class=uname>U+009F</span>) control characters.</p>
+		  <p class="requirement"><span class="qrec">[S]</span> Specifications SHOULD NOT allow surrogate code points (<span class=uname>U+D800</span> to <span class=uname>U+DFFF</span>) or non-character code points in identifiers.</p>
 		  
-		  <p>There are two broad classes of identifer: <a>user-facing identifiers</a> and <a>application internal identifiers</a>.</p>
+		  <p class="requirement"><span class="qrec">[S]</span> Specifications SHOULD NOT allow the <code>C0</code> (<span class=uname>U+0000</span> to <span class=uname>U+001F</span>) and <code>C1</code> (<span class=uname>U+0080</span> to <span class=uname>U+009F</span>) control characters in identifiers.</p>
+		  
+		  <p>There are two broad classes of identifier: <a>user-facing identifiers</a> and <a>application internal identifiers</a>.</p>
 		  
 		  <p><a>Application internal identifiers</a> are the part of a document format or protocol's <a>vocabulary</a> that are machine readable and not intended for display. These are often given meaningful names (generally in English) as an affordance for developers or content authors who have to work with or debug the contents of a document format or protocol. Any such fields or values should always be wrapped with a localizable display name when shown to users and not expected to form any part of an end-user interaction.</p>
 		  
 		  <p class="requirement"><span class="qrec">[S]</span> Specifications that define <a>application internal identifiers</a> (which are never shown to users and are always used for matching or processing within an application or protocol) SHOULD limit the content to a printable subset of ASCII. ASCII case-insensitivity is RECOMMENDED.</p>
 		  
-		  <p><a>User-facing identifiers</a> are the part of a document format or protocol's <a>vocabulary</a> that are assigned or edited by users or presented to the user for selection. Examples of user-facing identifiers include network names (such as SSIDs); device names; class or style names; or user-defined settings. Identifiers of this sort are more complex to match due to the issues described in this document, but provide the best experience, particularly for users who do not speak English or who are less familiar with the Latin script.</p>
+		  <p><a>User-facing identifiers</a> are the part of a document format or protocol's <a>vocabulary</a> that are assigned or edited by users or presented to the user for selection. Examples of user-facing identifiers include network names (such as SSIDs); device names; class, style, or attribute names; or user-defined settings or values. Identifiers of this sort are more complex to match due to the issues described in this document, but provide the best experience, particularly for users who do not speak English or who are less familiar with the Latin script.</p>
 		  
 		  <p>Many <a>user-facing identifiers</a> are also <a>user-supplied values</a> and can be assigned by users of the document format or protocol. The ability to use the natural language preferred by the user or the user's community or culture provides a superior user experience and makes features more accessible to audiences that may have limited language skills, particularly in English.</p>		  
 		  
