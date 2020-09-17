@@ -1412,15 +1412,17 @@
 		  
 		  <p>There are two broad classes of identifier: <a>user-facing identifiers</a> and <a>application internal identifiers</a>.</p>
 		  
-		  <p><a>Application internal identifiers</a> are the part of a document format or protocol's <a>vocabulary</a> that are machine readable and not intended for display. These are often given meaningful names (generally in English) as an affordance for developers or content authors who have to work with or debug the contents of a document format or protocol. Any such fields or values should always be wrapped with a localizable display name when shown to users and not expected to form any part of an end-user interaction.</p>
+		  <p><a>Application internal identifiers</a> are the part of a document format or protocol's <a>vocabulary</a> that are machine readable and not intended for display. These are often given meaningful names (generally in English) as an affordance for developers or content authors who have to work with or debug the contents of a document format or protocol.</p>
 		  
-		  <p class="requirement"><span class="qrec">[S]</span> Specifications that define <a>application internal identifiers</a> (which are never shown to users and are always used for matching or processing within an application or protocol) SHOULD limit the content to a printable subset of ASCII. ASCII case-insensitivity is RECOMMENDED.</p>
+		  <p class="requirement"><span class="qrec">[S]</span> Specifications that define <a>application internal identifiers</a> (which are never shown to users and are always used for matching or processing within an application or protocol) SHOULD limit the content to a printable subset of ASCII. ASCII case folding is RECOMMENDED.</p>
+		  
+		  <p class="requirement"<span class="qrec">[S][I]</span> <a>Application internal identifier</a> fields or values MUST be wrapped with a localizable display value when displayed to end-users.</p>
 		  
 		  <p><a>User-facing identifiers</a> are the part of a document format or protocol's <a>vocabulary</a> that are assigned or edited by users or presented to the user for selection. Examples of user-facing identifiers include network names (such as SSIDs); device names; class, style, or attribute names; or user-defined settings or values. Identifiers of this sort are more complex to match due to the issues described in this document, but provide the best experience, particularly for users who do not speak English or who are less familiar with the Latin script.</p>
 		  
 		  <p>Many <a>user-facing identifiers</a> are also <a>user-supplied values</a> and can be assigned by users of the document format or protocol. The ability to use the natural language preferred by the user or the user's community or culture provides a superior user experience and makes features more accessible to audiences that may have limited language skills, particularly in English.</p>		  
 		  
-		  <p class="requirement"><span class="qrec">[S]</span> When identifiers are visible or potentially visible to users, specifications SHOULD allow the use of non-ASCII Unicode characters, in order to ensure that users in all languages can use the resulting document format or protocol with equal access.</p>
+		  <p class="requirement"><span class="qrec">[S]</span> When identifiers are visible or potentially visible to users, specifications SHOULD allow the use of non-ASCII Unicode characters, in order to ensure that users in all languages can use the resulting document format or protocol with equal access. Case sensitivity (i.e. no case folding) is RECOMMENDED.</p>
 		  
 		  <p>While a wide range of Unicode characters ought to be permitted, specifications can still impose certain practical limits on the content of <a>user-facing identifiers</a>. One example of a specification that defines content rules of this type can be found in <cite>Unicode Identifier and Pattern Syntax</cite> [[UAX31]].</p>
 
