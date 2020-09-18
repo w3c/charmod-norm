@@ -11,17 +11,17 @@
     
     
     <title>Character Model for the World Wide Web: String Matching</title>
-    <link rel="canonical" href="http://www.w3.org/TR/2015/WD-charmod-norm-20151119/"/>
+    <link rel="canonical" href="https://www.w3.org/TR/charmod-norm/"/>
     <!-- local styles. Includes the styles from http://www.w3.org/International/docs/styleguide -->
     <link rel="stylesheet" href="local.css" type="text/css">
-	<script src="https://www.w3.org/Tools/respec/respec-w3c-common" async class="remove"></script>
+	<script src="https://www.w3.org/Tools/respec/respec-w3c" async class="remove"></script>
     <script class="remove">
       var respecConfig = {
           // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use ED.
           specStatus:				"ED",
-          publishDate:  			"2019-01-30",
-          previousPublishDate:  	"2018-04-20",
-          previousMaturity:  		"WD",
+          //publishDate:  			"2019-02-04",
+          previousPublishDate:  	"2019-02-04",
+          previousMaturity:  		"WG-NOTE",
 
           noRecTrack:           true,
           shortName:            "charmod-norm",
@@ -44,32 +44,10 @@
           //      company: "Your Company", companyURL: "http://example.com/" },
           //],
           
-          // name of the WG
-          wg:           "Internationalization Working Group",
-          wgURI:        "https://www.w3.org/International/core/",
+          group:        "i18n",
+          github:       "w3c/charmod-norm",
           wgPublicList: "www-international",
           
-		  bugTracker: { new: "https://github.com/w3c/charmod-norm/issues", open: "https://github.com/w3c/charmod-norm/issues" } ,
-		otherLinks: [
-			{
-			key: "Github",
-			data: [
-				{
-			  	value: "repository",
-			  	href: "https://github.com/w3c/charmod-norm/"
-		 		}
-				]
-			}
-			],
-
-          // URI of the patent status for this WG, for Rec-track documents
-          // !!!! IMPORTANT !!!!
-          // This is important for Rec-track documents, do not copy a patent URI from a random
-          // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
-          // Team Contact.
-          wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/32113/status",
-		  
-
 		  localBiblio: {
 		"UTS18": {
 		    title: "Unicode Technical Standard #18: Unicode Regular Expressions",
@@ -162,9 +140,12 @@
           Web 1.0: Fundamentals </cite>[[CHARMOD]] to provide authors of
         specifications, software developers, and content developers a common
         reference on string identity matching on the World Wide Web and thereby
-        increase interoperability. </p>
+        increase interoperability.</p>
     </section>
     <section id="sotd">
+      <div class="note">
+        <p style="font-size: 120%;font-weight:bold;">This Editor's Draft is currently identical to the <a href="https://www.w3.org/TR/charmod-norm/">WG Note</a>.</p>
+        </div>
       <div class="note">
         <p>This version of the document represents a significant change from the
           <a href="http://www.w3.org/TR/2012/WD-charmod-norm-20120501/">earlier
@@ -420,7 +401,7 @@
           <li><a>Syntactic content</a> in this case includes all of the HTML markup. There are only two strings that are <strong>not</strong> part of the syntactic content: the word <em>"Shakespeare"</em> on line 4 and the sentence <em>"What&#x2019;s in a name? That which we call a rose by any other name would smell as sweet."</em> on line 8. (The HTML entity <q><kbd>&amp;#x2019;</kbd></q> embedded in the sentence on line 8 <em>is</em> part of the syntactic content.)</li>
           <li><a>Natural language content</a> is shown in a <span class="shakespeare">bold blue font with a gray background</span>. In addition to the non-syntactic content, the <kbd>alt</kbd> value on line 7 (<em><q>William Shakespeare</q></em>) contains natural language text.</li>
           <li>User-supplied values are shown in <span class="userValue">italics</span>. In this case there are three user-supplied values on line 7: the values of the <kbd>src</kbd>, <kbd>alt</kbd>, and <kbd>id</kbd> attributes of the <kbd>img</kbd> tag. In addition, the value of the <kbd>lang</kbd> attribute on line 1 and the <kbd>charset</kbd> attribute on line 3 are user-supplied values.</li>
-          <li><a>Vocabulary</a> is shown with <span class="vocabulary">red underlining</span>. The vocabulary of an HTML document are the elements and attributes (as well as some of the attribute values, such as the value <kbd>ltr</kbd> for the attribute <kbd>dir</kbd> in the example above) defined in [[HTML5]].</li>
+          <li><a>Vocabulary</a> is shown with <span class="vocabulary">red underlining</span>. The vocabulary of an HTML document are the elements and attributes (as well as some of the attribute values, such as the value <kbd>ltr</kbd> for the attribute <kbd>dir</kbd> in the example above) defined in [[HTML]].</li>
           </ul>
           <p class=note>All of the text above (all text in a text file) makes up the resource. It's possible that a given resource will contain no natural language content at all (consider an HTML document consisting of four empty <code>div</code> elements styled to be orange rectangles). It's also possible that a resource will contain <em>no</em> syntactic content and consist solely of natural language content: for example, a plain text file with a soliloquy from <cite>Hamlet</cite> in it. Notice too that the HTML entity <code>&amp;#x2019;</code> appears in the natural language content and belongs to both the natural language content and the syntactic content in this resource.</p>
         </section>
@@ -1129,6 +1110,7 @@
 					<td>&#x2260;</td>
                     <td class=exampleChar>&#x1fb6;&#x3b9;</td>
 				</tr>
+                <tr>
 					<td><code>U+1FB7</code></td>
 					<td><code>U+03B1 U+0342 U+03B9</code></td>
 					<td></td>

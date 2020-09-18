@@ -1,5 +1,5 @@
 # ECHIDNA configuration
-index.html?specStatus=WG-NOTE;shortName=charmod-norm respec
+index.html?specStatus=WD;shortName=charmod-norm respec
 local.css
 font.woff2
 NotoSansKhmer-Regular.woff
@@ -9,5 +9,5 @@ notosansdevanagari-bold-webfont.woff
 notosansdevanagari-bold-webfont.woff2
 notosanssymbols-regular-webfont.woff
 notosanssymbols-regular-webfont.woff2
-W3CCharmodNormSubset-regular.woff2
+W3CCharmodNormSubset-Regular.woff2
 
