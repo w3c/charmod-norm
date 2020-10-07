@@ -330,3 +330,35 @@ table.ncfExample th {
 }
 
 
+
+
+a.self {
+    position: absolute;
+    top: -20px;
+    border: medium none;
+    transition: opacity 0.2s ease 0s;
+    opacity: 0.5;
+	color: #999;
+	text-decoration: none;
+	display: inline;
+}
+
+a.self:visited {
+	color: #999;
+}
+
+a.self:hover {
+	color: red;
+}
+
+.self::after {
+	content:  attr(href); 	
+	font-weight: normal;
+	font-style: italic;
+	font-size: 80%;
+}
+
+.advisement {
+    position: relative;
+}
+
