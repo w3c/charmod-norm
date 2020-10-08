@@ -613,13 +613,10 @@
         
         <p id="case-sensitive"><dfn data-lt="case-sensitive">Case sensitive matching</dfn>: code points are compared directly with no case folding.</p>
         
-        <p id="aci"><dfn data-lt="ASCII case-insensitive">ASCII case-insensitive matching</dfn>
-          compares a sequence of code points as if all ASCII code points in the
-          range 0x41 to 0x5A (A to Z) were mapped to the corresponding code
-          points in the range 0x61 to 0x7A (a to z). When a vocabulary is itself
-          constrained to ASCII, ASCII case-insensitive matching can be required.
-        </p>
-        <p id="uci"><dfn data-lt="Unicode case-insensitive">Unicode case-insensitive matching</dfn> compares a sequence of code points as if the <a>Unicode full</a> casefolding (see above) had been applied to both input sequences.</p>
+        <p id="aci"><dfn data-lt="ASCII case-insensitive|ASCII case-insensitive matching">ASCII case-insensitive matching</dfn> is <a href="https://infra.spec.whatwg.org/#ascii-case-insensitive">defined</a> in [[INFRA]]. This definition compares two sequences of code points as if all ASCII code points in the range 0x41 to 0x5A (A to Z) were mapped to the corresponding code points in the range 0x61 to 0x7A (a to z). ASCII case-insensitive matching can be required when a <a>vocabulary</a> is itself constrained to ASCII.</p>
+        
+        <p id="uci"><dfn data-lt="Unicode case-insensitive|Unicode case-insensitive matching">Unicode case-insensitive matching</dfn> compares two sequences of code points as if the <a>Unicode full</a> casefolding (see above) had been applied to both input sequences.</p>
+        
         <p><dfn>Language-sensitive case-sensitive matching</dfn> is useful in the rare case where a document format or protocol contains information about the language of the syntactic content and where language-sensitive case folding might sensibly be applied. These case foldings are defined in the <cite>Common Locale Data Repository</cite> [[UAX35]] project of the Unicode Consortium.</p>
             
         <p>For advice on how to handle case folding see <a href="#handlingCaseFolding"></a>.</p>
@@ -1371,7 +1368,7 @@
 		  
 		  <p><a>Application internal identifiers</a> are the part of a document format or protocol's <a>vocabulary</a> that are machine readable and not intended for display. These are often given meaningful names (generally in English) as an affordance for developers or content authors who have to work with or debug the contents of a document format or protocol.</p>
 		  
-		  <p class="advisement" id="req_content_internal_id"><a class="self" href="#req_content_internal_id">[S] </a>Specifications that define <a>application internal identifiers</a> (which are never shown to users and are always used for matching or processing within an application or protocol) SHOULD limit the content to a printable subset of ASCII. ASCII case folding is RECOMMENDED.</p>
+		  <p class="advisement" id="req_content_internal_id"><a class="self" href="#req_content_internal_id">[S] </a>Specifications that define <a>application internal identifiers</a> (which are never shown to users and are always used for matching or processing within an application or protocol) SHOULD limit the content to a printable subset of ASCII. <a>ASCII case-insensitive matching</a> is RECOMMENDED.</p>
 		  
 		  <p class="advisement" id="req_content_display"><a class="self" href="#req_content_display">[S][I] </a><a>Application internal identifier</a> fields or values MUST be wrapped with a localizable display value when displayed to end-users.</p>
 		  
