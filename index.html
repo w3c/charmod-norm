@@ -1066,9 +1066,34 @@
               
       <section id="normalizationAndCasefold">
 		<h3>Interaction of Normalization and Case Folding</h3>
-		<p>One additional complication is that case folding or case mapping does not normalize the resulting string and this can affect the matching of two strings in a case-insensitive manner. The results of a case fold operation have to be renormalized or the resulting case-folded strings might not match.</p>
 		
-		<p>The Unicode canonical normalization forms and case folding, when used together, are closed: once a string has been case folded and then had NFD applied to it, further applications of the same case folding or Unicode normalization form do not result in a different string.</p>
+		<p>When matching strings in a case-insensitive manner, one complication is that the case folding process can produce strings that are not normalized, even if the original string was normalized. Since string comparison relies on matching code point sequences, each case folded string must be normalized if the matching process is to be reliable.</p>
+		
+		<aside class=example>
+			<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>Normalized</th>
+				</tr>
+				
+				<tr>
+					<td class=exampleChar>&#x1FC9;</td>
+					<td class=exampleChar>&#x1f73;</td>
+					<td>&#x2260;</td>
+					<td class=exampleChar>&#x03ad;</td>
+				</tr>
+				<tr>
+					<td><code>U+1FC9</code></td>
+					<td><code>U+1F73</code></td>
+					<td></td>
+					<td><code>U+03AD</code></td>
+				</tr>
+			</table>
+		</aside>
+		
+		<p>Usually, though, the connection between normalization and case folding has to do with ensuring that strings which use combining marks reorder or recombine in the same way for comparison purposes.</p>
 		
 		<aside class=example>
 			<table class=ncfExample>
@@ -1092,28 +1117,120 @@
                 </tr>
 
                 <tr>
-					<td class=exampleChar>&#xc5;&#x301;</td>
-					<td class=exampleChar>&#xe5;&#x301;</td>
-					<td>&#x2260;</td>
-					<td class=exampleChar>&#x1fb;  a&#x30a;&#x301;</td>					
+					<td class=exampleChar rowspan=3>&#xc5;&#x301;</td>
+					<td class=exampleChar rowspan=3>&#xe5;&#x301;</td>
+					<td rowspan=3>&#x2260;</td>
+					<td class=exampleChar>&#x1fb;</td>					
+                </tr>
+                <tr>
+					<td><code>U+01FB</code> (NFC)</td>
+                </tr>
+                <tr>
+					<td class=exampleChar>a&#x30a;&#x301;</td>
                 </tr>
                 <tr>
 					<td><code>U+00C5 U+0301</code></td>
 					<td><code>U+00E5 U+0301</code></td>
 					<td></td>
-					<td><code>U+01FB</code> (NFC) or <code>U+0061 U+030A U+0301</code> (NFD)</td>
+					<td><code>U+0061 U+030A U+0301</code> (NFD)</td>
                 </tr>
 			</table>
 		</aside>
 		
-		<p>One additional quirk of caseless matching involves the Greek script. The character <span class=codepoint>&#x0345;</span> [<span class=uname>U+0345 COMBINING GREEK YPOGEGRAMMENI</span>] is basically a subscript iota. Casefolding operations separate any character that includes this mark into a standalone letter iota &#x3b9; [<span class=uname>GREEK SMALL LETTER IOTA</span>]. If canonical decomposition (NFD) isn't applied before the casefold operation, any combining marks that follow the original letter (the one with the <em>ypogegrammeni</em>) will be applied to the letter iota rather than the original base character. This changes the meaning and pronunciation of the text and results in the text not matching the intended strings.</p>
+		<p>Additionally, this ensures that canonically equivalent characters use the same code points.</p>
+		
+				<aside class=example>
+			<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>Normalized</th>
+				</tr>
+                <tr>
+					<td class=exampleChar>&#x1f0;</td>
+					<td class=exampleChar>j&#x030c;</td>
+					<td>&#x2260;</td>
+					<td class=exampleChar>&#x1f0;</td>					
+                </tr>
+                <tr>
+					<td><code>U+01F0</code></td>
+					<td><code>U+006A U+030C</code></td>
+					<td></td>
+					<td><code>U+01F0</code></td>
+                </tr>
+
+                <tr>
+					<td class=exampleChar>&#x1e97;</td>
+					<td class=exampleChar>t&#x308;</td>
+					<td>&#x2260;</td>
+					<td class=exampleChar>&#x1e97;</td>					
+                </tr>
+                <tr>
+					<td><code>U+1E97</code></td>
+					<td><code>U+0074 U+0308</code></td>
+					<td></td>
+					<td><code>U+1E97</code></td>
+                </tr>
+                
+                <tr>
+					<td class=exampleChar>&#x95a;</td>
+					<td class=exampleChar>&#x95a;</td>
+					<td>&#x2260;</td>
+					<td class=exampleChar>&#x917;&#x93c;</td>					
+                </tr>
+                <tr>
+					<td><code>U+095A</code></td>
+					<td><code>U+095A</code></td>
+					<td></td>
+					<td><code>U+0917 U+093C</code></td>
+                </tr>
+			</table>
+		</aside>
+		
+		<p>The Unicode canonical normalization forms (NFC or NFD) and case folding, when used together, are closed: once a string has been case folded and then had NFD or NFC applied to it, further applications of the same case folding or Unicode normalization form do not result in a different string.</p>
+		
+		<p>When comparing strings for <a>compatibility equivalence</a> between characters (in other words, the NFKC/NFKD forms), an additional level of normalization has to be applied because the compatibility decomposition step can result in characters that need to be case folded and then normalized.</p>
+		
 		<aside class=example>
+			<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th></th>
+					<th>NFKD</th>
+					<th></th>
+					<th>Folded</th>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x3392;</td>
+					<td>=></td>
+					<td class=exampleChar>MHz</td>
+					<td>=></td>
+					<td class=exampleChar>mhz</td>
+				</tr>
+				<tr>
+					<td><code>U+3392</code></td>
+					<td></td>
+					<td><code>U+004D U+0048 U+007A</code></td>
+					<td></td>
+					<td><code>U+006D U+0068 U+007A</code></td>
+				</tr>
+			</table>
+		</aside>
+		
+		<div class=note>
+			<p>Unicode's definitions of <strong>canonical casefold matching</strong> (rule <code>[D145]</code>) and <strong>compatibility casefold matching</strong> (rule <code>[D146]</code>) include an initial step of normalization to form NFD. This increases the complexity and cost of performing caseless matching and it exists to address a somewhat obscure quirk of certain ancient Greek code point sequences.</p>
+		
+		    <p>The issue is that the character <span class=codepoint>&#x0345;</span> [<span class=uname>U+0345 COMBINING GREEK YPOGEGRAMMENI</span>] is a combining mark that represents a subscripted iota (<span class=codepoint>&#x3b9;</span>). This character represents a sound found in the ancient Greek language and thus can appear in archaic texts. When characters that include a subscripted iota are <em>uppercased</em> or <em>titlecased</em>, the result will be incorrect unless the iota-subscript is moved to the end of any sequence of combining marks. Otherwise, the accents will go on the capital iota that results from the case mapping operation. This process can be achieved by first transforming the text to NFD before casing. <strong>Note that this only applies to character sequences that include U+0345 either directly or in the base character's decomposition <em>and</em> at least one additional combining mark.</strong></p>
+		
+		    <p>Unicode's case folding mirror the case fold mapping by replacing subscript-iota characters with a standalone base letter &#x3b9; [<span class=uname>GREEK SMALL LETTER IOTA</span>]. If the original character was followed by a combining mark, failing to normalize the text before the casefold operation would result in an incorrectly normalized string (as shown by the examples below) that would not match precomposed or properly normalized string values as expected by the user.</p>
+
 			<table class="ncfExample">
 				<!-- ἀί \u1f00\u03af ἄι \u1f04\u03b9 
 				     ἧί \u1f27\u03af ἧ́ι \u1f27\u0301\u03b9-->
 				<tr>
 					<th>Original</th>
-					<th>Case Fold + NFC</th>
+					<th>Case Fold + NFC<br>(incorrect)</th>
 					<th></th>
 					<th>NFD + Case Fold + NFC</th>
 				</tr>
@@ -1150,35 +1267,10 @@
 			    </tr>
 			    -->
 			</table>
-		</aside>
+
+		</div>
 		
-		<p>When comparing strings for <a>compatibility equivalence</a> between characters (in other words, the NFKC/NFKD forms), an additional level of normalization has to be applied because the compatibility decomposition step can result in characters that need to be case folded and then normalized.</p>
-		
-		<aside class=example>
-			<table class=ncfExample>
-				<tr>
-					<th>Original</th>
-					<th></th>
-					<th>NFKD</th>
-					<th></th>
-					<th>Folded</th>
-				</tr>
-				<tr>
-					<td class=exampleChar>&#x3392;</td>
-					<td>=></td>
-					<td class=exampleChar>MHz</td>
-					<td>=></td>
-					<td class=exampleChar>mhz</td>
-				</tr>
-				<tr>
-					<td><code>U+3392</code></td>
-					<td></td>
-					<td><code>U+004D U+0048 U+007A</code></td>
-					<td></td>
-					<td><code>U+006D U+0068 U+007A</code></td>
-				</tr>
-			</table>
-		</aside>
+
       </section>
       
       <section id="characterEscapes">
