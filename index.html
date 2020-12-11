@@ -1070,9 +1070,11 @@
 		<p>When matching strings in a case-insensitive manner, one complication is that the case folding process can produce strings that are not normalized, even if the original string was normalized. Since string comparison relies on matching code point sequences, each case folded string must be normalized if the matching process is to be reliable.</p>
 		
 		<aside class=example>
+			<p>The most common cases are characters that have a canonical mapping or whose case-folded character sequence has a canonical mapping. For example:</p>
 			<table class=ncfExample>
 				<tr>
 					<th>Original</th>
+					<th></th>
 					<th>Case Fold</th>
 					<th></th>
 					<th>Normalized</th>
@@ -1080,81 +1082,98 @@
 				
 				<tr>
 					<td class=exampleChar>&#x1FC9;</td>
+					<td>=></td>
 					<td class=exampleChar>&#x1f73;</td>
 					<td>&#x2260;</td>
 					<td class=exampleChar>&#x03ad;</td>
 				</tr>
 				<tr>
 					<td><code>U+1FC9</code></td>
+					<td></td>
 					<td><code>U+1F73</code></td>
 					<td></td>
 					<td><code>U+03AD</code></td>
 				</tr>
+				                
+                <tr>
+					<td class=exampleChar>&#x95a;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x95a;</td>
+					<td>&#x2260;</td>
+					<td class=exampleChar>&#x917;&#x93c;</td>					
+                </tr>
+                <tr>
+					<td><code>U+095A</code></td>
+					<td></td>
+					<td><code>U+095A</code></td>
+					<td></td>
+					<td><code>U+0917 U+093C</code></td>
+                </tr>
 			</table>
-		</aside>
 		
-		<p>Usually, though, the connection between normalization and case folding has to do with ensuring that strings which use combining marks reorder or recombine in the same way for comparison purposes.</p>
+		<p>More commonly, though, the connection between normalization and case folding has to do with ensuring that strings which use combining marks reorder or recombine in the same way for comparison purposes:</p>
 		
-		<aside class=example>
+
 			<table class=ncfExample>
 				<tr>
 					<th>Original</th>
+					<th></th>
 					<th>Case Fold</th>
 					<th></th>
 					<th>Normalized</th>
 				</tr>
                 <tr>
 					<td class=exampleChar>Q&#x307;&#x323;</td>
+					<td>=></td>
 					<td class=exampleChar>q&#x307;&#x323;</td>
 					<td>&#x2260;</td>
 					<td class=exampleChar>q&#x323;&#x307;</td>					
                 </tr>
                 <tr>
 					<td><code>U+0051 U+0307 U+0323</code></td>
+					<td></td>
 					<td><code>U+0071 U+0307 U+0323</code></td>
 					<td></td>
-					<td><code>U+0071 U+0323 U+0307</code> (NFC)</td>
+					<td><code>U+0071 U+0323 U+0307</code></td>
                 </tr>
 
                 <tr>
-					<td class=exampleChar rowspan=3>&#xc5;&#x301;</td>
-					<td class=exampleChar rowspan=3>&#xe5;&#x301;</td>
-					<td rowspan=3>&#x2260;</td>
+					<td class=exampleChar>&#xc5;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#xe5;&#x301;</td>
+					<td>&#x2260;</td>
 					<td class=exampleChar>&#x1fb;</td>					
                 </tr>
                 <tr>
-					<td><code>U+01FB</code> (NFC)</td>
-                </tr>
-                <tr>
-					<td class=exampleChar>a&#x30a;&#x301;</td>
-                </tr>
-                <tr>
 					<td><code>U+00C5 U+0301</code></td>
+					<td></td>
 					<td><code>U+00E5 U+0301</code></td>
 					<td></td>
-					<td><code>U+0061 U+030A U+0301</code> (NFD)</td>
+					<td><code>U+01FB</code></td>
                 </tr>
 			</table>
-		</aside>
+
 		
-		<p>Additionally, this ensures that canonically equivalent characters use the same code points.</p>
+		<p>Finally, there are cases like the below, in which the case fold results in a decomposed sequence:</p>
 		
-				<aside class=example>
 			<table class=ncfExample>
 				<tr>
 					<th>Original</th>
+					<th></th>
 					<th>Case Fold</th>
 					<th></th>
 					<th>Normalized</th>
 				</tr>
                 <tr>
 					<td class=exampleChar>&#x1f0;</td>
+					<td>=></td>
 					<td class=exampleChar>j&#x030c;</td>
 					<td>&#x2260;</td>
 					<td class=exampleChar>&#x1f0;</td>					
                 </tr>
                 <tr>
 					<td><code>U+01F0</code></td>
+					<td></td>
 					<td><code>U+006A U+030C</code></td>
 					<td></td>
 					<td><code>U+01F0</code></td>
@@ -1162,29 +1181,19 @@
 
                 <tr>
 					<td class=exampleChar>&#x1e97;</td>
+					<td>=></td>
 					<td class=exampleChar>t&#x308;</td>
 					<td>&#x2260;</td>
 					<td class=exampleChar>&#x1e97;</td>					
                 </tr>
                 <tr>
 					<td><code>U+1E97</code></td>
+					<td></td>
 					<td><code>U+0074 U+0308</code></td>
 					<td></td>
 					<td><code>U+1E97</code></td>
                 </tr>
-                
-                <tr>
-					<td class=exampleChar>&#x95a;</td>
-					<td class=exampleChar>&#x95a;</td>
-					<td>&#x2260;</td>
-					<td class=exampleChar>&#x917;&#x93c;</td>					
-                </tr>
-                <tr>
-					<td><code>U+095A</code></td>
-					<td><code>U+095A</code></td>
-					<td></td>
-					<td><code>U+0917 U+093C</code></td>
-                </tr>
+
 			</table>
 		</aside>
 		
@@ -1218,58 +1227,173 @@
 			</table>
 		</aside>
 		
-		<div class=note>
-			<p>Unicode's definitions of <strong>canonical casefold matching</strong> (rule <code>[D145]</code>) and <strong>compatibility casefold matching</strong> (rule <code>[D146]</code>) include an initial step of normalization to form NFD. This increases the complexity and cost of performing caseless matching and it exists to address a somewhat obscure quirk of certain ancient Greek code point sequences.</p>
+		<section id="optionalPreNormalization">
+			<h4>The Optional <em>Initial Normalization</em> Step</h4>
+			
+			<p>Unicode's definitions of <strong>canonical casefold matching</strong> (rule <code>[D145]</code>) and <strong>compatibility casefold matching</strong> (rule <code>[D146]</code>) include an initial step of normalization to Unicode Normalization Form NFD. This increases the complexity and cost of performing caseless matching. This pre-casefold normalization exists to address the somewhat obscure quirk of certain ancient Greek code point sequences described in this section.</p>
+			
+			<p>Sixty-three Greek precomposed characters have a decomposition mapping (i.e. normalize to form NFD) that contains the character [<span class=uname>U+0345 COMBINING GREEK YPOGEGRAMMENI</span>], a diacritical mark representing a subscripted iota (referred to as a <em>prosgegrammei</em> or <em>ypogegrammeni</em>). This mark represents an orthographic form found in ancient or classical Greek for a sound not present in more modern forms of the language. The uppercase and titlecase mappings of these characters separate this combining mark as the separate, base, letter <code>iota</code>. For consistency with title/uppercase mappings, the case fold mapping of these characters therefore contains a <span class=codepoint>&#x3b9;</span> [<span class=uname>U+03B9 GREEK SMALL LETTER IOTA</span>] (<a href="#definitionCaseFolding">recall</a> that Unicode case fold is generally to lower case).</p>
+			
+			<p>If and only if one of these 63 characters is followed by a combining mark, failing to apply canonical decomposition before case folding can result in potential comparison mismatches. Such character sequences are not in a normalized form and are difficult to produce "naturally" (through keyboards and other input processes).</p>
 		
-		    <p>The issue is that the character <span class=codepoint>&#x0345;</span> [<span class=uname>U+0345 COMBINING GREEK YPOGEGRAMMENI</span>] is a combining mark that represents a subscripted iota (<span class=codepoint>&#x3b9;</span>). This character represents a sound found in the ancient Greek language and thus can appear in archaic texts. When characters that include a subscripted iota are <em>uppercased</em> or <em>titlecased</em>, the result will be incorrect unless the iota-subscript is moved to the end of any sequence of combining marks. Otherwise, the accents will go on the capital iota that results from the case mapping operation. This process can be achieved by first transforming the text to NFD before casing. <strong>Note that this only applies to character sequences that include U+0345 either directly or in the base character's decomposition <em>and</em> at least one additional combining mark.</strong></p>
-		
-		    <p>Unicode's case folding mirror the case fold mapping by replacing subscript-iota characters with a standalone base letter &#x3b9; [<span class=uname>GREEK SMALL LETTER IOTA</span>]. If the original character was followed by a combining mark, failing to normalize the text before the casefold operation would result in an incorrectly normalized string (as shown by the examples below) that would not match precomposed or properly normalized string values as expected by the user.</p>
-
-			<table class="ncfExample">
-				<!-- ἀί \u1f00\u03af ἄι \u1f04\u03b9 
-				     ἧί \u1f27\u03af ἧ́ι \u1f27\u0301\u03b9-->
+    		<p>For example, if one starts with the precomposed (NFC) character <span class=codepoint>&#x1f8c;</span> [<span class=uname>U+1F8C GREEK CAPITAL LETTER ALPHA WITH PSILI AND OXIA AND PROSGEGRAMMENI</span>] (which is the most common way to represent this combination of base and diacritic characters) and just runs case fold transformations one ends up with: <span class=codepoint>&#x1f04;&#x03b9;</span> [<span class=uname>U+1F04 GREEK SMALL LETTER ALPHA WITH PSILI AND OXIA</span> + <span class=uname>U+03B9 GREEK SMALL LETTER IOTA</span>].</p>
+			
+			<aside class=example>
+				<table class=ncfExample>
 				<tr>
 					<th>Original</th>
-					<th>Case Fold + NFC<br>(incorrect)</th>
 					<th></th>
-					<th>NFD + Case Fold + NFC</th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>NFC</th>
 				</tr>
 				<tr>
-					<td class=exampleChar>&#x1f80;&#x0301;</td>
-					<td class=exampleChar rowspan=3>&#x1f00;&#x03af;</td>
-					<td rowspan=3>&#x2260;</td>
-                    <td class=exampleChar rowspan=3>&#x1F04;&#x3b9;</td>
+					<td class=exampleChar>&#x1f8c;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x1f04;&#x03b9;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x1f04;&#x03b9;</td>
 				</tr>
 				<tr>
-					<td><code>U+1F80 U+0301</code></td>
-				</tr>
-				<tr>
-					<td class=exampleChar>&#x1f88;&#x0301;</td>
-				</tr>
-                <tr>
-					<td><code>U+1F88 U+0301</code></td>
-					<td><code>U+1F00 U+03AF</code></td>
+					<td><code>U+1F8C</code></td>
 					<td></td>
 					<td><code>U+1F04 U+03B9</code></td>
-			    </tr>
-			    <!--
-			    <tr>
-					<td class=exampleChar>&#x1f9f;&#x0301;</td>
-					<td class=exampleChar>&#x1f27;&#x03af;</td>
-					<td>&#x2260;</td>
-                    <td class=exampleChar>&#x1F27;&#x0301;&#x3b9;</td>
-			    </tr>
-			    <tr>
-					<td><code>U+1F9F U+0301</code></td>
-					<td><code>U+1F27 U+03AF</code></td>
 					<td></td>
-					<td><code>U+1F27 U+0301 U+03B9</code></td>
-			    </tr>
-			    -->
-			</table>
-
-		</div>
+					<td><code>U+1F04 U+03B9</code></td>
+				</tr>
+				</table>
+			</aside>
+				
+			<p>If instead one starts from a fully decomposed (NFD) sequence representing the same letter, <span class=codepoint>&#x0391;&#x0313;&#x0301;&#x0345;</span> [<span class=uname>U+0391 GREEK CAPITAL LETTER ALPHA</span> + <span class=uname>U+0313 COMBINING COMMA ABOVE</span> + <span class=uname>U+0301 COMBINING ACUTE ACCENT</span> + <span class=uname>U+0345 COMBINING GREEK YPOGEGRAMMENI</span>] one ends up with <span class=codepoint>&#x03b1;&#x0313;&#x0301;&#x03b9;</span> [<span class=uname>U+03B1 GREEK SMALL LETTER ALPHA</span> + <span class=uname>U+0313 COMBINING COMMA ABOVE</span> + <span class=uname>U+0301 COMBINING ACUTE ACCENT</span> + <span class=uname>U+03B9 GREEK SMALL LETTER IOTA</span>]. Normalizing this string to NFC produces the same character sequence as the first example above:</p>
+				
+			<aside class=example>
+				<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th></th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>NFC</th>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x391;&#x313;&#x301;&#x345;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x03b1;&#x0313;&#x0301;&#x03b9;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x1f04;&#x03b9;</td>
+				</tr>
+				<tr>
+					<td><code>U+0391 U+0313 U+0301 U+0345</code></td>
+					<td></td>
+					<td><code>U+03B1 U+0313 U+0301 U+03B9</code></td>
+					<td></td>
+					<td><code>U+1F04 U+03B9</code></td>
+				</tr>
+				</table>
+			</aside>
+			
 		
+			<p>In both of those cases, the acute accent is associated with the alpha base character rather than the trailing iota.</p>
+
+            <p>If, however, one begins with the half-precomposed sequence <span class=codepoint>&#x1f88;&#x301;</span> [<span class=uname>U+1F88 GREEK CAPITAL LETTER ALPHA WITH PSILI AND PROSGEGRAMMENI</span> + <span class=uname>U+0301 COMBINING ACUTE ACCENT</span>], one ends up with <span class=codepoint>&#x1f00;&#x03b9;&#x0301;</span>[<span class=uname>U+1F00 GREEK SMALL LETTER ALPHA WITH PSILI</span> + <span class=uname>U+03B9 GREEK SMALL LETTER IOTA</span> + <span class=uname>U+0301 COMBINING ACUTE ACCENT</span>] where the acute accent is associated with the iota. This produces a sequence that can't be normalised to match the others (and is actually incorrect, as it has a different meaning than the original user-perceived character.)</p>
+            
+            <aside class=example>
+				<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th></th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>NFC</th>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x1f88;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x1f00;&#x03b9;&#x0301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x1f00;&#x03af;</td>
+				</tr>
+				<tr>
+					<td><code>U+1F88 U+0301</code></td>
+					<td></td>
+					<td><code>U+1F00 U+03B9 U+0301</code></td>
+					<td></td>
+					<td><code>U+1F00 U+03AF</code></td>
+				</tr>
+				</table>
+			</aside>
+
+            <p>As mentioned above, Unicode solves this matching problem by normalizing the text to NFD before performing the case fold operation. Then <span class=codepoint>ᾌ</span> [<span class=uname>U+1F8C GREEK CAPITAL LETTER ALPHA WITH PSILI AND OXIA AND PROSGEGRAMMENI</span>] and <span class=codepoint>ᾌ </span> [<span class=uname>U+1F88 GREEK CAPITAL LETTER ALPHA WITH PSILI AND PROSGEGRAMMENI</span> + <span class=uname>U+0301 COMBINING ACUTE ACCENT</span>] both end up the same as the decomposed version, ie. <span class=codepoint>ᾌ</span> [<span class=uname>U+0391 GREEK CAPITAL LETTER ALPHA</span> + <span class=uname>U+0313 COMBINING COMMA ABOVE</span> + <span class=uname>U+0301 COMBINING ACUTE ACCENT</span> + <span class=uname>U+0345 COMBINING GREEK YPOGEGRAMMENI</span>]. If one now case folds that sequence and normalizes, it produces a match for all cases:</p>
+            
+            <aside class=example>
+				<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th></th>
+					<th>NFD</th>
+					<th></th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>NFC</th>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x1f8c;</td>
+					<td>=></td>
+					<td class=exampleChar rowspan=5>&#x0391;&#x0313;&#x0301;&#x0345;</td>
+					<td rowspan=5>=></td>
+					<td class=exampleChar rowspan=5>&#x03b1;&#x0313;&#x0301;&#x03b9;</td>
+					<td rowspan=5>=></td>
+					<td class=exampleChar rowspan=5>&#x1f04;&#x03b9;</td>
+				</tr>
+				<tr>
+					<td><code>U+1F8C</code></td>
+
+
+
+
+					<td></td>
+
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x391;&#x313;&#x301;&#x345;</td>
+                    <td>=></td>
+
+
+
+					<td></td>
+
+				</tr>
+				<tr>
+					<td><code>U+0391 U+0313 U+0301 U+0345</code></td>
+
+
+
+
+					<td></td>
+
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x1f88;&#x301;</td>
+                    <td>=></td>
+
+
+
+					<td></td>
+
+				</tr>
+				<tr>
+					<td><code>U+1F88 U+0301</code></td>
+                    <td></td>
+					<td><code>U+0391 U+0313 U+0301 U+0345</code></td>
+					<td></td>
+					<td><code>U+03B1 U+0313 U+0301 U+03B9</code></td>
+					<td></td>
+					<td><code>U+1F04 U+03B9</code></td>
+				</tr>
+				</table>
+			</aside>
+		
+		</section>
 
       </section>
       
@@ -1610,7 +1734,7 @@ HE&#x141;&#x141;O
 			<p>For each string, perform the following steps: </p>
 			
 			<ol>
-				<li>Perform Unicode normalization of the string to form NFD. (This addresses problems with Greek subscript iota.)</li>
+				<li>[<strong><a href="#optionalPreNormalization">OPTIONAL</a></strong>] Perform Unicode normalization of the string to form NFD.</li>
 				<li>Perform <a>Unicode Full</a> case folding of the resulting string.</li>
 				<li>Perform Unicode normalization of the resulting string to form NFC. (This ensures that canonically equivalent sequences match.)</li>
 				<li>Return the result.</li>
@@ -1631,7 +1755,7 @@ HE&#x141;&#x141;O
 			<p>For each string, perform the following steps:</p>
 			
 			<ol>
-				<li>Perform Unicode normalization of the string to form NFD. (This addresses problems with the Greek subscript iota.)</li>
+				<li>[<strong><a href="#optionalPreNormalization">OPTIONAL</a></strong>] Perform Unicode normalization of the string to form NFD.</li>
 				<li>Perform <a>Unicode Full</a> case folding of the resulting string.</li>
 				<li>Perform Unicode normalization of the resulting string to form NFKD.</li>
 				<li>Perform <a>Unicode Full</a> case folding of the resulting string. (This eliminates artifacts produced by the compatibility mapping.)</li>
