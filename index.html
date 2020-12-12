@@ -1199,30 +1199,86 @@
 		
 		<p>The Unicode canonical normalization forms (NFC or NFD) and case folding, when used together, are closed: once a string has been case folded and then had NFD or NFC applied to it, further applications of the same case folding or Unicode normalization form do not result in a different string.</p>
 		
-		<p>When comparing strings for <a>compatibility equivalence</a> between characters (in other words, the NFKC/NFKD forms), an additional level of normalization has to be applied because the compatibility decomposition step can result in characters that need to be case folded and then normalized.</p>
+		<p>When comparing strings for <a>compatibility equivalence</a> between characters (in other words, the NFKC/NFKD forms), the case fold-and-normalize operation must be performed twice because the compatibility decomposition step can result in characters that need to be case folded and the subsequent case fold can result in a sequence that must then be normalized.</p>
 		
 		<aside class=example>
 			<table class=ncfExample>
 				<tr>
 					<th>Original</th>
 					<th></th>
-					<th>NFKD</th>
+					<th>Case Fold</th>
 					<th></th>
-					<th>Folded</th>
+					<th>NFKC</th>
+					<th></th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>NFKC</th>
 				</tr>
 				<tr>
 					<td class=exampleChar>&#x3392;</td>
 					<td>=></td>
+					<td class=exampleChar>&#x3392;</td>
+					<td>=></td>
 					<td class=exampleChar>MHz</td>
+					<td>=></td>
+					<td class=exampleChar>mhz</td>
 					<td>=></td>
 					<td class=exampleChar>mhz</td>
 				</tr>
 				<tr>
 					<td><code>U+3392</code></td>
 					<td></td>
+					<td><code>U+3392</code></td>
+					<td></td>
 					<td><code>U+004D U+0048 U+007A</code></td>
 					<td></td>
 					<td><code>U+006D U+0068 U+007A</code></td>
+					<td></td>
+					<td><code>U+006D U+0068 U+007A</code></td>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x2103;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x2103;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#xb0;&#x106;</td>
+					<td>=></td>
+					<td class=exampleChar>&#xb0;&#x107;</td>
+					<td>=></td>
+					<td class=exampleChar>&#xb0;&#x107;</td>
+				</tr>
+				<tr>
+					<td><code>U+2103 U+0301</code></td>
+					<td></td>
+					<td><code>U+2103 U+0301</code></td>
+					<td></td>
+					<td><code>U+00B0 U+0106</code></td>
+					<td></td>
+					<td><code>U+00B0 U+0107</code></td>
+					<td></td>
+					<td><code>U+00B0 U+0107</code></td>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x03aa;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x03ca;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x390;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x3b9;&#x308;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x390;</td>
+				</tr>
+				<tr>
+					<td><code>U+03AA U+0301</code></td>
+					<td></td>
+					<td><code>U+03CA U+0301</code></td>
+					<td></td>
+					<td><code>U+0390</code></td>
+					<td></td>
+					<td><code>U+03B9 U+0308 U+0301</code></td>
+					<td></td>
+					<td><code>U+390</code></td>
 				</tr>
 			</table>
 		</aside>
@@ -1729,12 +1785,14 @@ HE&#x141;&#x141;O
 			
 			<p>Specifications that have <a>vocabularies</a> that allow non-ASCII characters (which should include most new vocabularies) and which do not want to be sensitive to case distinctions SHOULD specify this step. <strong>Case insensitivity is not recommended for most specifications.</strong></p>
 			
-			<p>Unicode case folding produces denormalized character sequences, so, in order for a match to be successful between two strings, case fold matching also need to include Unicode normalization. This normalization step includes Unicode normalization both before and after case folding and is consistent with [[Unicode]] requirement <kbd>D145</kbd>. See <a href="#normalizationAndCasefold"></a> for examples.</p>
+			<p>Unicode case folding can produce denormalized character sequences, so, in order matching to be consistent with user expectations, any Unicode case fold needs to be followed by Unicode normalization. See <a href="#normalizationAndCasefold"></a> for examples.</p>
+			
+			<p class=note>[[Unicode]] requirement <kbd>D145</kbd> requires a canonical decomposition (form NFD) normalization before the case fold operation to address the corner case described in <a href="#optionalPreNormalization"></a>. Inclusion of the pre-case fold normalization is optional because of the rarity of denormalized data affected by this. This is a WILLFUL VIOLATION of <kbd>D145</kbd>.</p>
 			
 			<p>For each string, perform the following steps: </p>
 			
 			<ol>
-				<li>[<strong><a href="#optionalPreNormalization">OPTIONAL</a></strong>] Perform Unicode normalization of the string to form NFD.</li>
+				<li>[<strong><a href="#optionalPreNormalization">OPTIONAL</a></strong>] Perform Unicode normalization of the string to form NFD <strong><em>or</em></strong> perform mapping of the 63 affected Greek characters.</li>
 				<li>Perform <a>Unicode Full</a> case folding of the resulting string.</li>
 				<li>Perform Unicode normalization of the resulting string to form NFC. (This ensures that canonically equivalent sequences match.)</li>
 				<li>Return the result.</li>
@@ -1750,12 +1808,14 @@ HE&#x141;&#x141;O
 				<p>Unicode compatibility decomposition removes meaning from the text that it is applied to. That means that this normalization step produces the most promiscuous matches. Some developers and specification authors find this level of normalization attractive because it appears to bring together many strings that are logically similar, but this level of normalization has limited utility in actual practice and has side effects that confuse users. This normalization step is presented for completeness, but it is not generally appropriate for use on the Web.</p>
 			</aside>
 			
-			<p>Case folding is affected by the input code point sequence. It can also produce a denormalized code point sequence. As a result, this normalization step includes multiple uses of Unicode normalization, including both the <kbd>NFKD</kbd> form (which supplies the compatibility mapping) and the <kbd>NFD</kbd> form. This step is consistent with [[Unicode]] requirement <kbd>D146</kbd>.</p>
+			<p>Case folding is affected by the input code point sequence. It can also produce a denormalized code point sequence. The interaction of compatibility decomposition with case folding requires multiple passes to produce a consistent match. As a result, this normalization step includes multiple uses of Unicode normalization. See <a href="#normalizationAndCasefold"></a> for examples.</p>
 			
-			<p>For each string, perform the following steps:</p>
+			<p class=note>[[Unicode]] requirement <kbd>D146</kbd> requires a canonical decomposition (form NFD) normalization before the initial case fold operation to address the corner case described in <a href="#optionalPreNormalization"></a>. Inclusion of the pre-case fold normalization is optional because of the rarity of denormalized data affected by this. This is a WILLFUL VIOLATION of <kbd>D146</kbd>.</p>
+			
+			<p>For each string, perform the following steps: </p>
 			
 			<ol>
-				<li>[<strong><a href="#optionalPreNormalization">OPTIONAL</a></strong>] Perform Unicode normalization of the string to form NFD.</li>
+				<li>[<strong><a href="#optionalPreNormalization">OPTIONAL</a></strong>] Perform Unicode normalization of the string to form NFD <strong><em>or</em></strong> perform mapping of the 63 affected Greek characters.</li>
 				<li>Perform <a>Unicode Full</a> case folding of the resulting string.</li>
 				<li>Perform Unicode normalization of the resulting string to form NFKD.</li>
 				<li>Perform <a>Unicode Full</a> case folding of the resulting string. (This eliminates artifacts produced by the compatibility mapping.)</li>
