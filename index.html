@@ -248,36 +248,71 @@
         
         <p>Syntactic content usually is defined by a specification or specifications and includes both the defined, reserved keywords for the given protocol or format as well as string tokens and identifiers that are defined by document authors to form the structure of the document (rather than the "content" of the document).</p>
         
-        <p>A <dfn data-lt="user-supplied value|user-supplied values">user-supplied value</dfn> is unreserved <a>syntactic content</a> in a <a>vocabulary</a> that is assigned by users, as distinct from reserved keywords in a given format or protocol. For example, CSS class names are part of the syntax of a CSS style sheet. They are not reserved keywords, predefined by any CSS specification, but they are still are subject to the syntactic rules of CSS. Users generally expect that their user-supplied values can be words or phrases in their preferred <a>natural language</a>. Thus it is recommended that specifications avoid imposing rules or limitations that unnecessarily restrict the use of certain languages, such as disallowing combining marks or certain classes of Unicode characters.</p>
+        <p>A <dfn id="def_vocabulary">vocabulary</dfn> is the list of reserved keywords and/or rules for assigning <a>user-supplied values</a> (such as identifiers) in a format or protocol. This can include restrictions on range, order, or type of characters that can appear in different places.</p>
+        
+        <p>For example, HTML defines the names of its elements and attributes, as well as enumerated attribute values, which defines the "vocabulary" of HTML <a>syntactic content</a>. Another example would be ECMAScript, which restricts the range of characters that can appear at the start or in the body of an identifier or variable name. It applies different rules for other cases, such as to the values of string literals.</p>
+		
+		<p>Values within a <a>vocabulary</a> fall into two broad classes: those that are meant to be seen, read, or interacted with by humans (and thus might be expected to contain natural language text); and those that are application or protocol internal and not intended for human interaction.</p>
+		
+		<p>A <dfn>user-facing identifier</dfn> is an identifier defined by or assigned by a user in a <a>vocabulary</a> that is intended to be at least potentially visible to end-users (and thus is <a>localizable content</a>).</p>
+		
+		<p>An <dfn>application internal identifier</dfn> is an identifier defined by or assigned by a user in a <a>vocabulary</a> that is internal to the document format or protocol and not intended for human interaction. Such values are generally not <a>localizable content</a>.</p>
+        
+        <p>A <dfn data-lt="user-supplied value|user-supplied values">user-supplied value</dfn> is unreserved <a>syntactic content</a> in a <a>vocabulary</a> that is assigned by users, as distinct from reserved keywords in a given format or protocol. Users generally expect that their user-supplied values can be words or phrases in their preferred <a>natural language</a>. This is why [[CHARMOD]] recommends that "Specifications SHOULD NOT arbitrarily exclude code points from the full range of Unicode code points from <code>U+0000</code> to <code>U+10FFFF</code> inclusive."</p>
+        
+        <aside class="example">
+		  <p>CSS defines the syntax of a style sheet and reserves a number of keywords, such as <code>margin-left</code> or <code>font-family</code>, or values such as <code>10px</code>. All of these definitions are part of the <a>syntactic content</a> of a CSS style sheet. CSS also allows users to define certain values such as class names using a wide range of Unicode characters. These <a>user-supplied values</a> are also part of the <a>syntactic content</a> of the style sheet where they appear.</p>
+        </aside>
         
         <aside class="example">
           <p><cite>XML</cite> [[XML10]] defines specific elements, attributes, and values that are reserved across all XML documents. Thus, the word <code class="kw" translate="no">encoding</code> has a defined meaning inside the XML document declaration: it is a reserved name. XML also allows a user to define elements and attributes for a given document, for example, by using a DTD. In a document that uses a DTD that defines an element called <code class="kw">&lt;muffin&gt;</code>, <span class="qterm">muffin</span> is a part of the syntactic content.</p>
         </aside>
         
-        <p><dfn>Textual content</dfn> refers to the language-bearing content in a document and <b>not</b> to any of the surrounding or embedded syntactic content that form part of the document structure. You can think of it as the actual "content" of the document or the "message" in a given protocol. Note that syntactic content can have textual content embedded in it, such as when an [[HTML]] <code class="kw">img</code> element has an <code class="kw">alt</code> attribute containing a description of the image.</p>
-          
-        <p>A <dfn data-lt="resource|resources">resource</dfn>, in the context of this document,  is a given document, file, or protocol "message" which includes both the <a>textual content</a> as well as the <a href="#def_syntactic_content" class="termref">syntactic content</a> such as identifiers surrounding or containing it. For example, in an HTML document that also has some CSS and a few <code class="kw" translate="no">script</code> tags with embedded JavaScript, the entire HTML document, considered as a file, is a resource. This term is intentionally similar to the term 'resource' as used in [[RFC3986]], although here the term is applied loosely. </p>
-          
+        <p><dfn>Localizable content</dfn> refers to document contents intended as human-readable text and <b>not</b> to any of the surrounding or embedded syntactic content that form part of the document structure. Note that syntactic content can have localizable content embedded in it, such as when an [[HTML]] <code class="kw">img</code> element has an <code class="kw">alt</code> attribute containing a description of the image.</p>
         
-        <p>A <dfn id="def_vocabulary">vocabulary</dfn> provides the list of
-          reserved names as well as the set of rules and specifications
-          controlling how <a>user-supplied values</a> (such as identifiers) can be assigned in a
-          format or protocol. This can include restrictions on range, order, or
-          type of characters that can appear in different places. For example,
-          HTML defines the names of its elements and attributes, as well as
-          enumerated attribute values, which defines the "vocabulary" of HTML
-          <a href="#def_syntactic_content" class="termref">syntactic content</a>. 
-		Another example would be ECMAScript, which restricts the range of 
-		characters that can appear at the start or in the body of an identifier 
-		or variable name. It applies different rules for other cases, such as to 
-		the values of string literals.</p>
-		
-		<p>Values within a <a>vocabulary</a> fall into two broad classes: those that are meant to be seen, read, or interacted with by humans (and thus might be expected to contain natural language text); and those that are application or protocol internal and not intended for human interaction.</p>
-		
-		<p>A <dfn>user-facing identifier</dfn> is an identifier defined by or assigned by a user in a <a>vocabulary</a> that is intended to be at least potentially visible to end-users.</p>
-		
-		<p>An <dfn>application internal identifier</dfn> is an identifier defined by or assigned by a user in a <a>vocabulary</a> that is internal to the document format or protocol and not intended for human interaction.</p>
-		
+        <aside class="example">
+	       <p>Here is an example (similar to the one found in [[STRING-META]]) of a JSON document containing a mixture of syntactic and localizable content. The values whose key is <code>value</code> (in the fields <code>title</code>, <code>author</code>, and <code>publisher</code>) are localizable content. Notice that they are associated with language and base direction metadata.</p>
+	       <p>The keys (<code>isbn</code>, <code>bookLanguage</code>, <code>title</code> etc.) are application internal identifiers in this document's vocabulary. Values such as the publication date (<code>2008-01-01</code>) are user-supplied values.</p>
+<!--
+ Title below is "HTML and CSS: Design and Build Websites"
+ ASIN: 1118871642
+ ISBN-13: 978-1118871645
+ ISBN-10: 1118871642
+-->
+<p id="example1Data" style="white-space:pre;font-family:monospace">
+{
+    // syntactic content and user-values
+    "isbn": "978-111887164-5",
+    "bookLanguage": "ar",
+    "pubDate": "2008-01-01",
+    "coverImage": "https://example.com/images/html_and_css_cover.jpg",
+    "isTranslated": true,
+    "updateDate": "2021-04-31T19:23:14Z",
+    
+    // localizable content
+    "title": {
+		"value": "<span dir=rtl>HTML &#x0648; CSS: &#x062A;&#x0635;&#x0645;&#x064A;&#x0645; &#x0648; &#x0625;&#x0646;&#x0634;&#x0627;&#x0621; &#x0645;&#x0648;&#x0627;&#x0642;&#x0639; &#x0627;&#x0644;&#x0648;&#x064A;&#x0628;</span>",
+		"lang": "ar-AE",
+		"dir": "rtl"
+	},
+    "author": {
+		"value": "Jon Duckett",
+		"lang": "en",
+		"dir": "ltr"
+	},
+    "publisher": {
+		"value": "&#x0645;&#x0643;&#x062A;&#x0628;&#x0629;",
+		"lang": "ar",
+		"dir": "rtl"
+	},
+},
+</p>
+
+        </aside>
+          
+        <p>A <dfn data-lt="resource|resources">resource</dfn>, in the context of this document,  is a given document, file, or protocol "message" which includes both the <a>localizable content</a> as well as the <a href="#def_syntactic_content" class="termref">syntactic content</a> such as identifiers surrounding or containing it. For example, in an HTML document that also has some CSS and a few <code class="kw" translate="no">script</code> tags with embedded JavaScript, the entire HTML document, considered as a file, is a resource. This term is intentionally similar to the term 'resource' as used in [[RFC3986]], although here the term is applied loosely. </p>
+          
+	
         <p>A <dfn data-lt="grapheme|graphemes">grapheme</dfn> is a sequence of
           one or more characters in a visual representation of some text
           that a typical user would perceive as being a single unit (<q>character</q>).
@@ -355,11 +390,11 @@
           <ul style="text-align:left">
           <li>Everything inside the black rectangle (that is, in this HTML file) is part of the <a>resource</a>.</li>
           <li><a>Syntactic content</a> in this case includes all of the HTML markup. There are only two strings that are <strong>not</strong> part of the syntactic content: the word <em>"Shakespeare"</em> on line 4 and the sentence <em>"What&#x2019;s in a name? That which we call a rose by any other name would smell as sweet."</em> on line 8. (The HTML entity <q><kbd>&amp;#x2019;</kbd></q> embedded in the sentence on line 8 <em>is</em> part of the syntactic content.)</li>
-          <li><a>Textual content</a> is shown in a <span class="shakespeare">bold blue font with a gray background</span>. In addition to the non-syntactic content, the <kbd>alt</kbd> value on line 7 (<em><q>William Shakespeare</q></em>) is textual content.</li>
+          <li><a>Localizable content</a> is shown in a <span class="shakespeare">bold blue font with a gray background</span>. In addition to the non-syntactic content, the <kbd>alt</kbd> value on line 7 (<em><q>William Shakespeare</q></em>) is localizable content.</li>
           <li>User-supplied values are shown in <span class="userValue">italics</span>. In this case there are three user-supplied values on line 7: the values of the <kbd>src</kbd>, <kbd>alt</kbd>, and <kbd>id</kbd> attributes of the <kbd>img</kbd> tag. In addition, the value of the <kbd>lang</kbd> attribute on line 1 and the <kbd>charset</kbd> attribute on line 3 are user-supplied values.</li>
           <li><a>Vocabulary</a> is shown with <span class="vocabulary">red underlining</span>. The vocabulary of an HTML document are the elements and attributes (as well as some of the attribute values, such as the value <kbd>ltr</kbd> for the attribute <kbd>dir</kbd> in the example above) defined in [[HTML]].</li>
           </ul>
-          <p class=note>All of the text above (all text in a text file) makes up the resource. It's possible that a given resource will contain no <a>textual content</a> at all (consider an HTML document consisting of four empty <code>div</code> elements styled to be orange rectangles). It's also possible that a resource will contain <em>no</em> syntactic content and consist solely of <a>textual content</a>: for example, a plain text file with a soliloquy from <cite>Hamlet</cite> in it. Notice too that the HTML entity <code>&amp;#x2019;</code>appears in the textual content and belongs to both the textual content and the syntactic content in this resource.</p>
+          <p class=note>All of the text above (all text in a text file) makes up the resource. It's possible that a given resource will contain no <a>localizable content</a> at all (consider an HTML document consisting of four empty <code>div</code> elements styled to be orange rectangles). It's also possible that a resource will contain <em>no</em> syntactic content and consist solely of <a>localizable content</a>: for example, a plain text file with a soliloquy from <cite>Hamlet</cite> in it. Notice too that the HTML entity <code>&amp;#x2019;</code>appears in the localizable content and belongs to both the localizable content and the syntactic content in this resource.</p>
         </section>
       </section>
       
@@ -644,7 +679,7 @@
 		  identical-appearing strings that are in a given Unicode Normalization Form use the same sequence of code points.
 		  See <a href="#normalizationLimitations"></a> for more information.</p>
 		</aside>
-        <p><a>Resources</a> are often susceptible to the effects of these variations because their specifications and implementations on the Web do not require Unicode Normalization of the text, nor do they take into consideration the string matching algorithms used when processing the <a>syntactic content</a> (including <a>user-supplied values</a>) and <a>textual content</a> later. For this reason, content developers need to ensure that they have provided a consistent representation in order to avoid problems later.</p>
+        <p><a>Resources</a> are often susceptible to the effects of these variations because their specifications and implementations on the Web do not require Unicode Normalization of the text, nor do they take into consideration the string matching algorithms used when processing the <a>syntactic content</a> (including <a>user-supplied values</a>) and <a>localizable content</a> later. For this reason, content developers need to ensure that they have provided a consistent representation in order to avoid problems later.</p>
         
         <p>However, it can be difficult for users to assure that a given <a>resource</a>
           or set of resources uses a consistent textual representation because
@@ -1843,7 +1878,7 @@ HE&#x141;&#x141;O
 		   or expanded before performing matching (or match-sensitive processing), since these syntaxes exist to allow difficult-to-encode
 		   sequences to be put into a document conveniently, yet allowing the characters to behave as-if they were
 		   directly encoded as a codepoint sequence in the document in question.</p>
-		 <p>One area where this can be complicated is deciding how <a>syntactic content</a> and <a>textual content</a> interact.
+		 <p>One area where this can be complicated is deciding how <a>syntactic content</a> and <a>localizable content</a> interact.
 		 For example, consider the following snippet of HTML:</p>
 		 <aside class="example">
 		 <pre>
@@ -1865,7 +1900,7 @@ HE&#x141;&#x141;O
       
           <p class="advisement" id="charmod_n11n_should_not"><a class="self" href="#charmod_n11n_should_not">[S] </a>Specifications SHOULD NOT specify a Unicode normalization form for encoding, storage, or interchange of a given vocabulary.</p>
           
-          <p class="advisement" id="charmod_n11n_must_not"><a class="self" href="#charmod_n11n_must_not">[I] </a>Implementations MUST NOT alter the normalization form of syntactic content (including user-supplied values) or textual content being exchanged, read, parsed, or processed except when required to do so as a side-effect of text transformation such as transcoding the content to a Unicode character encoding, case folding, or other user-initiated change, as consumers or the content itself might depend on the de-normalized representation. </p>
+          <p class="advisement" id="charmod_n11n_must_not"><a class="self" href="#charmod_n11n_must_not">[I] </a>Implementations MUST NOT alter the normalization form of syntactic content (including user-supplied values) or localizable content being exchanged, read, parsed, or processed except when required to do so as a side-effect of text transformation such as transcoding the content to a Unicode character encoding, case folding, or other user-initiated change, as consumers or the content itself might depend on the de-normalized representation. </p>
           
           <p class="advisement" id="charmod_n11n_authoring"><a class="self" href="#charmod_n11n_authoring">[I] </a>Authoring tools SHOULD provide a means of normalizing resources and warn the user when a given resource is not in Unicode Normalization Form C.</p>
           
@@ -1879,7 +1914,7 @@ HE&#x141;&#x141;O
           
           <p class="advisement" id="charmod_n11n_compat_impl"><a class="self" href="#charmod_n11n_compat_impl">[I] </a>Implementations MUST NOT apply compatibility normalization forms (NFKC, NFKD) unless specifically requested by the end user.</p>
           
-          <p>The compatibility normalization forms (form NFKC and form NFKD) change the structure and lose the meaning of the text in important ways. Users sometimes use characters with a compatibility mapping in Unicode on purpose or they use characters in a legacy character encoding that have a compatibility mapping when converted to Unicode. This has to be considered intentional on the part of the content author. Although NFKC/NFKD can sometimes be useful in "find" operations or string searching textual content, erasing compatibility differences is harmful.</p>
+          <p>The compatibility normalization forms (form NFKC and form NFKD) change the structure and lose the meaning of the text in important ways. Users sometimes use characters with a compatibility mapping in Unicode on purpose or they use characters in a legacy character encoding that have a compatibility mapping when converted to Unicode. This has to be considered intentional on the part of the content author. Although NFKC/NFKD can sometimes be useful in "find" operations or string searching localizable content, erasing compatibility differences is harmful.</p>
 
           <p class=note>Requiring NFC requires additional care on the part of the specification developer, as content on the Web generally is not in a known normalization state. Boundary and error conditions for denormalized content need to be carefully considered and well-specified in these cases. </p>
           
@@ -1893,7 +1928,7 @@ HE&#x141;&#x141;O
           
           <p class="advisement" id="charmod_n11n_combining_marks"><a class="self" href="#charmod_n11n_combining_marks">[C] </a>Content authors SHOULD NOT include combining marks without a preceding base character in a resource.</p>
 
-          <p>There can be exceptions to this. For example, when making a list of characters (such as a list of [[!Unicode]] characters), an author might want to use combining marks without a corresponding base character. However, use of a combining mark without a base character can cause unintentional display or processing problems, such as when a na&#xef;ve implementation combines the combining mark with adjacent syntactic, user-supplied, or textual content. For example, if you were to use  a combining mark, such as the character <span class="codepoint"><span lang="en">&nbsp;&#x0301;</span> [<span class="uname">U+0301 COMBINING ACUTE ACCENT​</span>]</span>, as the start of a <code>class</code> attribute value in HTML, the class name might not display properly in your editor and be difficult to edit.</p>
+          <p>There can be exceptions to this. For example, when making a list of characters (such as a list of [[!Unicode]] characters), an author might want to use combining marks without a corresponding base character. However, use of a combining mark without a base character can cause unintentional display or processing problems, such as when a na&#xef;ve implementation combines the combining mark with adjacent syntactic, user-supplied, or localizable content. For example, if you were to use  a combining mark, such as the character <span class="codepoint"><span lang="en">&nbsp;&#x0301;</span> [<span class="uname">U+0301 COMBINING ACUTE ACCENT​</span>]</span>, as the start of a <code>class</code> attribute value in HTML, the class name might not display properly in your editor and be difficult to edit.</p>
           
           <p>Some recommended base characters include <span class="codepoint"><span lang="en">&#x25CC;</span> [<span class="uname">U+25CC DOTTED CIRCLE</span>]</span> (when the base character needs to be visible) or <span class="codepoint"><span lang="en">&#x00A0;</span> [<span class="uname">U+00A0 NO-BREAK SPACE</span>]</span> (when the base character should be invisible).</p>
           
@@ -1936,7 +1971,7 @@ HE&#x141;&#x141;O
 
           <p>Vocabularies usually put a premium on predictability for content authors and users. Case-sensitive matching is the easiest to implement and introduces the least potential for confusion, since it generally consists of a comparison of the underlying Unicode code point sequence. Because it is not affected by considerations such as language-specific case mappings, it produces the least surprise for document authors that have included words, such as the <a href="#caseMappingLanguageSensitivity">Turkish examples</a> above, in their syntactic content.</p>
         
-          <p>Case insensitivity is usually reserved for processing <a>textual content</a>, such as performing a <a>natural language</a> textual search. However, sometimes case-insensitivity is desirable. In this cases there are several implementation choices that a formal language needs to consider. </p>
+          <p>Case insensitivity is usually reserved for processing <a>localizable content</a>, such as performing a <a>natural language</a> textual search. However, sometimes case-insensitivity is desirable. In this cases there are several implementation choices that a formal language needs to consider. </p>
        </section>
        <section id="sec_unicode_cs">
           <h4>Unicode case-insensitive matching</h4>
@@ -2014,7 +2049,7 @@ HE&#x141;&#x141;O
 			
 			<p>Unicode Regular Expressions Level 1 support includes the ability to specify Unicode code points in regular expressions, including via the use of escapes, and to access Unicode character properties as well as certain kinds of boundaries common to most regular expression syntaxes.</p>
 			
-			<p>Level 2 extends this with a number of important capabilities, notably the ability to select text on certain kinds of <a>grapheme cluster</a> boundary and support for case conversion (two topics mentioned extensively above). Level 3 provides for locale [[LTLI]] based tailoring of regular expressions, which are less useful in formal languages but can be useful in processing <a>textual content</a>.</p>
+			<p>Level 2 extends this with a number of important capabilities, notably the ability to select text on certain kinds of <a>grapheme cluster</a> boundary and support for case conversion (two topics mentioned extensively above). Level 3 provides for locale [[LTLI]] based tailoring of regular expressions, which are less useful in formal languages but can be useful in processing <a>localizable content</a>.</p>
 
         </section>
       </section>
