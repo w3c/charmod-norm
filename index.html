@@ -227,7 +227,7 @@
           of text within a given format or protocol, as the requirements and
           details vary significantly. </p>
           
-        <p>A <dfn data-lt="Unicode code point|Unicode code points|code point|code points">Unicode code point</dfn> (or "code point") refers to the numeric value assigned to each Unicode character. Unicode code points range from 0 to 0x10FFFF<sub>16</sub>. (See Section 4.1 in [[!CHARMOD]] for a deeper discussion of character encoding terminology.)</p>
+        <p>A <dfn data-lt="Unicode code point|Unicode code points|code point|code points">Unicode code point</dfn> (or "code point") refers to the numeric value assigned to each Unicode character. Unicode code points range from <code class="kw" translate="no">0</code> to <code class="kw" translate="no">0x10FFFF</code>. (See Section 4.1 in [[!CHARMOD]] for a deeper discussion of character encoding terminology.)</p>
           
         <p>Unicode code points are denoted as <code class="kw" translate="no">U+<em>hhhh</em></code>, where <code class="kw" translate="no"><em>hhhh</em></code> is a sequence of at least four, and at most six hexadecimal digits. For example, the character <span class="codepoint"><span lang="en">&#x20AC;</span> [<span class="uname">U+20AC EURO SIGN</span>]</span> has the code point <span class="uname" translate="no">U+20AC</span>, while the character <span class="codepoint">&#x1f63a;</span> [<span class="uname">U+1F63A SMILING CAT FACE WITH OPEN MOUTH</span>] has the code point <span class="uname" translate="no">U+1F63A</span>.</p>
           
@@ -282,35 +282,35 @@
 <p id="example1Data" style="white-space:pre;font-family:monospace">
 {
     // syntactic content and user-values
-    "isbn": "978-111887164-5",
-    "bookLanguage": "ar",
-    "pubDate": "2008-01-01",
-    "coverImage": "https://example.com/images/html_and_css_cover.jpg",
-    "isTranslated": true,
-    "updateDate": "2021-04-31T19:23:14Z",
+    "isbn":             "978-111887164-5",
+    "bookLanguage":     "ar",
+    "pubDate":          "2008-01-01",
+    "downloadLocation": "https://example.com/books/978-111887164-5",
+    "isTranslated":     true,
+    "updateDate":       "2021-04-31T19:23:14Z",
     
     // localizable content
     "title": {
-		"value": "<span dir=rtl>HTML &#x0648; CSS: &#x062A;&#x0635;&#x0645;&#x064A;&#x0645; &#x0648; &#x0625;&#x0646;&#x0634;&#x0627;&#x0621; &#x0645;&#x0648;&#x0627;&#x0642;&#x0639; &#x0627;&#x0644;&#x0648;&#x064A;&#x0628;</span>",
-		"lang": "ar-AE",
-		"dir": "rtl"
-	},
+        "value": "<span dir=rtl>HTML &#x0648; CSS: &#x062A;&#x0635;&#x0645;&#x064A;&#x0645; &#x0648; &#x0625;&#x0646;&#x0634;&#x0627;&#x0621; &#x0645;&#x0648;&#x0627;&#x0642;&#x0639; &#x0627;&#x0644;&#x0648;&#x064A;&#x0628;</span>",
+        "lang":  "ar-AE",
+        "dir":   "rtl"
+    },
     "author": {
-		"value": "Jon Duckett",
-		"lang": "en",
-		"dir": "ltr"
-	},
+        "value": "Jon Duckett",
+        "lang":  "en",
+        "dir":   "ltr"
+    },
     "publisher": {
-		"value": "&#x0645;&#x0643;&#x062A;&#x0628;&#x0629;",
-		"lang": "ar",
-		"dir": "rtl"
-	},
+        "value": "&#x0645;&#x0643;&#x062A;&#x0628;&#x0629;",
+        "lang":  "ar",
+        "dir":   "rtl"
+    },
 },
 </p>
 
         </aside>
           
-        <p>A <dfn data-lt="resource|resources">resource</dfn>, in the context of this document,  is a given document, file, or protocol "message" which includes both the <a>localizable content</a> as well as the <a href="#def_syntactic_content" class="termref">syntactic content</a> such as identifiers surrounding or containing it. For example, in an HTML document that also has some CSS and a few <code class="kw" translate="no">script</code> tags with embedded JavaScript, the entire HTML document, considered as a file, is a resource. This term is intentionally similar to the term 'resource' as used in [[RFC3986]], although here the term is applied loosely. </p>
+        <p>A <dfn data-lt="resource|resources">resource</dfn>, in the context of this document,  is a given document, file, or protocol "message" which includes both the <a>localizable content</a> as well as the <a>syntactic content</a> such as identifiers surrounding or containing it. For example, in an HTML document that also has some CSS and a few <code class="kw" translate="no">script</code> tags with embedded JavaScript, the entire HTML document, considered as a file, is a resource. This term is intentionally similar to the term 'resource' as used in [[RFC3986]], although here the term is applied loosely. </p>
           
 	
         <p>A <dfn data-lt="grapheme|graphemes">grapheme</dfn> is a sequence of
