@@ -227,9 +227,9 @@
           of text within a given format or protocol, as the requirements and
           details vary significantly. </p>
           
-        <p>A <dfn data-lt="Unicode code point|Unicode code points|code point|code points">Unicode code point</dfn> (or "code point") refers to the numeric value assigned to each Unicode character. Unicode code points range from 0 to 0x10FFFF<sub>16</sub>. (See Section 4.1 in [[!CHARMOD]] for a deeper discussion of character encoding terminology.)</p>
+        <p>A <dfn data-lt="Unicode code point|Unicode code points|code point|code points">Unicode code point</dfn> (or "code point") refers to the numeric value assigned to each Unicode character. Unicode code points range from <code class="kw" translate="no">0</code> to <code class="kw" translate="no">0x10FFFF</code>. (See Section 4.1 in [[!CHARMOD]] for a deeper discussion of character encoding terminology.)</p>
           
-        <p>Unicode code points are denoted as <code class="kw" translate="no">U+<em>hhhh</em></code>, where <code class="kw" translate="no"><em>hhhh</em></code> is a sequence of at least four, and at most six hexadecimal digits. For example, the character <span class="codepoint"><span lang="en">&#x20AC;</span> [<span class="uname">U+20AC EURO SIGN</span>]</span> has the code point <span class="uname" translate="no">U+20AC</span>.</p>
+        <p>Unicode code points are denoted as <code class="kw" translate="no">U+<em>hhhh</em></code>, where <code class="kw" translate="no"><em>hhhh</em></code> is a sequence of at least four, and at most six hexadecimal digits. For example, the character <span class="codepoint"><span lang="en">&#x20AC;</span> [<span class="uname">U+20AC EURO SIGN</span>]</span> has the code point <span class="uname" translate="no">U+20AC</span>, while the character <span class="codepoint">&#x1f63a;</span> [<span class="uname">U+1F63A SMILING CAT FACE WITH OPEN MOUTH</span>] has the code point <span class="uname" translate="no">U+1F63A</span>.</p>
           
         <p>Some characters used in this document's examples might not appear as intended on your specific device or display. Usually this is due to lack of a script-specific font installed locally or due to other limitations of your specific rendering system. This document uses a Webfont to provide fallback glyphs for many of the non-Latin characters, but your device might not support displaying the font. To the degree possible, the editors have tried to ensure that the examples nevertheless remain understandable.</p>
           
@@ -241,62 +241,78 @@
 		refers to a process that converts from a <a>legacy character encoding</a> 
         to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode encoding form</a>, 
 		such as UTF-8.</p>
-        <p><dfn id="def_syntactic_content">Syntactic content</dfn> is any text in a document format or protocol that belongs to the structure of the format or protocol. This definition includes values that are typically thought of as "markup" but can also include other values, such as the name of a field in an HTTP header. Syntactic content consists of all of the characters that form the <em>structure</em> of a format or protocol. For example, <span class="qchar">&lt;</span> and <span class="qchar">&gt;</span> (as well as the element name and various attributes they surround) are part of the syntactic content in an HTML document.</p>
-        <p>Syntactic content usually is defined by a specification or specifications and
-          includes both the defined, reserved keywords for the given protocol or
-          format as well as string tokens and identifiers that are defined by
-          document authors to form the structure of the document (rather than
-        the "content" of the document).</p>
-        <aside class="example">
-          <p><cite>XML</cite> [[XML10]] defines specific elements, attributes,
-            and values that are reserved across all XML documents. Thus, the
-            word <code class="kw" translate="no">encoding</code> has a defined
-            meaning inside the XML document declaration: it is a reserved name.
-            XML also allows a user to define elements and attributes for a given
-            document, for example, by using a DTD. In a document that uses a DTD that defines an
-            element called <code class="kw">&lt;muffin&gt;</code>, <span class="qterm">muffin</span>
-          is a part of the syntactic content.</p>
-        </aside>
-        <p><dfn>Natural language content</dfn> refers to the language-bearing
-          content in a document and <b>not</b> to any of the surrounding or embedded 
-          syntactic content that form part of the document structure. You can think
-          of it as the actual "content" of the document or the "message" in a
-          given protocol. Note that syntactic content can contain natural
-          language content, such as when an [[HTML]] <code class="kw">img</code> element
-          has an <code class="kw">alt</code> attribute containing a description of
-          the image.</p>
-          
-        <p>A <dfn data-lt="resource|resources">resource</dfn>, in the context of this document,  is a given
-          document, file, or protocol "message" which includes both the <a>natural
-            language content</a> as well as the <a href="#def_syntactic_content" class="termref">syntactic content</a>
-          such as identifiers surrounding or containing it. For example, in an
-          HTML document that also has some CSS and a few <code class="kw" translate="no">script</code>
-          tags with embedded JavaScript, the entire HTML document, considered as
-          a file, is a resource. This term is intentionally similar to the term 
-		'resource' as used in [[RFC3986]], although here the term is applied 
-		loosely. </p>
-          
-        <p>A <dfn data-lt="user-supplied value|user-supplied values">user-supplied value</dfn> is unreserved syntactic content in a <a>vocabulary</a> that is assigned by users, as distinct from reserved keywords in a given format or protocol. For example, CSS class names are part of the syntax of a CSS style sheet. They are not reserved keywords, predefined by any CSS specification, but they are still are subject to the syntactic rules of CSS. Users generally expect that keywords they define can be representative of words or concepts in their given natural language, subject to the limitations of those rules.</p>
-          
-        <p>A <dfn id="def_vocabulary">vocabulary</dfn> provides the list of
-          reserved names as well as the set of rules and specifications
-          controlling how <a>user-supplied values</a> (such as identifiers) can be assigned in a
-          format or protocol. This can include restrictions on range, order, or
-          type of characters that can appear in different places. For example,
-          HTML defines the names of its elements and attributes, as well as
-          enumerated attribute values, which defines the "vocabulary" of HTML
-          <a href="#def_syntactic_content" class="termref">syntactic content</a>. 
-		Another example would be ECMAScript, which restricts the range of 
-		characters that can appear at the start or in the body of an identifier 
-		or variable name. It applies different rules for other cases, such as to 
-		the values of string literals.</p>
+		
+		<p><dfn data-lt="natural language">Natural language</dfn> is the spoken, written, or signed communications used by human beings (see also <a href="https://www.w3.org/TR/ltli/#dfn-natural-language">here</a> [[LTLI]])</p>
+		
+        <p><dfn data-lt="syntactic content" id="def_syntactic_content">Syntactic content</dfn> is any text in a document format or protocol that belongs to the structure of the format or protocol. This definition includes values that are typically thought of as "markup" but can also include other values, such as the name of a field in an HTTP header. Syntactic content consists of all of the characters that form the <em>structure</em> of a format or protocol. For example, <span class="qchar">&lt;</span> and <span class="qchar">&gt;</span> (as well as the element name and various attributes they surround) are part of the syntactic content in an HTML document.</p>
+        
+        <p>Syntactic content usually is defined by a specification or specifications and includes both the defined, reserved keywords for the given protocol or format as well as string tokens and identifiers that are defined by document authors to form the structure of the document (rather than the "content" of the document).</p>
+        
+        <p>A <dfn id="def_vocabulary">vocabulary</dfn> is the list of reserved keywords and/or rules for assigning <a>user-supplied values</a> (such as identifiers) in a format or protocol. This can include restrictions on range, order, or type of characters that can appear in different places.</p>
+        
+        <p>For example, HTML defines the names of its elements and attributes, as well as enumerated attribute values, which defines the "vocabulary" of HTML <a>syntactic content</a>. Another example would be ECMAScript, which restricts the range of characters that can appear at the start or in the body of an identifier or variable name. It applies different rules for other cases, such as to the values of string literals.</p>
 		
 		<p>Values within a <a>vocabulary</a> fall into two broad classes: those that are meant to be seen, read, or interacted with by humans (and thus might be expected to contain natural language text); and those that are application or protocol internal and not intended for human interaction.</p>
 		
-		<p>A <dfn>user-facing identifier</dfn> is an identifier defined by or assigned by a user in a <a>vocabulary</a> that is intended to be at least potentially visible to end-users.</p>
+		<p>A <dfn>user-facing identifier</dfn> is an identifier defined by or assigned by a user in a <a>vocabulary</a> that is intended to be at least potentially visible to end-users (and thus is <a>localizable content</a>).</p>
 		
-		<p>An <dfn>application internal identifier</dfn> is an identifier defined by or assigned by a user in a <a>vocabulary</a> that is internal to the document format or protocol and not intended for human interaction.</p>
-		
+		<p>An <dfn>application internal identifier</dfn> is an identifier defined by or assigned by a user in a <a>vocabulary</a> that is internal to the document format or protocol and not intended for human interaction. Such values are generally not <a>localizable content</a>.</p>
+        
+        <p>A <dfn data-lt="user-supplied value|user-supplied values">user-supplied value</dfn> is unreserved <a>syntactic content</a> in a <a>vocabulary</a> that is assigned by users, as distinct from reserved keywords in a given format or protocol. Users generally expect that their user-supplied values can be words or phrases in their preferred <a>natural language</a>. This is why [[CHARMOD]] recommends that "Specifications SHOULD NOT arbitrarily exclude code points from the full range of Unicode code points from <code>U+0000</code> to <code>U+10FFFF</code> inclusive."</p>
+        
+        <aside class="example">
+		  <p>CSS defines the syntax of a style sheet and reserves a number of keywords, such as <code>margin-left</code> or <code>font-family</code>, or values such as <code>10px</code>. All of these definitions are part of the <a>syntactic content</a> of a CSS style sheet. CSS also allows users to define certain values such as class names using a wide range of Unicode characters. These <a>user-supplied values</a> are also part of the <a>syntactic content</a> of the style sheet where they appear.</p>
+        </aside>
+        
+        <aside class="example">
+          <p><cite>XML</cite> [[XML10]] defines specific elements, attributes, and values that are reserved across all XML documents. Thus, the word <code class="kw" translate="no">encoding</code> has a defined meaning inside the XML document declaration: it is a reserved name. XML also allows a user to define elements and attributes for a given document, for example, by using a DTD. In a document that uses a DTD that defines an element called <code class="kw">&lt;muffin&gt;</code>, <span class="qterm">muffin</span> is a part of the syntactic content.</p>
+        </aside>
+        
+        <p><dfn>Localizable content</dfn> refers to document contents intended as human-readable text and <b>not</b> to any of the surrounding or embedded syntactic content that form part of the document structure. Note that syntactic content can have localizable content embedded in it, such as when an [[HTML]] <code class="kw">img</code> element has an <code class="kw">alt</code> attribute containing a description of the image.</p>
+        
+        <aside class="example">
+	       <p>Here is an example (similar to the one found in [[STRING-META]]) of a JSON document containing a mixture of syntactic and localizable content. The values whose key is <code>value</code> (in the fields <code>title</code>, <code>author</code>, and <code>publisher</code>) are localizable content. Notice that they are associated with language and base direction metadata.</p>
+	       <p>The keys (<code>isbn</code>, <code>bookLanguage</code>, <code>title</code> etc.) are application internal identifiers in this document's vocabulary. Values such as the publication date (<code>2008-01-01</code>) are user-supplied values.</p>
+<!--
+ Title below is "HTML and CSS: Design and Build Websites"
+ ASIN: 1118871642
+ ISBN-13: 978-1118871645
+ ISBN-10: 1118871642
+-->
+<p id="example1Data" style="white-space:pre;font-family:monospace">
+{
+    // syntactic content and user-values
+    "isbn":             "978-111887164-5",
+    "bookLanguage":     "ar",
+    "pubDate":          "2008-01-01",
+    "downloadLocation": "https://example.com/books/978-111887164-5",
+    "isTranslated":     true,
+    "updateDate":       "2021-04-31T19:23:14Z",
+    
+    // localizable content
+    "title": {
+        "value": "<span dir=rtl>HTML &#x0648; CSS: &#x062A;&#x0635;&#x0645;&#x064A;&#x0645; &#x0648; &#x0625;&#x0646;&#x0634;&#x0627;&#x0621; &#x0645;&#x0648;&#x0627;&#x0642;&#x0639; &#x0627;&#x0644;&#x0648;&#x064A;&#x0628;</span>",
+        "lang":  "ar-AE",
+        "dir":   "rtl"
+    },
+    "author": {
+        "value": "Jon Duckett",
+        "lang":  "en",
+        "dir":   "ltr"
+    },
+    "publisher": {
+        "value": "&#x0645;&#x0643;&#x062A;&#x0628;&#x0629;",
+        "lang":  "ar",
+        "dir":   "rtl"
+    },
+},
+</p>
+
+        </aside>
+          
+        <p>A <dfn data-lt="resource|resources">resource</dfn>, in the context of this document,  is a given document, file, or protocol "message" which includes both the <a>localizable content</a> as well as the <a>syntactic content</a> such as identifiers surrounding or containing it. For example, in an HTML document that also has some CSS and a few <code class="kw" translate="no">script</code> tags with embedded JavaScript, the entire HTML document, considered as a file, is a resource. This term is intentionally similar to the term 'resource' as used in [[RFC3986]], although here the term is applied loosely. </p>
+          
+	
         <p>A <dfn data-lt="grapheme|graphemes">grapheme</dfn> is a sequence of
           one or more characters in a visual representation of some text
           that a typical user would perceive as being a single unit (<q>character</q>).
@@ -374,11 +390,11 @@
           <ul style="text-align:left">
           <li>Everything inside the black rectangle (that is, in this HTML file) is part of the <a>resource</a>.</li>
           <li><a>Syntactic content</a> in this case includes all of the HTML markup. There are only two strings that are <strong>not</strong> part of the syntactic content: the word <em>"Shakespeare"</em> on line 4 and the sentence <em>"What&#x2019;s in a name? That which we call a rose by any other name would smell as sweet."</em> on line 8. (The HTML entity <q><kbd>&amp;#x2019;</kbd></q> embedded in the sentence on line 8 <em>is</em> part of the syntactic content.)</li>
-          <li><a>Natural language content</a> is shown in a <span class="shakespeare">bold blue font with a gray background</span>. In addition to the non-syntactic content, the <kbd>alt</kbd> value on line 7 (<em><q>William Shakespeare</q></em>) contains natural language text.</li>
+          <li><a>Localizable content</a> is shown in a <span class="shakespeare">bold blue font with a gray background</span>. In addition to the non-syntactic content, the <kbd>alt</kbd> value on line 7 (<em><q>William Shakespeare</q></em>) is localizable content.</li>
           <li>User-supplied values are shown in <span class="userValue">italics</span>. In this case there are three user-supplied values on line 7: the values of the <kbd>src</kbd>, <kbd>alt</kbd>, and <kbd>id</kbd> attributes of the <kbd>img</kbd> tag. In addition, the value of the <kbd>lang</kbd> attribute on line 1 and the <kbd>charset</kbd> attribute on line 3 are user-supplied values.</li>
           <li><a>Vocabulary</a> is shown with <span class="vocabulary">red underlining</span>. The vocabulary of an HTML document are the elements and attributes (as well as some of the attribute values, such as the value <kbd>ltr</kbd> for the attribute <kbd>dir</kbd> in the example above) defined in [[HTML]].</li>
           </ul>
-          <p class=note>All of the text above (all text in a text file) makes up the resource. It's possible that a given resource will contain no natural language content at all (consider an HTML document consisting of four empty <code>div</code> elements styled to be orange rectangles). It's also possible that a resource will contain <em>no</em> syntactic content and consist solely of natural language content: for example, a plain text file with a soliloquy from <cite>Hamlet</cite> in it. Notice too that the HTML entity <code>&amp;#x2019;</code> appears in the natural language content and belongs to both the natural language content and the syntactic content in this resource.</p>
+          <p class=note>All of the text above (all text in a text file) makes up the resource. It's possible that a given resource will contain no <a>localizable content</a> at all (consider an HTML document consisting of four empty <code>div</code> elements styled to be orange rectangles). It's also possible that a resource will contain <em>no</em> syntactic content and consist solely of <a>localizable content</a>: for example, a plain text file with a soliloquy from <cite>Hamlet</cite> in it. Notice too that the HTML entity <code>&amp;#x2019;</code>appears in the localizable content and belongs to both the localizable content and the syntactic content in this resource.</p>
         </section>
       </section>
       
@@ -663,13 +679,8 @@
 		  identical-appearing strings that are in a given Unicode Normalization Form use the same sequence of code points.
 		  See <a href="#normalizationLimitations"></a> for more information.</p>
 		</aside>
-        <p><a>Resources</a> are often susceptible to the
-          effects of these variations because their specifications and
-          implementations on the Web do not require Unicode Normalization of the
-          text, nor do they take into consideration the string matching
-          algorithms used when processing the syntactic content and natural language content later. For this
-          reason, content developers need to ensure that they have provided a
-          consistent representation in order to avoid problems later.</p>
+        <p><a>Resources</a> are often susceptible to the effects of these variations because their specifications and implementations on the Web do not require Unicode Normalization of the text, nor do they take into consideration the string matching algorithms used when processing the <a>syntactic content</a> (including <a>user-supplied values</a>) and <a>localizable content</a> later. For this reason, content developers need to ensure that they have provided a consistent representation in order to avoid problems later.</p>
+        
         <p>However, it can be difficult for users to assure that a given <a>resource</a>
           or set of resources uses a consistent textual representation because
           the differences are usually not visible when viewed as text. Tools and
@@ -1066,70 +1077,391 @@
               
       <section id="normalizationAndCasefold">
 		<h3>Interaction of Normalization and Case Folding</h3>
-		<p>One additional complication is that case folding or case mapping can affect the normalization of the string the casing operation is applied to. If the goal is to compare two strings in a case-insensitive manner, the results of a case fold operation have to be renormalized or the resulting case-folded strings might not match.</p>
-		<p>The Unicode canonical normalization forms and case folding, when used together, are closed: once a string has been case folded and then had NFC or NFD applied to it, further applications of the same case folding and Unicode normalization form do not result in a different string.</p>
+		
+		<p>When matching strings in a case-insensitive manner, one complication is that the case folding process can produce strings that are not normalized, even if the original string was normalized. Since string comparison relies on matching code point sequences, each case folded string must be normalized if the matching process is to be reliable.</p>
+		
 		<aside class=example>
-			<table class="ncfExample">
+			<p>The most common cases are characters that have a canonical mapping or whose case-folded character sequence has a canonical mapping. For example:</p>
+			<table class=ncfExample>
 				<tr>
 					<th>Original</th>
+					<th></th>
 					<th>Case Fold</th>
 					<th></th>
 					<th>Normalized</th>
 				</tr>
+				
 				<tr>
-					<td class=exampleChar>&#x1fb7;</td>
-					<td class=exampleChar>&#x03b1;&#x0342;&#x03b9;</td>
+					<td class=exampleChar>&#x1FC9;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x1f73;</td>
 					<td>&#x2260;</td>
-                    <td class=exampleChar>&#x1fb6;&#x3b9;</td>
+					<td class=exampleChar>&#x03ad;</td>
 				</tr>
-                <tr>
-					<td><code>U+1FB7</code></td>
-					<td><code>U+03B1 U+0342 U+03B9</code></td>
-					<td></td>
-					<td><code>U+1FB6 U+03B9</code> (NFC)</td>
-			    </tr>
 				<tr>
-					<td class=exampleChar>&#x1ff2;</td>
-					<td class=exampleChar>&#x1f7c;&#x03b9;</td>
+					<td><code>U+1FC9</code></td>
+					<td></td>
+					<td><code>U+1F73</code></td>
+					<td></td>
+					<td><code>U+03AD</code></td>
+				</tr>
+				                
+                <tr>
+					<td class=exampleChar>&#x95a;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x95a;</td>
 					<td>&#x2260;</td>
-                    <td class=exampleChar>&#x03c9;&#x300;&#x3b9;</td>
+					<td class=exampleChar>&#x917;&#x93c;</td>					
                 </tr>
                 <tr>
-					<td><code>U+1FF2</code></td>
-					<td><code>U+1F7C U+03B9</code></td>
+					<td><code>U+095A</code></td>
 					<td></td>
-					<td><code>U+03C9 U+0300 U+03B9</code> (NFD)</td>
+					<td><code>U+095A</code></td>
+					<td></td>
+					<td><code>U+0917 U+093C</code></td>
+                </tr>
+			</table>
+		
+		<p>More commonly, though, the connection between normalization and case folding has to do with ensuring that strings which use combining marks reorder or recombine in the same way for comparison purposes:</p>
+		
+
+			<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th></th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>Normalized</th>
 				</tr>
+                <tr>
+					<td class=exampleChar>Q&#x307;&#x323;</td>
+					<td>=></td>
+					<td class=exampleChar>q&#x307;&#x323;</td>
+					<td>&#x2260;</td>
+					<td class=exampleChar>q&#x323;&#x307;</td>					
+                </tr>
+                <tr>
+					<td><code>U+0051 U+0307 U+0323</code></td>
+					<td></td>
+					<td><code>U+0071 U+0307 U+0323</code></td>
+					<td></td>
+					<td><code>U+0071 U+0323 U+0307</code></td>
+                </tr>
+
+                <tr>
+					<td class=exampleChar>&#xc5;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#xe5;&#x301;</td>
+					<td>&#x2260;</td>
+					<td class=exampleChar>&#x1fb;</td>					
+                </tr>
+                <tr>
+					<td><code>U+00C5 U+0301</code></td>
+					<td></td>
+					<td><code>U+00E5 U+0301</code></td>
+					<td></td>
+					<td><code>U+01FB</code></td>
+                </tr>
+			</table>
+
+		
+		<p>Finally, there are cases like the below, in which the case fold results in a decomposed sequence:</p>
+		
+			<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th></th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>Normalized</th>
+				</tr>
+                <tr>
+					<td class=exampleChar>&#x1f0;</td>
+					<td>=></td>
+					<td class=exampleChar>j&#x030c;</td>
+					<td>&#x2260;</td>
+					<td class=exampleChar>&#x1f0;</td>					
+                </tr>
+                <tr>
+					<td><code>U+01F0</code></td>
+					<td></td>
+					<td><code>U+006A U+030C</code></td>
+					<td></td>
+					<td><code>U+01F0</code></td>
+                </tr>
+
+                <tr>
+					<td class=exampleChar>&#x1e97;</td>
+					<td>=></td>
+					<td class=exampleChar>t&#x308;</td>
+					<td>&#x2260;</td>
+					<td class=exampleChar>&#x1e97;</td>					
+                </tr>
+                <tr>
+					<td><code>U+1E97</code></td>
+					<td></td>
+					<td><code>U+0074 U+0308</code></td>
+					<td></td>
+					<td><code>U+1E97</code></td>
+                </tr>
+
 			</table>
 		</aside>
 		
-		<p>When comparing strings while ignoring compatibility variations between characters, an additional level of normalization has to be applied because the compatibility decomposition step can result in characters that need to be case folded and then normalized.</p>
+		<p>The Unicode canonical normalization forms (NFC or NFD) and case folding, when used together, are closed: once a string has been case folded and then had NFD or NFC applied to it, further applications of the same case folding or Unicode normalization form do not result in a different string.</p>
+		
+		<p>When comparing strings for <a>compatibility equivalence</a> between characters (in other words, the NFKC/NFKD forms), the case fold-and-normalize operation must be performed twice because the compatibility decomposition step can result in characters that need to be case folded and the subsequent case fold can result in a sequence that must then be normalized.</p>
 		
 		<aside class=example>
 			<table class=ncfExample>
 				<tr>
 					<th>Original</th>
 					<th></th>
-					<th>NFKD</th>
+					<th>Case Fold</th>
 					<th></th>
-					<th>Folded</th>
+					<th>NFKC</th>
+					<th></th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>NFKC</th>
 				</tr>
 				<tr>
 					<td class=exampleChar>&#x3392;</td>
 					<td>=></td>
+					<td class=exampleChar>&#x3392;</td>
+					<td>=></td>
 					<td class=exampleChar>MHz</td>
+					<td>=></td>
+					<td class=exampleChar>mhz</td>
 					<td>=></td>
 					<td class=exampleChar>mhz</td>
 				</tr>
 				<tr>
 					<td><code>U+3392</code></td>
 					<td></td>
+					<td><code>U+3392</code></td>
+					<td></td>
 					<td><code>U+004D U+0048 U+007A</code></td>
 					<td></td>
 					<td><code>U+006D U+0068 U+007A</code></td>
+					<td></td>
+					<td><code>U+006D U+0068 U+007A</code></td>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x2103;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x2103;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#xb0;&#x106;</td>
+					<td>=></td>
+					<td class=exampleChar>&#xb0;&#x107;</td>
+					<td>=></td>
+					<td class=exampleChar>&#xb0;&#x107;</td>
+				</tr>
+				<tr>
+					<td><code>U+2103 U+0301</code></td>
+					<td></td>
+					<td><code>U+2103 U+0301</code></td>
+					<td></td>
+					<td><code>U+00B0 U+0106</code></td>
+					<td></td>
+					<td><code>U+00B0 U+0107</code></td>
+					<td></td>
+					<td><code>U+00B0 U+0107</code></td>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x03aa;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x03ca;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x390;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x3b9;&#x308;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x390;</td>
+				</tr>
+				<tr>
+					<td><code>U+03AA U+0301</code></td>
+					<td></td>
+					<td><code>U+03CA U+0301</code></td>
+					<td></td>
+					<td><code>U+0390</code></td>
+					<td></td>
+					<td><code>U+03B9 U+0308 U+0301</code></td>
+					<td></td>
+					<td><code>U+390</code></td>
 				</tr>
 			</table>
 		</aside>
+		
+		<section id="optionalPreNormalization">
+			<h4>The Optional <em>Initial Normalization</em> Step</h4>
+			
+			<p>Unicode's definitions of <strong>canonical casefold matching</strong> (rule <code>[D145]</code>) and <strong>compatibility casefold matching</strong> (rule <code>[D146]</code>) include an initial step of normalization to Unicode Normalization Form NFD. This increases the complexity and cost of performing caseless matching. This pre-casefold normalization exists to address the somewhat obscure quirk of certain ancient Greek code point sequences described in this section.</p>
+			
+			<p>Sixty-three Greek precomposed characters have a decomposition mapping (i.e. normalize to form NFD) that contains the character [<span class=uname>U+0345 COMBINING GREEK YPOGEGRAMMENI</span>], a diacritical mark representing a subscripted iota (referred to as a <em>prosgegrammei</em> or <em>ypogegrammeni</em>). This mark represents an orthographic form found in ancient or classical Greek for a sound not present in more modern forms of the language. The uppercase and titlecase mappings of these characters separate this combining mark as the separate, base, letter <code>iota</code>. For consistency with title/uppercase mappings, the case fold mapping of these characters therefore contains a <span class=codepoint>&#x3b9;</span> [<span class=uname>U+03B9 GREEK SMALL LETTER IOTA</span>] (<a href="#definitionCaseFolding">recall</a> that Unicode case fold is generally to lower case).</p>
+			
+			<p>If and only if one of these 63 characters is followed by a combining mark, failing to apply canonical decomposition before case folding can result in potential comparison mismatches. Such character sequences are not in a normalized form and are difficult to produce "naturally" (through keyboards and other input processes).</p>
+		
+    		<p>For example, if one starts with the precomposed (NFC) character <span class=codepoint>&#x1f8c;</span> [<span class=uname>U+1F8C GREEK CAPITAL LETTER ALPHA WITH PSILI AND OXIA AND PROSGEGRAMMENI</span>] (which is the most common way to represent this combination of base and diacritic characters) and just runs case fold transformations one ends up with: <span class=codepoint>&#x1f04;&#x03b9;</span> [<span class=uname>U+1F04 GREEK SMALL LETTER ALPHA WITH PSILI AND OXIA</span> + <span class=uname>U+03B9 GREEK SMALL LETTER IOTA</span>].</p>
+			
+			<aside class=example>
+				<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th></th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>NFC</th>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x1f8c;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x1f04;&#x03b9;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x1f04;&#x03b9;</td>
+				</tr>
+				<tr>
+					<td><code>U+1F8C</code></td>
+					<td></td>
+					<td><code>U+1F04 U+03B9</code></td>
+					<td></td>
+					<td><code>U+1F04 U+03B9</code></td>
+				</tr>
+				</table>
+			</aside>
+				
+			<p>If instead one starts from a fully decomposed (NFD) sequence representing the same letter, <span class=codepoint>&#x0391;&#x0313;&#x0301;&#x0345;</span> [<span class=uname>U+0391 GREEK CAPITAL LETTER ALPHA</span> + <span class=uname>U+0313 COMBINING COMMA ABOVE</span> + <span class=uname>U+0301 COMBINING ACUTE ACCENT</span> + <span class=uname>U+0345 COMBINING GREEK YPOGEGRAMMENI</span>] one ends up with <span class=codepoint>&#x03b1;&#x0313;&#x0301;&#x03b9;</span> [<span class=uname>U+03B1 GREEK SMALL LETTER ALPHA</span> + <span class=uname>U+0313 COMBINING COMMA ABOVE</span> + <span class=uname>U+0301 COMBINING ACUTE ACCENT</span> + <span class=uname>U+03B9 GREEK SMALL LETTER IOTA</span>]. Normalizing this string to NFC produces the same character sequence as the first example above:</p>
+				
+			<aside class=example>
+				<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th></th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>NFC</th>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x391;&#x313;&#x301;&#x345;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x03b1;&#x0313;&#x0301;&#x03b9;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x1f04;&#x03b9;</td>
+				</tr>
+				<tr>
+					<td><code>U+0391 U+0313 U+0301 U+0345</code></td>
+					<td></td>
+					<td><code>U+03B1 U+0313 U+0301 U+03B9</code></td>
+					<td></td>
+					<td><code>U+1F04 U+03B9</code></td>
+				</tr>
+				</table>
+			</aside>
+			
+		
+			<p>In both of those cases, the acute accent is associated with the alpha base character rather than the trailing iota.</p>
+
+            <p>If, however, one begins with the half-precomposed sequence <span class=codepoint>&#x1f88;&#x301;</span> [<span class=uname>U+1F88 GREEK CAPITAL LETTER ALPHA WITH PSILI AND PROSGEGRAMMENI</span> + <span class=uname>U+0301 COMBINING ACUTE ACCENT</span>], one ends up with <span class=codepoint>&#x1f00;&#x03b9;&#x0301;</span>[<span class=uname>U+1F00 GREEK SMALL LETTER ALPHA WITH PSILI</span> + <span class=uname>U+03B9 GREEK SMALL LETTER IOTA</span> + <span class=uname>U+0301 COMBINING ACUTE ACCENT</span>] where the acute accent is associated with the iota. This produces a sequence that can't be normalised to match the others (and is actually incorrect, as it has a different meaning than the original user-perceived character.)</p>
+            
+            <aside class=example>
+				<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th></th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>NFC</th>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x1f88;&#x301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x1f00;&#x03b9;&#x0301;</td>
+					<td>=></td>
+					<td class=exampleChar>&#x1f00;&#x03af;</td>
+				</tr>
+				<tr>
+					<td><code>U+1F88 U+0301</code></td>
+					<td></td>
+					<td><code>U+1F00 U+03B9 U+0301</code></td>
+					<td></td>
+					<td><code>U+1F00 U+03AF</code></td>
+				</tr>
+				</table>
+			</aside>
+
+            <p>As mentioned above, Unicode solves this matching problem by normalizing the text to NFD before performing the case fold operation. Then <span class=codepoint>ᾌ</span> [<span class=uname>U+1F8C GREEK CAPITAL LETTER ALPHA WITH PSILI AND OXIA AND PROSGEGRAMMENI</span>] and <span class=codepoint>ᾌ </span> [<span class=uname>U+1F88 GREEK CAPITAL LETTER ALPHA WITH PSILI AND PROSGEGRAMMENI</span> + <span class=uname>U+0301 COMBINING ACUTE ACCENT</span>] both end up the same as the decomposed version, ie. <span class=codepoint>ᾌ</span> [<span class=uname>U+0391 GREEK CAPITAL LETTER ALPHA</span> + <span class=uname>U+0313 COMBINING COMMA ABOVE</span> + <span class=uname>U+0301 COMBINING ACUTE ACCENT</span> + <span class=uname>U+0345 COMBINING GREEK YPOGEGRAMMENI</span>]. If one now case folds that sequence and normalizes, it produces a match for all cases:</p>
+            
+            <aside class=example>
+				<table class=ncfExample>
+				<tr>
+					<th>Original</th>
+					<th></th>
+					<th>NFD</th>
+					<th></th>
+					<th>Case Fold</th>
+					<th></th>
+					<th>NFC</th>
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x1f8c;</td>
+					<td>=></td>
+					<td class=exampleChar rowspan=5>&#x0391;&#x0313;&#x0301;&#x0345;</td>
+					<td rowspan=5>=></td>
+					<td class=exampleChar rowspan=5>&#x03b1;&#x0313;&#x0301;&#x03b9;</td>
+					<td rowspan=5>=></td>
+					<td class=exampleChar rowspan=5>&#x1f04;&#x03b9;</td>
+				</tr>
+				<tr>
+					<td><code>U+1F8C</code></td>
+
+
+
+
+					<td></td>
+
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x391;&#x313;&#x301;&#x345;</td>
+                    <td>=></td>
+
+
+
+					<td></td>
+
+				</tr>
+				<tr>
+					<td><code>U+0391 U+0313 U+0301 U+0345</code></td>
+
+
+
+
+					<td></td>
+
+				</tr>
+				<tr>
+					<td class=exampleChar>&#x1f88;&#x301;</td>
+                    <td>=></td>
+
+
+
+					<td></td>
+
+				</tr>
+				<tr>
+					<td><code>U+1F88 U+0301</code></td>
+                    <td></td>
+					<td><code>U+0391 U+0313 U+0301 U+0345</code></td>
+					<td></td>
+					<td><code>U+03B1 U+0313 U+0301 U+03B9</code></td>
+					<td></td>
+					<td><code>U+1F04 U+03B9</code></td>
+				</tr>
+				</table>
+			</aside>
+		
+		</section>
+
       </section>
       
       <section id="characterEscapes">
@@ -1462,16 +1794,18 @@ HE&#x141;&#x141;O
         <section id="CanonicalFoldNormalizationStep">
 			<h5>Unicode Canonical Case Fold Normalization Step</h5>
 			
-			<p>Specifications that have vocabularies that allow non-ASCII characters (which should include most new vocabularies) and which do not want to be sensitive to case distinctions SHOULD specify this step. This is not recommended.</p>
+			<p>Specifications that have <a>vocabularies</a> that allow non-ASCII characters (which should include most new vocabularies) and which do not want to be sensitive to case distinctions SHOULD specify this step. <strong>Case insensitivity is not recommended for most specifications.</strong></p>
 			
-			<p>Case folding is affected by the input code point sequence. It can also, by itself, produce a denormalized code point sequence. As a result, this normalization step includes Unicode normalization both before and after case folding. This step is consistent with [[Unicode]] requirement <kbd>D145</kbd>.</p>
+			<p>Unicode case folding can produce denormalized character sequences, so, in order matching to be consistent with user expectations, any Unicode case fold needs to be followed by Unicode normalization. See <a href="#normalizationAndCasefold"></a> for examples.</p>
+			
+			<p class=note>[[Unicode]] requirement <kbd>D145</kbd> requires a canonical decomposition (form NFD) normalization before the case fold operation to address the corner case described in <a href="#optionalPreNormalization"></a>. Inclusion of the pre-case fold normalization is optional because of the rarity of denormalized data affected by this. This is a WILLFUL VIOLATION of <kbd>D145</kbd>.</p>
 			
 			<p>For each string, perform the following steps: </p>
 			
 			<ol>
-				<li>Perform Unicode normalization of the string to form NFD. This eliminates canonical variations in the encoding of the string.</li>
+				<li>[<strong><a href="#optionalPreNormalization">OPTIONAL</a></strong>] Perform Unicode normalization of the string to form NFD <strong><em>or</em></strong> perform mapping of the 63 affected Greek characters.</li>
 				<li>Perform <a>Unicode Full</a> case folding of the resulting string.</li>
-				<li>Perform Unicode normalization of the resulting string to form NFC.</li>
+				<li>Perform Unicode normalization of the resulting string to form NFC. (This ensures that canonically equivalent sequences match.)</li>
 				<li>Return the result.</li>
 			</ol>
         </section>
@@ -1485,16 +1819,18 @@ HE&#x141;&#x141;O
 				<p>Unicode compatibility decomposition removes meaning from the text that it is applied to. That means that this normalization step produces the most promiscuous matches. Some developers and specification authors find this level of normalization attractive because it appears to bring together many strings that are logically similar, but this level of normalization has limited utility in actual practice and has side effects that confuse users. This normalization step is presented for completeness, but it is not generally appropriate for use on the Web.</p>
 			</aside>
 			
-			<p>Case folding is affected by the input code point sequence. It can also produce a denormalized code point sequence. As a result, this normalization step includes multiple uses of Unicode normalization, including both the <kbd>NFKD</kbd> form (which supplies the compatibility mapping) and the <kbd>NFD</kbd> form. This step is consistent with [[Unicode]] requirement <kbd>D146</kbd>.</p>
+			<p>Case folding is affected by the input code point sequence. It can also produce a denormalized code point sequence. The interaction of compatibility decomposition with case folding requires multiple passes to produce a consistent match. As a result, this normalization step includes multiple uses of Unicode normalization. See <a href="#normalizationAndCasefold"></a> for examples.</p>
 			
-			<p>For each string, perform the following steps:</p>
+			<p class=note>[[Unicode]] requirement <kbd>D146</kbd> requires a canonical decomposition (form NFD) normalization before the initial case fold operation to address the corner case described in <a href="#optionalPreNormalization"></a>. Inclusion of the pre-case fold normalization is optional because of the rarity of denormalized data affected by this. This is a WILLFUL VIOLATION of <kbd>D146</kbd>.</p>
+			
+			<p>For each string, perform the following steps: </p>
 			
 			<ol>
-				<li>Perform Unicode normalization of the string to form NFD. This eliminates canonical variations in the encoding of the string.</li>
+				<li>[<strong><a href="#optionalPreNormalization">OPTIONAL</a></strong>] Perform Unicode normalization of the string to form NFD <strong><em>or</em></strong> perform mapping of the 63 affected Greek characters.</li>
 				<li>Perform <a>Unicode Full</a> case folding of the resulting string.</li>
 				<li>Perform Unicode normalization of the resulting string to form NFKD.</li>
-				<li>Perform <a>Unicode Full</a> case folding of the resulting string. This eliminates artifacts produced by the compatibility mapping.</li>
-				<li>Perform Unicode normalization of the resulting string to form NFKC. This eliminates remaining artifacts produced by the case fold.</li>
+				<li>Perform <a>Unicode Full</a> case folding of the resulting string. (This eliminates artifacts produced by the compatibility mapping.)</li>
+				<li>Perform Unicode normalization of the resulting string to form NFKC. (This eliminates remaining artifacts produced by the case fold.)</li>
 				<li>Return the result.</li>
 			</ol>
         </section>
@@ -1542,7 +1878,7 @@ HE&#x141;&#x141;O
 		   or expanded before performing matching (or match-sensitive processing), since these syntaxes exist to allow difficult-to-encode
 		   sequences to be put into a document conveniently, yet allowing the characters to behave as-if they were
 		   directly encoded as a codepoint sequence in the document in question.</p>
-		 <p>One area where this can be complicated is deciding how syntactic content and natural language content interact.
+		 <p>One area where this can be complicated is deciding how <a>syntactic content</a> and <a>localizable content</a> interact.
 		 For example, consider the following snippet of HTML:</p>
 		 <aside class="example">
 		 <pre>
@@ -1564,7 +1900,7 @@ HE&#x141;&#x141;O
       
           <p class="advisement" id="charmod_n11n_should_not"><a class="self" href="#charmod_n11n_should_not">[S] </a>Specifications SHOULD NOT specify a Unicode normalization form for encoding, storage, or interchange of a given vocabulary.</p>
           
-          <p class="advisement" id="charmod_n11n_must_not"><a class="self" href="#charmod_n11n_must_not">[I] </a>Implementations MUST NOT alter the normalization form of syntactic or natural language content being exchanged, read, parsed, or processed except when required to do so as a side-effect of text transformation such as transcoding the content to a Unicode character encoding, case folding, or other user-initiated change, as consumers or the content itself might depend on the de-normalized representation. </p>
+          <p class="advisement" id="charmod_n11n_must_not"><a class="self" href="#charmod_n11n_must_not">[I] </a>Implementations MUST NOT alter the normalization form of syntactic content (including user-supplied values) or localizable content being exchanged, read, parsed, or processed except when required to do so as a side-effect of text transformation such as transcoding the content to a Unicode character encoding, case folding, or other user-initiated change, as consumers or the content itself might depend on the de-normalized representation. </p>
           
           <p class="advisement" id="charmod_n11n_authoring"><a class="self" href="#charmod_n11n_authoring">[I] </a>Authoring tools SHOULD provide a means of normalizing resources and warn the user when a given resource is not in Unicode Normalization Form C.</p>
           
@@ -1578,7 +1914,7 @@ HE&#x141;&#x141;O
           
           <p class="advisement" id="charmod_n11n_compat_impl"><a class="self" href="#charmod_n11n_compat_impl">[I] </a>Implementations MUST NOT apply compatibility normalization forms (NFKC, NFKD) unless specifically requested by the end user.</p>
           
-          <p>The compatibility normalization forms (form NFKC and form NFKD) change the structure and lose the meaning of the text in important ways. Users sometimes use characters with a compatibility mapping in Unicode on purpose or they use characters in a legacy character encoding that have a compatibility mapping when converted to Unicode. This has to be considered intentional on the part of the content author. Although NFKC/NFKD can sometimes be useful in "find" operations or string searching natural language content, erasing compatibility differences is harmful.</p>
+          <p>The compatibility normalization forms (form NFKC and form NFKD) change the structure and lose the meaning of the text in important ways. Users sometimes use characters with a compatibility mapping in Unicode on purpose or they use characters in a legacy character encoding that have a compatibility mapping when converted to Unicode. This has to be considered intentional on the part of the content author. Although NFKC/NFKD can sometimes be useful in "find" operations or string searching localizable content, erasing compatibility differences is harmful.</p>
 
           <p class=note>Requiring NFC requires additional care on the part of the specification developer, as content on the Web generally is not in a known normalization state. Boundary and error conditions for denormalized content need to be carefully considered and well-specified in these cases. </p>
           
@@ -1592,7 +1928,7 @@ HE&#x141;&#x141;O
           
           <p class="advisement" id="charmod_n11n_combining_marks"><a class="self" href="#charmod_n11n_combining_marks">[C] </a>Content authors SHOULD NOT include combining marks without a preceding base character in a resource.</p>
 
-          <p>There can be exceptions to this. For example, when making a list of characters (such as a list of [[!Unicode]] characters), an author might want to use combining marks without a corresponding base character. However, use of a combining mark without a base character can cause unintentional display or, with naive implementations that combine the combining mark with adjacent syntactic content or other natural language content, processing problems. For example, if you were to use  a combining mark, such as the character <span class="codepoint"><span lang="en">&nbsp;&#x0301;</span> [<span class="uname">U+0301 COMBINING ACUTE ACCENT​</span>]</span>, as the start of a <code>class</code> attribute value in HTML, the class name might not display properly in your editor and be difficult to edit.</p>
+          <p>There can be exceptions to this. For example, when making a list of characters (such as a list of [[!Unicode]] characters), an author might want to use combining marks without a corresponding base character. However, use of a combining mark without a base character can cause unintentional display or processing problems, such as when a na&#xef;ve implementation combines the combining mark with adjacent syntactic, user-supplied, or localizable content. For example, if you were to use  a combining mark, such as the character <span class="codepoint"><span lang="en">&nbsp;&#x0301;</span> [<span class="uname">U+0301 COMBINING ACUTE ACCENT​</span>]</span>, as the start of a <code>class</code> attribute value in HTML, the class name might not display properly in your editor and be difficult to edit.</p>
           
           <p>Some recommended base characters include <span class="codepoint"><span lang="en">&#x25CC;</span> [<span class="uname">U+25CC DOTTED CIRCLE</span>]</span> (when the base character needs to be visible) or <span class="codepoint"><span lang="en">&#x00A0;</span> [<span class="uname">U+00A0 NO-BREAK SPACE</span>]</span> (when the base character should be invisible).</p>
           
@@ -1635,7 +1971,7 @@ HE&#x141;&#x141;O
 
           <p>Vocabularies usually put a premium on predictability for content authors and users. Case-sensitive matching is the easiest to implement and introduces the least potential for confusion, since it generally consists of a comparison of the underlying Unicode code point sequence. Because it is not affected by considerations such as language-specific case mappings, it produces the least surprise for document authors that have included words, such as the <a href="#caseMappingLanguageSensitivity">Turkish examples</a> above, in their syntactic content.</p>
         
-          <p>Case insensitivity is usually reserved for processing <a>natural language content</a>, such as running a feature for searching text. However, cases exist in which case-insensitivity is desirable. When case-insensitive matching is necessary, there are several implementation choices that a formal language needs to consider. </p>
+          <p>Case insensitivity is usually reserved for processing <a>localizable content</a>, such as performing a <a>natural language</a> textual search. However, sometimes case-insensitivity is desirable. In this cases there are several implementation choices that a formal language needs to consider. </p>
        </section>
        <section id="sec_unicode_cs">
           <h4>Unicode case-insensitive matching</h4>
@@ -1692,7 +2028,7 @@ HE&#x141;&#x141;O
       
       <p>Some specifications might wish to include additional tailoring to assist with matching in a given vocabulary. Examples of this might include removing additional textual differences described in <a href="#problemStatement">Section 2</a>, mapping together or removing characters that are part of the syntax, or performing a whitespace trim.</p>
       
-      <p>Any additional tailoring needs to avoid interfering with the way that different languages are represented in Unicode. For example, a process that attempts to remove accents from letters by decomposing the text and then removing all of the combining characters will break languages that rely on combining marks. An example of this would be as the Devanagari text in <a href="#graphemeExample">Example 2</a>. (Such a process would also fail to remove all of the potential accents and probably do harm to the meaning and representation of the text.)</p>
+      <p>Any additional tailoring needs to avoid interfering with the way that different languages are represented in Unicode. For example, a process that attempts to remove accents from letters by decomposing the text and then removing all of the combining characters will break languages that rely on combining marks. An example of this would be the Devanagari text in <a href="#graphemeExample">Example 2</a>. (Such a process would also fail to remove all of the potential accents and probably do harm to the meaning and representation of the text.)</p>
       </section>
       
     </section>
@@ -1713,7 +2049,7 @@ HE&#x141;&#x141;O
 			
 			<p>Unicode Regular Expressions Level 1 support includes the ability to specify Unicode code points in regular expressions, including via the use of escapes, and to access Unicode character properties as well as certain kinds of boundaries common to most regular expression syntaxes.</p>
 			
-			<p>Level 2 extends this with a number of important capabilities, notably the ability to select text on certain kinds of <a>grapheme cluster</a> boundary and support for case conversion (two topics mentioned extensively above). Level 3 provides for locale [[LTLI]] based tailoring of regular expressions, which are less useful in formal languages but can be useful in processing <a>natural language content</a>.</p>
+			<p>Level 2 extends this with a number of important capabilities, notably the ability to select text on certain kinds of <a>grapheme cluster</a> boundary and support for case conversion (two topics mentioned extensively above). Level 3 provides for locale [[LTLI]] based tailoring of regular expressions, which are less useful in formal languages but can be useful in processing <a>localizable content</a>.</p>
 
         </section>
       </section>
