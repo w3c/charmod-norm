@@ -1294,10 +1294,12 @@
 			</table>
 		</aside>
 		
-		<section id="optionalPreNormalization">
-			<h4>The Optional <em>Initial Normalization</em> Step</h4>
+		<section id="PreNormalization">
+			<h4>Why does Normalization precede Case folding?</h4>
 			
-			<p>Unicode's definitions of <strong>canonical casefold matching</strong> (rule <code>[D145]</code>) and <strong>compatibility casefold matching</strong> (rule <code>[D146]</code>) include an initial step of normalization to Unicode Normalization Form NFD. This increases the complexity and cost of performing caseless matching. This pre-casefold normalization exists to address the somewhat obscure quirk of certain ancient Greek code point sequences described in this section.</p>
+			<p>Unicode's definitions of <strong>canonical casefold matching</strong> (rule <code>[D145]</code>) and <strong>compatibility casefold matching</strong> (rule <code>[D146]</code>) include multiple normalization steps. This increases the complexity and cost of performing caseless matching. The initial case fold step, before performing case folding, addresses a specific corner case, which is detailed in this section.</p>
+			
+			<p>The concluding normalization step in Unicode's casefold matching processes exists to ensure that the resulting strings are in a specific Unicode normalization form. If the resulting case folded strings are to be stored or displayed to the user, it is a good practice to ensure that denormalized sequences produced by the case fold operation are renormalized for display. However, this step is OPTIONAL in the <a href="#CanonicalFoldNormalizationStep">Unicode Canonical Case Fold Normalization Step</a> and the <a href="#CompatibilityFoldNormalizationStep">Unicode Compatibility Case Fold Normalization Step</a>, since performing an additional normalization won't change the results of a string comparison.</p>
 			
 			<p>Sixty-three Greek precomposed characters have a decomposition mapping (i.e. normalize to form NFD) that contains the character [<span class=uname>U+0345 COMBINING GREEK YPOGEGRAMMENI</span>], a diacritical mark representing a subscripted iota (referred to as a <em>prosgegrammei</em> or <em>ypogegrammeni</em>). This mark represents an orthographic form found in ancient or classical Greek for a sound not present in more modern forms of the language. The uppercase and titlecase mappings of these characters separate this combining mark as the separate, base, letter <code>iota</code>. For consistency with title/uppercase mappings, the case fold mapping of these characters therefore contains a <span class=codepoint>&#x3b9;</span> [<span class=uname>U+03B9 GREEK SMALL LETTER IOTA</span>] (<a href="#definitionCaseFolding">recall</a> that Unicode case fold is generally to lower case).</p>
 			
@@ -1414,9 +1416,6 @@
 				</tr>
 				<tr>
 					<td><code>U+1F8C</code></td>
-
-
-
 
 					<td></td>
 
@@ -1798,14 +1797,14 @@ HE&#x141;&#x141;O
 			
 			<p>Unicode case folding can produce denormalized character sequences, so, in order matching to be consistent with user expectations, any Unicode case fold needs to be followed by Unicode normalization. See <a href="#normalizationAndCasefold"></a> for examples.</p>
 			
-			<p class=note>[[Unicode]] requirement <kbd>D145</kbd> requires a canonical decomposition (form NFD) normalization before the case fold operation to address the corner case described in <a href="#optionalPreNormalization"></a>. Inclusion of the pre-case fold normalization is optional because of the rarity of denormalized data affected by this. This is a WILLFUL VIOLATION of <kbd>D145</kbd>.</p>
+			<p class=note>[[Unicode]] requirement <kbd>D145</kbd> requires a normalization step following the case fold operation to ensure that the resulting strings are in a normalized form. Inclusion of the post-case fold normalization is <a href="#PreNormalization">optional</a>. If the resulting strings are only for comparison and not stored or shown to the user, the code point sequences will be equivalent following the case fold. They just aren't guaranteed to be in any specific normalization form. This is a WILLFUL VIOLATION of <kbd>D145</kbd>. Unicode has confirmed that this is a valid recommendation.</p>
 			
 			<p>For each string, perform the following steps: </p>
 			
 			<ol>
-				<li>[<strong><a href="#optionalPreNormalization">OPTIONAL</a></strong>] Perform Unicode normalization of the string to form NFD <strong><em>or</em></strong> perform mapping of the 63 affected Greek characters.</li>
+				<li>Perform Unicode normalization of the string to form NFD <strong><em>or</em></strong> form NFC.</li>
 				<li>Perform <a>Unicode Full</a> case folding of the resulting string.</li>
-				<li>Perform Unicode normalization of the resulting string to form NFC. (This ensures that canonically equivalent sequences match.)</li>
+				<li>[<strong>OPTIONAL</strong>] Perform Unicode normalization of the resulting string to form NFC. This ensures that the strings are in a normalized form for display to the user.</li>
 				<li>Return the result.</li>
 			</ol>
         </section>
@@ -1821,16 +1820,14 @@ HE&#x141;&#x141;O
 			
 			<p>Case folding is affected by the input code point sequence. It can also produce a denormalized code point sequence. The interaction of compatibility decomposition with case folding requires multiple passes to produce a consistent match. As a result, this normalization step includes multiple uses of Unicode normalization. See <a href="#normalizationAndCasefold"></a> for examples.</p>
 			
-			<p class=note>[[Unicode]] requirement <kbd>D146</kbd> requires a canonical decomposition (form NFD) normalization before the initial case fold operation to address the corner case described in <a href="#optionalPreNormalization"></a>. Inclusion of the pre-case fold normalization is optional because of the rarity of denormalized data affected by this. This is a WILLFUL VIOLATION of <kbd>D146</kbd>.</p>
-			
 			<p>For each string, perform the following steps: </p>
 			
 			<ol>
-				<li>[<strong><a href="#optionalPreNormalization">OPTIONAL</a></strong>] Perform Unicode normalization of the string to form NFD <strong><em>or</em></strong> perform mapping of the 63 affected Greek characters.</li>
+				<li>Perform Unicode normalization of the string to form NFD <strong><em>or</em></strong> perform mapping of the 63 affected Greek characters.</li>
 				<li>Perform <a>Unicode Full</a> case folding of the resulting string.</li>
 				<li>Perform Unicode normalization of the resulting string to form NFKD.</li>
 				<li>Perform <a>Unicode Full</a> case folding of the resulting string. (This eliminates artifacts produced by the compatibility mapping.)</li>
-				<li>Perform Unicode normalization of the resulting string to form NFKC. (This eliminates remaining artifacts produced by the case fold.)</li>
+				<li>[<strong>OPTIONAL</strong>] Perform Unicode normalization of the resulting string to form NFKC. (This ensures that the code point sequence is normalized for display.)</li>
 				<li>Return the result.</li>
 			</ol>
         </section>
@@ -2057,6 +2054,8 @@ HE&#x141;&#x141;O
     <section class=appendix>
       <h2 id="changeLog" class="informative">Changes Since the Last Published Version</h2>
       <p>Changes to this document (beginning with the <a href="http://www.w3.org/TR/2014/WD-charmod-norm-20180420/Overview.html">Working Draft</a> of 2018-04-20) are available via the <a href="https://github.com/w3c/charmod-norm/commits/gh-pages">github commit log</a>.</p>
+      
+      <p>This version changes the which normalization step is optional in the <a href="#CanonicalFoldNormalizationStep">Unicode Canonical Case Fold Normalization Step</a> and the <a href="#CompatibilityFoldNormalizationStep">Unicode Compatibility Case Fold Normalization Step</a>. This version requires normalization as the first step and makes normalization of the output optional. This change is based on testing and conversation with Unicode.</p>
     </section>
     <section class=appendix>
       <h2 id="Acknowledgements" class="informative">Acknowledgements</h2>
