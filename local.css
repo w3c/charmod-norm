@@ -362,3 +362,26 @@ a.self:hover {
     position: relative;
 }
 
+
+
+/* SELF-LINKS ON ADVISEMENTS */
+/* The advisement is contained in a div.req which has the id for that requirement */
+.req { position: relative; }
+.req .links { padding-bottom: 0; }
+.req .self-link {
+	margin-left: -1em;
+	float: left;
+	text-decoration: none;
+	border: 0;
+	font-size: 80%;
+	color: #999;
+	}
+.req summary {
+	margin: 0;
+    margin-top: 0px;
+	margin-top: -1em;
+	font-size: 80%;
+	font-weight: normal;
+	line-height: 1;
+	cursor: pointer;
+	}
