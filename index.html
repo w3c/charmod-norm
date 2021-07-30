@@ -1758,22 +1758,32 @@
         
         <p>The right text normalization for a given specification depends on requirements in the format or protocol's vocabulary. There are four choices for text normalization:</p>
         <ol>
-			<li><strong>Default.</strong> This normalization step has no effect on the text and, as a result, is sensitive to both case and Unicode normalization form differences. This is the RECOMMENDED normalization step.</li>
-			<li><strong>ASCII Case Fold.</strong> Comparison of text with the characters in the ASCII (Basic Latin, <span class=uname>U+0000</span> to <span class=uname>U+007F</span>) range case folded. No Unicode normalization form is applied. This step is only appropriate for vocabularies that are themselves limited to the ASCII range (or where matching only occurs on the ASCII tokens).</li>
-			<li><strong>Unicode Canonical Case Fold.</strong> Comparison of text that is both case folded and had Unicode canonical normalization applied. This step is appropriate when case-insensitivity is desired for vocabularies that allow non-ASCII characters.</li>
-			<li><strong>Unicode Compatibility Case Fold.</strong> Comparison of text that is both case folded and had Unicode compatibility normalization applied.</li>
+			<li><strong>Default.</strong> This normalization step has no effect on the text and, as a result, is sensitive to form differences involving both case and Unicode normalization.</li>
+			<li><strong>ASCII Case Fold.</strong> Comparison of text with the characters case folded in the ASCII (Basic Latin, <span class=uname>U+0000</span> to <span class=uname>U+007F</span>) range.</li>
+			<li><strong>Unicode Canonical Case Fold.</strong> Comparison of text that is both case folded and has Unicode canonical normalization applied.</li>
+			<li><strong>Unicode Compatibility Case Fold.</strong> Comparison of text that is both case folded and has Unicode <em>compatibility</em> normalization applied.</li>
         </ol>
         
         <section id="DefaultNormalizationStep">
 			<h5>Default Normalization Step</h5>
+               
+            <div class="req spec" id="matching_DefaultNormalizationStep">
+            <p class="advisement">It is RECOMMENDED to do NO case folding or Unicode Normalization of content when matching strings in identifiers and syntactic content.</span></p>
+            </div>
+        
 			
-			<p>The default normalization step doesn't apply Unicode normalization nor does it perform case folding. This means that it is sensitive to differences in case and to the code points in the source strings being compared. Content authors need to be aware of and ensure that they use consistent case and consistent character sequences to encode affected text if they expect different tokens to match.</p>
+			<p>This normalization step has no effect on the text and, as a result, comparisons are sensitive to both case and Unicode normalization form differences in the source strings being compared. Content authors need to be aware of, and ensure that they use, consistent case and consistent character sequences to encode affected text if they expect  tokens to match.</p>
         </section>
         
         <section id="ASCIIFoldNormalizationStep">
 			<h5>ASCII Case Fold Normalization Step</h5>
+               
+            <div class="req spec" id="matching_ASCIIFoldNormalizationStep">
+            <p class="advisement">An <a class="termref" href="https://www.w3.org/TR/charmod-norm/#ASCIIFoldNormalizationStep">'ASCII case fold'</a> approach should only be used in exceptional cases, for  vocabularies that are themselves limited to the ASCII range (or where matching only occurs on the ASCII tokens).</p>
+            </div>
+        
 			
-			<p>The ASCII Case Fold normalization step performs case folding only of the ASCII range.</p>
+			<p>The ASCII Case Fold normalization step performs case folding only of the ASCII range.  No Unicode normalization form is applied. This step is only appropriate for vocabularies that are themselves limited to the ASCII range (or where matching only occurs on the ASCII tokens).</p>
 			
 			<aside class=example>
 				<p>Examples of strings that match each other in ASCII Case Fold but not in default:</p>
@@ -1802,8 +1812,13 @@ HE&#x141;&#x141;O
         
         <section id="CanonicalFoldNormalizationStep">
 			<h5>Unicode Canonical Case Fold Normalization Step</h5>
+               
+        <div class="req spec" id="matching_ASCIIFoldNormalizationStep">
+            <p class="advisement">Case sensitivity is not recommended for most specifications but, in the case of an exception  where the vocabulary allows non-ASCII characters  and which does not want to be sensitive to case distinctions, the <a href="https://www.w3.org/TR/charmod-norm/#CanonicalFoldNormalizationStep" class="termref">'Unicode canonical case fold'</a> approach SHOULD  be used.</p>
+        </div>
+        
 			
-			<p>Specifications that have <a>vocabularies</a> that allow non-ASCII characters (which should include most new vocabularies) and which do not want to be sensitive to case distinctions SHOULD specify this step. <strong>Case insensitivity is not recommended for most specifications.</strong></p>
+			<p>Specifications that have <a>vocabularies</a> that allow non-ASCII characters should include most new vocabularies.</p>
 			
 			<p>Unicode case folding can produce denormalized character sequences, so, in order matching to be consistent with user expectations, any Unicode case fold needs to be followed by Unicode normalization. See <a href="#normalizationAndCasefold"></a> for examples.</p>
 			
@@ -1821,6 +1836,11 @@ HE&#x141;&#x141;O
         
         <section id="CompatibilityFoldNormalizationStep">
 			<h5>Unicode Compatibility Case Fold Normalization Step</h5>
+               
+            <div class="req spec" id="matching_CanonicalFoldNormalizationStep">
+            <p class="advisement">A <a href="https://www.w3.org/TR/charmod-norm/#CompatibilityFoldNormalizationStep" class="termref">'Unicode compatibility case fold'</a> approach should not be used.</p>
+            </div>
+        
 			
 			<p>Specifications that have vocabularies that allow non-ASCII characters and which need to match Unicode compatibility equivalents might use this normalization step. Because the compatibility normalization forms (<kbd>NFKC</kbd> and <kbd>NFKD</kbd>) change the meaning, appearance, and processing of the text, this step SHOULD NOT be used for most applications on the Web.</p>
 			
@@ -2099,7 +2119,7 @@ HE&#x141;&#x141;O
         </section>
         
      <section id="otherProcessing">
-		 <h2>Other Matching and Processing Considerations</h2>
+	 <h2>Other Matching and Processing Considerations</h2>
 		 
 		 <p>While matching strings and tokens in a formal language is the primary concern of this document, sometimes a specification needs to consider additional types of matching beyond pure string equality.</p>
 		 
