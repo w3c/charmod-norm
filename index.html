@@ -1472,7 +1472,7 @@
           resource. They also allow for the encoding of Unicode characters not
           represented in the character encoding scheme used by the document.</p>
           
-        <p class="note">For further discussion of character escapes, including guidelines for the definition of escaping mechanisms in specifications, see: <a href="https://www.w3.org/TR/charmod/#sec-Escaping">Section 4.6</a> of [[!CHARMOD]].</p>
+        <p class="note">For further discussion of character escapes, including guidelines for the definition of escaping mechanisms in specifications, see: <a href="#sec-Escaping">Section 4.6</a> of [[!CHARMOD]].</p>
         
         <div class="note">
               <p>The expansion of character escapes and includes is dependent on context, that is, on which <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language is considered to apply when the string matching operation is performed. Consider a search for the string <span class="qterm">suçon</span> in an XML document containing <code>su&amp;#xE7;on</code> but not <code>suçon</code>. If the search is performed in a plain text editor, the context is <span class="new-term">plain text</span> (no <a href="#def_syntactic_content" class="termref">syntactic content</a> or programming language applies), the <code class="kw">&amp;#xE7;</code> character escape is not recognized, hence not expanded and the search fails. If the search is performed in an XML browser, the context is <code>XML</code>, the character escape (defined by XML) is expanded and the search succeeds. </p>
@@ -1779,7 +1779,7 @@
 			<h5>ASCII Case Fold Normalization Step</h5>
                
             <div class="req spec" id="matching_ASCIIFoldNormalizationStep">
-            <p class="advisement">An <a class="termref" href="https://www.w3.org/TR/charmod-norm/#ASCIIFoldNormalizationStep">'ASCII case fold'</a> approach should only be used in exceptional cases, for  vocabularies that are themselves limited to the ASCII range (or where matching only occurs on the ASCII tokens).</p>
+            <p class="advisement">An <a class="termref" href="#ASCIIFoldNormalizationStep">'ASCII case fold'</a> approach should only be used in exceptional cases, for  vocabularies that are themselves limited to the ASCII range (or where matching only occurs on the ASCII tokens).</p>
             </div>
         
 			
@@ -1814,7 +1814,7 @@ HE&#x141;&#x141;O
 			<h5>Unicode Canonical Case Fold Normalization Step</h5>
                
         <div class="req spec" id="matching_ASCIIFoldNormalizationStep">
-            <p class="advisement">Case sensitivity is not recommended for most specifications but, in the case of an exception  where the vocabulary allows non-ASCII characters  and which does not want to be sensitive to case distinctions, the <a href="https://www.w3.org/TR/charmod-norm/#CanonicalFoldNormalizationStep" class="termref">'Unicode canonical case fold'</a> approach SHOULD  be used.</p>
+            <p class="advisement">Case sensitivity is not recommended for most specifications but, in the case of an exception  where the vocabulary allows non-ASCII characters  and which does not want to be sensitive to case distinctions, the <a href="#CanonicalFoldNormalizationStep" class="termref">'Unicode canonical case fold'</a> approach SHOULD  be used.</p>
         </div>
         
 			
@@ -1838,7 +1838,7 @@ HE&#x141;&#x141;O
 			<h5>Unicode Compatibility Case Fold Normalization Step</h5>
                
             <div class="req spec" id="matching_CanonicalFoldNormalizationStep">
-            <p class="advisement">A <a href="https://www.w3.org/TR/charmod-norm/#CompatibilityFoldNormalizationStep" class="termref">'Unicode compatibility case fold'</a> approach should not be used.</p>
+            <p class="advisement">A <a href="#CompatibilityFoldNormalizationStep" class="termref">'Unicode compatibility case fold'</a> approach should not be used.</p>
             </div>
         
 			
