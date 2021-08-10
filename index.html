@@ -1426,7 +1426,6 @@
 
 
 
-					<td></td>
 
 				</tr>
 				<tr>
@@ -1444,7 +1443,6 @@
 
 
 
-					<td></td>
 
 				</tr>
 				<tr>
@@ -1768,7 +1766,7 @@
 			<h5>Default Normalization Step</h5>
                
             <div class="req spec" id="matching_DefaultNormalizationStep">
-            <p class="advisement">It is RECOMMENDED to do NO case folding or Unicode Normalization of content when matching strings in identifiers and syntactic content.</span></p>
+            <p class="advisement">It is RECOMMENDED to do NO case folding or Unicode Normalization of content when matching strings in identifiers and syntactic content.</p>
             </div>
         
 			
@@ -1813,7 +1811,7 @@ HE&#x141;&#x141;O
         <section id="CanonicalFoldNormalizationStep">
 			<h5>Unicode Canonical Case Fold Normalization Step</h5>
                
-        <div class="req spec" id="matching_ASCIIFoldNormalizationStep">
+        <div class="req spec" id="matching_CanonicalFoldNormalizationStep">
             <p class="advisement">Case sensitivity is not recommended for most specifications but, in the case of an exception  where the vocabulary allows non-ASCII characters  and which does not want to be sensitive to case distinctions, the <a href="#CanonicalFoldNormalizationStep" class="termref">'Unicode canonical case fold'</a> approach SHOULD  be used.</p>
         </div>
         
@@ -1868,13 +1866,13 @@ HE&#x141;&#x141;O
         <h4>Converting to a Sequence of Unicode Code Points</h4>
 
 	    <div class="req content" id="practice-useUTF-8">
-        <p class="advisement">Content authors SHOULD enter and store resources in a Unicode character encoding (generally UTF-8 on the Web).</span></p>
+        <p class="advisement">Content authors SHOULD enter and store resources in a Unicode character encoding (generally UTF-8 on the Web).</p>
         </div>
         
         <p>The first step in comparing text is to ensure that both use the same digital representation. This means that implementations need to convert any text in a <a>legacy character encoding</a> to a sequence of Unicode code points. Normally this is done by applying a <a>transcoder</a> to convert the data to a consistent Unicode encoding form (such as UTF-8 or UTF-16). This allows bitwise comparison of the strings in order to determine string equality.</p> 
         
 	    <div class="req content" id="practice-normalizingTranscoder">
-        <p class="advisement">Content authors SHOULD choose a <a>normalizing transcoder</a> when converting legacy encoded text or resources to Unicode unless the mapping of specific characters interferes with the meaning.</span></p>
+        <p class="advisement">Content authors SHOULD choose a <a>normalizing transcoder</a> when converting legacy encoded text or resources to Unicode unless the mapping of specific characters interferes with the meaning.</p>
         </div>
         
         <p>A <dfn>normalizing transcoder</dfn> is a <a>transcoder</a> that performs a conversion from a <a>legacy character encoding</a> to Unicode <em>and</em> ensures that the result is in Unicode Normalization Form C (NFC). For most legacy character encodings, it is possible to construct a normalizing transcoder (by using any transcoder followed by a normalizer); it is not possible to do so if the <a>legacy character encoding</a>'s <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a> contains characters not represented in Unicode. While normalizing transcoders only produce character sequences that are in NFC, the converted character sequence might not be <a>include normalized</a> (for example, if it begins with a combining mark).</p>
@@ -1887,15 +1885,15 @@ HE&#x141;&#x141;O
         <p>Bear in mind that most transcoders produce NFC output and that even those transcoders that do not produce NFC for all characters produce NFC for the preponderance of characters. In particular, there are no commonly-used transcoders that produce decomposed forms where precomposed forms exist or which produce a different combining character sequence from the normalized sequence (and this is true for <em>all</em> of the transcoders in [[!Encoding]]).</p>
                
 	    <div class="req spec" id="practice-allowUnicode">
-        <p class="advisement">Specifications MUST allow a Unicode character encoding.</span></p>
+        <p class="advisement">Specifications MUST allow a Unicode character encoding.</p>
         </div>
         
 	    <div class="req spec" id="practice-defaultEncoding">
-        <p class="advisement"a>Specifications MUST specify a default character encoding and SHOULD specify UTF-8 as the default encoding.</span></p>
+        <p class="advisement">Specifications MUST specify a default character encoding and SHOULD specify UTF-8 as the default encoding.</p>
         </div>
         
 	    <div class="req spec" id="practice-disallowLegacy">
-        <p class="advisement">Specifications SHOULD disallow encodings other than UTF-8.</span></p>
+        <p class="advisement">Specifications SHOULD disallow encodings other than UTF-8.</p>
         </div>
 
         <p><a>Legacy character encodings</a> have generally outlived their usefulness on the Web. New specifications need to support Unicode encodings from the beginning, default to a Unicode encoding (generally UTF-8), and, if at all possible, disallow any other encodings to be used. This not only promotes interoperability, but reduces the range of pointless variation in character and data representation.</p>
