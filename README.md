@@ -2,7 +2,7 @@
 
 ### Documents
 - [Editor's copy](https://w3c.github.io/charmod-norm/)
-- [WD](https://www.w3.org/TR/charmod-norm/)
+- [Group Note](https://www.w3.org/TR/charmod-norm/)
 
 ### Feedback
 Please use the [GitHub issue list](https://github.com/w3c/charmod-norm/issues) to send feedback about this document.
