@@ -12,7 +12,7 @@
     
     <title>Character Model for the World Wide Web: String Matching</title>
     <link rel="canonical" href="https://www.w3.org/TR/charmod-norm/"/>
-    <!-- local styles. Includes the styles from http://www.w3.org/International/docs/styleguide -->
+    <!-- local styles. Includes the styles from https://www.w3.org/International/i18n-activity/guidelines/editing -->
     <link rel="stylesheet" href="local.css">
 	<script src="https://www.w3.org/Tools/respec/respec-w3c" async class="remove"></script>
     <script class="remove">
@@ -48,72 +48,6 @@
           github:       "w3c/charmod-norm",
           
 		  localBiblio: {
-		  "UTS18": {
-		    title: "Unicode Technical Standard #18: Unicode Regular Expressions",
-			href: "https://unicode.org/reports/tr18/",
-			authors: [ "Mark Davis", "Andy Heninger" ]
-		},
-		
-		"Encoding": {
-			title: "Encoding",
-			href: "https://www.w3.org/TR/encoding/",
-			authors: [ "Anne van Kesteren", "Joshua Bell", "Addison Phillips" ]
-		},
-		
-		"ISO10646": {
-			title: "Information Technology - Universal Multiple- Octet Coded CharacterSet (UCS) - Part 1: Architecture and Basic Multilingual Plane",
-			authors: [ "ISO/IEC10646-1:1993" ],
-			note: "The current specification also takes into consideration the first five amendments to ISO/IEC 10646-1:1993. Useful roadmaps (http://www.egt.ie/standards/iso10646/ucs-roadmap.html) show which scripts sit at which numeric ranges."
-		},
-		
-		"UTS10": {
-			title: "Unicode Technical Standard #10: Unicode Collation Algorithm",
-			href: "https://www.unicode.org/reports/tr10/",
-			authors: [ "Mark Davis", "Ken Whistler", "Markus Scherer" ]
-		},
-
-        "UAX9": {
-            title: "Unicode Standard Annex #9: Unicode Bidirectional Algorithm",
-            href: "https://unicode.org/reports/tr9/",
-            authors: [ "Mark Davis", "Aharon Lahnin", "Andrew Glass" ]
-        },
-		
-		"UAX11": {
-		    title: "Unicode Standard Annex #11: East Asian Width",
-		    href: "https://www.unicode.org/reports/tr11/",
-		    authors: [ "Ken Lunde 小林劍" ]
-		},
-		
-		"UAX29": {
-			title: "Unicode Standard Annex #29: Unicode Text Segmentation",
-			href: "https://www.unicode.org/reports/tr29/",
-			authors: [ "Mark Davis" ]
-		},
-		
-		"UTS39": {
-		    title: "Unicode Technical Standard #39: Unicode Security Mechanisms",
-		    href: "https://www.unicode.org/reports/tr39/",
-		    authors: [ "Mark Davis", "Michel Suignard" ]
-		},
-		
-		"UTR36": {
-			title: "Unicode Technical Report #36: Unicode Security Considerations",
-			href: "https://www.unicode.org/reports/tr36/",
-			authors: [ "Mark Davis", "Michel Suignard" ]
-		},
-		
-		"UTR50": {
-		    title: "Unicode Technical Report #50: Unicode Vertical Text Layout",
-		    href: "https://www.unicode.org/reports/tr50/",
-		    authors: [ "Koji Ishii 石井宏治" ]
-		},
-
-		"UTR51": {
-		    title: "Unicode Technical Report #51: Unicode Emoji",
-		    href: "https://www.unicode.org/reports/tr51/",
-		    authors: [ "Mark Davis", "Peter Edberg" ]
-	    },
-	    
 	    "STRING-SEARCH": {
 			title: "Character Model for the World Wide Web: String Searching",
 			href: "https://w3c.github.io/string-search/",
@@ -122,9 +56,9 @@
 		
 		"ASCII": {
 		    title: "ISO/IEC 646:1991, Information technology -- ISO 7-bit coded character set for information interchange",
-		    href:  "http://www.ecma-international.org/publications/standards/Ecma-006.htm",
+		    href:  "https://www.ecma-international.org/publications-and-standards/standards/ecma-6/",
 		    isoNumber: "ISO/IEC 646:1991",
-		    note:  "This standard defines an International Reference Version (IRV) which corresponds exactly to what is widely known as ASCII or US-ASCII. ISO/IEC 646 was based on the earlier standard ECMA-6. ECMA has maintained its standard up to date with respect to ISO/IEC 646 and makes an electronic copy available at http://www.ecma-international.org/publications/standards/Ecma-006.htm "
+		    note:  "This standard defines an International Reference Version (IRV) which corresponds exactly to what is widely known as ASCII or US-ASCII. ISO/IEC 646 was based on the earlier standard ECMA-6. ECMA has maintained its standard up to date with respect to ISO/IEC 646 and makes an electronic copy available at https://www.ecma-international.org/publications-and-standards/standards/ecma-6/ "
 	    },
 	
 	}
@@ -149,7 +83,7 @@
       <section id="goals">
         <h3>Goals and Scope</h3>
         
-        <p>The goal of the Character Model for the World Wide Web is to facilitate use of the Web by all people, regardless of their language, script, writing system, or cultural conventions, in accordance with the <a href="http://www.w3.org/Consortium/mission"><cite>W3C goal of universal access</cite></a>. One basic prerequisite to achieve this goal is to be able to transmit and process the characters used around the world in a well-defined and well-understood way.</p>
+        <p>The goal of the Character Model for the World Wide Web is to facilitate use of the Web by all people, regardless of their language, script, writing system, or cultural conventions, in accordance with the <a href="https://www.w3.org/Consortium/mission"><cite>W3C goal of universal access</cite></a>. One basic prerequisite to achieve this goal is to be able to transmit and process the characters used around the world in a well-defined and well-understood way.</p>
         
         <p class="note">This document builds on <cite>Character Model for the World Wide Web: Fundamentals</cite> [[CHARMOD]]. Understanding the concepts in that document are important to being able to understand and apply this document successfully.</p>
         
@@ -239,7 +173,7 @@
         <p>A <dfn data-lt="transcoder|transcoders">transcoder</dfn> is a process that converts 
 		text between two character encodings. Most commonly in this document it 
 		refers to a process that converts from a <a>legacy character encoding</a> 
-        to a <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode encoding form</a>, 
+        to a <a href="https://www.w3.org/TR/2005/REC-charmod-20050215/#Unicode_Encoding_Form">Unicode encoding form</a>, 
 		such as UTF-8.</p>
 		
 		<p><dfn data-lt="natural language">Natural language</dfn> is the spoken, written, or signed communications used by human beings (see also <a href="https://www.w3.org/TR/ltli/#dfn-natural-language">here</a> [[LTLI]])</p>
@@ -440,11 +374,11 @@
 		
 		        
        <aside class="note">
-       <p>For more information, see [[!Unicode]] <a href="http://www.unicode.org/versions/latest/ch05.pdf">Chapter 5</a> in the section titled <em>Case Mappings</em>) for a detailed discussion of case mapping and case folding. </p>
+       <p>For more information, see [[!Unicode]] <a href="https://www.unicode.org/versions/latest/ch05.pdf">Chapter 5</a> in the section titled <em>Case Mappings</em>) for a detailed discussion of case mapping and case folding. </p>
        </aside>  
 		
 		<aside class="example">
-		<p>For example here is a character with mappings to all three case variations. These mappings are defined in the <a href="http://www.unicode.org/Public/UCD/latest/ucd/">Unicode Character Database</a> (UCD).</p>
+		<p>For example here is a character with mappings to all three case variations. These mappings are defined in the <a href="https://www.unicode.org/Public/UCD/latest/ucd/">Unicode Character Database</a> (UCD).</p>
 		<table>
 			<tr>
 				<th>Uppercase</th>
@@ -894,7 +828,7 @@
             points, mainly for compatibility with legacy character encodings. In 
 		  many cases these variations are associated with the Unicode properties 
 		  described in <cite>East Asian Width</cite> [[UAX11]]. See also <cite>Unicode 
-		  Vertical Text Layout</cite> [[UTR50]] for a discussion of vertical text 
+		  Vertical Text Layout</cite> [[UAX50]] for a discussion of vertical text 
 		  presentation forms.</p>
           <p>In the case of characters with compatibility decompositions, such
             as those shown above, the <span class="qchar">K</span> Unicode
@@ -1584,7 +1518,7 @@
       </section>
       <section id="emojiSequences">
       <h3>Emoji Sequences</h3>   
-      <p>A newer feature of Unicode are the emoji characters. In [[UTR51]], Unicode describes these as:</p>   
+      <p>A newer feature of Unicode are the emoji characters. In [[UTS51]], Unicode describes these as:</p>   
 
       <p class="quote">Emoji are pictographs (pictorial symbols) that are typically presented in a colorful cartoon 
          form and used inline in text. They represent things such as faces, weather, vehicles and buildings, 
@@ -1598,7 +1532,7 @@
 		  U+1F468 U+200D U+1F469 U+200D U+1F467 U+200D U+1F467</span> results in a composed
 		  emoji character for a "family: man, woman, girl, girl" on systems that support this kind of 
 		  composition. Many common emoji can <em>only</em> be formed using ZWJ sequences. For more 
-		  information, see [[UTR51]].</p>
+		  information, see [[UTS51]].</p>
 		  
 	  <p>Emoji characters can be followed by emoji modifier characters. These modifiers allow for the selection of skin tones for emoji that represent people. These characters are normally invisible modifiers that follow the base emoji that they modify. For example: &#x1f468;&nbsp;&#x1f468;&#x1f3fb;&nbsp;&#x1f468;&#x1f3fc;&nbsp;&#x1f468;&#x1f3fd;&nbsp;&#x1f468;&#x1f3fe;&nbsp;&#x1f468;&#x1f3ff;</p>
 	     
@@ -1875,7 +1809,7 @@ HE&#x141;&#x141;O
         <p class="advisement">Content authors SHOULD choose a <a>normalizing transcoder</a> when converting legacy encoded text or resources to Unicode unless the mapping of specific characters interferes with the meaning.</p>
         </div>
         
-        <p>A <dfn>normalizing transcoder</dfn> is a <a>transcoder</a> that performs a conversion from a <a>legacy character encoding</a> to Unicode <em>and</em> ensures that the result is in Unicode Normalization Form C (NFC). For most legacy character encodings, it is possible to construct a normalizing transcoder (by using any transcoder followed by a normalizer); it is not possible to do so if the <a>legacy character encoding</a>'s <a href="http://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a> contains characters not represented in Unicode. While normalizing transcoders only produce character sequences that are in NFC, the converted character sequence might not be <a>include normalized</a> (for example, if it begins with a combining mark).</p>
+        <p>A <dfn>normalizing transcoder</dfn> is a <a>transcoder</a> that performs a conversion from a <a>legacy character encoding</a> to Unicode <em>and</em> ensures that the result is in Unicode Normalization Form C (NFC). For most legacy character encodings, it is possible to construct a normalizing transcoder (by using any transcoder followed by a normalizer); it is not possible to do so if the <a>legacy character encoding</a>'s <a href="https://www.w3.org/TR/2005/REC-charmod-20050215/#def-repertoire">repertoire</a> contains characters not represented in Unicode. While normalizing transcoders only produce character sequences that are in NFC, the converted character sequence might not be <a>include normalized</a> (for example, if it begins with a combining mark).</p>
         
         <p>Because document formats on the Web often interact with or are processed using additional, external resources (for example, a CSS style sheet being applied to an HTML document), the consistent representation of text becomes important when matching values between documents that use different character encodings. Use of a normalizing transcoder helps ensure interoperability by making legacy encoded documents match the normally expected Unicode character sequence for most languages.</p>
         
@@ -2140,7 +2074,7 @@ HE&#x141;&#x141;O
    
     <section class=appendix>
       <h2 id="changeLog" class="informative">Changes Since the Last Published Version</h2>
-      <p>Changes to this document (beginning with the <a href="http://www.w3.org/TR/2014/WD-charmod-norm-20180420/Overview.html">Working Draft</a> of 2018-04-20) are available via the <a href="https://github.com/w3c/charmod-norm/commits/gh-pages">github commit log</a>.</p>
+      <p>Changes to this document (beginning with the <a href="https://www.w3.org/TR/2014/WD-charmod-norm-20180420/Overview.html">Working Draft</a> of 2018-04-20) are available via the <a href="https://github.com/w3c/charmod-norm/commits/gh-pages">github commit log</a>.</p>
       
       <p>This version changes the which normalization step is optional in the <a href="#CanonicalFoldNormalizationStep">Unicode Canonical Case Fold Normalization Step</a> and the <a href="#CompatibilityFoldNormalizationStep">Unicode Compatibility Case Fold Normalization Step</a>. This version requires normalization as the first step and makes normalization of the output optional. This change is based on testing and conversation with Unicode.</p>
     </section>
