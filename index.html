@@ -2065,6 +2065,20 @@ HE&#x141;&#x141;O
         </section>
       </section>
    
+    <section id="security">
+      <h2>Security Considerations</h2>
+
+      <p>This document describes string matching, Unicode normalization, case folding, and related processing. Applying these operations inconsistently might create security vulnerabilities, including spoofing, and bypasses of access-control or other policy checks.</p>
+
+      <p>This document does not define a complete policy for detecting confusable or otherwise unsafe identifiers. Applications may need additional measures appropriate to their threat model, such as script restrictions, confusable detection, or user-visible warnings.</p>
+    </section>
+
+    <section id="privacy">
+      <h2>Privacy Considerations</h2>
+
+      <p>The string matching and normalization operations described here do not require the collection or disclosure of personal data.</p>
+    </section>
+
     <section class=appendix>
       <h2 id="changeLog" class="informative">Changes Since the Last Published Version</h2>
       <p>Changes to this document (beginning with the <a href="https://www.w3.org/TR/2018/WD-charmod-norm-20180420/Overview.html">Working Draft</a> of 2018-04-20) are available via the <a href="https://github.com/w3c/charmod-norm/commits/gh-pages">github commit log</a>.</p>
