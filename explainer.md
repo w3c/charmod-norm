@@ -8,11 +8,18 @@
 
 ## Table of Contents
 
+- [Audience and evidence](#audience-and-evidence)
 - [Introduction](#introduction)
 - [How this relates to Unicode normalization](#how-this-relates-to-unicode-normalization)
 - [User-Facing Problem](#user-facing-problem)
 - [Proposed Approach](#proposed-approach)
 - [Internationalization, Accessibility, Security, and Privacy Considerations](#internationalization-accessibility-security-and-privacy-considerations)
+
+## Audience and evidence
+
+The primary audience is W3C specification developers, who can cite the document.
+
+No formal user research was conducted for this Note. Its evidence base is more than twenty years of internationalization review.
 
 ## Introduction
 
@@ -53,12 +60,6 @@ String matching asks a bigger question. It has to decide whether two *names* are
 - **Making everything match.** This is not a fuzzy-matching or "find" specification.
 - **Solving homograph attacks.** The document points to [UTR36](https://www.unicode.org/reports/tr36/) and [UTS39](https://www.unicode.org/reports/tr39/) and requires specifications to document the risk.
 - **Replacing Unicode's definitions.** The document reuses Unicode case folding, the definition of ASCII case-insensitive matching from [Infra](https://infra.spec.whatwg.org/#ascii-case-insensitive), and the Unicode normalization forms.
-
-### Audience and evidence
-
-The primary audience is W3C specification developers, who can cite the document.
-
-No formal user research was conducted for this Note. Its evidence base is more than twenty years of internationalization review.
 
 ## Proposed Approach
 
