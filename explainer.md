@@ -63,7 +63,7 @@ String matching asks a bigger question. It has to decide whether two *names* are
 
 ## Proposed Approach
 
-The document answers the question "are these two strings the same".
+The document answers the question "are these two strings the same" for fundamental string comparison operations. It does not cover more advanced or fuzzy operations such as an in-page search.
 
 ### The matching operation
 
