@@ -19,7 +19,7 @@
 
 The primary audience is W3C specification developers, who can cite the document.
 
-No formal user research was conducted for this Note. Its evidence base is more than twenty years of internationalization review.
+No formal user research was conducted for this document. Its evidence base is more than twenty years of internationalization review.
 
 ## Introduction
 
