@@ -40,6 +40,31 @@
    src: url('NotoSansKhmer-Regular.woff') format('woff');
 }
 
+/* Colors that adapt to the user's color scheme.
+   ReSpec only enables dark mode when the document declares
+   <meta name="color-scheme" content="light dark">. Its manual dark mode toggle
+   adds a .darkmode class on <body>, which prefers-color-scheme cannot see, so
+   per https://respec.org/docs/#dark-mode the dark values are declared twice. */
+:root {
+	--code-text: #A52A2A;
+	--qrec-text: #63F;
+	--quote-bg: #F6F6F6;
+	}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--code-text: #E9967A;
+		--qrec-text: #9C8CFF;
+		--quote-bg: #262626;
+		}
+	}
+
+body.darkmode {
+	--code-text: #E9967A;
+	--qrec-text: #9C8CFF;
+	--quote-bg: #262626;
+	}
+
 body {
 	counter-reset: requirement;
 }
@@ -57,7 +82,7 @@ h3 {
 h4  { 
 	font-size: 100%; 
     font-weight: normal; 
-    color: #005a9c; 
+    color: var(--heading-text, #005a9c); 
     margin-top: 2em;  
     }
 .leadin {
@@ -112,7 +137,7 @@ a.termref:active {
 .quote:before { content: '"'; }
 .quote:after { content: '"'; }
 code { 
-	color: #A52A2A; 
+	color: var(--code-text); 
     font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", NoToFu, monospace; 
     font-size: 100%; 
     }
@@ -151,7 +176,7 @@ span.qrec {
 	font-style: normal;
 	font-size: smaller;
 	text-transform: capitalize;
-	color: #63F;
+	color: var(--qrec-text);
 }
 
 SPAN.h\e9llo { 
@@ -206,7 +231,7 @@ td.b3 {
 
 td.b-clear {
 
-	border: 1px solid black;
+	border: 1px solid currentColor;
 	width: 20%;
 	text-align: center;
 	font-size: 36pt;
@@ -278,7 +303,7 @@ div.exampleBox {
 }
 
 p.quote {
-    background-color:#F6F6F6;
+    background-color: var(--quote-bg);
     margin-left: 2em;
     padding-left: 2em;
     border-left: 6px solid #888888;
@@ -296,6 +321,7 @@ p.quote {
 
 div.terminologyExample {
      background-color:white;
+     color: black;
      text-align: left; 
      border-style: solid; 
      border-width:3px; 
