@@ -56,7 +56,7 @@ Specifications and their implementers depend on string equality. They have to kn
 
 - Give specification authors one place to cite, instead of each specification inventing its own answer.
 - Let users write in the characters and languages they actually use, rather than restricting identifiers to ASCII to avoid the problem.
-- Separate content that users see from identifiers only machines use.
+- Provide guidance for identifiers (primarily used by machines).
 - Tell implementers where normalization, case folding, escaping, and transcoding belong in a matching operation.
 
 ### Non-goals
