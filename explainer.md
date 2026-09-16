@@ -39,7 +39,7 @@ The canonical forms, NFC and NFD, remove the encoding differences between canoni
 
 The compatibility forms, NFKC and NFKD, go further and also erase differences between characters that Unicode treats as compatible rather than identical, such as a fullwidth letter and its ASCII counterpart. The compatibility forms discard distinctions that can carry meaning, which is why they SHOULD NOT be used for most vocabularies.
 
-String matching asks a bigger question. It has to decide whether two *names* are the same name, for text that differs in case, that uses character escapes, that contains invisible characters, that composes emoji in different ways, that came from different legacy encodings, or that contains characters that merely look alike. Normalization covers part of that, so the document uses it as one step among several.
+Specifications and their implementers depend on string equality. They have to know if two *names* are the same or are (intentionally or not) different, and they need to be able to depend on that equality working across the Web platform, even if the text differs in case, uses character escapes, contains invisible characters, composes emoji in different ways, comes from different legacy encodings, or contains characters that merely look alike.
 
 ## User-Facing Problem
 
