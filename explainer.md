@@ -33,7 +33,11 @@ Every comparison, lookup, index, and search over strings on the web depends on a
 
 **Unicode Normalization is one tool for removing differences in encoding from otherwise equivalent strings. It is not the subject of the document, and by itself does not solve the string matching problem.**
 
-Unicode normalization ([UAX15](https://www.unicode.org/reports/tr15/)) does one job: it maps the several code point sequences that encode the same abstract character onto one of four normal forms, NFC, NFD, NFKC, and NFKD.
+Unicode normalization ([UAX15](https://www.unicode.org/reports/tr15/)) assigns every string a representation within each of four normal forms: NFC, NFD, NFKC, and NFKD.
+
+The canonical forms, NFC and NFD, remove the encoding differences between canonically equivalent strings, which are built from the same abstract characters in different ways: `Ǻ` (U+01FA), `Å` (U+00C5) + U+0301, and `A` + U+030A + U+0301 all normalize to one another.
+
+The compatibility forms, NFKC and NFKD, go further and also erase differences between characters that Unicode treats as compatible rather than identical, such as a fullwidth letter and its ASCII counterpart. The compatibility forms discard distinctions that can carry meaning, which is why they SHOULD NOT be used for most vocabularies.
 
 String matching asks a bigger question. It has to decide whether two *names* are the same name, for text that differs in case, that uses character escapes, that contains invisible characters, that composes emoji in different ways, that came from different legacy encodings, or that contains characters that merely look alike. Normalization covers part of that, so the document uses it as one step among several.
 
