@@ -27,7 +27,7 @@ No formal user research was conducted for this document. Its evidence base is mo
 
 Every comparison, lookup, index, and search over strings on the web depends on an answer to "are these the same?" Text that a user considers identical can be encoded in several ways, and text a user considers different can look identical on screen.
 
-The document gives specification developers a shared toolkit. It is a companion to *Character Model for the World Wide Web 1.0: Fundamentals* ([CHARMOD](https://www.w3.org/TR/charmod/)).
+"String Matching" documents the recommended approach to defining formal string equality on the Web. It includes options for specialized use cases, as well as documentation and examples that illustrate the potential problems that may be encountered by users as a result of variations in encoding of Unicode text.
 
 ## How this relates to Unicode normalization
 
