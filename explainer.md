@@ -23,7 +23,7 @@ No formal user research was conducted for this document. Its evidence base is mo
 
 ## Introduction
 
-*Character Model for the World Wide Web: String Matching* ([charmod-norm](https://www.w3.org/TR/charmod-norm/)) is a document that answers one question for the people who write and implement specifications: **when are two strings the same?**
+Unicode forms the basis for encoding text on the Web. It is necessary and desirable to permit a wide range of Unicode characters, needed to write the world's languages, to be used for identifiers and other content in the protocols, document formats, and APIs which make up the Web. Unlike ASCII, Unicode can sometimes encode equivalent text in different ways. The document "String Matching" answers the question **when are two strings the same?**
 
 Every comparison, lookup, index, and search over strings on the web depends on an answer to "are these the same?" Text that a user considers identical can be encoded in several ways, and text a user considers different can look identical on screen.
 
