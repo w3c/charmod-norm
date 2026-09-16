@@ -31,7 +31,7 @@ Every comparison, lookup, index, and search over strings on the web depends on a
 
 ## How this relates to Unicode normalization
 
-**Unicode normalization is one tool used inside the matching algorithm. It is not the subject of the document, and by itself it does not solve string matching.**
+**Unicode Normalization is one tool for removing differences in encoding from otherwise equivalent strings. It is not the subject of the document, and by itself does not solve the string matching problem.**
 
 Unicode normalization ([UAX15](https://www.unicode.org/reports/tr15/)) does one job: it maps the several code point sequences that encode the same abstract character onto one of four normal forms, NFC, NFD, NFKC, and NFKD.
 
