@@ -1,7 +1,7 @@
 # Character Model for the World Wide Web: String Matching
 
 ### Documents
-- [Editor's copy](https://w3c.github.io/charmod-norm/)
+- [Editor's copy](https://www.w3.org/International/charmod-norm/)
 - [Group Note](https://www.w3.org/TR/charmod-norm/)
 
 ### Feedback
